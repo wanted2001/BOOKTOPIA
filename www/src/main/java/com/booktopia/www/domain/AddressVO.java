@@ -4,10 +4,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class AuthVO {
+public class AddressVO {
     private String id; //사용자 id
-    private String role; //사용자 권한
+    private String addr; //사용자 주소
 }
