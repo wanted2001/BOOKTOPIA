@@ -7,4 +7,5 @@ public class BoardVO {
     private String bTitle;
     private String bWriter;
     private String bContent;
+    private String cmtcnt;
 }
