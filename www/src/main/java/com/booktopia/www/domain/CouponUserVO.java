@@ -4,10 +4,11 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class AuthVO {
+public class CouponUserVO {
     private String id; //사용자 id
-    private String role; //사용자 권한
+    private int couNo; //쿠폰 번호
+    private String couUse; // 쿠폰 사용여부
 }
