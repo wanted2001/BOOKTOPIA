@@ -1,0 +1,58 @@
+@font-face {
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+.wrap{
+    height: 500px;
+    background-color: greenyellow;
+     justify-content: center;
+     font-family:SCDream4;
+}
+.subTopBox{
+    padding-top: 100px;
+    background-color: chocolate;
+    width: 100%;
+    height: 150px;
+    margin-top: 50px;
+    text-align: center;
+}
+.subBottomBox{
+    background-color: bisque;
+    padding-top: 60px;
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+.subTicketInfo{
+    background-color: aquamarine;
+    width: 200px;
+    height: 300px;
+    padding: 20px;
+    padding-top: 60px;
+    border-radius: 20px;
+}
+.subTitle{
+    font-size: 4em;
+}
+.subTitle2{
+    padding-top: 20px;
+    font-size: 2em;
+}
+
+.subMonth{
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.subGoToPayBtn{
+    font-family:SCDream4;
+    width: 150px;
+     border-radius: 10px;
+     padding: 10px;
+     border: none;
+}

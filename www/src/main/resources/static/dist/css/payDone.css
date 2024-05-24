@@ -1,0 +1,25 @@
+.wrap{
+    height: 500px;
+    background-color: blueviolet;
+     display: flex;
+     justify-content: center;
+}
+.payDoneBox{
+    background-color: mediumaquamarine;
+    padding-top: 250px;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+}
+.payDoneBox div{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    justify-content: center;
+}
+.payDoneBox button{
+    width: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<title>안녕하세요</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- css area-->
+<link rel="stylesheet" th:href="@{/dist/css/subInfo.css}">
+<!-- css area -->
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div class="subTopBox">
+                <p class="subTitle">구독상품</p>
+                <p class="subTitle2">한달에 한 권! '북토피아' 에서 나만의 맞춤 도서를 받아보세요.</p>
+            </div>
+            <div class="subBottomBox">
+                <div class="subTicketInfo">
+                    <p class="subMonth">1개월</p>
+                    <p> ---- 원 </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <button type="button" class="subGoToPayBtn">구매하기</button>
+                </div>
+                <div class="subTicketInfo">
+                    <p class="subMonth">3개월</p>
+                    <p> ---- 원 </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <button type="button" class="subGoToPayBtn">구매하기</button>
+                </div>
+                <div class="subTicketInfo">
+                    <p class="subMonth">6개월</p>
+                    <p> ---- 원 </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <p> ------------- </p>
+                    <button type="button" class="subGoToPayBtn">구매하기</button>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>
+</html>
