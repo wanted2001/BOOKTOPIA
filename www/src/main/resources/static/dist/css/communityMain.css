@@ -1,0 +1,35 @@
+.wrap {
+    background-color: hotpink;
+}
+.commVote{
+    width: 100%;
+    background-color: antiquewhite;
+    height: 400px;
+    margin: 0 auto;
+ }
+.commMonth{
+    width: 800px;
+    background-color: olivedrab;
+    height: 40px;
+    padding-top: 20px;
+}
+.commChoice{
+    width: 800px;
+    background-color: cadetblue;
+    height: 50px;
+}
+.commTopic{
+    width: 1000px;
+    background-color: darkseagreen;
+    height: 110px;
+}
+.commViewVote{
+    width: 1000px;
+    background: chocolate;
+    height: 130px;
+}
+.commVoteUp{
+    height: 80px;
+    width: 50px;
+    background-color: cornflowerblue;
+}
