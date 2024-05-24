@@ -5,11 +5,9 @@
     font-weight: normal;
 }
 
-.wrap{
-    width: 1900px;
+.wrap-header{
     background-color: beige;
     height: 80px;
-    margin: 0 auto;
     
 }
 .contain-body{
