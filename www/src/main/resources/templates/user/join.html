@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/dist/css/join.css}">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="joinAllPage">
+            <div class="joinWrapPage">
                 <div class="joinAgreePage">
                     <div class="joinAgreeCheckBox">
-                        <input type="checkbox">
+                        <input type="checkbox" class="joinCheckBox">
                     </div>
                     <div class="joinAgreeContent">
                         <input type="button" value="아래의 모든 약관에 동의합니다." onclick="joinPopup()">
                     </div>
                 </div>
-                <div class="joinWrapPage">
+                <div class="joinAllPage">
                     <div class="join">
                         <form action="#">
-                            <div class="joinIdArea Area">
-                                <p>아이디</p>
-                                <input type="text" name="email" placeholder="영문,소문자,숫자를 이용한 6~13자리">
+                            <div class="joinIdArea joinArea">
+                                <div class="joinTextBox"><span class="joinStar">*</span>아이디</div>
                                 <div class="joinduplicationBtn">
-                                    <button type="button">중복확인</button>
+                                    <button type="button" class="joinCheckIdBtn">중복확인</button>
                                 </div>
+                                <input type="text" name="id" placeholder="영문,소문자,숫자를 이용한 6~13자리" class="joininput">
+                                <span class="joinUnderline"></span>
+
                             </div>
-                            <div class="joinPwdArea Area">
-                                <p>비밀번호</p>
-                                <input type="text" name="pwd" placeholder="영문,숫자,특수문자 포함 8~20자">
+                            <div class="joinPwdArea joinArea">
+                                <div class="joinTextBox"><span class="joinStar">*</span>비밀번호</div>
+                                <input type="text" name="pwd" placeholder="영문,숫자,특수문자 포함 8~20자" class="joininput">
+                                <span class="joinUnderline"></span>
                             </div>
-                            <div class="joinPwdArea Area">
-                                <p>비밀번호 확인</p>
-                                <input type="text" name="pwd" placeholder="비밀번호와 일치해야합니다.">
+                            <div class="joinPwdArea joinArea">
+                                <div class="joinTextBox"><span class="joinStar">*</span>비밀번호 확인</div>
+                                <input type="text" name="pwd" placeholder="비밀번호와 일치해야합니다." class="joininput">
+                                <span class="joinUnderline"></span>
                             </div>
-                            <div class="joinNameArea Area">
-                                <p>이름</p>
-                                <input type="text" name="name" placeholder="실명을 입력하세요">
+                            <div class="joinNameArea joinArea">
+                                <div class="joinTextBox"><span class="joinStar">*</span>이름</div>
+                                <input type="text" name="name" placeholder="실명을 입력하세요" class="joininput">
+                                <span class="joinUnderline"></span>
                             </div>
-                            <div class="joinPhoneArea Area">
-                                <p>휴대전화 번호</p>
-                                <input type="text" name="phone" placeholder="(-)없이 입력하세요">
+                            <div class="joinPhoneArea joinArea">
+                                <div class="joinTextBox"><span class="joinStar">*</span>전화번호</div>
+                                <input type="text" name="phone" placeholder="(-)없이 입력하세요" class="joininput">
+                                <span class="joinUnderline"></span>
                             </div>
                             <div class="joinJoinBtn">
                                 <button type="submit">가입하기</button>
                             </div>
                         </form>
                     </div>
-                    <div class="joinSocial">
-                        <div><a href="#"><button type="button" id="g">구글</button></a></div>
-                        <div><a href="#"><button type="button" id="k">카카오</button></a></div>
-                        <div><a href="#"><button type="button" id="n">네이버</button></a></div>
+                    <div class="joinSocialBtn">
+                        <div class="joinKakaoBtn">
+                            <a id="kakao-join-btn" href="#">
+                                <img th:src="@{/image/kakaoLogin.png}" alt="카카오 회원가입 버튼" />
+                            </a>
+                        </div>
+                        <div class="joinNaverBtn">
+                            <a id="naver-join-btn" href="#">
+                                <img th:src="@{/image/naverLogin.png}" alt="네이버 회원가입 버튼" />
+                            </a>
+                        </div>
+                        <div class="joinGoogleBtn">
+                            <a id="google-join-btn" href="#">
+                                <img th:src="@{/image/googleLogin.jpg}" alt="구글 회원가입 버튼" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

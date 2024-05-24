@@ -1,0 +1,131 @@
+.wrap {
+    width: 1400px;
+    border: 1px solid brown;
+}
+
+
+
+.joinAgreeContent>input{
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+}
+.join{
+    justify-content: center;
+    width: 300px;
+    margin: 0 auto;
+}
+.joinCheckIdBtn{
+    border: 0;
+    background-color: transparent;
+    float: right;
+}
+
+/* 필수 항목 표시 */
+.joinStar{
+    color: red;
+}
+
+
+.joinArea{
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.joinArea>input{
+    width: 300px;
+    height: 30px;
+    box-sizing: border-box;
+    outline: hidden;
+    border: none;
+
+}
+
+.joinTextBox{
+    display: flex;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.joinCheckBox{
+    width: 30px;
+    height: 25px;
+}
+
+
+.joinWrapPage {
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid red;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joinAgreePage {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid aqua;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+
+.joinAgreeContent{
+    width: inherit;
+    overflow: hidden;
+}
+.joinAgreeContent>input{
+    height: 30px;
+    width: inherit;
+    box-sizing: border-box;
+}
+
+.joinAllPage {
+    text-align: center;
+    width: 700px;
+    height: 500px;
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+.joinSocialBtn {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.joinSocialBtn>div {
+    margin: 0 5px 0 5px;
+}
+
+.joinSocialBtn>div>a>img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+}
+
+.joinJoinBtn{
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    margin: 0 auto;
+ }
+ .joinJoinBtn>button{
+     width: 200px;
+     border: 0;
+     line-height: 30px;
+     background-color: transparent;
+ }
+ .joinJoinBtn:hover{
+     background-color: red;
+     color: white;
+ }
