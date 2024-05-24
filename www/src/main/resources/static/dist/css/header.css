@@ -1,0 +1,37 @@
+
+.wrap{
+    height: 80px;
+    border: 1px solid black;
+    margin: 0 auto;
+    
+}
+.contain-body{
+    display: flex;
+    margin-left: 30px;
+}
+.logo{
+    background-color: aquamarine;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
+    margin-right: 40px;
+    margin-top: 20px;
+
+}
+
+li{
+    list-style: none;
+    display: inline;
+    color: black;
+}
+
+.cate, .register, .login {
+    line-height: 80px;
+    margin: 0 10px;
+}
+
+.rigth{
+    float: right;
+    display: inline;
+}
