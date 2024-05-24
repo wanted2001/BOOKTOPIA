@@ -1,22 +1,83 @@
-.wrap{
-    width:1400x;
+.loginWrapPage{
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
+    border: 1px solid red;
+
 }
 .loginAllPage{
+    text-align: center;
+    width: 700px;
+    height: 500px;
+    display: flex;
     border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+}
+.loginAllPage>form{
+    border: 1px solid brown;
+    margin-bottom: 10px;
+}
+.loginAllPage>form>input{
+    background-color: antiquewhite;
+    border: 0;
+    width: 200px;
+    height: 30px;
+}
+.loginAllPage>form>input:nth-child(1){
+    margin-bottom: 10px;
+}
+.loginAllPage>form>.loginLoginBtn{
+   width: 200px;
+   height: 30px;
+   border-radius: 10px;
+   background-color: antiquewhite;
+   margin: 0 auto;
+   margin-top: 20px;
+}
+.loginAllPage>form>.loginLoginBtn>button{
+    width: 200px;
+    border: 0;
+    line-height: 30px;
+    background-color: transparent;
+}
+.loginAllPage>form>.loginLoginBtn:hover{
+    background-color: red;
+    color: white;
+}
+.loginLostWrap{
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.loginFindDiv{
+    display: inline-block;
+}
+.loginFindDiv>a>button{
+    border-radius: 50px;
+    border: 0;
+    background-color: transparent;
+
+}
+.loginFindDiv>a>button:hover{
+    /* 버튼 색 바꾸기 */
+    color: red;
 
 }
 .loginSocialBtn{
     display: flex;
     justify-content: space-around;
+    margin: 0 auto;
 }
-.loginLostWrap{
-    display: flex;
-    justify-content: space-between;
+.loginSocialBtn>div{
+    margin: 0 5px 0 5px;
 }
 .loginSocialBtn>div>a>img{
-    width: 100px;
-    height: 100px;
+    width: 30px;
+    height: 30px;
     border-radius: 100px;
 }
+
