@@ -1,7 +1,17 @@
+@font-face {
+    font-family: "SCDream4";
+    src: url(/static/dist/font/S-Core_Dream_OTF/SCDream4.otf) format(otf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+*{
+    font-family: "SCDream4";
+}
 
 .wrap{
     height: 80px;
-    border: 1px solid black;
+    border: 0.3px solid black;
     margin: 0 auto;
     
 }
@@ -32,6 +42,5 @@ li{
 }
 
 .rigth{
-    float: right;
-    display: inline;
+    margin-left: 620px;
 }
