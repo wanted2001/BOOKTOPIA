@@ -1,0 +1,99 @@
+@font-face {
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+.wrap{
+    background-color: wheat;
+    flex-wrap: wrap;
+    font-family: SCDream4;
+}
+.payTitle{
+    background-color:olivedrab;
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    line-height: 300px;
+    font-size: 3em;
+}
+.payOutBox{
+    width: 100%;
+    height: 700px;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+}
+.payInBox1{
+    background-color: violet;
+    width: 40%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.payInBox2{
+    background-color: sandybrown;
+    width: 30%;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.payInnerDiv1{
+    margin-top: 20px;
+}
+
+.payInnerDiv2{
+    margin-top: 15px;
+}
+
+.payInBox1 input{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 560px;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+}
+
+.payInnerDiv2 > .addrInput{
+    width: 350px;
+}
+
+.payGetAddrBtn{
+    width: 200px;
+    height: 43px;
+}
+
+.payInnerDiv3{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.payInnerDiv3 div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.payBtn{
+    width: 460px;
+    height: 40px;
+    margin: 10px -20px 10px;
+    border: none;
+}
+
+
+.couponCodeInput{
+    width: 280px;
+    height: 40px;
+}
+
+.addCouponBtn{
+    margin-top: 20px;
+    width: 120px;
+    height: 46px;
+    margin-bottom: 30px;
+}
+

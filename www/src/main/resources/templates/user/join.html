@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div class="joinAllPage">
+                <div class="joinAgreePage">
+                    <div class="joinAgreeCheckBox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="joinAgreeContent">
+                        <input type="button" value="아래의 모든 약관에 동의합니다." onclick="joinPopup()">
+                    </div>
+                </div>
+                <div class="joinWrapPage">
+                    <div class="join">
+                        <form action="#">
+                            <div class="joinIdArea Area">
+                                <p>아이디</p>
+                                <input type="text" name="email" placeholder="영문,소문자,숫자를 이용한 6~13자리">
+                                <div class="joinduplicationBtn">
+                                    <button type="button">중복확인</button>
+                                </div>
+                            </div>
+                            <div class="joinPwdArea Area">
+                                <p>비밀번호</p>
+                                <input type="text" name="pwd" placeholder="영문,숫자,특수문자 포함 8~20자">
+                            </div>
+                            <div class="joinPwdArea Area">
+                                <p>비밀번호 확인</p>
+                                <input type="text" name="pwd" placeholder="비밀번호와 일치해야합니다.">
+                            </div>
+                            <div class="joinNameArea Area">
+                                <p>이름</p>
+                                <input type="text" name="name" placeholder="실명을 입력하세요">
+                            </div>
+                            <div class="joinPhoneArea Area">
+                                <p>휴대전화 번호</p>
+                                <input type="text" name="phone" placeholder="(-)없이 입력하세요">
+                            </div>
+                            <div class="joinJoinBtn">
+                                <button type="submit">가입하기</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="joinSocial">
+                        <div><a href="#"><button type="button" id="g">구글</button></a></div>
+                        <div><a href="#"><button type="button" id="k">카카오</button></a></div>
+                        <div><a href="#"><button type="button" id="n">네이버</button></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>
