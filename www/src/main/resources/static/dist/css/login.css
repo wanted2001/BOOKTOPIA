@@ -1,0 +1,22 @@
+.wrap{
+    width:1400x;
+    display: flex;
+    justify-content: center;
+}
+.loginAllPage{
+    border: 1px solid black;
+
+}
+.loginSocialBtn{
+    display: flex;
+    justify-content: space-around;
+}
+.loginLostWrap{
+    display: flex;
+    justify-content: space-between;
+}
+.loginSocialBtn>div>a>img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
