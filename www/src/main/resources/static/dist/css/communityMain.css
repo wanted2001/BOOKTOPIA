@@ -4,9 +4,10 @@
 }
 .commVote{
     width: 100%;
-    background-color: antiquewhite;
     height: 380px;
     margin: 20px auto;
+    background-color: antiquewhite;
+    display: block;
  }
 .commMonth{
     width: 800px;
@@ -34,6 +35,7 @@
     margin: 30px auto;
     display: flex;
     justify-content: center;
+    clear: both;
 }
 .commVoteUp{
     height: 100px;
@@ -53,5 +55,7 @@
     background-color: lightgray;
 }
 .commBoard{
-
+    background-color: yellow;
+    width: 100%;
+    height: 500px;
 }
