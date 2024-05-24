@@ -6,24 +6,24 @@
         <title>Booktopia Test</title>
         <link rel="stylesheet" th:href="@{/dist/css/header.css}">
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
-
+        <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
     </head>
     <body>
     <nav class="contain-header">
         <div class="wrap-header">
-        <div class="contain-body">
-            <a class="logo" href="#">00</a>
-            <div class="cate">
-                <ul>
-                     <li><a class="cate cate1" href="#">북토피아 소개</a></li>
-                     <li><a class="cate cate2" href="#">구독상품</a></li>
-                     <li><a class="cate cate3" href="#">커뮤니티</a></li>
-                     <li><a class="cate cate4" href="#">취향검사</a></li>
-                     <li class="rigth"><a class="register" href="#">회원가입</a></li>
-                     <li ><a class="login" href="#">로그인</a></li>
-                </ul>
+            <div class="contain-body">
+                <a class="logo" href="#">로고</a>
+                <div class="cate">
+                    <ul>
+                         <li><a class="cate cate1" href="#">북토피아 소개</a></li>
+                         <li><a class="cate cate2" href="#">구독상품</a></li>
+                         <li><a class="cate cate3" href="#">커뮤니티</a></li>
+                         <li><a class="cate cate4" href="#">취향검사</a></li>
+                         <li class="rigth"><a class="register" href="#">회원가입</a></li>
+                         <li ><a class="login" href="#">로그인</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     </nav>
 
@@ -31,9 +31,17 @@
         <th:block th:replace="${content}"></th:block>
     </div>
 
-    <div class="footer">
-        footer 영역
-    </div>
+    <footer>
+        <div class="flogo">로고</div>
+        <div class="fcate">
+            <ul>
+                <li class="fli"><a href="#">공지사항</a></li>
+                <li class="fli"><a href="#">이용안내</a></li>
+                <li class="fli"><a href="#">개인정보처리방침</a></li>
+                <li class="fli"><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </footer>
     </body>
 </th:block>
 </html>
