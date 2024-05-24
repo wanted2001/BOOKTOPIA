@@ -14,6 +14,7 @@
 
 .test-contain{
     width: 1000px;
+    margin: 0 auto;
 }
 .wrap{
     background-color: blueviolet;
