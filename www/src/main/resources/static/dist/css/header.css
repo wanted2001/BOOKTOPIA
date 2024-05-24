@@ -1,17 +1,14 @@
 @font-face {
-    font-family: "SCDream4";
-    src: url(/static/dist/font/S-Core_Dream_OTF/SCDream4.otf) format(otf);
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format(otf);
     font-style: normal;
     font-weight: normal;
 }
 
-*{
-    font-family: "SCDream4";
-}
-
 .wrap{
+    width: 1900px;
+    background-color: beige;
     height: 80px;
-    border: 0.3px solid black;
     margin: 0 auto;
     
 }
@@ -35,12 +32,14 @@ li{
     display: inline;
     color: black;
 }
-
+li>a{
+    font-family:SCDream4;
+}
 .cate, .register, .login {
     line-height: 80px;
     margin: 0 10px;
 }
 
 .rigth{
-    margin-left: 620px;
+    margin-left: 550px;
 }
