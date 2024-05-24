@@ -20,39 +20,80 @@
                 <div class="commBoardArea">
                     <div class="commBoardtext">자유롭게..</div>
                     <!--전체보기버튼-->
-                    <div class="commBoardAll"></div>
+                    <div class="commBoardAll">
+                        <a th:href="@{/community/communityList}">
+                            <span>전체보기 ></span>
+                        </a>
+                    </div>
                     <!--커뮤니티카테고리-->
                     <div class="CommBoardCate">
                         <div class="commCategory-top">
-                            <div class="commCate1">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate1 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>소설</p>
+                                </div>
                             </div>
-                            <div class="commCate2">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate2 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>시/에세이</p>
+                                </div>
                             </div>
-                            <div class="commCate3">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate3 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>경제/경영</p>
+                                </div>
                             </div>
                         </div>
                         <div class="commCategory-bottom">
-                            <div class="commCate4">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate4 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>인문</p>
+                                </div>
                             </div>
-                            <div class="commCate5">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate5 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>역사/문화</p>
+                                </div>
                             </div>
-                            <div class="commCate6">
-                                <div class="commCateImg"></div>
-                                <div class="commCatetext"></div>
+                            <div class="commCate6 commCate">
+                                <div class="commCateImg">
+                                    <a th:href="@{/community/communityList}">
+                                        <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
+                                    </a>
+                                </div>
+                                <div class="commCatetext">
+                                    <p>자기계발</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</html>
+    </th:block>
+</th:block>

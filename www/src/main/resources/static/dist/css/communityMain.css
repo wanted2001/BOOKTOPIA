@@ -1,4 +1,11 @@
+@font-face {
+    font-family: SCDream3;
+    src: url(../font/S-Core_Dream_OTF/SCDream3.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 .wrap {
+    font-family: SCDream3;
     background-color: antiquewhite;
 }
 .commVote{
@@ -68,6 +75,17 @@
     height: 330px;
     margin-top: 30px;
 }
+.commBoardAll{
+    float: right;
+    width: 130px;
+    position: absolute;
+    right: 420px;
+    top: 512px;
+}
+.commBoardAll{
+    font-family: SCDream3;
+    font-size: 13px;
+}
 .CommBoardCate{
     background-color: gold;
     width: 850px;
@@ -89,13 +107,20 @@
     width: 100%;
     height: 165px;
 }
-.commCate1, .commCate2, .commCate3{
+.commCate{
     background-color: mediumaquamarine;
     width: 150px;
     height: 165px;
 }
-.commCate4, .commCate5, .commCate6{
-    background-color: olive;
-    width: 150px;
-    height: 165px;
+.commCate img{
+    margin: 15px 0 0 24px;
+    width: 100px;
+    height: 100px;
+}
+.commCatetext p{
+    /*background-color: white;*/
+    font-family: SCDream3;
+    width: 80px;
+    margin: 0 auto;
+    text-align: center;
 }
