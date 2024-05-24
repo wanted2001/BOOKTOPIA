@@ -6,13 +6,14 @@
         <title>Booktopia Test</title>
         <link rel="stylesheet" th:href="@{/dist/css/header.css}">
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
+        <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
         <link rel="stylesheet" th:href="@{/dist/css/login.css}">
     </head>
     <body>
     <nav class="contain-header">
         <div class="wrap-header">
         <div class="contain-body">
-            <a class="logo" href="#">00</a>
+            <a class="logo" href="#">로고</a>
             <div class="cate">
                 <ul>
                      <li><a class="cate cate1" href="#">북토피아 소개</a></li>
@@ -31,9 +32,18 @@
         <th:block th:replace="${content}"></th:block>
     </div>
 
-    <div class="footer">
-        footer 영역
-    </div>
+    <footer>
+        <div class="flogo">로고</div>
+        <div>
+            <ul>
+                <li class="fli"><a href="#">공지사항</a></li>
+                <li class="fli"><a href="#">이용안내</a></li>
+                <li class="fli"><a href="#">개인정보처리방침</a></li>
+                <li class="fli"><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </footer>
+
     </body>
 </th:block>
 </html>
