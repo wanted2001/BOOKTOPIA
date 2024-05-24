@@ -1,0 +1,61 @@
+.wrap{
+    /*background-color: hotpink;*/
+}
+.commNoticeLine{
+    background-color: lightseagreen;
+    width: 100%;
+    margin-top: 30px;
+    height: 100px;
+}
+.commCateLine{
+    background-color: goldenrod;
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.commCateChoice1,.commCateChoice2,.commCateChoice3,
+.commCateChoice4,.commCateChoice5,.commCateChoice6{
+    background-color: mintcream;
+    width: 150px;
+    height: 100px;
+}
+/*게시글 한개 사이즈*/
+.commListArea{
+    background-color: lightcoral;
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+}
+.commTitle{
+    background-color: lightgoldenrodyellow;
+    width: 1000px;
+    height: 40px;
+}
+.commContent{
+    background-color: darkgray;
+    width: 1000px;
+    height: 95px;
+}
+.commImg{
+    float: right;
+    background-color: olive;
+    width: 350px;
+    height: 145px;
+    margin-top: -110px;
+    margin-right: 25px;
+}
+.commCntInfo{
+    background-color: mintcream;
+    width: 500px;
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.commCmtCnt, .commHeartCnt, .commReadCnt{
+    background-color: darkslateblue;
+    width: 120px;
+    height: 40px;
+}
