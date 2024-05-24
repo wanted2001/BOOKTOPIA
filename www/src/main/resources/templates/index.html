@@ -1,8 +1,18 @@
 <!DOCTYPE html>
+<title>안녕하세요</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="mt-4 p-5 bg-primary text-white rounded">
+        <!-- ------------------------------------------------------------------------------ -->
+        <!-- test area -->
+        <div class="wrap">
+            <div class="payDoneBox">
+                <p>OOO님 결제 완료되었습니다.</p>
+                <span> 주문번호 : ------------- </span>
+                <button type="button" class="payDoneGoToMainBtn">메인으로</button>
+            </div>
         </div>
+        <!-- ------------------------------------------------------------------------------ -->
     </th:block>
-</th:block>
+    </th:block>
+</html>
