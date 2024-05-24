@@ -1,0 +1,101 @@
+.wrap {
+    background-color: antiquewhite;
+}
+.commVote{
+    width: 1000px;
+    height: 380px;
+    margin: 20px auto;
+    background-color: lightpink;
+    display: block;
+ }
+.commMonth{
+    width: 800px;
+    background-color: olivedrab;
+    height: 40px;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+.commChoice{
+    width: 800px;
+    background-color: cadetblue;
+    height: 50px;
+    margin: 0 auto;
+}
+.commTopic{
+    width: 100%;
+    background-color: darkseagreen;
+    height: 110px;
+    margin: 30px auto 0;
+}
+.commViewVote{
+    width: 100%;
+    background: chocolate;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    clear: both;
+}
+.commVoteUp{
+    height: 100px;
+    width: 100px;
+    background-color: cornflowerblue;
+
+}
+.commVoteBar{
+    height: 100px;
+    width: 1050px;
+    background-color: lightcyan;
+}
+.commVoteDown{
+    height: 100px;
+    width: 100px;
+    background-color: cornflowerblue;
+}
+.commBoard{
+    background-color: yellowgreen;
+    width: 1000px;
+    height: 380px;
+    margin: 0 auto;
+}
+.commBoardArea{
+    display: flex;
+    clear: both;
+}
+.commBoardtext{
+    background-color: crimson;
+    width: 550px;
+    height: 330px;
+    margin-top: 30px;
+}
+.CommBoardCate{
+    background-color: gold;
+    width: 850px;
+    height: 330px;
+    margin-top: 30px;
+}
+.commCategory-top{
+    background-color: mintcream;
+    display: flex;
+    justify-content: space-around;
+    clear: both;
+    width: 100%;
+    height: 165px;
+}
+.commCategory-bottom{
+    background-color: lightpink;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 165px;
+}
+.commCate1, .commCate2, .commCate3{
+    background-color: mediumaquamarine;
+    width: 150px;
+    height: 165px;
+}
+.commCate4, .commCate5, .commCate6{
+    background-color: olive;
+    width: 150px;
+    height: 165px;
+}

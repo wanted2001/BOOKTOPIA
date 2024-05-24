@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<title>안녕하세요</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/dist/css/communityNotice.css}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div class="commDeCate"></div>
+            <!--작성자, 등록일 하나로-->
+            <div class="commNoTitle"></div>
+            <div class="commNoWriterInfo">
+                <div class="commNoWriter"></div>
+                <div class="commNoRegdate"></div>
+            </div>
+            <div class="commNoContent"></div>
+            <!--댓글출력란-->
+            <div class="commNoComment">
+                <div class="commNo-ComInfo">
+                    <div class="commNo-Writer"></div>
+                    <div class="commNo-RegDate"></div>
+                </div>
+                <div class="commNo-Content"> </div>
+                <!--답댓글버튼-->
+                <div class="commNo-ReComment"></div>
+            </div>
+            <!--댓글입력란-->
+            <div class="comm-CommInputArea">
+                <form action="#">
+                    <div class="comm-CommInput">
+                        <input type="text" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
+                        <button type="button" class="comm-CommRegBtn">등록</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </th:block>
+</th:block>
