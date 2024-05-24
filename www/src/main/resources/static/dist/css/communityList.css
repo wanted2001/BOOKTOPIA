@@ -1,11 +1,32 @@
+@font-face {
+    font-family: SCDream3;
+    src: url(../font/S-Core_Dream_OTF/SCDream3.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 .wrap{
     background-color: antiquewhite;
+    font-family: SCDream3;
 }
 .commNoticeLine{
-    background-color: lightseagreen;
+    /*background-color: lightseagreen;*/
     width: 1000px;
     margin: 30px auto 0;
-    height: 100px;
+    height: 50px;
+    display: flex;
+    font-size: 20px;
+    line-height: 50px;
+    border: 1px solid crimson;
+}
+.NoticeBlock{
+    font-family: SCDream4;
+    padding: 0 30px;
 }
 .commCateLine{
     background-color: goldenrod;
@@ -15,28 +36,48 @@
     display: flex;
     justify-content: space-evenly;
 }
-.commCateChoice1,.commCateChoice2,.commCateChoice3,
-.commCateChoice4,.commCateChoice5,.commCateChoice6{
+.commCateChoice{
     background-color: mintcream;
     width: 100px;
     height: 100px;
+}
+.commRegBtn{
+    font-family: SCDream3;
+    /*background-color: white;*/
+    width: 65px;
+    float: right;
+    margin: 18px 210px 0 0;
+}
+.commRegBtn img{
+    width: 15px;
+    height: 15px;
+    float: right;
 }
 /*게시글 한개 사이즈*/
 .commListArea{
     background-color: lightcoral;
     width: 1000px;
     height: 200px;
-    margin: 20px auto 0;
+    margin: 50px auto 0;
 }
-.commTitle{
+.commTitle,.commWriter{
     background-color: lightgoldenrodyellow;
     width: 700px;
-    height: 40px;
+    height: 20px;
+    line-height: 20px;
+}
+.commTitle{
+    font-family: SCDream4;
+    font-size: 17px;
+}
+.commWriter{
+    margin-top: 5px;
 }
 .commContent{
     background-color: darkgray;
     width: 700px;
     height: 95px;
+    line-height: 95px;
 }
 .commImg{
     float: right;
@@ -46,17 +87,22 @@
     margin: -115px 20px 0 0;
 }
 .commCntInfo{
-    background-color: mintcream;
-    width: 500px;
+    /*background-color: mintcream;*/
+    width: 200px;
     height: 40px;
-    margin-top: 10px;
+    margin: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
-.commCmtCnt, .commHeartCnt, .commReadCnt{
-    background-color: darkslateblue;
-    width: 120px;
+.commCnt{
+    /*background-color: darkslateblue;*/
+    width: 60px;
     height: 40px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
 }
 .commPaging{
     background-color: darkseagreen;
