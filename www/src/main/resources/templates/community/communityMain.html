@@ -2,7 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="commTopic">6월 선정된 토픽 주제</div>
-        <div class="commChoice">당신의 선택은?</div>
+        <!--투표라인-->
+        <div class="commVote">
+            <div class="commMonth"></div>
+            <div class="commChoice"></div>
+            <div class="commTopic"></div>
+            <div class="commViewVote">
+                <div class="commVoteUp"></div>
+                <div class="commVoteBar"></div>
+                <div class="commVoteDown"></div>
+            </div>
+        </div>
+        <!--카테고리라인-->
+        <div class="commBoard">
+            <div class="commBoardtext"></div>
+            <div class="commCateArea">
+                <!---->
+                <div class="commBoardAll"></div>
+                <div class="CommBoardCate">
+                    <div class="commCate1">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                    <div class="commCate2">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                    <div class="commCate3">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                    <div class="commCate4">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                    <div class="commCate5">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                    <div class="commCate6 ">
+                        <div class="commCateImg"></div>
+                        <div class="commCatetext"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </th:block>
 </th:block>
