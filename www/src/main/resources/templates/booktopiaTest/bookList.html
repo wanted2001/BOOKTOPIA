@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/dist/css/bookList.css}">
+
+        <div class="wrap">
+            <div class="book-list-contain">
+                <div class="book-taste"> <!--취향 도서 list-->
+                    <div class="taste book1"></div>
+                    <div class="taste book2"></div>
+                    <div class="taste book3"></div>
+                    <div class="taste book4"></div>
+                    <div class="taste book5"></div>
+                </div>
+                <div class="book-popul"> <!--인기 도서 list-->
+                    <div class="popul book1"></div>
+                    <div class="popul book2"></div>
+                    <div class="popul book3"></div>
+                    <div class="popul book4"></div>
+                    <div class="popul book5"></div>
+                </div>
+                <div class="book-recom"> <!--추천 도서 list-->
+                    <div class="recom book1"></div>
+                    <div class="recom book2"></div>
+                    <div class="recom book3"></div>
+                    <div class="recom book4"></div>
+                    <div class="recom book5"></div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>

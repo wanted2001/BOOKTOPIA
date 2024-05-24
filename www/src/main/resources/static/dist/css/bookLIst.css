@@ -1,0 +1,40 @@
+.wrap{
+    background-color: blueviolet;
+    height: 750px;
+}
+
+.book-list-contain{
+    background-color: aqua;
+    width: 1200px;
+    height: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.book-taste, .book-popul, .book-recom{
+    background-color: blanchedalmond;
+    width: 1100px;
+    height: 220px;
+    position: absolute;
+}
+.book-taste{
+    transform: translate(50px, 20px);  
+    display: flex;
+    justify-content: space-around;
+}
+.book-popul{
+    transform: translate(50px, 260px);
+    display: flex;
+    justify-content: space-around;
+}
+.book-recom{
+    transform: translate(50px, 500px);
+    display: flex;
+    justify-content: space-around;
+}
+
+.taste, .popul, .recom{
+    width: 200px;
+    height: 220px;
+    background-color: rgb(155, 133, 104);
+}
