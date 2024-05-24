@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <h1>Test Page</h1>
+            <form action="/booktopiaTest/test" method="post">
+
+            </form>
+        </div>
+
+    </th:block>
+</th:block>
