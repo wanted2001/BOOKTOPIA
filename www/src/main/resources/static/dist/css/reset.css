@@ -22,8 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	width: 1900px;
-	margin: 0 auto ;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -56,7 +55,7 @@ a{
 li{
     text-decoration: none;
 }
-.wrap{
+.wrap-header, .wrap{
 	width: 1400px;
-	margin: 0 auto ;
+	margin: 0 auto;
 }
