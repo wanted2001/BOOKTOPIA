@@ -16,54 +16,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
-/*@Configuration
-@PropertySource("classpath:/application.properties")
-public class DatabaseConfig {
-  @Autowired
-  private ApplicationContext applicationContext;
-
-  @Value("${mybatis.mapper-locations}")
-  private String mapperLocations;
-
-  @Bean
-  @ConfigurationProperties(prefix = "spring.datasource")
-  HikariConfig hikariConfig(){
-    return new HikariConfig();
-  }
-
-  @Bean
-  org.apache.ibatis.session.Configuration mybatisConfig(){
-    return new org.apache.ibatis.session.Configuration();
-  }
-
-  @Bean
-  DataSource dataSource() throws Exception{
-    DataSource dataSource = new HikariDataSource(hikariConfig());
-    return dataSource;
-  }
-
-  @Bean
-  SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
-    SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-    sqlSessionFactoryBean.setDataSource(dataSource);
-    sqlSessionFactoryBean.setConfigLocation(
-        applicationContext.getResource("classpath:/mybatis-config.xml")
-    );
-    sqlSessionFactoryBean.setMapperLocations(
-        applicationContext.getResource("classpath:/mappers/*Mapper.xml")
-    );
-    *//*sqlSessionFactoryBean.setMapperLocations(
-        new PathMatchingResourcePatternResolver().getResource(mapperLocations)
-    );*//*
-    return sqlSessionFactoryBean.getObject();
-  }
-
-  @Bean
-  SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
-    return new SqlSessionTemplate(sqlSessionFactory);
-  }
-
-}*/
 @Configuration
 @PropertySource("classpath:/application.properties")
 public class DatabaseConfig {
