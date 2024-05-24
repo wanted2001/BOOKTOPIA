@@ -1,0 +1,17 @@
+.wrap{
+    background-color: blueviolet;
+    height: 750px;
+}
+
+.book-list-contain{
+    background-color: aqua;
+    width: 1200px;
+    height: 750px;
+}
+
+.book-taste, .book-popul, .book-recom{
+    background-color: blanchedalmond;
+    width: 1000px;
+    height: 220px;
+    margin: 20px 50px;
+}

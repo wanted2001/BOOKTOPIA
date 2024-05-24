@@ -5,7 +5,16 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: SCDream6;
+    src: url(../font/S-Core_Dream_OTF/SCDream6.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 
+.test-contain{
+    width: 1000px;
+}
 .wrap{
     background-color: blueviolet;
     height: 750px;
@@ -13,19 +22,79 @@
 
 .test-title{
     background-color: aquamarine;
-    width: 800px;
     margin: 0 auto;
     font-family: SCDream3;
     display: block;
-    height: 150px;
+    height: 120px;
     text-align: center;
-
+}
+.test-title>.title{
+    padding: 30px;
+}
+.title>h1:nth-last-of-type(0){
+    font-size: 25px;
+    font-family: SCDream3;
+    padding-bottom: 20px;
+}
+.title>h1:nth-last-of-type(1){
+    font-size: 30px;
+    font-family: SCDream6;
+}
+.test{
+    margin: 0 auto;
+    height: 630px;
+    background-color: antiquewhite;
+    display: block;
+    position: relative;
+    
+}
+.bar-progress{
+    width: 500px;
+    height: 100px;
+    margin-top: 30px;
+    background-color: rgb(7, 10, 183);
+    position: absolute;
+    transform: translate(250px, 30px);
 }
 
-/* .test{
-    margin: 0 auto;
-    width: 800px;
-    height: 600px;
-    background-color: antiquewhite;
-    display: block
-} */
+.bar-progress>.bar{
+    width: 400px;
+    border-radius: 10px;
+    height: 20px;
+    background-color: lightgray;
+    margin: 0 auto ;
+    margin-top: 40px;
+}
+.bar-progress>.bar>.percent{
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: aquamarine;
+}
+.test-content{
+    background-color: azure;
+    width: 500px;
+    height: 400px;
+    position: absolute;
+    transform: translate(250px, 180px);
+}
+.content-detail{
+    background-color: bisque;
+    position: absolute;
+    transform: translate(50px, 20px);
+    width: 400px;
+    height: 350px;
+    padding: 0 auto;
+}
+.content-detail>h1{
+    display: block;
+    margin: 45px 40px 70px;
+    text-align: center;
+    font-size: 20px;
+}
+button{
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    height: 54px;
+}
