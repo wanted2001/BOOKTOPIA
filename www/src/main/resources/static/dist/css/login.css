@@ -1,11 +1,8 @@
 .wrap{
-    width:1400x;
-    display: flex;
-    justify-content: center;
+    width:1400px;
 }
 .loginAllPage{
     border: 1px solid black;
-
 }
 .loginSocialBtn{
     display: flex;

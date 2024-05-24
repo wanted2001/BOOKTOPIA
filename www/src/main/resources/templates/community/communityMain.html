@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<title>안녕하세요</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/dist/css/communityMain.css}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div class="commVote">
+                <div class="commMonth"><p>6월의 토론주제</p></div>
+                <div class="commChoice">당신의 선택은?</div>
+                <div class="commTopic">토론주제</div>
+                <div class="commViewVote">
+                    <div class="commVoteUp"></div>
+                    <div class="commVoteBar"></div>
+                    <div class="commVoteDown"></div>
+                </div>
+            </div>
+            <!--카테고리라인-->
+            <div class="commBoard">
+                <div class="commBoardArea">
+                    <div class="commBoardtext">자유롭게..</div>
+                    <!--전체보기버튼-->
+                    <div class="commBoardAll"></div>
+                    <!--커뮤니티카테고리-->
+                    <div class="CommBoardCate">
+                        <div class="commCategory-top">
+                            <div class="commCate1">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                            <div class="commCate2">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                            <div class="commCate3">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                        </div>
+                        <div class="commCategory-bottom">
+                            <div class="commCate4">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                            <div class="commCate5">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                            <div class="commCate6">
+                                <div class="commCateImg"></div>
+                                <div class="commCatetext"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</html>
