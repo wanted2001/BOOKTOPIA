@@ -19,4 +19,7 @@ public class UserController {
 
     @GetMapping("/join")
     public void join(){}
+
+    @GetMapping("/myPage")
+    public void info(){}
 }

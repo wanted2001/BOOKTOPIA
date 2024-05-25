@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/dist/css/myPage.css}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="wrap">
+            <div class="myPageInfoWrap">
+                <div class="myPageInfoWrap2">
+                    <div class="myPageInfoLeftWrap">
+                        <div class="myPageLeftUp">
+                            <div class="myPageUserInfoWrap">
+                                <div class="myPageLeftUpInfo">
+                                    <div class="myPageLeftUpInfoImg">
+                                        <img th:src="@{/image/kakaoLogin.png}" alt="#">
+                                    </div>
+                                    <div class="myPageLeftUpInfoName">
+                                        윤지명님
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="myPageSubWrap">
+                                <div class="myPageSubInfo">
+                                    이용중인 구독권이 없습니다.
+                                </div>
+                                <div class="myPageSubMove">
+                                    <div class="myPageSubMoveLink">
+                                        <a th:href="@{/subscribe/info}">구독권 보러가기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="myPageLeftDown">
+                            <div class="myPageLeftDownWrap">
+                                <div class="myPageLeftDownWrap2">
+                                    <div class="myPageLeftDownWrap3">
+                                        <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4Img"><img th:src="@{/image/kakaoLogin.png}"
+                                                                                     alt="#"></div>
+                                            <div class="myPageLeftDownWrap4Status"><a>이용중인 구독권</a></div>
+                                        </div>
+                                        <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4Img"><img th:src="@{/image/kakaoLogin.png}"
+                                                                                     alt="#"></div>
+                                            <div class="myPageLeftDownWrap4Status"><a>결제 내역</a></div>
+                                        </div>
+                                        <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4Img"><img th:src="@{/image/kakaoLogin.png}"
+                                                                                     alt="#"></div>
+                                            <div class="myPageLeftDownWrap4Status"><a>개인정보 수정</a></div>
+                                        </div>
+                                        <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4Img"><img th:src="@{/image/kakaoLogin.png}"
+                                                                                     alt="#"></div>
+                                            <div class="myPageLeftDownWrap4Status"><a>배송지 수정</a></div>
+                                        </div>
+                                        <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4Img"><img th:src="@{/image/kakaoLogin.png}"
+                                                                                     alt="#"></div>
+                                            <div class="myPageLeftDownWrap4Status"><a>내 쿠폰함</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="myPageInfoRigthWrap">
+                        <div class="myPageRight">
+                            <div class="myPageRightWrap">
+                                <div class="myPageRightWrapInfo">
+                                    <div class="myPageRightWrapInfoText">개인정보 수정</div>
+                                    <div class="myPageRightWrapInfoModWrap">
+                                        <div class="myPageRightWrapForm">
+                                            <form action="/user/modify">
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">아이디</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" name="id" placeholder="id....">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">현재 비밀번호</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" name="pwd" placeholder="pwd....">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">새 비밀번호</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" name="newPwd" placeholder="newPwd...">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">새 비밀번호 확인</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" name="checkNewPwd" placeholder="checkPwd...">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">이름</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" value="가입한 아이디" readonly="readonly">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">휴대전화</div>
+                                                    <div class="mypageModInputFormData">
+                                                        <input type="text" name="phone" placeholder="phone...">
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrap">
+                                                    <div class="myPageModInputFormText">성별</div>
+                                                    <div class="mypageModInputFormData">
+                                                        체크박스 나중에 생성
+                                                    </div>
+                                                </div>
+                                                <div class="myPageModInputFormWrapBtn">
+                                                    <button type="submit">회원정보 수정</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>
