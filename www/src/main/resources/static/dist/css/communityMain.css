@@ -43,21 +43,32 @@
     justify-content: center;
     clear: both;
 }
-.commVoteUp{
+.commVoteUp, .commVoteDown{
     height: 100px;
-    width: 100px;
+    width: 120px;
     background-color: cornflowerblue;
 
+}
+.upBtn, .downBtn{
+    border: none;
+    background-color: rgba(100,149,237,0);
+    cursor: pointer;
+}
+.commVoteUp img {
+    width: 70px;
+    height: 70px;
+    margin: 10px 0 0 30px;
+}
+.commVoteDown img{
+    width: 70px;
+    height: 70px;
+    transform: rotate(180deg);
+    margin-top: 10px;
 }
 .commVoteBar{
     height: 100px;
     width: 1050px;
     background-color: lightcyan;
-}
-.commVoteDown{
-    height: 100px;
-    width: 100px;
-    background-color: cornflowerblue;
 }
 .commBoard{
     background-color: yellowgreen;

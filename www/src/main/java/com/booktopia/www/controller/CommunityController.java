@@ -1,13 +1,15 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.HeartVO;
 import com.booktopia.www.service.CommunityService;
+import com.booktopia.www.service.UserService;
+import com.booktopia.www.service.VoteService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequestMapping("/community/*")
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommunityController {
 
     private final CommunityService csv;
+    private final VoteService vsv;
+    private final UserService usv;
 
     @GetMapping("/communityMain")
     public void commMain(){}
@@ -24,9 +28,16 @@ public class CommunityController {
     public void commList(){}
 
     @GetMapping("/communityDetail")
-    public void commDetail(){}
+    public void commDetail(){
+    }
 
     @GetMapping("/communityNotice")
     public void commNotice(){}
+
+    @GetMapping("/clickUp")
+    public String clickUp(){
+        log.info("community in");
+        return "redirect:/community/communityMain";
+    }
 
 }
