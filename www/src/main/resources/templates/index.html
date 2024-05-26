@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <title>안녕하세요</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!-- css area-->
-
-<!-- css area -->
+<link rel="stylesheet" th:href="@{/dist/css/communityList.css}">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="wrap">
-            <div class="book-list-contain">
-                <div class="book-taste"> <!--취향 도서 list-->
-
-                </div>
-                <div class="book-popul"> <!--인기 도서 list-->
-
-                </div>
-                <div class="book-recom"> <!--추천 도서 list-->
-
-                </div>
-            </div>
-        </div>
-
+        <div></div>
     </th:block>
 </th:block>
 </html>
