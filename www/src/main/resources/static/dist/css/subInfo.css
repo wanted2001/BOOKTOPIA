@@ -49,6 +49,8 @@
 }
 
 .subGoToPayBtn{
+    margin-top: 20px;
+    cursor: pointer;
     font-family:SCDream4;
     width: 150px;
      border-radius: 10px;
