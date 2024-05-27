@@ -79,33 +79,49 @@ document.addEventListener('click',(e)=>{
             } else if(e.target.id == 'btn2'){
                 btnResult += 2;
             }
+            console.log(btnResult);
         }
         else if(i == testListaArry.length){
+            if(e.target.id == 'btn1'){
+                btnResult += 1;
+            } else if(e.target.id == 'btn2'){
+                btnResult += 2;
+            }
             document.getElementById('questionDiv').style.display = "none";
             document.getElementById('resultDiv').style.display = 'block';
+
         }
+        
     }
-    console.log(btnResult);
+    else if(e.target.classList.contains('result')){
+        console.log(e.target.classList);
+        btnResultToServer(btnResult);
+    }
 });
 
 
 async function btnResultToServer(btnResult){
     try {
-        const url = "/booktopiaTest/result";
+        const url = "/booktopiaTest/bookList";
         const config={
             method : 'post',
-            headers : {'Content-type':'application/json; charset=UTF-8'
+            headers : {'Content-type':'text/plain; charset=UTF-8'
             },
-            body:JSON.stringify(btnResult)
+            body:btnResult
         };
+        console.log(btnResult);
 
-        const resp = await feach(url, config);
+        const resp = await fetch(url, config);
         const result = await resp.text();
         return result;
     } catch (error) {
         console.log(error);
     }
 }
+
+
+
+
 
 // document.addEventListener('click',(e)=>{
 //     if(e.target.id == 'btn1' || e.target.id == 'btn2'){
