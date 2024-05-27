@@ -1,9 +1,6 @@
 package com.booktopia.www.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -17,8 +14,9 @@ public class PayVO {
     private String tid; // 주문번호
     private String id; // user id
     private String cid; // 가맹점 번호
-    private String amount; // 결제 금액
+    private String payName; //결제할 제품명(구독권이름)
+    private String amount; // 수량(1)
+    private String totalAmount; //총 결제금액
     private String approvedAt; // 결제승인 시각
-
 
 }

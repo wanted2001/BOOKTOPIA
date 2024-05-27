@@ -54,10 +54,10 @@
     background-color: rgba(100,149,237,0);
     cursor: pointer;
 }
-.commVoteUp img {
+.commVoteUp img{
     width: 70px;
     height: 70px;
-    margin: 10px 0 0 30px;
+    margin: 10px 0 0 20px;
 }
 .commVoteDown img{
     width: 70px;
@@ -65,10 +65,21 @@
     transform: rotate(180deg);
     margin-top: 10px;
 }
+.commVoteUp{
+    height: 100px;
+    width: 100px;
+    background-color: cornflowerblue;
+
+}
 .commVoteBar{
     height: 100px;
     width: 1050px;
     background-color: lightcyan;
+}
+.commVoteDown{
+    height: 100px;
+    width: 100px;
+    background-color: cornflowerblue;
 }
 .commBoard{
     background-color: yellowgreen;

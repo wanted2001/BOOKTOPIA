@@ -1,15 +1,16 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
 @Controller
+@Slf4j
 public class UserController {
 
     private final UserService usv;
@@ -18,8 +19,26 @@ public class UserController {
     public void login(){}
 
     @GetMapping("/join")
-    public void join(){}
+    public void join(){
+    }
+
+
+
+    @PostMapping("/join")
+    public String joinInsert(UserVO uvo){
+        log.info("uvo >> {}",uvo);
+        int isOk = usv.joinInsert(uvo);
+        return "/user/login";
+    }
 
     @GetMapping("/myPage")
     public void info(){}
+
+    @GetMapping("/check/{inputIdVal}")
+    @ResponseBody
+    public int checkId(@PathVariable("inputIdVal")String id){
+        log.info("id >> {}", id);
+        int isOk = usv.checkId(id);
+        return isOk;
+    }
 }

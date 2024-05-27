@@ -2,6 +2,11 @@
 <title>getPay</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/getPay.css}">
+<!--결제 스크립트 연결-->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!DOCTYPE html>
@@ -26,9 +31,9 @@
                     </div>
                     <div class="payInnerDiv2">
                         <p>주소</p>
-                        <input type="text" class="addrInput" placeholder="주소를 입력해주세요.">
-                        <button type="button" class="payGetAddrBtn">주소 검색</button>
-                        <input type="text" placeholder="상세 주소를 입력해주세요.">
+                        <input type="text" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
+                        <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
+                        <input type="text" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
                     </div>
                     <div class="payInnerDiv2">
                         <p>배송 메모</p>
@@ -58,10 +63,12 @@
                         사용 가능한 쿠폰 ()장
                     </div>
                     <hr>
+<!--                    <th:block th:with="month=${ssivo}">-->
+                        <h1>[[${ssivo.shipNO}]]</h1>
                     <div class="payInnerDiv3">
                         <div>
                             <div>상품 금액</div>
-                            <div>------원</div>
+                            <div>[[${ssivo.subInPrice}]]원</div>
                         </div>
                         <div>
                             <div>쿠폰 할인</div>
@@ -72,13 +79,29 @@
                             <div>------원</div>
                         </div>
                     </div>
+<!--                    </th:block>-->
 
-                    <a th:href="@{/pay/done}"><button type="button" class="payBtn">결제하기</button></a>
+                    <button type="button" class="payBtn">결제하기</button>
                 </div>
                 <!-- payOutBox div -->
             </div>
             <!-- wrap div -->
         </div>
+        <script th:src="@{/dist/js/payment.js}"></script>
     </th:block>
 </th:block>
+
+<!-- daum 주소검색 api 사용 구문 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    document.getElementById('payGetAddrBtn').addEventListener('click', ()=>{
+    new daum.Postcode({
+        oncomplete: function(data) {
+            document.getElementById('addrInput').value = data.address;
+            document.getElementById('addrDetailInput').focus();
+        }
+    }).open();
+
+})
+</script>
 </html>
