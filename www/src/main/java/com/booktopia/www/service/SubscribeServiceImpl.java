@@ -13,8 +13,9 @@ public class SubscribeServiceImpl implements SubscribeService{
 
     private final SubscribeMapper subscribeMapper;
 
+
     @Override
-    public void getMonth(SubscribeInfoVO ssivo) {
-        subscribeMapper.getMonth(ssivo);
+    public SubscribeInfoVO getPayInfo(int month) {
+        return subscribeMapper.getPayInfo(month);
     }
 }

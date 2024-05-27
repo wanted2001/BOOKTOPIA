@@ -41,8 +41,8 @@ public class PayController {
     }
 
     @GetMapping("/getPay")
-    public void getPay(Model m, SubscribeInfoVO ssivo) {
-        ssv.getMonth(ssivo);
+    public void getPay(Model m, @RequestParam("month")int month) {
+        SubscribeInfoVO ssivo = ssv.getPayInfo(month);
         m.addAttribute("ssivo", ssivo);
     }
 

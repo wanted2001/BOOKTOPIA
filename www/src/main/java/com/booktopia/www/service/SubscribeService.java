@@ -4,5 +4,5 @@ import com.booktopia.www.domain.SubscribeInfoVO;
 
 public interface SubscribeService {
 
-    void getMonth(SubscribeInfoVO ssivo);
+    SubscribeInfoVO getPayInfo(int month);
 }

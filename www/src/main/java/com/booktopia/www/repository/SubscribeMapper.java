@@ -6,6 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SubscribeMapper {
 
-    SubscribeInfoVO getMonth(SubscribeInfoVO ssivo);
-
+    SubscribeInfoVO getPayInfo(int month);
 }
