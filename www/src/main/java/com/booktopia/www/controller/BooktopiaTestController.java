@@ -31,7 +31,6 @@ public class BooktopiaTestController {
         log.info(">> btnResult >> {}", btnResult);
         List<BookVO> blist = bts.getList(btnResult);
         m.addAttribute("blist", blist);
-        bts.insert(btnResult);
         return "1";
     }
 }
