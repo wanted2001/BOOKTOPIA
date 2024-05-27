@@ -1,0 +1,196 @@
+.myPageInfoWrap{
+    width: 1400px;
+    height:900px;
+    background-color: black;
+    padding-top: 50px;
+
+}
+
+.myPageInfoWrap2{
+    width: 1200px;
+    height: 700px;
+    background-color: antiquewhite;
+    margin: 0 auto;
+}
+
+.myPageInfoLeftWrap{
+    float: left;
+}
+
+.myPageInfoRigthWrap{
+    float: right;
+}
+
+.myPageLeftUp{
+    width: 600px;
+    height: 200px;
+    background-color: aqua;
+}
+
+.myPageLeftDown{
+    width: 600px;
+    height: 500px;
+    background-color: bisque;
+}
+
+.myPageRight{
+    width: 600px;
+    height: 700px;
+    background-color: blue;
+}
+
+.myPageUserInfoWrap{
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: blueviolet;
+}
+
+.myPageLeftUpInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 20px;
+    line-height: 50px;
+    margin-right: 90px;
+}
+
+.myPageLeftUpInfoName{
+    font-size: 20px;
+}
+
+.myPageLeftUpInfoImg{
+    margin-right: 10px;
+}
+
+.myPageLeftUpInfoImg>img{
+    width: 50px;
+    height: 50px;
+    line-height: 100px;
+}
+
+.myPageSubInfo{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.myPageSubWrap{
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: cadetblue;
+}
+
+.myPageSubMoveLink{
+    padding-top: 20px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.myPageLeftDownWrap{
+    width: 400px;
+    height: 500px;
+    background-color: brown;
+    display: flex;
+    margin: 0 auto;
+}
+
+.myPageLeftDownWrap2{
+    width: 400px;
+    height: 450px;
+    display: flex;
+    margin: auto auto;
+    background-color: #a0bfc0;
+}
+
+.myPageLeftDownWrap3{
+    width: 300px;
+    height: 400px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+}
+
+.myPageLeftDownWrap4{
+    width: 250px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    background-color: chocolate;
+    margin: auto auto;
+}
+
+.myPageLeftDownWrap4Img>img{
+    width: 50px;
+    height: 40px;
+}
+
+.myPageLeftDownWrap4Status>a{
+    line-height: 40px;
+    margin-left: 10px;
+    font-size: 20px;
+
+}
+
+.myPageRight{
+    display: flex;
+}
+
+.myPageRightWrap{
+    width: 500px;
+    height: 800px;
+    background-color: chartreuse;
+    margin: auto auto;
+}
+
+.myPageRightWrapInfoText{
+    width: 500px;
+    height: 80px;
+    background-color: darkorange;
+    margin: 0 auto;
+    line-height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.myPageRightWrapInfoModWrap{
+    width: 450px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: deeppink;
+    display: flex;
+}
+
+.myPageRightWrapForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 450px;
+    background-color: aquamarine;
+}
+
+.myPageModInputFormWrap{
+    width: 400px;
+    height: 80px;
+    margin: 0 auto;
+    background-color: crimson;
+}
+
+.myPageModInputFormText{
+    font-size: 20px;
+}
+
+.mypageModInputFormData>input{
+    width: 250px;
+    height: 30px;
+}
+
+.myPageModInputFormWrapBtn{
+    float: right;
+}
+
+.myPageModInputFormWrapBtn>button{
+    font-size: 20px;
+}

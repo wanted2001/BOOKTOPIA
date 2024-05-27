@@ -1,12 +1,19 @@
+@font-face {
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 .wrap{
     height: 500px;
+    font-family: SCDream4;
     background-color: blueviolet;
      display: flex;
      justify-content: center;
 }
 .payDoneBox{
     background-color: mediumaquamarine;
-    padding-top: 250px;
+    padding-top: 200px;
     text-align: center;
     width: 50%;
     height: 50%;
@@ -18,6 +25,7 @@
     justify-content: center;
 }
 .payDoneBox button{
+    font-family: SCDream4;
     width: 150px;
     border-radius: 20px;
     padding: 10px;
