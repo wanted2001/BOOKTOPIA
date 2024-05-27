@@ -10,7 +10,7 @@
 
 .main-slid{
     background-color: blanchedalmond;
-    height: 300px;
+    height: 400px;
     display: flex;
     justify-content: space-around;
     padding: 30px 0;
@@ -21,28 +21,28 @@
     position: absolute;
 }
 .main-slid>.icon1{
-    transform: translate(10px, 100px);
+    transform: translate(10px, 170px);
 }
 .main-slid> .icon2{
-    transform: translate(-10px, 100px);
+    transform: translate(-10px, 170px);
 }
 .slid-img{
     background-color: azure;
     width: 1000px;
     text-align: center;
-    line-height: 300px;
+    line-height: 400px;
 }
 
 .main-simpleInfo{
     background-color: rgb(234, 212, 255);
-    height: 200px;
+    height: 300px;
     position: relative;
 }
 
 .simpleInfo{
     background-color: rgb(1, 78, 78);
     width: 800px;
-    height: 200px;
+    height: 300px;
     margin: 0 auto;
     position: absolute;
     transform: translateX(200px);
@@ -52,7 +52,45 @@
 .Info{
     background-color: cornsilk;
     width: 230px;
-    height: 200px;
-    line-height: 200px;
+    height: 300px;
+    line-height: 300px;
     text-align: center;
+}
+.bookTopia{
+    background-color: yellowgreen;
+    height: 400px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.bookTopia-img{
+    width: 300px;
+    height: 300px;
+    background-color: wheat;
+    line-height: 300px;
+    position: absolute;
+    transform: translate(-300px, 50px);
+}
+.bookTopia-detail{
+    position: absolute;
+    transform: translate(140px, 110px);
+    line-height: 50px;
+}
+.commu {
+    background-color: brown;
+    height: 400px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.commu-detail{
+    position: absolute;
+    transform: translate(-300px, 110px);
+    line-height: 50px;
+}
+.commu-img{
+    width: 300px;
+    height: 300px;
+    background-color: wheat;
+    line-height: 300px;
+    position: absolute;
+    transform: translate(300px, 50px);
 }

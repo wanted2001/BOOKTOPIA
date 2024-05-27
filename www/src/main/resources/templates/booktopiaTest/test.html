@@ -19,15 +19,33 @@
                         <div class="test">
                             <div class="bar-progress">
                                 <div class="bar">
-                                    <div class="percent"> >> </div>
+                                    <div class="percent"></div>
                                 </div>
                             </div>
                             <div class="test-content">
-                                <div class="content-detail">
-                                    <h1> 취향검색지 내용</h1>
-                                    <button type="button"> 답변 1</button>
-                                    <button type="button"> 답변 2</button>
+                                <div id="questionInfo" style="display:block;">
+                                    <p>생년월일 </p>
+                                    <input type="text" name="birth" placeholder="ex)19900101">
+                                    <p>성별</p>
+                                    <input type="radio" name="gender" value="남">남
+                                    <input type="radio" name="gender" value="여">여
+                                    <button type="button" id="next"> Next </button>
                                 </div>
+
+                                    <div class="content-detail" id="questionDiv" style="display: none;">
+                                        <h1 id="question"></h1>
+                                        <button type="button" class="answer1 first" id="btn1" ></button>
+                                        <button type="button" class="answer2 second" id="btn2"></button>
+                                    </div>
+
+                                    <div id="resultDiv" style="display: none">
+                                        <h1 id="testResult">당신의 도서 취향은 어떻게 될까요?</h1>
+                                <button type="button" class="result" >결과 보기</button>
+                                <button type="button">
+                                    <a th:href="@{/}">Home</a>
+                                </button>
+                            </div>
+
                             </div>
                         </div>
                     </div>
@@ -35,5 +53,7 @@
             </form>
         </div>
 
+        <!--js 영역-->
+        <script th:src="@{/dist/js/testScript.js}" ></script>
     </th:block>
 </th:block>
