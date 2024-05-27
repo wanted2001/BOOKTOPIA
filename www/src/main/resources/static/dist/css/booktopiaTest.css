@@ -65,13 +65,17 @@
     background-color: lightgray;
     margin: 0 auto ;
     margin-top: 40px;
+    display: flex;
 }
 .bar-progress>.bar>.percent{
     width: 40px;
     height: 20px;
     border-radius: 10px;
     background-color: aquamarine;
+    position: absolute;
 }
+
+
 .test-content{
     background-color: azure;
     width: 500px;
@@ -79,7 +83,7 @@
     position: absolute;
     transform: translate(250px, 180px);
 }
-.content-detail{
+.content-detail, #questionInfo, #resultDiv{
     background-color: bisque;
     position: absolute;
     transform: translate(50px, 20px);
@@ -87,7 +91,7 @@
     height: 350px;
     padding: 0 auto;
 }
-.content-detail>h1{
+.content-detail>h1, #resultDiv>h1{
     display: block;
     margin: 45px 40px 70px;
     text-align: center;
@@ -98,4 +102,7 @@ button{
     margin: 20px auto;
     width: 300px;
     height: 54px;
+}
+.question10{
+    display: none;
 }

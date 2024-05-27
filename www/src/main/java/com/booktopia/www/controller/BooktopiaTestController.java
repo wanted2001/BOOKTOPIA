@@ -11,4 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BooktopiaTestController {
     @GetMapping("test")
     public void getBooktopia(){}
+
+    @GetMapping("bookList")
+    public void testResultList(){}
 }
+
+
