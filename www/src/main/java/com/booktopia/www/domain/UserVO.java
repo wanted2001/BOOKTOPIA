@@ -12,6 +12,7 @@ public class UserVO {
     private String pwd; //사용자 비밀번호
     private String name; //사용자 이름
     private String phone; //사용자 전화번호
+    private String address; //사용자 주소
     private String userDel; //탈퇴여부
     private int subNo; //구독정보
     private String userReg; //가입날짜
