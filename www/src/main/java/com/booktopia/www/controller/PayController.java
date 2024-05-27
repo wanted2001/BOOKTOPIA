@@ -42,7 +42,9 @@ public class PayController {
 
     @GetMapping("/getPay")
     public void getPay(Model m, @RequestParam("month")int month) {
+        log.info("month값>>{}",month);
         SubscribeInfoVO ssivo = ssv.getPayInfo(month);
+        log.info("ssivo>>{}",ssivo);
         m.addAttribute("ssivo", ssivo);
     }
 

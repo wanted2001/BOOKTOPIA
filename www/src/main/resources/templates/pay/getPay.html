@@ -63,12 +63,12 @@
                         사용 가능한 쿠폰 ()장
                     </div>
                     <hr>
-                    <th:block th:with="month=${month1}">
-                        <h1>[[${month}]]</h1>
+<!--                    <th:block th:with="month=${ssivo}">-->
+                        <h1>[[${ssivo.shipNO}]]</h1>
                     <div class="payInnerDiv3">
                         <div>
                             <div>상품 금액</div>
-                            <div>------원</div>
+                            <div>[[${ssivo.subInPrice}]]원</div>
                         </div>
                         <div>
                             <div>쿠폰 할인</div>
@@ -79,7 +79,7 @@
                             <div>------원</div>
                         </div>
                     </div>
-                    </th:block>
+<!--                    </th:block>-->
 
                     <button type="button" class="payBtn">결제하기</button>
                 </div>
