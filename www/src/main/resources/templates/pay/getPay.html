@@ -2,6 +2,11 @@
 <title>getPay</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/getPay.css}">
+<!--결제 스크립트 연결-->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!DOCTYPE html>
@@ -73,12 +78,13 @@
                         </div>
                     </div>
 
-                    <a th:href="@{/pay/done}"><button type="button" class="payBtn">결제하기</button></a>
+                    <button type="button" class="payBtn">결제하기</button>
                 </div>
                 <!-- payOutBox div -->
             </div>
             <!-- wrap div -->
         </div>
+        <script th:src="@{/dist/js/payment.js}"></script>
     </th:block>
 </th:block>
 </html>

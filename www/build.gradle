@@ -28,6 +28,12 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	/*결제용 아임포트 api*/
+	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
