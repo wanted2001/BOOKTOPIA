@@ -31,9 +31,7 @@ public class UserController {
     @GetMapping("/join")
     public void join(){
     }
-
-
-
+    
     @PostMapping("/join")
     public String joinInsert(UserVO uvo){
         log.info("uvo >> {}",uvo);
