@@ -9,6 +9,7 @@
 
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+
         <!DOCTYPE html>
         <!-- 결제창 -->
         <div class="wrap">
@@ -80,7 +81,6 @@
                             <div>[[${ssivo.subInPrice}]]원</div>
                         </div>
                     </div>
-<!--                    </th:block>-->
                     <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
                     <button type="submit" class="payBtn">결제하기</button>
                 </div>

@@ -5,9 +5,11 @@ import com.booktopia.www.domain.DTO.OrderUserDTO;
 import com.booktopia.www.domain.DTO.OrderUserInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
+import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.OrderInfoService;
 import com.booktopia.www.service.PayService;
 import com.booktopia.www.service.SubscribeService;
+import com.booktopia.www.service.UserService;
 import com.siot.IamportRestClient.IamportClient;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,7 @@ public class PayController {
     private final PayService psv;
     private final SubscribeService ssv;
     private final OrderInfoService osv;
+    private final UserService usv;
 
     @Value("${imp.api.key}")
     private String api;
