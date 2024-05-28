@@ -6,12 +6,13 @@
 
         <div class="wrap">
             <div class="book-list-contain">
-                <div class="book-taste"> <!--취향 도서 list-->
-                    <div class="taste book1"></div>
-                    <div class="taste book2"></div>
-                    <div class="taste book3"></div>
-                    <div class="taste book4"></div>
-                    <div class="taste book5"></div>
+                <div class="book-taste" > <!--취향 도서 list-->
+                    <div class="taste book1" th:each="book:${blist}">
+                        <p> 책 이미지 파일 </p>
+                        <p>[[${book.bookTitle}]]</p>
+                        <p>[[${book.bookWriter}]]</p>
+                        <p>[[${book.bookStory}]]</p>
+                    </div>
                 </div>
                 <div class="book-popul"> <!--인기 도서 list-->
                     <div class="popul book1"></div>

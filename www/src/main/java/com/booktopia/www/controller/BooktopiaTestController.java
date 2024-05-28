@@ -22,17 +22,18 @@ public class BooktopiaTestController {
     @GetMapping("/test")
     public void getBooktopia(){}
 
-    @GetMapping("/bookList")
-    public void testResultList(){}
+//    @GetMapping("/bookList")
+//    public void testResultList(){}
 
-    @PostMapping("/bookList")
-    @ResponseBody
-    public String btnResult(@RequestBody String btnResult, Model m){
+    @GetMapping("/bookList")
+    public String btnResult(@RequestParam("btnResult") String btnResult, Model m){
         log.info(">> btnResult >> {}", btnResult);
         List<BookVO> blist = bts.getList(btnResult);
         m.addAttribute("blist", blist);
-        return "1";
+        log.info(">>> blist >>> {}", blist);
+        return "/booktopiaTest/bookList";
     }
+
 }
 
 
