@@ -49,8 +49,7 @@ public class PayController {
     }
 
     @GetMapping("/done")
-    public void done() {
-    }
+    public void done() {}
 
     @PostMapping("/complete")
     public ResponseEntity<String> completePay(@RequestBody List<OrderInfoDTO> orderInfoDTO) throws IOException {

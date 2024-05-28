@@ -106,28 +106,6 @@ document.addEventListener('click',(e)=>{
 });
 
 
-// async function btnResultToServer(btnResult){
-//     try {
-//         const url = "/booktopiaTest/bookList";
-//         const config={
-//             method : 'post',
-//             headers : {'Content-type':'text/plain; charset=UTF-8'
-//             },
-//             body:btnResult
-//         };
-//         console.log(btnResult);
-
-//         const resp = await fetch(url, config);
-//         const result = await resp.text();
-//         return result;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-
-
-
 
 // document.addEventListener('click',(e)=>{
 //     if(e.target.id == 'btn1' || e.target.id == 'btn2'){
