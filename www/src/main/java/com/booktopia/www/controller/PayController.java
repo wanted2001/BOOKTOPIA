@@ -1,8 +1,11 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DTO.OrderUserDTO;
 import com.booktopia.www.domain.DTO.OrderUserInfoDTO;
+import com.booktopia.www.domain.OrderInfoVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
+import com.booktopia.www.service.OrderInfoService;
 import com.booktopia.www.service.PayService;
 import com.booktopia.www.service.SubscribeService;
 import com.siot.IamportRestClient.IamportClient;
@@ -27,6 +30,7 @@ public class PayController {
 
     private final PayService psv;
     private final SubscribeService ssv;
+    private final OrderInfoService osv;
 
     @Value("${imp.api.key}")
     private String api;
@@ -50,6 +54,15 @@ public class PayController {
 
     @GetMapping("/done")
     public void done() {
+    }
+
+    @PostMapping("/payInfo")
+    public String payInfo(OrderInfoVO oivo){
+        log.info("oivo>>{}",oivo);
+        List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
+        OrderUserDTO oudto = new OrderUserDTO(oivo,sublist);
+        osv.regiOrderUser(oudto);
+        return "redirect:/pay/done";
     }
 
     @PostMapping("/complete")
