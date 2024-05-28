@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>getPay</title>
+<title xmlns="http://www.w3.org/1999/html">getPay</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/getPay.css}">
 <!--결제 스크립트 연결-->
@@ -9,12 +9,14 @@
 
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+
         <!DOCTYPE html>
         <!-- 결제창 -->
         <div class="wrap">
             <div class="payTitle">
                 <p>주문서 작성</p>
             </div>
+            <form action="/pay/payInfo" method="post">
             <div class="payOutBox">
                 <div class="payInBox1">
                     <div class="payInnerDiv1">
@@ -23,21 +25,21 @@
                     <hr>
                     <div class="payInnerDiv2">
                         <p>이름</p>
-                        <input type="text" placeholder="이름을 입력해주세요.">
+                        <input type="text" name="ordName" placeholder="이름을 입력해주세요.">
                     </div>
                     <div class="payInnerDiv2">
                         <p>전화번호</p>
-                        <input type="text" placeholder="'-' 제외하고 입력해주세요.">
+                        <input type="text" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
                     </div>
                     <div class="payInnerDiv2">
                         <p>주소</p>
-                        <input type="text" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
+                        <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
                         <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                        <input type="text" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
+                        <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
                     </div>
                     <div class="payInnerDiv2">
                         <p>배송 메모</p>
-                        <input type="text" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
+                        <input type="text" name="ordMemo" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
                     </div>
                     <div class="payInnerDiv2">
                         <p>결제 방식</p>
@@ -52,8 +54,9 @@
                     <div class="payInnerDiv1">
                         subTicket img
                     </div>
+<!--                    <th:block th:value="${ssivo.subInMonth}"></th:block>-->
                     <div class="payInnerDiv1">
-                        <p>subTicket name</p>
+                        <p>[[${ssivo.subInMonth}]]개월 구독권</p>
                     </div>
                     <div>
                         <input type="text" class="couponCodeInput" placeholder="쿠폰 코드를 입력하세요">
@@ -64,7 +67,6 @@
                     </div>
                     <hr>
 <!--                    <th:block th:with="month=${ssivo}">-->
-                        <h1>[[${ssivo.shipNO}]]</h1>
                     <div class="payInnerDiv3">
                         <div>
                             <div>상품 금액</div>
@@ -76,15 +78,15 @@
                         </div>
                         <div>
                             <div>결제 금액</div>
-                            <div>------원</div>
+                            <div>[[${ssivo.subInPrice}]]원</div>
                         </div>
                     </div>
-<!--                    </th:block>-->
-
-                    <button type="button" class="payBtn">결제하기</button>
+                    <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
+                    <button type="submit" class="payBtn">결제하기</button>
                 </div>
                 <!-- payOutBox div -->
             </div>
+            </form>
             <!-- wrap div -->
         </div>
         <script th:src="@{/dist/js/payment.js}"></script>
@@ -103,5 +105,9 @@
     }).open();
 
 })
+</script>
+<script th:inline="javascript">
+    const monthVal = [[${ssivo.subInMonth}]];
+    console.log(monthVal);
 </script>
 </html>

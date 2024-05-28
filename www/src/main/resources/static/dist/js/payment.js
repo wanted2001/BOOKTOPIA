@@ -6,6 +6,11 @@ document.querySelector('.payBtn').addEventListener('click',()=>{
     kakaoPay();
 });
 
+function clickPayBtn(){
+    const btnValue = document.querySelector('.payBtn');
+    document.getElementById('payForm').submit();
+}
+
 let i=1;
 
 function kakaoPay() {
