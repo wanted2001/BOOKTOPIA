@@ -43,6 +43,28 @@
     justify-content: center;
     clear: both;
 }
+.commVoteUp, .commVoteDown{
+    height: 100px;
+    width: 120px;
+    background-color: cornflowerblue;
+
+}
+.upBtn, .downBtn{
+    border: none;
+    background-color: rgba(100,149,237,0);
+    cursor: pointer;
+}
+.commVoteUp img{
+    width: 70px;
+    height: 70px;
+    margin: 10px 0 0 20px;
+}
+.commVoteDown img{
+    width: 70px;
+    height: 70px;
+    transform: rotate(180deg);
+    margin-top: 10px;
+}
 .commVoteUp{
     height: 100px;
     width: 100px;
