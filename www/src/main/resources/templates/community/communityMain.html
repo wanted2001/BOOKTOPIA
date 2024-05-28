@@ -10,9 +10,13 @@
                 <div class="commChoice">당신의 선택은?</div>
                 <div class="commTopic">토론주제</div>
                 <div class="commViewVote">
-                    <div class="commVoteUp"></div>
+                    <div class="commVoteUp" id="voteUp">
+                        <a th:href="@{/community/clickUp}"><button class="upBtn"><img src="/image/thumbs-up.png" alt="투표이미지" /></button></a>
+                    </div>
                     <div class="commVoteBar"></div>
-                    <div class="commVoteDown"></div>
+                    <div class="commVoteDown">
+                        <button class="downBtn"><img src="/image/thumbs-up.png" alt="투표이미지" /></button>
+                    </div>
                 </div>
             </div>
             <!--카테고리라인-->
@@ -95,5 +99,6 @@
                 </div>
             </div>
         </div>
+        <script th:src="@{/dist/js/voteButton.js}"></script>
     </th:block>
 </th:block>
