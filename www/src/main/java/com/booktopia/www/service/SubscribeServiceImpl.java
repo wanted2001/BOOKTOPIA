@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -17,5 +19,10 @@ public class SubscribeServiceImpl implements SubscribeService{
     @Override
     public SubscribeInfoVO getPayInfo(int month) {
         return subscribeMapper.getPayInfo(month);
+    }
+
+    @Override
+    public List<SubscribeInfoVO> getPayShipNo() {
+        return subscribeMapper.getPayShipNo();
     }
 }
