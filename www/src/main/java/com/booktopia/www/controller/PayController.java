@@ -1,11 +1,8 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.DTO.OrderUserDTO;
-import com.booktopia.www.domain.DTO.OrderUserInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
-import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.OrderInfoService;
 import com.booktopia.www.service.PayService;
 import com.booktopia.www.service.SubscribeService;
@@ -15,13 +12,10 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -48,10 +42,10 @@ public class PayController {
     }
 
     @GetMapping("/getPay")
-    public void getPay(Model m, @RequestParam("month")int month) {
-        log.info("month값>>{}",month);
+    public void getPay(Model m, @RequestParam("month") int month) {
+        log.info("month값>>{}", month);
         SubscribeInfoVO ssivo = ssv.getPayInfo(month);
-        log.info("ssivo>>{}",ssivo);
+        log.info("ssivo>>{}", ssivo);
         m.addAttribute("ssivo", ssivo);
     }
 
@@ -60,29 +54,30 @@ public class PayController {
     }
 
     @PostMapping("/payInfo")
-    public String payInfo(OrderInfoVO oivo){
-        log.info("oivo>>{}",oivo);
+    public String payInfo(OrderInfoVO oivo) {
+        log.info("oivo>>{}", oivo);
         List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
-        OrderUserDTO oudto = new OrderUserDTO(oivo,sublist);
+        OrderUserDTO oudto = new OrderUserDTO(oivo, sublist);
         osv.regiOrderUser(oudto);
         return "redirect:/pay/done";
     }
-
-    @PostMapping("/complete")
-    public ResponseEntity<String> completePay(@RequestBody List<OrderInfoDTO> orderInfoDTO) throws IOException {
-        log.info("iamport값 >>{}", iamportClient);
-        String tid = String.valueOf(orderInfoDTO.get(0).getTid());
-        try {
-            String id = orderInfoDTO.get(0).getId();
-            psv.saveOrder(id, orderInfoDTO);
-            log.info("결제성공 : 주문번호 {}", orderInfoDTO);
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException e) {
-            log.info("주문 상품 환불 : 주문번호 {}", tid);
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
 }
+
+//    @PostMapping("/complete")
+//    public ResponseEntity<String> completePay(@RequestBody List<OrderInfoDTO> orderInfoDTO) throws IOException {
+//        log.info("iamport값 >>{}", iamportClient);
+//        String tid = String.valueOf(orderInfoDTO.get(0).getTid());
+//        try {
+//            String id = orderInfoDTO.get(0).getId();
+//            psv.saveOrder(id, orderInfoDTO);
+//            log.info("결제성공 : 주문번호 {}", orderInfoDTO);
+//            return ResponseEntity.ok().build();
+//        } catch (RuntimeException e) {
+//            log.info("주문 상품 환불 : 주문번호 {}", tid);
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
+//}
 
 //    @PostMapping("/order/payment")
 //public ResponseEntity<String> paymentComplete @RequestBody List<OrderSaveDto> orderSaveDtos) throws IOException {
