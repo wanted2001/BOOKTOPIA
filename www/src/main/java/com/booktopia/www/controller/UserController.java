@@ -4,8 +4,11 @@ import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.jsqlparser.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.PublicKey;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
@@ -16,7 +19,14 @@ public class UserController {
     private final UserService usv;
 
     @GetMapping("/login")
-    public void login(){}
+    public void login(){
+    }
+
+    @PostMapping("/login")
+    public String login(UserVO uvo, Model m){
+        log.info("uvo >> {}",uvo);
+        return "/index";
+    }
 
     @GetMapping("/join")
     public void join(){

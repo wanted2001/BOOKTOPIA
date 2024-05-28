@@ -11,4 +11,6 @@ public interface UserMapper {
     int insertAuth(String id);
 
     UserVO checkId(String id);
+
+    UserVO loginCheck(UserVO uvo);
 }
