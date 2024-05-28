@@ -14,6 +14,8 @@ inputId.addEventListener('keyup', () => {
     }
 })
 
+
+
 joinCheckIdBtn.addEventListener('click', () => {
 
     let inputIdVal = inputId.value;
@@ -37,15 +39,10 @@ async function checkId(inputIdVal) {
     } catch (error) {
         console.log(error);
     }
-
-
 }
-
 conPwd.addEventListener('keyup', () => {
     validatePassword();
 });
-
-
 
 function validatePassword() {
     if (pwd.value != conPwd.value) {
@@ -58,3 +55,4 @@ function validatePassword() {
 
     }
 }
+
