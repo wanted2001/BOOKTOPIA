@@ -9,4 +9,6 @@ public interface UserService {
 
     // 중복확인
     int checkId(String id);
+
+    UserVO logincheck(UserVO uvo);
 }

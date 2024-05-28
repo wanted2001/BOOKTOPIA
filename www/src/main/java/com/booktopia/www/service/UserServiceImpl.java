@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
         return isOk;
     }
 
+    @Override
+    public UserVO logincheck(UserVO uvo) {
+        return userMapper.loginCheck(uvo);
+    }
+
 }
