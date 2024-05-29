@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")
                         .logoutSuccessUrl("/index")
                 );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
-
+        http.cors();
         return http.build();
     }
 }

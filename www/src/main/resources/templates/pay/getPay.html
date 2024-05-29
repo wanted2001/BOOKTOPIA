@@ -3,8 +3,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/getPay.css}">
 <!--결제 스크립트 연결-->
-<!--<script src="https://cdn.iamport.kr/v1/iamport.js"></script>-->
-<!--<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>-->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
@@ -16,82 +16,89 @@
             <div class="payTitle">
                 <p>주문서 작성</p>
             </div>
-<!--            <form action="/pay/payInfo" method="post">-->
-            <div class="payOutBox">
-                <div class="payInBox1">
-                    <div class="payInnerDiv1">
-                        <p>배송정보</p>
+            <form action="/pay/payInfo" method="post">
+                <div class="payOutBox">
+                    <div class="payInBox1">
+                        <div class="payInnerDiv1">
+                            <p>배송정보</p>
+                        </div>
+                        <hr>
+                        <div class="payInnerDiv2">
+                            <p>이름</p>
+                            <input type="text" th:value="김정온" id="ordName" name="ordName" placeholder="이름을 입력해주세요.">
+                        </div>
+                        <div class="payInnerDiv2">
+                            <p>전화번호</p>
+                            <input type="text" th:value="010-7765-8487" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
+                        </div>
+                        <div class="payInnerDiv2">
+                            <p>주소</p>
+                            <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
+                            <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
+                            <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
+                        </div>
+                        <div class="payInnerDiv2">
+                            <p>배송 메모</p>
+                            <input type="text" name="ordMemo" id="ordMemo" th:value="전화주세요" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
+                        </div>
+                        <div class="payInnerDiv2">
+                            <p>결제 방식</p>
+                        </div>
+                        <hr>
+                        <button type="button">카카오페이</button>
                     </div>
-                    <hr>
-                    <div class="payInnerDiv2">
-                        <p>이름</p>
-                        <input type="text" name="ordName" placeholder="이름을 입력해주세요.">
+                    <div class="payInBox2">
+                        <div class="payInnerDiv1">
+                            <p>선택 상품 정보</p>
+                        </div>
+                        <div class="payInnerDiv1">
+                            subTicket img
+                        </div>
+    <!--                    <th:block th:value="${ssivo.subInMonth}"></th:block>-->
+                        <div class="payInnerDiv1">
+                            <p>[[${ssivo.subInMonth}]]개월 구독권</p>
+                        </div>
+                        <div>
+                            <input type="text" class="couponCodeInput" placeholder="쿠폰 코드를 입력하세요">
+                            <button type="button" class="addCouponBtn">등록하기</button>
+                        </div>
+                        <div>
+                            사용 가능한 쿠폰 ()장
+                        </div>
+                        <hr>
+    <!--                    <th:block th:with="month=${ssivo}">-->
+                        <div class="payInnerDiv3">
+                            <div>
+                                <div>상품 금액</div>
+                                <div>[[${ssivo.subInPrice}]]원</div>
+                            </div>
+                            <div>
+                                <div>쿠폰 할인</div>
+                                <div>- -----원</div>
+                            </div>
+                            <div>
+                                <div>결제 금액</div>
+                                <div>[[${ssivo.subInPrice}]]원</div>
+                            </div>
+                        </div>
+                        <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
+                    <button type="button" class="payBtn" onclick="getPayUser()">결제하기</button>
                     </div>
-                    <div class="payInnerDiv2">
-                        <p>전화번호</p>
-                        <input type="text" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
-                    </div>
-                    <div class="payInnerDiv2">
-                        <p>주소</p>
-                        <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
-                        <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                        <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
-                    </div>
-                    <div class="payInnerDiv2">
-                        <p>배송 메모</p>
-                        <input type="text" name="ordMemo" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
-                    </div>
-                    <div class="payInnerDiv2">
-                        <p>결제 방식</p>
-                    </div>
-                    <hr>
-                    <button type="button">카카오페이</button>
+                    <!-- payOutBox div -->
                 </div>
-                <div class="payInBox2">
-                    <div class="payInnerDiv1">
-                        <p>선택 상품 정보</p>
-                    </div>
-                    <div class="payInnerDiv1">
-                        subTicket img
-                    </div>
-<!--                    <th:block th:value="${ssivo.subInMonth}"></th:block>-->
-                    <div class="payInnerDiv1">
-                        <p>[[${ssivo.subInMonth}]]개월 구독권</p>
-                    </div>
-                    <div>
-                        <input type="text" class="couponCodeInput" placeholder="쿠폰 코드를 입력하세요">
-                        <button type="button" class="addCouponBtn">등록하기</button>
-                    </div>
-                    <div>
-                        사용 가능한 쿠폰 ()장
-                    </div>
-                    <hr>
-<!--                    <th:block th:with="month=${ssivo}">-->
-                    <div class="payInnerDiv3">
-                        <div>
-                            <div>상품 금액</div>
-                            <div>[[${ssivo.subInPrice}]]원</div>
-                        </div>
-                        <div>
-                            <div>쿠폰 할인</div>
-                            <div>- -----원</div>
-                        </div>
-                        <div>
-                            <div>결제 금액</div>
-                            <div>[[${ssivo.subInPrice}]]원</div>
-                        </div>
-                    </div>
-                    <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                </div>
-                <!-- payOutBox div -->
-            </div>
-<!--            </form>-->
-            <form action="/pay/kakaoready" method="post">
-                <button type="button" class="payBtn">결제하기</button>
             </form>
+
+
             <!-- wrap div -->
         </div>
-        <script th:src="@{/dist/js/payment.js}"></script>
+        <script th:inline="javascript">
+            const ordName = document.getElementById('ordName').value;
+            const ordPhone = document.getElementById('ordPhone').value;
+            const ordMemo = document.getElementById('ordMemo').value;
+            const payName = [[${ssivo.subInMonth}]];
+            const totalAmount = [[${ssivo.subInPrice}]];
+        </script>
+        <script th:src="@{/dist/js/imp_payment.js}"></script>
     </th:block>
 </th:block>
 

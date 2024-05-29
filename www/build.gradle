@@ -38,6 +38,9 @@ dependencies {
 			maven { url 'https://jitpack.io' }
 		}
 	}
+	/*json parser 용*/
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

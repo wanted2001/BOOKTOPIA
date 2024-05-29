@@ -9,6 +9,7 @@ import lombok.Setter;
 public class OrderInfoDTO {
     //결제정보 담을 DTO
     private long orderNo; //주문번호
+    private String impUid;
     private String id;
     private String payName;
     private int amount;
