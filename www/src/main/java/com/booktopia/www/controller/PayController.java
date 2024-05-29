@@ -1,12 +1,10 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.DTO.OrderUserDTO;
-import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.domain.DTO.KakaoReadyResponse;
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DTO.OrderPayDTO;
 import com.booktopia.www.domain.SubscribeInfoVO;
-import com.booktopia.www.service.OrderInfoService;
-import com.booktopia.www.service.PayService;
-import com.booktopia.www.service.SubscribeService;
-import com.booktopia.www.service.UserService;
+import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Controller
 @RequestMapping("/pay/*")
@@ -25,9 +26,8 @@ import java.util.List;
 public class PayController {
 
     private final PayService psv;
+    private final PayServiceImpl psvImpl;
     private final SubscribeService ssv;
-    private final OrderInfoService osv;
-    private final UserService usv;
 
     @Value("${imp.api.key}")
     private String api;
@@ -50,18 +50,79 @@ public class PayController {
     }
 
     @GetMapping("/done")
-    public void done() {
+    public void done() {}
+
+    @ResponseBody
+    @GetMapping("/kakaoPay")
+    public String kakaoPay() {
+        OrderPayDTO opdto = new OrderPayDTO();
+        OrderInfoDTO oidto = new OrderInfoDTO();
+        oidto.setOrderNo(opdto.getPayList().get(0).getOrderNo());
+        oidto.setId(opdto.getId());
+        oidto.setPayName(opdto.getPayList().get(0).getPayName());
+        oidto.setAmount(opdto.getPayList().get(0).getAmount());
+        oidto.setTotalAmount(opdto.getPayList().get(0).getTotalAmount());
+        log.info("oidto값 >>>>>{}", oidto);
+        try {
+            URL url = new URL("https://://kapi.kakao.com/v1/payment/ready");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+
+            conn.setRequestProperty("Authorization", "KakaoAK 9b05cd727ba09686a7fddb914b120d51");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            conn.setDoOutput(true);
+
+            String parameter = "cid=C32D2035D1F1FC997854" + //가맹점코드
+                    "&partner_order_id=" + oidto.getOrderNo() + //가맹점 주문번호
+                    "&partner_user_id=" + oidto.getId() + //가맹점 회원 id
+                    "&item_name=" + oidto.getPayName() + //상품명
+                    "&quantity=1" + oidto.getAmount() + //수량
+                    "&total_amount=" + oidto.getTotalAmount() + //총 금액
+                    "&tax_free_amount=0" + //비과세
+                    "&approval_url=http://localhost:8099/pay/done" + //결제성공
+                    "&fail_url=http://localhost:8099/subscribe/info" + //결제실패
+                    "&cancel_url=http://localhost:8099/user/login"; //결제취소
+
+            OutputStream outputStream = conn.getOutputStream();
+            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            dataOutputStream.writeBytes(parameter);
+            dataOutputStream.close();
+
+            int result = conn.getResponseCode();
+
+            InputStream inputStream;
+            if (result == 200) {
+                inputStream = conn.getInputStream();
+            } else {
+                inputStream = conn.getErrorStream();
+            }
+
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            return bufferedReader.readLine();
+
+        } catch (MalformedURLException e){
+            throw new RuntimeException(e);
+        }   catch (IOException e){
+            throw new RuntimeException(e);
+        }
     }
 
-    @PostMapping("/payInfo")
-    public String payInfo(OrderInfoVO oivo) {
-        log.info("oivo>>{}", oivo);
-        List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
-        OrderUserDTO oudto = new OrderUserDTO(oivo, sublist);
-        osv.regiOrderUser(oudto);
-        return "redirect:/pay/done";
+    @PostMapping("/kakaoready")
+    public KakaoReadyResponse kakaoPayReady(){
+        return psvImpl.getKakaoReady();
     }
+
 }
+
+//    @PostMapping("/payInfo")
+//    public String payInfo(OrderInfoVO oivo) {
+//        log.info("oivo>>{}", oivo);
+//        List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
+//        OrderUserDTO oudto = new OrderUserDTO(oivo, sublist);
+//        osv.regiOrderUser(oudto);
+//        return "redirect:/pay/done";
+//    }
 
 //    @PostMapping("/complete")
 //    public ResponseEntity<String> completePay(@RequestBody List<OrderInfoDTO> orderInfoDTO) throws IOException {
