@@ -52,14 +52,16 @@ public class PayController {
     @GetMapping("/done")
     public void done() {}
 
-    @PostMapping("/payInfo")
-    public String payInfo(OrderInfoVO oivo) {
-        log.info("oivo>>{}", oivo);
-        List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
-        OrderUserDTO oudto = new OrderUserDTO(oivo, sublist);
-        osv.regiOrderUser(oudto);
-        return "redirect:/pay/done";
-    }
+
+
+//    @PostMapping("/payInfo")
+//    public String payInfo(OrderInfoVO oivo) {
+//        log.info("oivo>>{}", oivo);
+//        List<SubscribeInfoVO> sublist = ssv.getPayShipNo();
+//        OrderUserDTO oudto = new OrderUserDTO(oivo, sublist);
+//        osv.regiOrderUser(oudto);
+//        return "redirect:/pay/done";
+//    }
 }
 
 //    @PostMapping("/complete")
