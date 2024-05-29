@@ -1,35 +1,35 @@
-console.log("payment js in");
-
-$(function (){
-    console.log('큰 함수');
-    $('.payBtn').click(function (){
-        console.log("버튼클릭");
-        $.ajax({
-            url:'http://localhost:8099/pay/kakaoPay',
-            dataType:"json",
-            success:function (data){
-                console.log("결제성공")
-            },
-            error:function (error) {
-                console.log(error)
-            }
-        })
-    })
-})
-// document.querySelector('.payBtn').addEventListener('click',()=>{
-//     console.log("결제버튼클릭");
-//     $.ajax({
-//         url:'/pay/kakaoPay',
-//         dataType:"json",
-//         success:function (data){
-//             console.log("결제성공")
-//         },
-//         error:function (error) {
-//             console.log(error)
-//         }
+// console.log("payment js in");
+//
+// $(function (){
+//     console.log('큰 함수');
+//     $('.payBtn').click(function (){
+//         console.log("버튼클릭");
+//         $.ajax({
+//             url:'http://localhost:8099/pay/kakaoPay',
+//             dataType:"json",
+//             success:function (data){
+//                 console.log("결제성공")
+//             },
+//             error:function (error) {
+//                 console.log(error)
+//             }
+//         })
 //     })
-//     // kakaoPay();
-// });
+})
+document.querySelector('.payBtn').addEventListener('DOMC',()=>{
+    console.log("결제버튼클릭");
+    $.ajax({
+        url:'/pay/kakaoPay',
+        dataType:"json",
+        success:function (data){
+            console.log("결제성공")
+        },
+        error:function (error) {
+            console.log(error)
+        }
+    })
+    // kakaoPay();
+});
 
 let i=1;
 
