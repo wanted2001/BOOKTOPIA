@@ -3,9 +3,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/getPay.css}">
 <!--결제 스크립트 연결-->
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<!--<script src="https://cdn.iamport.kr/v1/iamport.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
@@ -16,7 +16,7 @@
             <div class="payTitle">
                 <p>주문서 작성</p>
             </div>
-            <form action="/pay/payInfo" method="post">
+<!--            <form action="/pay/payInfo" method="post">-->
             <div class="payOutBox">
                 <div class="payInBox1">
                     <div class="payInnerDiv1">
@@ -82,10 +82,12 @@
                         </div>
                     </div>
                     <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                    <button type="submit" class="payBtn">결제하기</button>
                 </div>
                 <!-- payOutBox div -->
             </div>
+<!--            </form>-->
+            <form action="/pay/kakaoready" method="post">
+                <button type="button" class="payBtn">결제하기</button>
             </form>
             <!-- wrap div -->
         </div>
