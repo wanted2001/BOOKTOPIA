@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
-
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
 @Controller
@@ -49,4 +47,5 @@ public class UserController {
         int isOk = usv.checkId(id);
         return isOk;
     }
+
 }
