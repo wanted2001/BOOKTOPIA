@@ -9,6 +9,4 @@ import java.util.List;
 public interface SubscribeMapper {
 
     SubscribeInfoVO getPayInfo(int month);
-
-    List<SubscribeInfoVO> getPayShipNo();
 }

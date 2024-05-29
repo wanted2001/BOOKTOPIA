@@ -1,45 +1,47 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.DTO.KakaoReadyResponse;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DTO.OrderPayDTO;
 import com.booktopia.www.domain.SubscribeInfoVO;
 import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/pay/*")
 @Slf4j
-@RequiredArgsConstructor
 public class PayController {
 
-    private final PayService psv;
-    private final PayServiceImpl psvImpl;
-    private final SubscribeService ssv;
+    @Autowired
+    private SubscribeService ssv;
+    @Autowired
+    private PayService psv; //implements 없음
+    @Autowired
+    private OrderInfoService osv;
 
-    @Value("${imp.api.key}")
+    @Value("2171128503337876")
     private String api;
-    @Value("${imp.api.secretkey}")
+    @Value("KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6")
     private String secretkey;
 
-    private IamportClient iamportClient;
+    private IamportClient iamportClient = new IamportClient(api,secretkey);
 
-    @PostConstruct
-    public void init() {
-        this.iamportClient = new IamportClient(api, secretkey);
+    public PayController(){
+        this.iamportClient = new IamportClient("2171128503337876",
+                "KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6");
     }
+
 
     @GetMapping("/getPay")
     public void getPay(Model m, @RequestParam("month") int month) {
@@ -49,69 +51,141 @@ public class PayController {
         m.addAttribute("ssivo", ssivo);
     }
 
-    @GetMapping("/done")
-    public void done() {}
-
+    @GetMapping("/pay_ing/{imp_uid}")
     @ResponseBody
-    @GetMapping("/kakaoPay")
-    public String kakaoPay() {
-        OrderPayDTO opdto = new OrderPayDTO();
-        OrderInfoDTO oidto = new OrderInfoDTO();
-        oidto.setOrderNo(opdto.getPayList().get(0).getOrderNo());
-        oidto.setId(opdto.getId());
-        oidto.setPayName(opdto.getPayList().get(0).getPayName());
-        oidto.setAmount(opdto.getPayList().get(0).getAmount());
-        oidto.setTotalAmount(opdto.getPayList().get(0).getTotalAmount());
-        log.info("oidto값 >>>>>{}", oidto);
-        try {
-            URL url = new URL("https://://kapi.kakao.com/v1/payment/ready");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+    public IamportResponse<Payment> paymentByImpUid(Model m, Locale locale, HttpSession session,
+                                                    @PathVariable(value = "imp_uid") String imp_uid) throws IamportResponseException, IOException{
+        log.info("확인확인");
+        log.info("imp_uid들어오는지 확인",imp_uid);
+        return iamportClient.paymentByImpUid(imp_uid);
+    }
 
-            conn.setRequestProperty("Authorization", "KakaoAK 9b05cd727ba09686a7fddb914b120d51");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-            conn.setDoOutput(true);
+    @PostMapping("/complete")
+    @ResponseBody
+    public int paymentComplete(HttpSession session, String imp_uid, String merchant_uid, String totalAmount, @RequestBody OrderInfoDTO orderinfoDTO) throws Exception{
+        log.info("orderinfoDTO >>>>>>>>>>>>{}", orderinfoDTO);
+        String token = psv.getToken();
+        log.info("token >>>>>>>>>>>>>>>>{}", token);
 
-            String parameter = "cid=C32D2035D1F1FC997854" + //가맹점코드
-                    "&partner_order_id=" + oidto.getOrderNo() + //가맹점 주문번호
-                    "&partner_user_id=" + oidto.getId() + //가맹점 회원 id
-                    "&item_name=" + oidto.getPayName() + //상품명
-                    "&quantity=1" + oidto.getAmount() + //수량
-                    "&total_amount=" + oidto.getTotalAmount() + //총 금액
-                    "&tax_free_amount=0" + //비과세
-                    "&approval_url=http://localhost:8099/pay/done" + //결제성공
-                    "&fail_url=http://localhost:8099/subscribe/info" + //결제실패
-                    "&cancel_url=http://localhost:8099/user/login"; //결제취소
+        String amount = psv.paymentInfo(orderinfoDTO.getImpUid(), token);
+        log.info("amount >>>>>>>>>>>>>>>>>{}",amount);
 
-            OutputStream outputStream = conn.getOutputStream();
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeBytes(parameter);
-            dataOutputStream.close();
+        int res = 1;
 
-            int result = conn.getResponseCode();
-
-            InputStream inputStream;
-            if (result == 200) {
-                inputStream = conn.getInputStream();
-            } else {
-                inputStream = conn.getErrorStream();
-            }
-
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            return bufferedReader.readLine();
-
-        } catch (MalformedURLException e){
-            throw new RuntimeException(e);
-        }   catch (IOException e){
-            throw new RuntimeException(e);
+        if (orderinfoDTO.getTotalAmount() != Long.parseLong(amount)) {
+            //결제취소
+            log.info("orderinfoDTO.getTotalAmount()>>>>>>>>>>>{}",orderinfoDTO.getTotalAmount());
+            res=0;
+            String reason = "결제금액오류";
+            psv.payMentCancel(token, orderinfoDTO.getImpUid(),amount,reason);
+            return res;
         }
+        osv.insertPayInfo(orderinfoDTO);
+        return res;
     }
 
-    @PostMapping("/kakaoready")
-    public KakaoReadyResponse kakaoPayReady(){
-        return psvImpl.getKakaoReady();
-    }
+
+//    @ResponseBody
+//    @PostMapping("/done/{imp_uid}")
+//    public void done(@PathVariable(value = "imp_uid")String imp_uid)throws IOException {
+//        log.info("imp_uid 값>>>>>>>>>>>>>>>>>>>>>>>>{}", imp_uid);
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @ResponseBody
+//    @GetMapping("/kakaoPay")
+//    public String kakaoPay() {
+//        OrderPayDTO opdto = new OrderPayDTO();
+//        OrderInfoDTO oidto = new OrderInfoDTO();
+//        oidto.setOrderNo(opdto.getPayList().get(0).getOrderNo());
+//        oidto.setId(opdto.getId());
+//        oidto.setPayName(opdto.getPayList().get(0).getPayName());
+//        oidto.setAmount(opdto.getPayList().get(0).getAmount());
+//        oidto.setTotalAmount(opdto.getPayList().get(0).getTotalAmount());
+//        log.info("oidto값 >>>>>{}", oidto);
+//        try {
+//            URL url = new URL("https://://kapi.kakao.com/v1/payment/ready");
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setRequestMethod("POST");
+//
+//            conn.setRequestProperty("Authorization", "KakaoAK 9b05cd727ba09686a7fddb914b120d51");
+//            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+//            conn.setDoOutput(true);
+//
+//            String parameter = "cid=C32D2035D1F1FC997854" + //가맹점코드
+//                    "&partner_order_id=" + oidto.getOrderNo() + //가맹점 주문번호
+//                    "&partner_user_id=" + oidto.getId() + //가맹점 회원 id
+//                    "&item_name=" + oidto.getPayName() + //상품명
+//                    "&quantity=1" + oidto.getAmount() + //수량
+//                    "&total_amount=" + oidto.getTotalAmount() + //총 금액
+//                    "&tax_free_amount=0" + //비과세
+//                    "&approval_url=http://localhost:8099/pay/done" + //결제성공
+//                    "&fail_url=http://localhost:8099/subscribe/info" + //결제실패
+//                    "&cancel_url=http://localhost:8099/user/login"; //결제취소
+//
+//            OutputStream outputStream = conn.getOutputStream();
+//            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+//            dataOutputStream.writeBytes(parameter);
+//            dataOutputStream.close();
+//
+//            int result = conn.getResponseCode();
+//
+//            InputStream inputStream;
+//            if (result == 200) {
+//                inputStream = conn.getInputStream();
+//            } else {
+//                inputStream = conn.getErrorStream();
+//            }
+//
+//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//            return bufferedReader.readLine();
+//
+//        } catch (MalformedURLException e){
+//            throw new RuntimeException(e);
+//        }   catch (IOException e){
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    @PostMapping("/kakaoready")
+//    public KakaoReadyResponse kakaoPayReady(){
+//        return psvImpl.getKakaoReady();
+//    }
 
 }
 
