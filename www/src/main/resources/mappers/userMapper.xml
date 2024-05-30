@@ -15,9 +15,12 @@
         select * from user where id=#{id}
     </select>
 
-<!--    임시로그인 정보 가져오는지 확인 폼-->
+    <!--    임시로그인 정보 가져오는지 확인 폼-->
     <select id="loginCheck" resultType="com.booktopia.www.domain.UserVO">
         select * from user where id=#{id} and pwd=@{pwd}
     </select>
 
+    <select id="selectEmail">
+
+    </select>
 </mapper>

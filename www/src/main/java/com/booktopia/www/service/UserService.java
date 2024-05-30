@@ -11,4 +11,5 @@ public interface UserService {
     int checkId(String id);
 
     UserVO logincheck(UserVO uvo);
+
 }

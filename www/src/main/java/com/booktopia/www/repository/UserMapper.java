@@ -1,7 +1,10 @@
 package com.booktopia.www.repository;
 
+import com.booktopia.www.domain.AuthVO;
 import com.booktopia.www.domain.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -13,4 +16,12 @@ public interface UserMapper {
     UserVO checkId(String id);
 
     UserVO loginCheck(UserVO uvo);
+
+
+    // ------------------------------------------------//
+    //Security 관련 메서드
+    UserVO selectEmail(String id);
+
+    List<AuthVO> selectAuths(String id);
+    // ------------------------------------------------//
 }

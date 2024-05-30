@@ -2,6 +2,8 @@ package com.booktopia.www.domain;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -19,5 +21,6 @@ public class UserVO {
     private String userReg; //가입날짜
     private String userUp; //수정날짜
     private String userType; //가입유형
+    private List<AuthVO> authList;
 
 }
