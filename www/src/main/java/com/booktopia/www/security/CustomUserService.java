@@ -21,7 +21,9 @@ public class CustomUserService implements UserDetailsService {
         UserVO loginUvo = userMapper.selectId(id);
         loginUvo.setAuthList(userMapper.selectAuths(id));
 
-        return (UserDetails) new AuthUser(loginUvo);
+        log.info("loginUvo >> {}",loginUvo);
+
+        return  new AuthUser(loginUvo);
     }
 
 

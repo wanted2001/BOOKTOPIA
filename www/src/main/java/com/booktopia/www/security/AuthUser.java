@@ -21,7 +21,7 @@ public class AuthUser extends User{
 
     public AuthUser(UserVO userVO) {
         super(userVO.getId(), userVO.getPwd(), userVO.getAuthList().stream().map
-                (autoVO -> new SimpleGrantedAuthority(autoVO.getRole())).collect(Collectors.toList()));
+                (authVO -> new SimpleGrantedAuthority(authVO.getRole())).collect(Collectors.toList()));
         this.userVO = userVO;
     }
 }
