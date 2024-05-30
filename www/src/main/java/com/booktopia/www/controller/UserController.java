@@ -28,6 +28,7 @@ public class UserController {
     
     @PostMapping("/join")
     public String joinInsert(UserVO uvo){
+        uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         log.info("uvo >> {}",uvo);
         uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         int isOk = usv.joinInsert(uvo);
