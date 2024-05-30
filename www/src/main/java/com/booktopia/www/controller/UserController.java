@@ -4,6 +4,7 @@ import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +18,10 @@ import java.security.PublicKey;
 public class UserController {
 
     private final UserService usv;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public void login(){
-    }
-
-    @PostMapping("/login")
-    public String login(UserVO uvo, Model m){
-        log.info("uvo >> {}",uvo);
-        return "/index";
     }
 
     @GetMapping("/join")
@@ -34,6 +30,7 @@ public class UserController {
     
     @PostMapping("/join")
     public String joinInsert(UserVO uvo){
+        uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         log.info("uvo >> {}",uvo);
         int isOk = usv.joinInsert(uvo);
         return "/user/login";

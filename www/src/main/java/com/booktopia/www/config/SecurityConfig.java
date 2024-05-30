@@ -38,14 +38,14 @@ public class SecurityConfig {
                         .usernameParameter("id")
                         .passwordParameter("pwd")
                         .loginPage("/user/login")// form 방식 로그인 사용
-                        .defaultSuccessUrl("/index", true) // 성공 시 dashboard로
+                        .defaultSuccessUrl("/user/myPage", true) // 성공 시 dashboard로
                         .permitAll()    // 대시보드 이동이 막히면 안되므로 얘는 허용
                 )
                 .logout(logout-> logout
                         .logoutUrl(("/user/logout"))
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
-                        .logoutSuccessUrl("/index")
+                        .logoutSuccessUrl("/")
                 );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
 
         return http.build();
