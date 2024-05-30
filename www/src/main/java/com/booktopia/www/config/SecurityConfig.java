@@ -1,6 +1,6 @@
 package com.booktopia.www.config;
 
-import com.booktopia.www.Security.CustomUserService;
+import com.booktopia.www.security.CustomUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -26,9 +29,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf->csrf.disable())
+                .cors(cors->cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/","/index","/user/login","/user/join","/booktopia/info","/js/**","/dist/**").permitAll()
-                        .requestMatchers("/subcribe/info").hasRole("ROLE_ADMIN").anyRequest().permitAll()
+                        .requestMatchers("/subcribe/info").hasRole("ADMIN").anyRequest().permitAll()
                 )
                 .formLogin(login -> login
                         .usernameParameter("id")
@@ -58,5 +62,19 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
 
     }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
 
 }
