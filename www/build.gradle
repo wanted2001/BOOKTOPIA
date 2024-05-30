@@ -30,6 +30,7 @@ dependencies {
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
 	/*결제용 아임포트 api*/
 	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
 	allprojects {
