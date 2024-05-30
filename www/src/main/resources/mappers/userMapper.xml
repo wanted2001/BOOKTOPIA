@@ -11,20 +11,11 @@
         insert into auth values(#{id},'ROLE_USER')
     </insert>
 
-    <select id="checkId" resultType="com.booktopia.www.domain.UserVO">
-        select * from user where id=#{id}
+    <select id="selectId" resultType="com.booktopia.www.domain.UserVO">
+        select * from user where id=#{id} and pwd=#{pwd} and user_del = 'N'
     </select>
-
-<!--    임시로그인 정보 가져오는지 확인 폼-->
-    <select id="loginCheck" resultType="com.booktopia.www.domain.UserVO">
-        select * from user where id=#{id} and pwd=#{pwd}
-    </select>
-
-    <select id="selectEmail" resultType="com.booktopia.www.domain.UserVO">
-        select * from user id=#{id}
-    </select>
-    <select id="selectEmail" resultType="com.booktopia.www.domain.AuthVO">
-        select * from auth id=#{id}
+    <select id="selectAuths" resultType="com.booktopia.www.domain.AuthVO">
+        select * from auth where id=#{id}
     </select>
 
 

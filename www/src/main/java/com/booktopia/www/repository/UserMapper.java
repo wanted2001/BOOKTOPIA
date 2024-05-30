@@ -13,11 +13,7 @@ public interface UserMapper {
 
     int insertAuth(String id);
 
-    UserVO checkId(String id);
-
-    UserVO loginCheck(UserVO uvo);
-
-    UserVO selectEmail(String id);
-
     List<AuthVO> selectAuths(String id);
+
+    UserVO selectId(String id);
 }

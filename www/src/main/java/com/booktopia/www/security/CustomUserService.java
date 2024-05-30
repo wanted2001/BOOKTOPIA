@@ -10,18 +10,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Slf4j
 public class CustomUserService implements UserDetailsService {
+
     @Autowired
     private UserMapper userMapper;
-    private UserVO userVO;
 
     @Override
     public UserDetails loadUserByUsername(String id)
             throws UsernameNotFoundException {
-        UserVO loginMvo = userMapper.selectEmail(id);
-        loginMvo.setAuthList(userMapper.selectAuths(id));
 
-        // 리턴값을 UserDetails로 변경해야함
-        return (UserDetails) new AuthUser(userVO);
+        UserVO loginUvo = userMapper.selectId(id);
+        loginUvo.setAuthList(userMapper.selectAuths(id));
+
+        return (UserDetails) new AuthUser(loginUvo);
     }
 
 
