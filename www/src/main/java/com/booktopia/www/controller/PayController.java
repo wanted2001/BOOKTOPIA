@@ -42,6 +42,14 @@ public class PayController {
                 "KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6");
     }
 
+    @GetMapping("/done")
+    public void dome(){}
+
+//    @PostMapping("/done")
+//    public String done(){
+//        log.info(">>> 들어옴 >>> ");
+//        return "redirect:/pay/done";
+//    }
 
     @GetMapping("/getPay")
     public void getPay(Model m, @RequestParam("month") int month) {
@@ -51,18 +59,20 @@ public class PayController {
         m.addAttribute("ssivo", ssivo);
     }
 
-    @GetMapping("/pay_ing/{imp_uid}")
+    @PostMapping("/pay_ing/{imp_uid}")
     @ResponseBody
     public IamportResponse<Payment> paymentByImpUid(Model m, Locale locale, HttpSession session,
                                                     @PathVariable(value = "imp_uid") String imp_uid) throws IamportResponseException, IOException{
         log.info("확인확인");
-        log.info("imp_uid들어오는지 확인",imp_uid);
+        log.info("imp_uid들어오는지 확인 >> {}",imp_uid);
         return iamportClient.paymentByImpUid(imp_uid);
     }
 
-    @PostMapping("/complete")
+    @PostMapping("/done")
     @ResponseBody
     public int paymentComplete(HttpSession session, String imp_uid, String merchant_uid, String totalAmount, @RequestBody OrderInfoDTO orderinfoDTO) throws Exception{
+        log.info(">>> 들어옴 >>> ");
+
         log.info("orderinfoDTO >>>>>>>>>>>>{}", orderinfoDTO);
         String token = psv.getToken();
         log.info("token >>>>>>>>>>>>>>>>{}", token);
@@ -84,6 +94,31 @@ public class PayController {
         return res;
     }
 
+//    @PostMapping("/done")
+//    @ResponseBody
+//    public int paymentComplete(HttpSession session, String imp_uid, String merchant_uid, String totalAmount, @RequestBody OrderInfoDTO orderinfoDTO) throws Exception{
+//        log.info(">>> 들어옴 >>> ");
+//
+//        log.info("orderinfoDTO >>>>>>>>>>>>{}", orderinfoDTO);
+//        String token = psv.getToken();
+//        log.info("token >>>>>>>>>>>>>>>>{}", token);
+//
+//        String amount = psv.paymentInfo(orderinfoDTO.getImpUid(), token);
+//        log.info("amount >>>>>>>>>>>>>>>>>{}",amount);
+//
+//        int res = 1;
+//
+//        if (orderinfoDTO.getTotalAmount() != Long.parseLong(amount)) {
+//            //결제취소
+//            log.info("orderinfoDTO.getTotalAmount()>>>>>>>>>>>{}",orderinfoDTO.getTotalAmount());
+//            res=0;
+//            String reason = "결제금액오류";
+//            psv.payMentCancel(token, orderinfoDTO.getImpUid(),amount,reason);
+//            return res;
+//        }
+//        osv.insertPayInfo(orderinfoDTO);
+//        return res;
+//    }
 
 //    @ResponseBody
 //    @PostMapping("/done/{imp_uid}")

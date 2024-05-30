@@ -29,7 +29,7 @@ function getPayUser(){
                     url : '/pay/pay_ing/'+uid,
                     type:'POST',
                     dataType:'JSON',
-                    contentType:'application/json',
+                    contentType:'application/json; charset=utf-8',
                     crossDomain:true
                 }).done(function (data) {
                     console.log("data in");
@@ -42,7 +42,7 @@ function getPayUser(){
                     console.log(data);
 
                     $.ajax({
-                        url: '/pay/complete',
+                        url: '/pay/done',
                         type:'POST',
                         dataType:'JSON',
                         contentType:'application/json',
@@ -55,11 +55,13 @@ function getPayUser(){
                             alert('주문정보 저장 실패 ! 다시 시도해주세요');
                         }
                     })
+                    console.log("결제안됨")
                 })
             } else {
                 alert('결제에 실패하였습니다. 실패 :'+rsp.error_msg)
             }
         }
     )
+    i++;
 
 }
