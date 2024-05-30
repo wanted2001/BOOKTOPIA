@@ -21,21 +21,21 @@ public class UserServiceImpl implements UserService {
         return (isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0);
     }
 
-    // 중복확인
-    @Override
-    public int checkId(String id) {
-        log.info(id);
-        int isOk = 1;
-        UserVO checkmvo =  userMapper.checkId(id);
-        if(checkmvo == null){
-            isOk = 0;
-        }
-        return isOk;
-    }
-
-    @Override
-    public UserVO logincheck(UserVO uvo) {
-        return userMapper.loginCheck(uvo);
-    }
+//    // 중복확인
+//    @Override
+//    public int checkId(String id) {
+//        log.info(id);
+//        int isOk = 1;
+//        UserVO checkmvo =  userMapper.checkId(id);
+//        if(checkmvo == null){
+//            isOk = 0;
+//        }
+//        return isOk;
+//    }
+//
+//    @Override
+//    public UserVO logincheck(UserVO uvo) {
+//        return userMapper.loginCheck(uvo);
+//    }
 
 }

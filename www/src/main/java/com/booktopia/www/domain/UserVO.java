@@ -1,6 +1,10 @@
 package com.booktopia.www.domain;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -8,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserVO {
-    private String id;  //사용자 ID
+    private String id; //사용자 ID
     private String pwd; //사용자 비밀번호
     private String name; //사용자 이름
     private String phone; //사용자 전화번호
@@ -19,5 +23,6 @@ public class UserVO {
     private String userReg; //가입날짜
     private String userUp; //수정날짜
     private String userType; //가입유형
+    private List<AuthVO> authList; //권한 목록
 
 }

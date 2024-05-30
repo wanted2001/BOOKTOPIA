@@ -17,7 +17,15 @@
 
 <!--    임시로그인 정보 가져오는지 확인 폼-->
     <select id="loginCheck" resultType="com.booktopia.www.domain.UserVO">
-        select * from user where id=#{id} and pwd=@{pwd}
+        select * from user where id=#{id} and pwd=#{pwd}
     </select>
+
+    <select id="selectEmail" resultType="com.booktopia.www.domain.UserVO">
+        select * from user id=#{id}
+    </select>
+    <select id="selectEmail" resultType="com.booktopia.www.domain.AuthVO">
+        select * from auth id=#{id}
+    </select>
+
 
 </mapper>

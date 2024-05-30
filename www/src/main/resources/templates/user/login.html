@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
+
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
             <div class="loginWrapPage">
                 <div class="loginAllPage">
                     <form action="/user/login" method="post">
-                        <input type="text" name="id" placeholder="id..."><br>
-                        <input type="password" name="pwd" placeholder="pwd"><br>
+                        <input type="text" name="id" placeholder="id..." id="loginId"><br>
+                        <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>
                     </form>
                     <div class="loginLostWrap">
+<!--                        이름입력으로-->
                         <div class="loginLostLogin loginFindDiv">
                             <a href="#"><button type="button" id="loginLost" class="loginFind">아이디 찾기</button></a>/
                         </div>
+<!--                        아이디 입력으로-->
                         <div class="loginLostPwd loginFindDiv">
                             <a href="#"><button type="button" id="pwdLost" class="loginFind">비밀번호 찾기</button></a>/
                         </div>

@@ -40,12 +40,5 @@ public class UserController {
     @GetMapping("/myPage")
     public void info(){}
 
-    @GetMapping("/check/{inputIdVal}")
-    @ResponseBody
-    public int checkId(@PathVariable("inputIdVal")String id){
-        log.info("id >> {}", id);
-        int isOk = usv.checkId(id);
-        return isOk;
-    }
 
 }
