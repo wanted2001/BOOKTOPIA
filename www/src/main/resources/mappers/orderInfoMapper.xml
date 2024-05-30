@@ -3,8 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.booktopia.www.repository.OrderInfoMapper">
-<insert id="regiOrderUser">
-    insert into order_info (id,ord_name, ord_phone, ord_addr, ord_addr_detail, ord_memo)
-    values (#{id},#{ordName},#{ordPhone},#{ordAddr},#{ordAddrDetail},#{ordMemo})
-</insert>
+<!--    <insert id="regiOrderUser">-->
+<!--        insert into order_info (id,ord_name, ord_phone, ord_addr, ord_addr_detail, ord_memo)-->
+<!--        values (#{id},#{ordName},#{ordPhone},#{ordAddr},#{ordAddrDetail},#{ordMemo})-->
+<!--    </insert>-->
+
+    <insert id="insertRegister">
+        INSERT INTO order_info (imp_uid, id, merchant_uid, ord_email, ord_name)
+        values (#{impUid}, #{id}, #{merchantUid}, #{ordEmail}, #{ordName})
+    </insert>
 </mapper>

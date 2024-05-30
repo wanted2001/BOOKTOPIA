@@ -10,10 +10,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class OrderInfoVO {
-    private long orderNo; //주문번호(auto_increment)
+    private String merchantUid; //주문번호
     private String impUid; //아임포트에서 주는 고유번호
     private String id; //주문자아이디
     private String ordName; //주문자이름
+    private String ordEmail; // 주문자 이메일
     private String ordPhone; //주문자전화번호
     private String ordAddr; //주문자주소
     private String ordAddrDetail; //주문자상세주소

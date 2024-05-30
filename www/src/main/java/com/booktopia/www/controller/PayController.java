@@ -1,6 +1,8 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
 import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -37,13 +40,16 @@ public class PayController {
 
     private IamportClient iamportClient = new IamportClient(api,secretkey);
 
+
     public PayController(){
         this.iamportClient = new IamportClient("2171128503337876",
                 "KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6");
     }
 
     @GetMapping("/done")
-    public void dome(){}
+    public String dome(){
+        return "/pay/done";
+    }
 
 //    @PostMapping("/done")
 //    public String done(){
@@ -67,6 +73,7 @@ public class PayController {
         log.info("imp_uid들어오는지 확인 >> {}",imp_uid);
 
         log.info("session >>> {}",session);
+//        m.addAttribute("orderNo", l)
 
         return iamportClient.paymentByImpUid(imp_uid);
     }
@@ -96,6 +103,33 @@ public class PayController {
         }
         osv.insertPayInfo(orderinfoDTO);
         return res;
+    }
+
+    @PostMapping("/savePayinfo")
+    @ResponseBody
+    public String savePayInfo(@RequestBody OrderInfoDTO oidto){
+        log.info(">>> oidto controller >>> {}", oidto);
+//        OrderInfoVO oivo = new OrderInfoVO();
+//        PayVO pvo = new PayVO();
+//
+//        oidto.setImpUid(oivo.getImpUid());
+//        oidto.setMerchantUid(oivo.getMerchantUid());
+//        oidto.setOrdEmail(oivo.getOrdEmail());
+//        oidto.setOrdName(oivo.getOrdName());
+//        oidto.setItemName(pvo.getItemName());
+//        oidto.setTotalAmount(pvo.getTotalAmount());
+
+        log.info(">>>> oidto >>> {}", oidto);
+        int isOk = osv.insertRegister(oidto);
+        log.info(">>> isOk >> {}",isOk);
+        return isOk > 0 ? "1": "0";
+    }
+
+    @PostMapping("/successPay")
+    @ResponseBody
+    public String successPay(){
+
+        return "redirect:/pay/done";
     }
 
 //    @PostMapping("/complate")

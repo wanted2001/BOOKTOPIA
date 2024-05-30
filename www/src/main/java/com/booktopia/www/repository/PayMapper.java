@@ -1,10 +1,14 @@
 package com.booktopia.www.repository;
 
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.PayVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PayMapper {
     void insertOrder(PayVO pvo);
+
+    void insertPayRegister(OrderInfoDTO oidto);
 
 }

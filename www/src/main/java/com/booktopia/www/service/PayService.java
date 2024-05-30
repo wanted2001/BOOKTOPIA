@@ -39,6 +39,8 @@ public class PayService {
     private String imp_api_secretkey;
 
     public String getToken() throws IOException{
+
+        log.info("in >> {}");
         HttpURLConnection conn = null;
         URL url = new URL("https://api.iamport.kr/users/getToken");
 
@@ -53,25 +55,30 @@ public class PayService {
         json.addProperty("imp_api_key", imp_api_key);
         json.addProperty("imp_api_secretkey",imp_api_secretkey);
 
+        log.info(">> json >> {}", json);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+        log.info(">> bw >> {}", bw);
 
         bw.write(json.toString());
         bw.flush();
         bw.close();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
-
+        log.info(">> br >> {}", br);
         Gson gson = new Gson();
 
         String response = gson.fromJson(br.readLine(), Map.class).get("response").toString();
-
+        log.info(">> response >> {}", response);
         String token = gson.fromJson(response, Map.class).get("access_token").toString();
-
+        log.info("! token {}", token);
         br.close();
         conn.disconnect();
 
+        log.info("token in {}", token);
         return token;
     }
+
 
 
     public String paymentInfo(String impUid, String token) throws IOException, ParseException {

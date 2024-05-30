@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 public class PayVO {
 
     private String tid; // 결제번호
-    private long orderNo; //주문번호
+    private String merchantUid; //주문번호
     private String cid; // 가맹점 번호
-    private String payName; //결제할 제품명(구독권이름)
+    private String itemName; //결제할 제품명(구독권이름)
     private int amount; // 수량(1)
     private int totalAmount; //총 결제금액
     private String approvedAt; // 결제승인 시각
