@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="setFragment(content)">
     <head>
         <meta charset="UTF-8">
@@ -8,7 +9,7 @@
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
         <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
         <link rel="stylesheet" th:href="@{/dist/css/mainPage.css}">
-<!--        <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>-->
+
     </head>
     <body>
     <nav class="contain-header">
@@ -22,9 +23,19 @@
                         <li><a class="cate cate3" th:href="@{/community/communityMain}">커뮤니티</a></li>
                         <li><a class="cate cate4" th:href="@{/booktopiaTest/test}">취향검사</a></li>
                         <li class="right"><a class="register" th:href="@{/user/join}">회원가입</a></li>
-                        <li><a class="login" th:href="@{/user/login}">로그인</a></li>
-                        <!--                    5.25 윤지명 내정보 확인용-->
-                        <li class="nav-item">
+
+                        <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li class="cate cate1" sec:authorize="isAuthenticated()">
+                                <a th:with="auth=${#authentication.getPrincipal()}" th:text="${auth.userVO.id}"></a> </li>
+                        <li>
+                            <a class="logout" th:href="@{/user/logout}">로그아웃</a>
+                        </li>
+                        </th:block>
+                        <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                            <a class="nav-link" th:href="@{/user/join}">회원리스트</a>
+                        </li>
+                        <li class="cate cate1">
                             <a class="nav-link" th:href="@{/user/myPage}">내정보</a>
                         </li>
 
