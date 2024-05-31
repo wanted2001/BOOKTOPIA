@@ -26,8 +26,9 @@
 
                         <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>
                         <th:block sec:authorize="isAuthenticated()">
-                            <li class="cate cate1" sec:authorize="isAuthenticated()">
-                                <a th:with="auth=${#authentication.getPrincipal()}" th:text="${auth.userVO.id}"></a> </li>
+                           <li class="cate cate1" >
+                               <a th:with="auth=${#authentication.getPrincipal()}" th:text="${auth.userVO.id}"></a>
+                           </li>
                         <li>
                             <a class="logout" th:href="@{/user/logout}">로그아웃</a>
                         </li>

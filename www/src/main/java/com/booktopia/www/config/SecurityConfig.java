@@ -1,6 +1,10 @@
 package com.booktopia.www.config;
 
+import com.booktopia.www.jwt.JwtAuthorizationFilter;
+import com.booktopia.www.oauth2.service.CustomOAuth2UserService;
+import com.booktopia.www.oauth2.utill.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.booktopia.www.security.CustomUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,16 +15,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
+import com.booktopia.www.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 
 import java.util.List;
 
+
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    /* springSecurity6 => createDelegationPasswordEncoder*/
+
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -30,18 +45,25 @@ public class SecurityConfig {
     //SecurityFilterChain 객체로 설정
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf->csrf.disable())
-                .cors(cors->cors.configurationSource(corsConfigurationSource()))
+        http.csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/","/index","/user/login","/user/join","/booktopia/info","/js/**","/dist/**").permitAll()
-                        .requestMatchers("/subcribe/info").hasRole("ADMIN").anyRequest().permitAll()
+                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**").permitAll()
+                        .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .usernameParameter("id")
                         .passwordParameter("pwd")
-                        .loginPage("/user/login")// form 방식 로그인 사용
-                        .defaultSuccessUrl("/user/myPage", true) // 성공 시 dashboard로
-                        .permitAll()    // 대시보드 이동이 막히면 안되므로 얘는 허용
+                        .loginPage("/user/login")
+                        .defaultSuccessUrl("/user/myPage", true)
+                        .permitAll()
+                )
+                .oauth2Login(configure ->
+                        configure.authorizationEndpoint(config -> config.authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository))
+                                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
+                                .successHandler(oAuth2AuthenticationSuccessHandler)
+                                .failureHandler(oAuth2AuthenticationFailureHandler)
                 )
                 .logout(logout-> logout
                         .logoutUrl(("/user/logout"))
@@ -49,6 +71,8 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")
                         .logoutSuccessUrl("/")
                 );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
+
+        http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

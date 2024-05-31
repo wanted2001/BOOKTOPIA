@@ -16,4 +16,11 @@ public interface UserMapper {
     List<AuthVO> selectAuths(String id);
 
     UserVO selectId(String id);
+
+    UserVO selectSocialUser(String id);
+
+    int registerOauthUser(UserVO userVO);
+
+    int authUserRegister(String id);
+
 }
