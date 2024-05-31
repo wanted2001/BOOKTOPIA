@@ -1,0 +1,11 @@
+@font-face {
+    font-family: SCDream3;
+    src: url(../font/S-Core_Dream_OTF/SCDream3.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+#content{
+    width: 100%;
+    height: 3000px;
+    background-color: lightpink;
+}

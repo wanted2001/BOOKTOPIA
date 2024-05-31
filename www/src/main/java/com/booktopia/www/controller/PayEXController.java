@@ -117,7 +117,7 @@
 //            // IAMPORT API의 URL
 //            String url = "https://api.iamport.kr/users/getToken";
 //
-//            // IAMPORT API에 전송할 데이터
+//            // IAMPORT API에 송할 데이터
 //            String impKey = "6553563087088256";
 //            String impSecret = "de2gHskYCWVk1WnKiIohvR3eNvKKKA6RIQO9DD8XJBivTLrIuLhbu09SMdtl5AxUbsUA71xn8FOI4kkq";
 //            String requestBody = "{\"imp_key\": \"" + impKey + "\", \"imp_secret\": \"" + impSecret + "\"}";
