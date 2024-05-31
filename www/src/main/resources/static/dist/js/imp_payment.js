@@ -2,12 +2,12 @@ console.log(ordName);
 console.log(ordPhone);
 console.log(ordMemo);
 console.log(payName)
-console.log(totalAmount)
+console.log(amount)
 
 let i=1;
 let uid = '';
 let merchant_uid = 'payment_'+new Date().getTime()+i;
-let itemName = '북토피아 '+payName+'개월 구독권';
+let item_name = '북토피아 '+payName+'개월 구독권';
 
 function request_pay(){
     const IMP = window.IMP;
@@ -17,12 +17,13 @@ function request_pay(){
             pg:'kakaopay.TC0ONETIME',
             pay_method:'card',
             merchant_uid : merchant_uid , //주문번호
-            name: itemName,
-            amount:totalAmount,
+            name: item_name,
+            amount:amount,
             buyer_name:ordName,
             buyer_email:'email',
             buyer_tel:ordPhone,
             buyer_addr:'인천광역시 남동구 구월동',
+
         },
         function (rsp){
             // callback
@@ -36,7 +37,11 @@ function request_pay(){
                     merchantUid: merchant_uid,
                     ordEmail:'',
                     ordName:ordName,
+                    itemName:item_name,
+                    totalAmount: amount,
+                    pg_tid:rsp.pg_tid,
                 };
+
                 console.log(registerData);
                 postRegisterSuccess(registerData).then(result=>{
                     console.log("result >> "+ result)
@@ -48,10 +53,10 @@ function request_pay(){
                             merchantUid: merchant_uid,
                             buyerEmail : 'email',
                             buyerName : ordName,
-                            itemName :itemName,
-                            itemAmount : totalAmount
+                            name :item_name,
+                            paidAmount : amount,
                         };
-                        console.log("Data >> "+data);
+                        console.log(data.toString());
                         postStorePaySuccess(data);
 
                         // window.location.href = "/";
