@@ -12,22 +12,4 @@
         select * from book where result_type=#{resultType}
     </select>
 
-<!--    <select id="getListB" resultType="com.booktopia.www.domain.BookVO">-->
-<!--        select * from book where result_type="B"-->
-<!--    </select>-->
-
-<!--    <select id="getListC" resultType="com.booktopia.www.domain.BookVO">-->
-<!--        select * from book where result_type="C"-->
-<!--    </select>-->
-
-<!--    <select id="getListD" resultType="com.booktopia.www.domain.BookVO">-->
-<!--        select * from book where result_type="D"-->
-<!--    </select>-->
-
-<!--    <select id="getListE" resultType="com.booktopia.www.domain.BookVO">-->
-<!--        select * from book where result_type="E"-->
-<!--    </select>-->
-<!--    <select id="getListF" resultType="com.booktopia.www.domain.BookVO">-->
-<!--        select * from book where result_type="F"-->
-<!--    </select>-->
 </mapper>

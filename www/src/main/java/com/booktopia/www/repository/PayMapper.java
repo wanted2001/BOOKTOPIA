@@ -11,4 +11,6 @@ public interface PayMapper {
 
     void insertPayRegister(OrderInfoDTO oidto);
 
+
+    void getSuccessPayInfo(OrderInfoDTO oidto);
 }

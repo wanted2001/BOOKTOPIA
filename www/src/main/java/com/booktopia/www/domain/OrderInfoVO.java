@@ -19,4 +19,5 @@ public class OrderInfoVO {
     private String ordAddr; //주문자주소
     private String ordAddrDetail; //주문자상세주소
     private String ordMemo; //주문자배송메모
+    private String ordRegdate; //주문시간
 }

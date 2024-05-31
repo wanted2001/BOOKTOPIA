@@ -1,7 +1,7 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DTO.OrderUserDTO;
+import com.booktopia.www.domain.OrderInfoVO;
 import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.PayMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +17,6 @@ public class OrderInfoServiceImpl implements OrderInfoService{
     private final OrderInfoMapper orderInfomapper;
     private final PayMapper payMapper;
 
-    @Override
-    public void regiOrderUser(OrderUserDTO oudto) {
-        orderInfomapper.regiOrderUser(oudto);
-    }
 
     @Override
     public void insertPayInfo(OrderInfoDTO orderinfoDTO) {
@@ -34,4 +30,10 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         payMapper.insertPayRegister(oidto);
         return isOk;
     }
+
+    @Override
+    public OrderInfoDTO getSuccessPayInfo(OrderInfoDTO oidto) {
+        return orderInfomapper.getSuccessPayInfo(oidto);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.repository.PayMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -143,5 +144,10 @@ public class PayService {
         bw.close();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+    }
+
+
+    public void getSuccessPayInfo(OrderInfoDTO oidto) {
+        payMapper.getSuccessPayInfo(oidto);
     }
 }

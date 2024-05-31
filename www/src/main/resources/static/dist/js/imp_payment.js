@@ -56,10 +56,26 @@ function request_pay(){
                             name :item_name,
                             paidAmount : amount,
                         };
-                        console.log(data.toString());
-                        postStorePaySuccess(data);
+                        console.log(data);
+                        console.log("주문정보 저장")
+                        getToken();
+                        console.log(registerData.totalAmount);
+                        console.log(data.paidAmount);
 
-                        // window.location.href = "/";
+                        // 결제금액 검증
+                        if (registerData.totalAmount == data.paidAmount){
+                            console.log("결제 검증 및 결제 완료! >>>> ")
+                            postStorePaySuccess(data).then(result=>{
+                                console.log(result);
+                            window.location.href = "/pay/done/"+result.merchantUid;
+
+                            });
+                        } else {
+                            console.log("결제 실패!!!!!!!! ")
+                            alert("결제 실패")
+                        }
+
+
 
                     } else {
                         console.log("data 안들어옴")
@@ -95,27 +111,39 @@ async function postRegisterSuccess(registerData){
     }
 }
 
-function postStorePaySuccess(data){
+async function postStorePaySuccess(data){
     try {
-        const url = "/pay/successPay";
+        const url = "/pay/done";
         const config ={
-            method: 'post',
+            method: 'POST',
             headers : {
                 'content-type':'application/json; charset =utf-8'
             },
             body: JSON.stringify(data)
         };
+        const resp = await fetch(url, config);
+        const result = await resp.json();
+        return result;
 
-        fetch(url, config).catch(error =>{
-            console.log("error");
-        })
+
+        console.log("결제 완료 정보 >>> ");
     }catch (error){
         console.log("error" + error);
     }
 }
 
-
-
+// token 가져오는...
+async function getToken(){
+    try{
+        const resp = await fetch('/pay/getToken', {
+            method : 'POST'
+        });
+        const result = await resp.json();
+        return result;
+    }catch (error){
+        console.log(error);
+    }
+}
 
 //
 //
