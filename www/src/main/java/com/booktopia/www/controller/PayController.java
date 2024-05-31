@@ -131,6 +131,12 @@ public class PayController {
         return response;
     }
 
+    @PostMapping("/payInfo")
+    public void payInsert(OrderInfoVO oivo){
+        log.info("post payInfo in >>>>> ");
+        log.info(">>> oivo >>>> {}", oivo);
+        osv.isnert(oivo);
+    }
 
 }
 

@@ -3,6 +3,8 @@ console.log(ordPhone);
 console.log(ordMemo);
 console.log(payName)
 console.log(amount)
+console.log(ordaddr)
+console.log(ordaddrdetail)
 
 let i=1;
 let uid = '';
@@ -22,8 +24,8 @@ function request_pay(){
             buyer_name:ordName,
             buyer_email:'email',
             buyer_tel:ordPhone,
-            buyer_addr:'인천광역시 남동구 구월동',
-
+            buyer_addr:ordaddr,
+            buyer_addrDetail : ordaddrdetail,
         },
         function (rsp){
             // callback
@@ -37,6 +39,7 @@ function request_pay(){
                     merchantUid: merchant_uid,
                     ordEmail:'',
                     ordName:ordName,
+                    address:ordaddr,
                     itemName:item_name,
                     totalAmount: amount,
                     pg_tid:rsp.pg_tid,
@@ -53,6 +56,7 @@ function request_pay(){
                             merchantUid: merchant_uid,
                             buyerEmail : 'email',
                             buyerName : ordName,
+                            buyer_addr: ordaddr,
                             name :item_name,
                             paidAmount : amount,
                         };

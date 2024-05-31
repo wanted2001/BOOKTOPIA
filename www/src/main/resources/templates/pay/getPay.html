@@ -82,12 +82,27 @@
                             </div>
                         </div>
                         <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                    <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
+                        <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
+                        <button type="hidden" id="hiddenBtn"></button>
                     </div>
                     <!-- payOutBox div -->
                 </div>
             </form>
 
+            <!-- daum 주소검색 api 사용 구문 -->
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script>
+                document.getElementById('payGetAddrBtn').addEventListener('click', ()=>{
+                    new daum.Postcode({
+                        oncomplete: function(data) {
+                            document.getElementById('addrInput').value = data.address;
+                            console.log(data.address);
+                            document.getElementById('addrDetailInput').focus();
+                        }
+                    }).open();
+
+                })
+            </script>
 
             <!-- wrap div -->
         </div>
@@ -97,24 +112,13 @@
             const ordMemo = document.getElementById('ordMemo').value;
             const payName = [[${ssivo.subInMonth}]];
             const amount = [[${ssivo.subInPrice}]];
+            const ordaddr = document.getElementById('addrInput').value;
+            const ordaddrdetail = document.getElementById('addrDetailInput').value;
         </script>
         <script th:src="@{/dist/js/imp_payment.js}"></script>
     </th:block>
 </th:block>
 
-<!-- daum 주소검색 api 사용 구문 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    document.getElementById('payGetAddrBtn').addEventListener('click', ()=>{
-    new daum.Postcode({
-        oncomplete: function(data) {
-            document.getElementById('addrInput').value = data.address;
-            document.getElementById('addrDetailInput').focus();
-        }
-    }).open();
-
-})
-</script>
 <script th:inline="javascript">
     const monthVal = [[${ssivo.subInMonth}]];
     console.log(monthVal);

@@ -36,4 +36,9 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         return orderInfomapper.getSuccessPayInfo(oidto);
     }
 
+    @Override
+    public void isnert(OrderInfoVO oivo) {
+        orderInfomapper.insert(oivo);
+    }
+
 }
