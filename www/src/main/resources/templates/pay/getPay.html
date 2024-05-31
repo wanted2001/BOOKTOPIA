@@ -16,6 +16,7 @@
             <div class="payTitle">
                 <p>주문서 작성</p>
             </div>
+
             <form action="/pay/payInfo" method="post">
                 <div class="payOutBox">
                     <div class="payInBox1">
@@ -82,7 +83,7 @@
                             </div>
                         </div>
                         <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                    <button type="button" class="payBtn" onclick="getPayUser()">결제하기</button>
+                    <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
                     </div>
                     <!-- payOutBox div -->
                 </div>
@@ -96,7 +97,7 @@
             const ordPhone = document.getElementById('ordPhone').value;
             const ordMemo = document.getElementById('ordMemo').value;
             const payName = [[${ssivo.subInMonth}]];
-            const totalAmount = [[${ssivo.subInPrice}]];
+            const amount = [[${ssivo.subInPrice}]];
         </script>
         <script th:src="@{/dist/js/imp_payment.js}"></script>
     </th:block>

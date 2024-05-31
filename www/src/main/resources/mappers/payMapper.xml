@@ -3,5 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.booktopia.www.repository.PayMapper">
+    <insert id="insertPayRegister">
+        insert into pay (merchant_uid, item_name, total_amount)
+        values (#{merchantUid}, #{itemName}, #{totalAmount})
+    </insert>
 
+    <select id="getSuccessPayInfo" resultType="com.booktopia.www.domain.PayVO">
+        select * from pay where merchant_uid=#{merchantUid}
+    </select>
 </mapper>

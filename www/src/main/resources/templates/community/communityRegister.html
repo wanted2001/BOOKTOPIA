@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
+        <!--Toast API 스크립트-->
+        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+        <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+        <div class="wrap">
+            <div class="commRegiCate">
+                <select class="commSelect">
+                    <option>전체</option>
+                    <option>소설</option>
+                    <option>시/에세이</option>
+                    <option>경제/경영</option>
+                    <option>인문</option>
+                    <option>역사/문화</option>
+                    <option>자기개발</option>
+                </select>
+            </div>
+            <div class="commTitle">
+                <input type="text" class="commTitle" placeholder="제목">
+            </div>
+            <!--토스트 에디터 부분-->
+            <div id="editor"></div>
+        </div>
+
+        <script th:src="@{/dist/js/toastApi.js}"></script>
+    </th:block>
+</th:block>
