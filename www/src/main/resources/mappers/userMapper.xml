@@ -18,16 +18,16 @@
         select * from auth where id=#{id}
     </select>
 
-    <select id="selectSocialUser" resultType="com.booktopia.www.domain.UserVO">
+    <select id="findByEmail" resultType="com.booktopia.www.domain.UserVO">
         select * from user where pwd=#{pwd}
     </select>
 
-    <insert id="registerOauthUser">
+    <insert id="saveOauthUser">
         insert into user(id,pwd,name,user_type) values(#{id},#{pwd},#{name},#{userType})
     </insert>
 
     <insert id="authUserRegister">
-        insert into auth values(#{id},"ROLE_USER")
+        insert into auth values(#{pwd},"ROLE_USER")
     </insert>
 
 

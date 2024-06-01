@@ -17,10 +17,8 @@ public interface UserMapper {
 
     UserVO selectId(String id);
 
-    UserVO selectSocialUser(String id);
+    UserVO findByEmail(String pwd);
 
-    int registerOauthUser(UserVO userVO);
-
-    int authUserRegister(String id);
+    int saveOauthUser(UserVO user);
 
 }
