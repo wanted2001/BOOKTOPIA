@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
+
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
             <div class="loginWrapPage">
                 <div class="loginAllPage">
                     <form action="/user/login" method="post">
-                        <input type="text" name="id" placeholder="id..."><br>
-                        <input type="password" name="pwd" placeholder="pwd"><br>
+                        <input type="text" name="id" placeholder="id..." id="loginId"><br>
+                        <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>
                     </form>
                     <div class="loginLostWrap">
+<!--                        이름입력으로-->
                         <div class="loginLostLogin loginFindDiv">
                             <a href="#"><button type="button" id="loginLost" class="loginFind">아이디 찾기</button></a>/
                         </div>
+<!--                        아이디 입력으로-->
                         <div class="loginLostPwd loginFindDiv">
                             <a href="#"><button type="button" id="pwdLost" class="loginFind">비밀번호 찾기</button></a>/
                         </div>
@@ -26,17 +29,17 @@
                     </div>
                     <div class="loginSocialBtn">
                         <div class="loginKakaoBtn">
-                            <a id="kakao-login-btn" href="#">
-                                <img th:src="@{/image/kakaoLogin.png}" alt="카카오 로그인 버튼" />
-                            </a>
-                        </div>
-                        <div class="loginNaverBtn">
-                            <a id="naver-login-btn" href="#">
+                            <a th:href="@{/oauth2/authorization/naver}">
                                 <img th:src="@{/image/naverLogin.png}" alt="네이버 로그인 버튼" />
                             </a>
                         </div>
+                        <div class="loginNaverBtn">
+                            <a th:href="@{/oauth2/authorization/kakao}">
+                                <img th:src="@{/image/kakaoLogin.png}" alt="카카오 로그인 버튼" />
+                            </a>
+                        </div>
                         <div class="loginGoogleBtn">
-                            <a id="google-login-btn" href="#">
+                            <a th:href="@{/oauth2/authorization/google}">
                                 <img th:src="@{/image/googleLogin.jpg}" alt="구글 로그인 버튼" />
                             </a>
                         </div>

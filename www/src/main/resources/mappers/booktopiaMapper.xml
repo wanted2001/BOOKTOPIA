@@ -4,4 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.booktopia.www.repository.BookTopiaMapper">
 
+    <select id="getList" resultType="com.booktopia.www.domain.BookVO">
+        select * from book;
+    </select>
+
+    <select id="getListType" resultType="com.booktopia.www.domain.BookVO">
+        select * from book where result_type=#{resultType}
+    </select>
+
 </mapper>

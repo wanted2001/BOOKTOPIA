@@ -4,7 +4,6 @@ import com.booktopia.www.domain.BookVO;
 import com.booktopia.www.repository.BookTopiaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +17,34 @@ public class BookTopiaServiceImpl implements BookTopiaService{
 
     @Override
     public List<BookVO> getList(String btnResult) {
-        log.info(">> btnResult >> {}", btnResult);
-
-        return List.of();
+        BookVO bookVO = new BookVO();
+        List<BookVO> list = null;
+                switch (btnResult){
+            case "10": case "11" :
+                bookVO.setResultType("A");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+            case "12": case "13" :
+                bookVO.setResultType("B");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+            case "14": case "15" :
+                bookVO.setResultType("C");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+            case "16": case "17" :
+                bookVO.setResultType("D");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+            case "18": case "19" :
+                bookVO.setResultType("E");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+            case "20" :
+                bookVO.setResultType("F");
+                list = bookTopiaMapper.getListType(bookVO.getResultType());
+                break;
+        }
+        return list;
     }
 }

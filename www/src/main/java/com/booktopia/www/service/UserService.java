@@ -6,7 +6,4 @@ public interface UserService {
 
     // 회원가입
     int joinInsert(UserVO uvo);
-
-    // 중복확인
-    int checkId(String id);
 }

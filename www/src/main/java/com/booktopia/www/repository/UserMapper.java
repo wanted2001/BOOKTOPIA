@@ -1,7 +1,10 @@
 package com.booktopia.www.repository;
 
+import com.booktopia.www.domain.AuthVO;
 import com.booktopia.www.domain.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -10,5 +13,12 @@ public interface UserMapper {
 
     int insertAuth(String id);
 
-    UserVO checkId(String id);
+    List<AuthVO> selectAuths(String id);
+
+    UserVO selectId(String id);
+
+    UserVO findByEmail(String pwd);
+
+    int saveOauthUser(UserVO user);
+
 }

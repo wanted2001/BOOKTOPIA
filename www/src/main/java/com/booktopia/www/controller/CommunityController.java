@@ -26,4 +26,6 @@ public class CommunityController {
     @GetMapping("/communityNotice")
     public void commNotice(){}
 
+    @GetMapping("/communityRegister")
+    public void commRegister(){}
 }

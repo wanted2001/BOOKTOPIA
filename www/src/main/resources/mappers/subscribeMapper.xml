@@ -7,4 +7,8 @@
     <select id="getPayInfo" resultType="com.booktopia.www.domain.SubscribeInfoVO">
         select * from subscribe_info where sub_in_month=#{month}
     </select>
+
+    <select id="getPayShipNo" resultType="int">
+        select * from subscribe_info where sub_in_month=#{month}
+    </select>
 </mapper>

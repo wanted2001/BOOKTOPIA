@@ -1,94 +1,165 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DTO.OrderUserInfoDTO;
+import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
-import com.booktopia.www.service.PayService;
-import com.booktopia.www.service.SubscribeService;
+import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/pay/*")
 @Slf4j
-@RequiredArgsConstructor
 public class PayController {
 
-    private final PayService psv;
-    private final SubscribeService ssv;
+    @Autowired
+    private SubscribeService ssv;
+    @Autowired
+    private PayService psv; //implements 없음
+    @Autowired
+    private OrderInfoService osv;
 
-    @Value("${imp.api.key}")
+    @Value("2171128503337876")
     private String api;
-    @Value("${imp.api.secretkey}")
+    @Value("KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6")
     private String secretkey;
 
-    private IamportClient iamportClient;
+    private IamportClient iamportClient = new IamportClient(api, secretkey);
 
-    @PostConstruct
-    public void init() {
-        this.iamportClient = new IamportClient(api, secretkey);
+
+    public PayController() {
+        this.iamportClient = new IamportClient("2171128503337876",
+                "KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6");
+    }
+
+    @GetMapping("/done/{id}")
+    public String done(@PathVariable("id") String id, Model m) {
+        log.info("get 들어옴 >>> ");
+        log.info(">>>>> getPay oidto 111111 >>>> {}", id);
+
+//        osv.getSuccessPayInfo(oidto);
+//        log.info(">>>>> getPay oidto 2222222 >>>> {}", oidto);
+        m.addAttribute("id", id);
+        return "/pay/done";
+    }
+
+    @PostMapping("/done")
+    @ResponseBody
+    public OrderInfoDTO postDone(@RequestBody OrderInfoDTO oidto){
+        log.info(">>> 들어옴 >>> ");
+        log.info(">>>>> pay done oidto >>>> {}", oidto);
+        OrderInfoDTO resultOidto = osv.getSuccessPayInfo(oidto);
+        //re.addAttribute("oidto", oidto);
+//        re.addAttribute("oidto", oidto);
+        return resultOidto;
     }
 
     @GetMapping("/getPay")
-    public void getPay(Model m, @RequestParam("month")int month) {
-        log.info("month값>>{}",month);
+    public void getPay(Model m, @RequestParam("month") int month) {
+        log.info("month값>>{}", month);
         SubscribeInfoVO ssivo = ssv.getPayInfo(month);
-        log.info("ssivo>>{}",ssivo);
+        log.info("ssivo>>{}", ssivo);
         m.addAttribute("ssivo", ssivo);
     }
 
-    @GetMapping("/done")
-    public void done() {
+    @PostMapping("/pay_ing/{imp_uid}")
+    @ResponseBody
+    public IamportResponse<Payment> paymentByImpUid(Model m, Locale locale, HttpSession session,
+                                                    @PathVariable(value = "imp_uid") String imp_uid) throws IamportResponseException, IOException {
+        log.info("확인확인");
+        log.info("imp_uid들어오는지 확인 >> {}", imp_uid);
+
+        log.info("session >>> {}", session);
+//        m.addAttribute("orderNo", l)
+
+        return iamportClient.paymentByImpUid(imp_uid);
     }
 
-    @PostMapping("/complete")
-    public ResponseEntity<String> completePay(@RequestBody List<OrderInfoDTO> orderInfoDTO) throws IOException {
-        log.info("iamport값 >>{}", iamportClient);
-        String tid = String.valueOf(orderInfoDTO.get(0).getTid());
-        try {
-            String id = orderInfoDTO.get(0).getId();
-            psv.saveOrder(id, orderInfoDTO);
-            log.info("결제성공 : 주문번호 {}", orderInfoDTO);
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException e) {
-            log.info("주문 상품 환불 : 주문번호 {}", tid);
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+
+    @PostMapping("/savePayinfo")
+    @ResponseBody
+    public String savePayInfo(@RequestBody OrderInfoDTO oidto) {
+        log.info(">>> oidto controller >>> {}", oidto);
+
+        int isOk = osv.insertRegister(oidto);
+        return isOk > 0 ? "1" : "0";
     }
+
+    @PostMapping("/getToken")
+    @ResponseBody
+    public ResponseEntity<String> getToken (){
+
+        // api url
+        String url = "https://api.iamport.kr/users/getToken";
+
+        // api에 보내는 전송 데이터
+        String apiKey = "2171128503337876";
+        String secretKey = "KiIcCNRzGYoW6U45aU1n9xI8bJ98TlUQP9tF4A1pbe44jcxQt5FxAOispEqpYa17sjNjaRojnO8GM4s6";
+        String requestBody = "{\"imp_key\": \"" + apiKey + "\", \"imp_secret\": \"" + secretKey + "\"}";
+
+        // api 호출을 위한 헤더 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        //RestTemplate 사용하여 iamport api 호출
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+        log.info("response >>>> {}", response);
+
+
+        // 응답을 클라이어트에게 반환
+        return response;
+    }
+
+
 }
 
-//    @PostMapping("/order/payment")
-//public ResponseEntity<String> paymentComplete @RequestBody List<OrderSaveDto> orderSaveDtos) throws IOException {
-//        String orderNumber = String.valueOf(orderSaveDtos.get(0).getOrderNumber());
-//        try {
-//            Long userId = sessionUser.getUserIdNo();
-//            paymentService.saveOrder(userId, orderSaveDtos);
-//            log.info("결제 성공 : 주문 번호 {}", orderNumber);
-//            return ResponseEntity.ok().build();
-//        }
-//        catch (RuntimeException e)
-//        {
-//            log.info("주문 상품 환불 진행 : 주문 번호 {}", orderNumber);
-//            String token = refundService.getToken(apiKey, secretKey);
-//            refundService.refundWithToken(token, orderNumber, e.getMessage());
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
-//    @PostMapping("/payment/validation/{imp_uid}")
+
+
+
+//    @PostMapping("/done")
 //    @ResponseBody
-//    public IamportResponse<Payment> validateIamport(@PathVariable String imp_uid) {
-//        IamportResponse<Payment> payment = iamportClient.paymentByImpUid(imp_uid);
-//        log.info("결제 요청 응답. 결제 내역 - 주문 번호: {}", payment.getResponse().getMerchantUid());
-//        return payment;
-//    }}
+//    public int paymentComplete(HttpSession session, String imp_uid, String merchant_uid, String totalAmount, @RequestBody OrderInfoDTO orderinfoDTO) throws Exception {
+//        log.info(">>> 들어옴 >>> ");
+//
+//        log.info(">>> session in >>>,{}", session);
+//        log.info("orderinfoDTO >>>>>>>>>>>>{}", orderinfoDTO);
+//        String token = psv.getToken();
+//        log.info("token >>>>>>>>>>>>>>>>{}", token);
+//
+//        String amount = psv.paymentInfo(orderinfoDTO.getImpUid(), token);
+//        log.info("amount >>>>>>>>>>>>>>>>>{}", amount);
+//
+//        int res = 1;
+//
+//        if (orderinfoDTO.getTotalAmount() != Long.parseLong(amount)) {
+//            //결제취소
+//            log.info("orderinfoDTO.getTotalAmount()>>>>>>>>>>>{}", orderinfoDTO.getTotalAmount());
+//            res = 0;
+//            String reason = "결제금액오류";
+//            psv.payMentCancel(token, orderinfoDTO.getImpUid(), amount, reason);
+//            return res;
+//        }
+//        osv.insertPayInfo(orderinfoDTO);
+//        return res;
+//    }

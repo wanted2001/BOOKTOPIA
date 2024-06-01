@@ -5,14 +5,30 @@
 <mapper namespace="com.booktopia.www.repository.UserMapper">
     
     <insert id="joinInsert">
-        insert into user(id,pwd,name,phone,user_reg,user_type) values(#{id},#{pwd},#{name},#{phone},now(),'일반')
+        insert into user(id,pwd,name,user_type) values(#{id},#{pwd},#{name},'일반')
     </insert>
     <insert id="insertAuth">
         insert into auth values(#{id},'ROLE_USER')
     </insert>
 
-    <select id="checkId" resultType="com.booktopia.www.domain.UserVO">
-        select * from user where id=#{id}
+    <select id="selectId" resultType="com.booktopia.www.domain.UserVO">
+        select * from user where id=#{id} and user_del = 'N'
     </select>
+    <select id="selectAuths" resultType="com.booktopia.www.domain.AuthVO">
+        select * from auth where id=#{id}
+    </select>
+
+    <select id="findByEmail" resultType="com.booktopia.www.domain.UserVO">
+        select * from user where pwd=#{pwd}
+    </select>
+
+    <insert id="saveOauthUser">
+        insert into user(id,pwd,name,user_type) values(#{id},#{pwd},#{name},#{userType})
+    </insert>
+
+    <insert id="authUserRegister">
+        insert into auth values(#{pwd},"ROLE_USER")
+    </insert>
+
 
 </mapper>
