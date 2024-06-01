@@ -1,4 +1,7 @@
 console.log("payment js in");
+console.log(monthVal);
+console.log(addrDetail);
+console.log(addr);
 
 const payBtn = document.querySelector('.payBtn');
 document.querySelector('.payBtn').addEventListener('click',()=>{
@@ -15,8 +18,8 @@ function kakaoPay() {
     IMP.request_pay({
         pg:'kakaopay.TC0ONETIME',
         pay_method:'card',
-        merchant_uid : 'payment_'+new Date().getTime()+i, //주문번호
-        name:'책 구매',
+        merchant_uid : 'payment_'+new Date().getTime(), //주문번호
+        name: monthVal+'개월 구독권',
         amount:1,
         buyer_email:'test1@naver.com',
         buyer_name:'홍길동',

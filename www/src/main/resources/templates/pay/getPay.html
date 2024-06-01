@@ -64,7 +64,6 @@
                     </div>
                     <hr>
 <!--                    <th:block th:with="month=${ssivo}">-->
-                        <h1>[[${ssivo.shipNO}]]</h1>
                     <div class="payInnerDiv3">
                         <div>
                             <div>상품 금액</div>
@@ -76,7 +75,7 @@
                         </div>
                         <div>
                             <div>결제 금액</div>
-                            <div>------원</div>
+                            <div>[[${ssivo.subInPrice}]]원</div>
                         </div>
                     </div>
 <!--                    </th:block>-->
@@ -103,5 +102,9 @@
     }).open();
 
 })
+</script>
+<script th:inline="javascript">
+    const monthVal = [[${ssivo.subInMonth}]];
+    console.log(monthVal);
 </script>
 </html>
