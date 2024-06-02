@@ -52,12 +52,12 @@ public class PayController {
     }
 
     @GetMapping("/done/{id}")
-    public String done(@PathVariable("id") String id, Model m) {
+    public String done(@PathVariable("id") String id, Model m, OrderInfoDTO oidto) {
         log.info("get 들어옴 >>> ");
         log.info(">>>>> getPay oidto 111111 >>>> {}", id);
 
 //        osv.getSuccessPayInfo(oidto);
-//        log.info(">>>>> getPay oidto 2222222 >>>> {}", oidto);
+        log.info(">>>>> getPay oidto 2222222 >>>> {}", oidto);
         m.addAttribute("id", id);
         return "/pay/done";
     }

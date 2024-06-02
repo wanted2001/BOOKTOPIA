@@ -96,7 +96,6 @@
                     new daum.Postcode({
                         oncomplete: function(data) {
                             document.getElementById('addrInput').value = data.address;
-                            console.log(data.address);
                             document.getElementById('addrDetailInput').focus();
                         }
                     }).open();
@@ -112,8 +111,6 @@
             const ordMemo = document.getElementById('ordMemo').value;
             const payName = [[${ssivo.subInMonth}]];
             const amount = [[${ssivo.subInPrice}]];
-            const ordaddr = document.getElementById('addrInput').value;
-            const ordaddrdetail = document.getElementById('addrDetailInput').value;
         </script>
         <script th:src="@{/dist/js/imp_payment.js}"></script>
     </th:block>
