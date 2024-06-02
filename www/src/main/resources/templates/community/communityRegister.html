@@ -3,29 +3,56 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
-        <!--Toast API 스크립트-->
+        <!--토스트 API 스크립트-->
         <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
         <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
         <div class="wrap">
-            <div class="commRegiCate">
-                <select class="commSelect">
-                    <option>전체</option>
-                    <option>소설</option>
-                    <option>시/에세이</option>
-                    <option>경제/경영</option>
-                    <option>인문</option>
-                    <option>역사/문화</option>
-                    <option>자기개발</option>
-                </select>
+            <div class="wrap">
+                <div class="commWrap">
+                    <!-- 왼쪽 카테고리 -->
+                    <div class="commUl">
+                        <ul>
+                            <li>전체 게시글</li>
+                            <li>소설</li>
+                            <li>시/에세이</li>
+                            <li>경제/경영</li>
+                            <li>인문</li>
+                            <li>역사/문화</li>
+                            <li>자기개발</li>
+                        </ul>
+                    </div>
+                    <div class="commToast">
+                        <!-- 게시판 선택 select 효과 -->
+                        <div class="commRegiCate">
+                            <button class="cateBtn">
+                                <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
+                                <span id="selectedText">게시판 선택</span>
+                            </button>
+                            <ul class="commul">
+                                <li class="commli"><a>게시판 선택</a></li>
+                                <li class="commli"><a th:src="@{/community/novel}">소설</a></li>
+                                <li class="commli"><a th:src="@{/communtiy/poet}">시/에세이</a></li>
+                                <li class="commli"><a th:src="@{/community/finance}">경제/경영</a></li>
+                                <li class="commli"><a th:src="@{/community/human}">인문</a></li>
+                                <li class="commli"><a th:src="@{/community/history}">역사/문화</a></li>
+                                <li class="commli"><a th:src="@{/community/development}">자기개발</a></li>
+                            </ul>
+                        </div>
+                        <div class="commContent">
+                            <div class="commTitle">
+                                <!-- <label for="commTitleID" class="commTitleLabel">제목</label> -->
+                                <input type="text" id="commTitleID" class="commTitle" placeholder="제목을 입력해주세요">
+                            </div>
+                            <!-- 토스트 에디터 부분 -->
+                            <div id="editor"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="commTitle">
-                <input type="text" class="commTitle" placeholder="제목">
-            </div>
-            <!--토스트 에디터 부분-->
-            <div id="editor"></div>
         </div>
 
+        <script th:src="@{/dist/js/select.js}"></script>
         <script th:src="@{/dist/js/toastApi.js}"></script>
     </th:block>
 </th:block>
