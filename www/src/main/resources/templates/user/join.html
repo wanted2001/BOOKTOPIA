@@ -47,17 +47,17 @@
                     </div>
                     <div class="joinSocialBtn">
                         <div class="joinKakaoBtn">
-                            <a id="kakao-join-btn" href="/user/login/kakao">
+                            <a id="kakao-join-btn" th:href="@{/oauth2/authorization/kakao}">
                                 <img th:src="@{/image/kakaoLogin.png}" alt="카카오 회원가입 버튼" />
                             </a>
                         </div>
                         <div class="joinNaverBtn">
-                            <a id="naver-join-btn" href="#">
+                            <a id="naver-join-btn" th:href="@{/oauth2/authorization/naver}">
                                 <img th:src="@{/image/naverLogin.png}" alt="네이버 회원가입 버튼" />
                             </a>
                         </div>
                         <div class="joinGoogleBtn">
-                            <a id="google-join-btn" href="#">
+                            <a id="google-join-btn" th:href="@{/oauth2/authorization/google}">
                                 <img th:src="@{/image/googleLogin.jpg}" alt="구글 회원가입 버튼" />
                             </a>
                         </div>

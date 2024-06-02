@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -30,7 +29,6 @@ public class UserController {
     public String joinInsert(UserVO uvo){
         uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         log.info("uvo >> {}",uvo);
-        uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         int isOk = usv.joinInsert(uvo);
         return "/user/login";
     }

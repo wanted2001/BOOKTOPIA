@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <title>안녕하세요</title>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <!-- css area-->
 
 <!-- css area -->
@@ -9,9 +9,9 @@
         <div class="wrap">
             <div class="main">
                 <div class="main-slid">
-                    <a href="#" class="icon1"><img th:src="@{/image/backicon.png}"></a>
+                    <a href="#" class="icon1"><img src="/image/backicon.png"></a>
                     <div class="slid-img">슬라이드 이미지</div>
-                    <a href="#" class="icon2"><img th:src="@{/image/fronticon.png}"></a>
+                    <a href="#" class="icon2"><img src="/image/fronticon.png"></a>
                 </div>
                 <div class="main-simpleInfo">
                     <div class="simpleInfo">
@@ -25,14 +25,14 @@
                     <div class="bookTopia-detail">
                         <p>내가 원하던 바로 그책!</p>
                         <p>나만의 맞춤 도서를 받아 볼 수 있다?!</p>
-                        <button type="button"><a th:href="@{/booktopiaTest/test}">도서 취향 검사하러 가기</a></button>
+                        <button type="button"><a href="/booktopiaTest/test">도서 취향 검사하러 가기</a></button>
                     </div>
                 </div>
                 <div class="commu">
                     <div class="commu-detail">
                         <p>다양한 사람들과의 토론을 통해 느끼는</p>
                         <p>색다른 매력을 느껴보세요!</p>
-                        <button type="button"><a th:href="@{/community/communityMain}">커뮤니티 바로가기</a></button>
+                        <button type="button"><a href="/community/communityMain">커뮤니티 바로가기</a></button>
                     </div>
                     <div class="commu-img"><img src="#"></div>
                 </div>

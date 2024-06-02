@@ -1,0 +1,114 @@
+@font-face {
+    font-family: SCDream2;
+    src: url(../font/S-Core_Dream_OTF/SCDream2.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream3;
+    src: url(../font/S-Core_Dream_OTF/SCDream3.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+.commUl{
+    /* background-color: yellow; */
+    margin-left: 30px;
+    width: 100px;
+}
+.commUl ul{
+    margin-top: 50px;
+}
+.commUl ul li{
+    display: inline-block;
+    font-size: 17px;
+    color: gray;
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid rgb(169, 169, 169,0.3);
+    /* background-color: tan; */
+}
+/* 셀렉트 제작 0602 */
+.commRegiCate{
+    width: 130px;
+    position: relative;
+}
+.cateBtn{
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 14px;
+    /* border-bottom: 1px solid #C4C4C4; */
+    /* border-radius: 10px; */
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: left;
+    background-color: white;
+    cursor: pointer;
+    color: #474747;
+    margin-left: 10px;
+}
+.cateBtn img{
+    float: right;
+    transform: rotate(90deg);
+    margin: 1px 15px 0 0;
+}
+.commul{
+    display: none;
+    position: absolute;
+    width: 100%;
+    /* top: 49px; */
+    z-index: 1000;
+    left: 0;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 14px rgba(0, 0, 0,0.15);
+    /* border-radius: 5px; */
+    background-color: white;
+    margin-left: 18px;
+}
+.commul.show{
+    display: block;
+}
+.commli{
+    display: block;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    background-color: white;
+    cursor: pointer;
+    color: #474747;
+    font-size: 14px;
+}
+.commli:hover{
+    background-color: #e9e9e998;
+}
+/* 셀렉트 제작 */
+
+.commWrap{
+    width: 100%;
+    margin: 20px 0;
+    /* background-color: lightpink; */
+}
+.commToast{
+    float: right;
+    width: 1200px;
+    /* background-color: antiquewhite; */
+    margin: -305px 10px 0 0;
+}
+.commTitle{
+    /* width: 1100px;
+    margin: 0 auto 15px; */
+    display: block;
+    width: 1150px;
+    margin: 0 auto 15px;
+    height: 35px;
+    outline: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgb(169, 169, 169,0.5);
+}
+.commTitleLabel{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+#editor{
+    margin-bottom: 50px;
+}

@@ -16,4 +16,9 @@ public interface UserMapper {
     List<AuthVO> selectAuths(String id);
 
     UserVO selectId(String id);
+
+    UserVO findByEmail(String pwd);
+
+    int saveOauthUser(UserVO user);
+
 }
