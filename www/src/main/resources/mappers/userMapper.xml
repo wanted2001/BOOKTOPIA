@@ -23,7 +23,7 @@
     </select>
 
     <insert id="saveOauthUser">
-        insert into user(id,pwd,name,user_type) values(#{id},#{pwd},#{name},#{userType})
+        insert into user(id,pwd,name,email,user_type) values(#{id},#{pwd},#{name},#{email},#{userType})
     </insert>
 
     <insert id="authUserRegister">

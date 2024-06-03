@@ -1,6 +1,7 @@
 package com.booktopia.www.oauth2.service;
 
 import com.booktopia.www.oauth2.user.OAuth2UserInfo;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+@Getter
 public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
 
     private final OAuth2UserInfo userInfo;
@@ -19,7 +21,7 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return userInfo.getPwd();
     }
 
     @Override
@@ -62,7 +64,8 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
         return userInfo.getEmail();
     }
 
-    public OAuth2UserInfo getUserInfo() {
-        return userInfo;
+    String getUserType() {
+        return userInfo.getProvider().getRegistrationId();
     }
+
 }

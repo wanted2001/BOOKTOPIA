@@ -17,7 +17,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
         this.attributes = (Map<String, Object>) attributes.get("response");
         this.email = (String) this.attributes.get("email");
         this.pwd = (String) this.attributes.get("id");
-        this.id = (String) this.attributes.get("email");
+        this.id = (String) this.attributes.get("id");
         this.name = (String) this.attributes.get("name");
 
     }
