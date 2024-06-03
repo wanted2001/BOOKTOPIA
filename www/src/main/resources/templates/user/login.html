@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
-
+<!--<script type="text/javascript" th:src="@{/dist/js/login.js}"></script>-->
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
@@ -29,17 +29,17 @@
                     </div>
                     <div class="loginSocialBtn">
                         <div class="loginKakaoBtn">
-                            <a th:href="@{/oauth2/authorization/naver}">
+                            <a th:href="@{/oauth2/authorization/naver?mode=login}" class="test">
                                 <img th:src="@{/image/naverLogin.png}" alt="네이버 로그인 버튼" />
                             </a>
                         </div>
                         <div class="loginNaverBtn">
-                            <a th:href="@{/oauth2/authorization/kakao}">
+                            <a th:href="@{/oauth2/authorization/kakao?mode=login}" class="test">
                                 <img th:src="@{/image/kakaoLogin.png}" alt="카카오 로그인 버튼" />
                             </a>
                         </div>
                         <div class="loginGoogleBtn">
-                            <a th:href="@{/oauth2/authorization/google}">
+                            <a th:href="@{/oauth2/authorization/google?mode=login}" class="test">
                                 <img th:src="@{/image/googleLogin.jpg}" alt="구글 로그인 버튼" />
                             </a>
                         </div>

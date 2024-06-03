@@ -16,7 +16,7 @@ public class GoogleOAuth2UserInfo implements OAuth2UserInfo {
     public GoogleOAuth2UserInfo(String accessToken, Map<String, Object> attributes) {
         this.accessToken = accessToken;
         this.attributes = attributes;
-        this.id = (String) attributes.get("email"); // 사용자 이메일
+        this.id = (String) attributes.get("sub"); // 사용자 이메일
         this.name = (String) attributes.get("name"); // 사용자 이름
         this.pwd = (String) attributes.get("sub");// 사용자 id 토큰
         this.email = (String) attributes.get("email");
