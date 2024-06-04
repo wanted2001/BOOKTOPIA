@@ -1,9 +1,14 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.BoardVO;
+import com.booktopia.www.domain.PagingVO;
+
+import java.util.List;
 
 public interface BoardService {
-    int insert(BoardVO bdto);
+    int insert(BoardVO boardVO);
 
+    int getTotalCount(PagingVO pgvo);
 
+    List<BoardVO> getList(PagingVO pgvo);
 }

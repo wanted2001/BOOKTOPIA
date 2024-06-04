@@ -30,13 +30,13 @@
                 </a>
             </div>
             <!--게시판 리스트-->
-            <div class="commListArea">
+            <div class="commListArea" th:each="bvo:${blist}">
                 <div class="commListContent">
                     <div class="commTitle">
-                        <a th:href="@{/community/communityDetail}">지금은 커뮤니티 게시판 전체페이지 속 제목을 작성하고 있습니다.</a>
+                        <a th:href="@{/board/detail(bno)}">[[${bvo.bTitle}]]</a>
                     </div>
-                    <div class="commWriter">작성자</div>
-                    <div class="commContent">내용</div>
+                    <div class="commWriter">[[${bvo.bWriter}]]</div>
+                    <div class="commContent">[[${bvo.bContent}]]</div>
                     <div class="commImg"></div>
                     <div class="commCntInfo">
                         <div class="commCmtCnt commCnt">댓글 0</div>
