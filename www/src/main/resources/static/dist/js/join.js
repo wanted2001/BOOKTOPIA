@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let elSuccessMessage = document.querySelector('.success-message'); // div.success-message.hide
     // 4. 실패 메시지2 정보 가져오기 (영어 또는 숫자)
     let elFailureMessageTwo = document.querySelector('.failure-message2'); // div.failure-message2.hide
-
     // 3. 실패 메시지 정보 가져오기 (비밀번호 불일치)
     let elMismatchMessage = document.querySelector('.mismatch-message'); // div.mismatch-message.hide
     // 4. 실패 메시지 정보 가져오기 (8글자 이상, 영문, 숫자, 특수문자 미사용)
@@ -126,49 +125,58 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // // 아이디 중복 확인 버튼 클릭 이벤트 리스너
-    // joinCheckIdBtn.addEventListener('click', () => {
-    //   let inputIdVal = inputId.value;
-    //   checkId(inputIdVal).then(result => {
-    //     if (result == '0') {
-    //       alert("사용 가능한 아이디입니다.");
-    //       joinCheckIdBtn.disabled = true;
-    //       inputId.setAttribute("readonly", true);
-    //     } else {
-    //       alert("사용 불가능한 아이디입니다.");
-    //       inputId.value = "";
-    //     }
-    //     toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
-    //   });
-    // });
+     // 아이디 중복 확인 비동기 함수
+    async function checkId(inputIdVal) {
+           try {
+             const url = '/user/check';
+             const config = {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "text/plain; charset=UTF-8"
+                },
+                body : inputIdVal
+             };
+             const resp = await fetch(url,config);
+             const result = await resp.text();
+             return result; // 결과 반환
+          } catch (error) {
+             console.log(error);
+           }
+         }
 
-    // // 아이디 중복 확인 비동기 함수
-    // async function checkId(inputIdVal) {
-    //   try {
-    //     const resp = await fetch('/user/check/' + inputIdVal);
-    //     const result = await resp.text();
-    //     return result; // 결과 반환
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
+    // 아이디 중복 확인 버튼 클릭 이벤트 리스너
+     joinCheckIdBtn.addEventListener('click', () => {
+      const inputIdVal = inputId.value;
+       checkId(inputIdVal).then(result => {
+        console.log("result >>>>>" , result);
+         if (result === '0') {
+           alert("사용 가능한 아이디입니다.");
+           joinCheckIdBtn.disabled = true;
+           inputId.setAttribute("readonly", true);
+         } else if(result === '1'){
+           alert("사용 불가능한 아이디입니다.");
+           inputId.value = "";
+         }
+         toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+       });
+     });
 
-    // // 비밀번호 확인 입력 시 유효성 검사
-    // conPwd.addEventListener('keyup', () => {
-    //   validatePassword();
-    //   toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
-    // });
+     // 비밀번호 확인 입력 시 유효성 검사
+     conPwd.addEventListener('keyup', () => {
+       validatePassword();
+       toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+     });
 
-    // // 비밀번호와 비밀번호 확인 일치 여부 검사
-    // function validatePassword() {
-    //   if (pwd.value !== conPwd.value) {
-    //     conPwd.style.color = "red";
-    //     console.log("비밀번호 틀림");
-    //   } else {
-    //     console.log("비밀번호 맞음");
-    //     conPwd.style.color = "green";
-    //   }
-    // }
+     // 비밀번호와 비밀번호 확인 일치 여부 검사
+     function validatePassword() {
+       if (pwd.value !== conPwd.value) {
+         conPwd.style.color = "red";
+         console.log("비밀번호 틀림");
+       } else {
+         console.log("비밀번호 맞음");
+         conPwd.style.color = "green";
+       }
+     }
 
 
     pwd.onkeyup = function () {

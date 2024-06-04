@@ -3,10 +3,16 @@ package com.booktopia.www.controller;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.validator.PublicClassValidator;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
@@ -36,14 +42,15 @@ public class UserController {
     @GetMapping("/myPage")
     public void info(){}
 
-    @ResponseBody
-    @GetMapping("/checkId/{id}")
-    public String checkId(@PathVariable("id") String id){
-        log.info("id >> {}" ,id);
+    @PostMapping(value = "/check",consumes="text/plain",produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> idCheck(@RequestBody String id){
+        log.info("id> {}" ,id);
         int isOk = usv.checkId(id);
-        log.info("isOk >> {}",isOk);
-        return isOk > 0 ? "1" : "0";
+        return isOk == 0? new ResponseEntity<String>("0", HttpStatus.OK) :
+                new ResponseEntity<String>("1", HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
+
 
 
 }

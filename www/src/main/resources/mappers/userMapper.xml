@@ -30,8 +30,8 @@
         insert into auth values(#{pwd},"ROLE_USER")
     </insert>
 
-    <select id="checkId">
-        select * from user where id=#{id}
+    <select id="checkId" resultType="int">
+        select count(id) from user where id=#{id}
     </select>
 
 
