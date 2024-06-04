@@ -19,22 +19,20 @@
                 <div class="cate">
                     <ul>
                         <li><a class="cate cate1" href="#">북토피아 소개</a></li>
-                        <li><a class="cate cate2"  th:href="@{/subscribe/info}">구독상품</a></li>
+                        <li><a class="cate cate2" th:href="@{/subscribe/info}">구독상품</a></li>
                         <li><a class="cate cate3" th:href="@{/community/communityMain}">커뮤니티</a></li>
                         <li><a class="cate cate4" th:href="@{/booktopiaTest/test}">취향검사</a></li>
-                        <li class="right" sec:authorize="isAnonymous()"><a class="register" th:href="@{/user/join}">회원가입</a></li>
+                        <li class="right" sec:authorize="isAnonymous()"><a class="register"
+                                                                           th:href="@{/user/join}">회원가입</a></li>
                         <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>
                         <th:block sec:authorize="isAuthenticated()">
-                            <li class="cate cate1" >
-                                <a th:with="auth=${#authentication.getPrincipal()}"
-                                   th:text="${auth.getUserInfo() != null ? auth.getUserInfo().getId() : auth.userVO.id}">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="logout" th:href="@{/user/logout}">로그아웃</a>
-                            </li>
+                            <th:block th:with="auth=${#authentication.getPrincipal()}">
+                                <li>
+                                    <a th:href="@{|/oauth2/authorization/${auth.getUserInfo().getUserType()}?mode=unlink|}"
+                                       id="out">링크 끊기[[${auth.getUserInfo().getId()}]]</a></li>
+                                <li><a th:href="@{/user/logout}">로그아웃[[${auth.getUserInfo().getId()}]]</a></li>
+                            </th:block>
                         </th:block>
-
                         <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/user/join}">회원리스트</a>
                         </li>
@@ -64,7 +62,12 @@
             </ul>
         </div>
     </footer>
-
+    <script>
+        const out = document.getElementById("out");
+        out.addEventListener("click",()=>{
+            location.href = "/user/logout";
+        });
+    </script>
     </body>
 </th:block>
 </html>

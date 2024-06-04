@@ -3,6 +3,8 @@ package com.booktopia.www.oauth2.utill;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.SerializationUtils;
 
 import java.util.Base64;
@@ -10,11 +12,17 @@ import java.util.Optional;
 
 public class CookieUtils {
 
+    private static final Logger log = LoggerFactory.getLogger(CookieUtils.class);
+
     public static Optional<Cookie> getCookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
+            log.info("쿠키있음 -------------------------------------------------------------");
+            log.info("name>> {}" , name);
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(name)) {
+                    log.info("cookie 있음 >>>{}",cookie.getName());
+                    log.info("cookie list >> {}",cookie);
                     return Optional.of(cookie);
                 }
             }

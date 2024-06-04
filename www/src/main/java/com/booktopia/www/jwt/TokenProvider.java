@@ -1,5 +1,6 @@
 package com.booktopia.www.jwt;
 
+import com.nimbusds.oauth2.sdk.auth.Secret;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -23,7 +24,8 @@ import java.util.Date;
 @Component
 public class TokenProvider {
 
-    private static final long ACCESS_TOKEN_EXPIRE_TIME_IN_MILLISECONDS = 1000 * 60 * 30; // 30min
+    private static final long ACCESS_TOKEN_EXPIRE_TIME_IN_MILLISECONDS = 1000 * 60 * 30; // 30분
+    private static final long REFRESH_TOKEN_EXPIRE_TIME_IN_MILLISECONDS = 1000 * 60 * 60 * 24; // 하루
     @Value("${jwt.secret}")
     private String secret;
     private Key key;
@@ -70,6 +72,19 @@ public class TokenProvider {
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
+
+    public String createRefreshToken() {
+        Date now = new Date();
+        Date validity = new Date(now.getTime() +  REFRESH_TOKEN_EXPIRE_TIME_IN_MILLISECONDS);
+
+        return Jwts.builder()
+                .setIssuedAt(now)
+                .setExpiration(validity)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+
 
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parserBuilder()
