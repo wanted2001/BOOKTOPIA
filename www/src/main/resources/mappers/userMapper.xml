@@ -30,5 +30,9 @@
         insert into auth values(#{pwd},"ROLE_USER")
     </insert>
 
+    <select id="checkId">
+        select * from user where id=#{id}
+    </select>
+
 
 </mapper>
