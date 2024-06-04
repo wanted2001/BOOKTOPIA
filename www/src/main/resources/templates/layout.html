@@ -35,38 +35,36 @@
                         <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/user/join}">회원리스트</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="sangContain">
-        <div class="chatBotText">
+    <div class="chatBotContain" >
+        <div class="chatBotText" style="display: none">
             <div class="textTop">
                 <span>로고</span>
-                <span>북토피아</span>
-                <button type="button">X</button>
+                <span>BookTopia</span>
+                <button type="button" id="textBtn">X</button>
             </div>
             <div class="textBody">
-                버튼 클릭 시 상담 내용 나오도록
+                <p>[[${chat}]]</p>
             </div>
             <div class="textFoot">
-                <button type="button">북토피아 내용</button>
-                <button type="button">구독내용</button>
-                <button type="button">홈페이지 오류 내용</button>
-                <button type="button">회원가입 / 로그인 오류 내용</button>
-                <button type="button">커뮤니티 문의 내용</button>
-                <button type="button">배송문의 내용</button>
+                <button type="button" class="txtF" id="btn1">BookTopia?</button>
+                <button type="button" class="txtF" id="btn2">구독상품 문의</button>
+                <button type="button" class="txtF" id="btn3">홈페이지 오류 문의</button>
+                <button type="button" class="txtF" id="btn4">회원가입 / 로그인 문의</button>
+                <button type="button" class="txtF" id="btn5">커뮤니티 문의</button>
+                <button type="button" class="txtF" id="btn6">배송 문의</button>
             </div>
         </div>
         <div class="chatBotDiv">
-            <button type="button" id="btn">
-                <img class="sangIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
+            <div id="btn">
+                <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
                 <p>빠른상담</p>
-            </button>
+            </div>
         </div>
     </div>
     <div class="content-fluid">
