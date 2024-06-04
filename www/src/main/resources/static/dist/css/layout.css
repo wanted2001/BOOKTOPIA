@@ -1,0 +1,33 @@
+.sangIcon{
+    width: 50px;
+}
+button{
+    cursor: pointer;
+}
+.sangContain{
+    float: right;
+}
+.chatBotDiv{
+    width: 70px;
+    transform: translate(-330px, 650px);
+    text-align: center;
+    position: absolute;
+    z-index: 9;
+}
+#btn{
+    position: sticky;
+    top : -700px;
+    background-color: white;
+}
+.chatBotText{
+    float: right;
+    transform: translate(-700px, 100px);
+    width: 400px;
+    height: 550px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 8px #bdbdbd;
+    background-color: white;
+    z-index: 10;
+    position: absolute;
+    padding: 10px;
+}

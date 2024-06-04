@@ -9,6 +9,7 @@
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
         <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
         <link rel="stylesheet" th:href="@{/dist/css/mainPage.css}">
+        <link rel="stylesheet" th:href="@{/dist/css/layout.css}">
 
     </head>
     <body>
@@ -46,10 +47,36 @@
         </div>
     </nav>
 
+    <div class="sangContain">
+        <div class="chatBotText">
+            <div class="textTop">
+                <span>로고</span>
+                <span>북토피아</span>
+                <button type="button">X</button>
+            </div>
+            <div class="textBody">
+                버튼 클릭 시 상담 내용 나오도록
+            </div>
+            <div class="textFoot">
+                <button type="button">북토피아 내용</button>
+                <button type="button">구독내용</button>
+                <button type="button">홈페이지 오류 내용</button>
+                <button type="button">회원가입 / 로그인 오류 내용</button>
+                <button type="button">커뮤니티 문의 내용</button>
+                <button type="button">배송문의 내용</button>
+            </div>
+        </div>
+        <div class="chatBotDiv">
+            <button type="button" id="btn">
+                <img class="sangIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
+                <p>빠른상담</p>
+            </button>
+        </div>
+    </div>
     <div class="content-fluid">
-        <button type="button">빠른상담</button>
         <th:block th:replace="${content}"></th:block>
     </div>
+
 
     <footer>
         <div class="flogo">로고</div>
@@ -62,12 +89,23 @@
             </ul>
         </div>
     </footer>
+
+    <script th:src="@{/dist/js/chatBot.js}"></script>
     <script>
         const out = document.getElementById("out");
         out.addEventListener("click",()=>{
             location.href = "/user/logout";
         });
     </script>
+<!--    <script>-->
+<!--        $(document).ready(function (){-->
+<!--            let position = parseInt($(".sangDiv").css("top"));-->
+<!--            $(window).scroll(function (){-->
+<!--                let scrollPosition = $(window).scrollTop();-->
+<!--                $(".sangDiv").stop().animate({"top":scrollPosition+position+"px"},100);-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
     </body>
 </th:block>
 </html>

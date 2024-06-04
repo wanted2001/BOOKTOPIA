@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/",
-                                "/community/**", "/community/register","/board/*","/board/register")
+                                "/community/**", "/community/register","/board/*","/board/register", "/booktopiaTest/*", "/pay/*","/pay/done", "/subscribe/*")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
