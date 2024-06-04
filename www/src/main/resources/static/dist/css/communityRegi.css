@@ -13,24 +13,27 @@
 .commUl{
     /* background-color: yellow; */
     margin-left: 30px;
-    width: 100px;
+    width: 120px;
 }
 .commUl ul{
     margin-top: 50px;
 }
 .commUl ul li{
     display: inline-block;
-    font-size: 17px;
-    color: gray;
     padding: 12px 0;
     width: 100%;
     border-bottom: 1px solid rgb(169, 169, 169,0.3);
-    /* background-color: tan; */
+     /*background-color: tan;*/
+}
+.commUl ul li a{
+    color : #7a7a7a;
+    font-size: 16px;
 }
 /* 셀렉트 제작 0602 */
 .commRegiCate{
     width: 130px;
     position: relative;
+    margin-left: -21px;
 }
 .cateBtn{
     width: 100%;
@@ -43,7 +46,6 @@
     cursor: pointer;
     text-align: left;
     background-color: white;
-    cursor: pointer;
     color: #474747;
     margin-left: 10px;
 }
@@ -90,9 +92,9 @@
 }
 .commToast{
     float: right;
-    width: 1200px;
+    width: 1150px;
     /* background-color: antiquewhite; */
-    margin: -305px 10px 0 0;
+    margin: -305px 40px 0 0;
 }
 .commTitle{
     /* width: 1100px;
@@ -100,7 +102,7 @@
     display: block;
     width: 1150px;
     margin: 0 auto 15px;
-    height: 35px;
+    height: 40px;
     outline: none;
     font-size: 18px;
     border-bottom: 1px solid rgb(169, 169, 169,0.5);
@@ -111,4 +113,16 @@
 }
 #editor{
     margin-bottom: 50px;
+}
+.commRegiBtn{
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+    width: 60px;
+    height: 38px;
+    margin: -35px 20px 113px 0;
+    background-color: #f7f9fc;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    color: #474747;
 }

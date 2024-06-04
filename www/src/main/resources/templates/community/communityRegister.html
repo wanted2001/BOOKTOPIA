@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
         <!--토스트 API 스크립트-->
-        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<!--        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>-->
         <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
         <div class="wrap">
             <div class="wrap">
@@ -13,30 +14,31 @@
                     <!-- 왼쪽 카테고리 -->
                     <div class="commUl">
                         <ul>
-                            <li>전체 게시글</li>
-                            <li>소설</li>
-                            <li>시/에세이</li>
-                            <li>경제/경영</li>
-                            <li>인문</li>
-                            <li>역사/문화</li>
-                            <li>자기개발</li>
+                            <li><a th:href="@{/community/communityList}">전체 게시글</a></li>
+                            <li><a th:href="@{/community/novel}">소설</a></li>
+                            <li><a th:href="@{/communtiy/poet}">시/에세이</a></li>
+                            <li><a th:href="@{/community/finance}">경제/경영</a></li>
+                            <li><a th:href="@{/community/human}">인문</a></li>
+                            <li><a th:href="@{/community/history}">역사/문화</a></li>
+                            <li><a th:href="@{/community/development}">자기개발</a></li>
                         </ul>
                     </div>
                     <div class="commToast">
                         <!-- 게시판 선택 select 효과 -->
+                        <form action="/board/register" method="post" enctype="multipart/form-data">
                         <div class="commRegiCate">
                             <button class="cateBtn">
                                 <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
                                 <span id="selectedText">게시판 선택</span>
                             </button>
                             <ul class="commul">
-                                <li class="commli"><a>게시판 선택</a></li>
-                                <li class="commli"><a th:src="@{/community/novel}">소설</a></li>
-                                <li class="commli"><a th:src="@{/communtiy/poet}">시/에세이</a></li>
-                                <li class="commli"><a th:src="@{/community/finance}">경제/경영</a></li>
-                                <li class="commli"><a th:src="@{/community/human}">인문</a></li>
-                                <li class="commli"><a th:src="@{/community/history}">역사/문화</a></li>
-                                <li class="commli"><a th:src="@{/community/development}">자기개발</a></li>
+                                <li class="commli">게시판 선택</li>
+                                <li class="commli">소설</li>
+                                <li class="commli">시/에세이</li>
+                                <li class="commli">경제/경영</li>
+                                <li class="commli">인문</li>
+                                <li class="commli">역사/문화</li>
+                                <li class="commli">자기개발</li>
                             </ul>
                         </div>
                         <div class="commContent">
@@ -46,12 +48,20 @@
                             </div>
                             <!-- 토스트 에디터 부분 -->
                             <div id="editor"></div>
+                            <!-- 내용 작성 부분 -->
+                            <div id="editorContent"></div>
+                            <div>
+                                <button type="submit" class="commRegiBtn">등록</button>
+                            </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!--토스트 API 스크립트-->
+        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
         <script th:src="@{/dist/js/select.js}"></script>
         <script th:src="@{/dist/js/toastApi.js}"></script>
     </th:block>
