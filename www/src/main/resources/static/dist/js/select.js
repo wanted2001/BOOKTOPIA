@@ -17,3 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+/*selected*/
+$(document).ready(function (){
+  $('.commseaUl').on("click","li",function (e){
+    console.log($(e.target).data("value"));
+    console.log($(this).data("value"));
+
+    console.log(this)
+  })
+})

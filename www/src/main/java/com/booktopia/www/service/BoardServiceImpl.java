@@ -32,5 +32,10 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.getList(pgvo);
     }
 
+    @Override
+    public BoardVO getDetail(long bno) {
+        return boardMapper.getDetail(bno);
+    }
+
 
 }
