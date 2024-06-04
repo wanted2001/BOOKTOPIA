@@ -96,7 +96,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             String refreshToken = tokenProvider.createRefreshToken();
 
                 // TODO: 리프레시 토큰 DB 저장
-                log.info("email={}, name={},pwd={}, accessToken={}",
+                log.info("id={}, name={},pwd={}, accessToken={}",
                         principal.getUserInfo().getId(),
                         principal.getUserInfo().getName(),
                         principal.getUserInfo().getPwd(),

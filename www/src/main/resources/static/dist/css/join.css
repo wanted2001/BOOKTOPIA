@@ -7,11 +7,132 @@
 
 .wrap {
     width: 1400px;
-    border: 1px solid brown;
     font-family:SCDream4;
+    display: ruby-text;
 }
 
+/* 체크박스 추가구문 */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
+.wrap {
+  margin: auto;
+}
+
+.wrap .logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.wrap .logo h1 {
+  margin: 0;
+  font-size: 35px;
+}
+
+.wrap .contents {
+  width: 100%;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+#form__wrap {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 14px;
+      display: flex;
+      justify-content: space-around;
+}
+
+#form__wrap .terms__check__all {
+      display: flex;
+      margin-bottom: 35px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: baseline;
+      align-content: space-around;
+  }
+}
+
+#form__wrap .terms__check__all label {
+      margin-left: 3px;
+      text-decoration: underline;
+      text-align: center;
+      margin: 0 auto;
+}
+
+.terms__list .terms__box {
+  margin: 20px 0;
+}
+
+.contents label {
+  font-weight: 700;
+}
+
+label.required::after {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0086ff;
+  content: "(필수)";
+}
+
+.terms__list .terms__content {
+  height: 88px;
+  overflow: auto;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #dadada;
+  background: #fff;
+  font-size: 12px;
+}
+
+.next-button {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  cursor: pointer;
+  background-color: #242222;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+}
+
+.next-button:hover:enabled {
+  background-color: #a3a2a2;
+}
+
+.next-button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    min-width: 280px;
+    padding: 20px;
+  }
+
+  #form__wrap {
+    max-width: 460px;
+    width: 100%;
+  }
+}
+
+.innerDiv{
+    width: 80%;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: -webkit-center;
+    }
+
+}
+/* 여기까지 */
 
 .joinAgreeContent>input{
     background-color: transparent;
@@ -19,9 +140,11 @@
     text-align: left;
 }
 .join{
-    justify-content: center;
-    width: 300px;
-    margin: 0 auto;
+  justify-content: center;
+      width: 300px;
+      height: 200px;
+      margin: 0 auto;
+      padding-top: 20px;
 }
 .joinCheckIdBtn{
     border: 0;
@@ -62,23 +185,21 @@
 
 
 .joinWrapPage {
-    width: 1000px;
-    height: 500px;
+    width: 100%;
+   /* height: 500px; */
     margin: 0 auto;
     display: flex;
-    border: 1px solid red;
     flex-direction: column;
     align-items: center;
 }
 
 .joinAgreePage {
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid aqua;
-    margin-top: 30px;
-    margin-bottom: 20px;
+   width: 100%;
+       display: flex;
+       justify-content: center;
+       text-align: center;
+       margin-top: 30px;
+       margin-bottom: 20px;
 
 }
 
@@ -93,13 +214,14 @@
 }
 
 .joinAllPage {
-    text-align: center;
-    width: 700px;
-    height: 500px;
-    display: flex;
-    border: 1px solid black;
-    flex-direction: column;
-    align-items: stretch;
+       text-align: center;
+       width: 20%;
+       height: 350px;
+       display: flex;
+       flex-direction: column;
+       align-items: stretch;
+       margin-right: 200px;
+   }
 }
 
 
@@ -121,19 +243,46 @@
 }
 
 .joinJoinBtn{
-    width: 200px;
-    height: 30px;
-    border-radius: 10px;
-    background-color: antiquewhite;
-    margin: 0 auto;
+       width: 200px;
+       height: 50px;
+       border-radius: 7px;
+       background-color: antiquewhite;
+       margin: 0 auto;
+       margin-top: 100px;
  }
  .joinJoinBtn>button{
-     width: 200px;
-     border: 0;
-     line-height: 30px;
-     background-color: transparent;
+        width: 200px;
+        border: 0;
+        line-height: 50px;
+        text-align: 50px;
+        background-color: transparent;
+        letter-spacing: 3px;
  }
  .joinJoinBtn:hover{
      background-color: red;
      color: white;
  }
+
+ .joinduplicationBtn{
+    width: 100px;
+ }
+
+.joinTitleText{
+    width: 300px;
+    height: 50px;
+}
+
+.joinTitleText h1{
+    font-size: 1.5em;
+        letter-spacing: 2px;
+        font-weight: bold;
+}
+/* ------------------------------------------------------------------------------ */
+
+/* 실패/성공 메세지 미리 가려놓기 */
+.hide {
+    display: none;
+}
+
+
+

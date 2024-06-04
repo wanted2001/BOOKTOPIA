@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Getter
 public class AuthUser extends User{
 
-    private  UserVO userVO;
+    private UserVO userVO;
 
     public AuthUser(String id, String pwd, Collection<? extends GrantedAuthority> authorities) {
         super(id, pwd, authorities);

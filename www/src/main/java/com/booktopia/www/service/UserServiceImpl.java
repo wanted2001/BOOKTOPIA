@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
         return (isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0);
     }
 
+    @Override
+    public int checkId(String id) {
+        int isOk = userMapper.checkId(id);
+        return isOk;
+    }
 
 
 }

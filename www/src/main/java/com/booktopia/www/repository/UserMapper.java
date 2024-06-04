@@ -21,4 +21,5 @@ public interface UserMapper {
 
     int saveOauthUser(UserVO user);
 
+    int checkId(String id);
 }
