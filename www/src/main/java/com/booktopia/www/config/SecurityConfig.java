@@ -49,11 +49,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/user/check",
-                                "/community/**", "/community/register","/board/*","/board/register", "/pay/**", "/pay/done", "/subscribe/**")
+                                "/community/**", "/community/register","/board/*","/board/register")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
-                        .anyRequest().permitAll()
-                        //.anyRequest().authenticated()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .usernameParameter("id")

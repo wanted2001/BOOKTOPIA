@@ -54,71 +54,64 @@ document.addEventListener("DOMContentLoaded", () => {
         //입력 비밀번호가 일치할 경우 true, 아닐 경우 false 리턴
       }
 
-    // // 폼 제출을 막습니다.
-    // form.addEventListener("submit", (e) => e.preventDefault());
-
-        // 제출 버튼의 활성화 상태를 토글하는 함수입니다.
         function toggleSubmitButton() {
             const { termsOfService, privacyPolicy } = agreements;
             const isFormValid = termsOfService && privacyPolicy && (isIdOk(id.value)) && isMatch(pwd.value, conPwd.value) && strongPassword(pwd.value);
-            submitButton.disabled = !isFormValid; // 폼의 모든 유효성 검사가 통과되었을 때만 제출 버튼을 활성화합니다.
+            submitButton.disabled = !isFormValid;
           }
 
 
-    // 초기 상태에서 제출 버튼을 비활성화합니다.
+    // 초기 상태에서 제출 버튼을 비활성화
     toggleSubmitButton();
 
 
-    // 각 체크박스에 이벤트 리스너를 추가합니다.
+    // 각 체크박스에 이벤트 리스너 추가
     checkBoxes.forEach((item) => item.addEventListener("input", toggleCheckbox));
 
-    // 개별 체크박스의 상태를 토글하는 함수입니다.
+    // 개별 체크박스의 상태
     function toggleCheckbox(e) {
       const { checked, id } = e.target;
-      agreements[id] = checked; // 해당 동의 항목의 상태를 업데이트합니다.
-      e.target.parentNode.classList.toggle("active"); // 체크박스의 부모 요소에 'active' 클래스를 토글합니다.
-      checkAllStatus(); // 전체 동의 체크박스의 상태를 업데이트합니다.
-      toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+      agreements[id] = checked
+      e.target.parentNode.classList.toggle("active");
+      checkAllStatus();
+      toggleSubmitButton();
     }
 
-    // 전체 동의 체크박스의 상태를 확인하고 업데이트하는 함수입니다.
+    // 전체 동의 체크박스의 상태를 확인하고 업데이트하는 함수
     function checkAllStatus() {
       const { termsOfService, privacyPolicy, allowPromotions } = agreements;
-      checkAll.checked = termsOfService && privacyPolicy && allowPromotions; // 모든 동의 항목이 선택되었을 때만 전체 동의 체크박스를 체크합니다.
+      checkAll.checked = termsOfService && privacyPolicy && allowPromotions;
     }
 
 
-    // 전체 동의 체크박스의 클릭 이벤트 리스너입니다.
+    // 전체 동의 체크박스의 클릭 이벤트 리스너
     checkAll.addEventListener("click", (e) => {
       const { checked } = e.target;
       checkBoxes.forEach((item) => {
-        item.checked = checked; // 모든 개별 체크박스의 상태를 전체 동의 체크박스의 상태로 설정합니다.
-        agreements[item.id] = checked; // 모든 동의 항목의 상태를 업데이트합니다.
+        item.checked = checked;
+        agreements[item.id] = checked;
         if (checked) {
-          item.parentNode.classList.add("active"); // 'active' 클래스를 추가합니다.
+          item.parentNode.classList.add("active");
         } else {
-          item.parentNode.classList.remove("active"); // 'active' 클래스를 제거합니다.
+          item.parentNode.classList.remove("active");
         }
       });
-      toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+      toggleSubmitButton();
     });
 
     id.onkeyup = function () {
-    // 아이디 입력 시 유효성 검사
     if (id.value.length !== 0) {
-        // 영어 또는 숫자 외의 값을 입력했을 경우
+
         if(isIdOk(id.value) === false) {
           elSuccessMessage.classList.add('hide');
           elFailureMessageTwo.classList.remove('hide'); // 영어 또는 숫자만 가능합니다
         }
-        // 조건을 모두 만족할 경우
+
         else if(isIdOk(id.value)) {
           elSuccessMessage.classList.remove('hide'); // 사용할 수 있는 아이디입니다
           elFailureMessageTwo.classList.add('hide'); // 실패 메시지2가 가려져야 함
         }
       }
-      // 값을 입력하지 않은 경우 (지웠을 때)
-      // 모든 메시지를 가린다.
       else {
         elSuccessMessage.classList.add('hide');
         elFailureMessageTwo.classList.add('hide');
@@ -138,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
              };
              const resp = await fetch(url,config);
              const result = await resp.text();
-             return result; // 결과 반환
+             return result;
           } catch (error) {
              console.log(error);
            }
@@ -157,14 +150,14 @@ document.addEventListener("DOMContentLoaded", () => {
            alert("사용 불가능한 아이디입니다.");
            inputId.value = "";
          }
-         toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+         toggleSubmitButton();
        });
      });
 
      // 비밀번호 확인 입력 시 유효성 검사
      conPwd.addEventListener('keyup', () => {
        validatePassword();
-       toggleSubmitButton(); // 제출 버튼의 활성화 상태를 토글합니다.
+       toggleSubmitButton();
      });
 
      // 비밀번호와 비밀번호 확인 일치 여부 검사
@@ -180,18 +173,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     pwd.onkeyup = function () {
-        // console.log(elInputPassword.value);
-        // 값을 입력한 경우
         if (pwd.value.length !== 0) {
           if(strongPassword(pwd.value)) {
-            elStrongPasswordMessage.classList.add('hide'); // 실패 메시지가 가려져야 함
+            elStrongPasswordMessage.classList.add('hide');
           }
           else {
-            elStrongPasswordMessage.classList.remove('hide'); // 실패 메시지가 보여야 함
+            elStrongPasswordMessage.classList.remove('hide');
           }
         }
-        // 값을 입력하지 않은 경우 (지웠을 때)
-        // 모든 메시지를 가린다.
         else {
           elStrongPasswordMessage.classList.add('hide');
           toggleSubmitButton();
@@ -199,17 +188,16 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       conPwd.onkeyup = function () {
-        // console.log(elInputPasswordRetype.value);
         if (conPwd.value.length !== 0) {
           if(isMatch(pwd.value, conPwd.value)) {
-            elMismatchMessage.classList.add('hide'); // 실패 메시지가 가려져야 함
+            elMismatchMessage.classList.add('hide');
           }
           else {
-            elMismatchMessage.classList.remove('hide'); // 실패 메시지가 보여야 함
+            elMismatchMessage.classList.remove('hide');
           }
         }
         else {
-          elMismatchMessage.classList.add('hide'); // 실패 메시지가 가려져야 함
+          elMismatchMessage.classList.add('hide');
           toggleSubmitButton();
         }
       };
