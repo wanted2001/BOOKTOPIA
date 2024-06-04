@@ -30,7 +30,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final CustomOAuth2UserService customOAuth2UserService;
+//    private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
@@ -48,7 +48,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/").permitAll()
+                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/","/subscribe/**", "/pay/**", "/booktopiaTest/**", "/community/**").permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -61,7 +61,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(configure ->
                         configure.authorizationEndpoint(config -> config.authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository))
-                                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
+//                                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
                                 .successHandler(oAuth2AuthenticationSuccessHandler)
                                 .failureHandler(oAuth2AuthenticationFailureHandler)
                 )

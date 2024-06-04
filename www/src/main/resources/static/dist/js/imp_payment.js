@@ -76,16 +76,13 @@ function request_pay(){
                             console.log("결제 검증 및 결제 완료! >>>> ")
                             postStorePaySuccess(data).then(result=>{
                                 console.log(result);
-                            window.location.href = "/pay/done/"+result.merchantUid;
+                            // window.location.href = "/pay/done/"+result.merchantUid;
 
                             });
                         } else {
                             console.log("결제 실패!!!!!!!! ")
                             alert("결제 실패")
                         }
-
-
-
                     } else {
                         console.log("data 안들어옴")
                     }
