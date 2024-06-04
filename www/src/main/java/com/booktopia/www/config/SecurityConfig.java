@@ -52,7 +52,8 @@ public class SecurityConfig {
                                 "/community/**", "/community/register","/board/*","/board/register")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
+                        //.anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .usernameParameter("id")
