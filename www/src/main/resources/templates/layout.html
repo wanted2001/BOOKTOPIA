@@ -9,6 +9,7 @@
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
         <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
         <link rel="stylesheet" th:href="@{/dist/css/mainPage.css}">
+        <link rel="stylesheet" th:href="@{/dist/css/layout.css}">
 
     </head>
     <body>
@@ -34,14 +35,38 @@
                         <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/user/join}">회원리스트</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
+    <div class="chatBotContain" >
+        <div class="chatBotText" style="display: none">
+            <div class="textTop">
+                <span>로고</span>
+                <span>BookTopia</span>
+                <button type="button" id="textBtn">X</button>
+            </div>
+            <div class="textBody">
+                <p>[[${chat}]]</p>
+            </div>
+            <div class="textFoot">
+                <button type="button" class="txtF" id="btn1">BookTopia?</button>
+                <button type="button" class="txtF" id="btn2">구독상품 문의</button>
+                <button type="button" class="txtF" id="btn3">홈페이지 오류 문의</button>
+                <button type="button" class="txtF" id="btn4">회원가입 / 로그인 문의</button>
+                <button type="button" class="txtF" id="btn5">커뮤니티 문의</button>
+                <button type="button" class="txtF" id="btn6">배송 문의</button>
+            </div>
+        </div>
+        <div class="chatBotDiv">
+            <div id="btn">
+                <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
+                <p>빠른상담</p>
+            </div>
+        </div>
+    </div>
     <div class="content-fluid">
         <th:block th:replace="${content}"></th:block>
     </div>
@@ -57,12 +82,15 @@
             </ul>
         </div>
     </footer>
+
+    <script th:src="@{/dist/js/chatBot.js}"></script>
 <!--    <script>-->
 <!--        const out = document.getElementById("out");-->
 <!--        out.addEventListener("click",()=>{-->
 <!--            location.href = "/user/logout";-->
 <!--        });-->
 <!--    </script>-->
+
     </body>
 </th:block>
 </html>

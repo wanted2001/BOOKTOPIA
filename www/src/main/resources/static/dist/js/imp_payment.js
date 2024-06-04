@@ -9,7 +9,14 @@ let uid = '';
 let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 
+
 function request_pay(){
+    let ordaddr = document.getElementById('addrInput').value;
+    let ordaddrdetail = document.getElementById('addrDetailInput').value;
+
+    console.log("테스트으으으으으"+ ordaddr);
+    console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
+
     const IMP = window.IMP;
     IMP.init("imp42245168")
     IMP.request_pay(
@@ -22,8 +29,8 @@ function request_pay(){
             buyer_name:ordName,
             buyer_email:'email',
             buyer_tel:ordPhone,
-            buyer_addr:'인천광역시 남동구 구월동',
-
+            buyer_addr:ordaddr+" "+ordaddrdetail,
+            // buyer_addrDetail : ordaddrdetail,
         },
         function (rsp){
             // callback
@@ -37,6 +44,7 @@ function request_pay(){
                     merchantUid: merchant_uid,
                     ordEmail:'',
                     ordName:ordName,
+                    ordAddr:ordaddr+" "+ordaddrdetail,
                     itemName:item_name,
                     totalAmount: amount,
                     pg_tid:rsp.pg_tid,
@@ -53,6 +61,7 @@ function request_pay(){
                             merchantUid: merchant_uid,
                             buyerEmail : 'email',
                             buyerName : ordName,
+                            address: ordaddr,
                             name :item_name,
                             paidAmount : amount,
                         };
@@ -74,9 +83,6 @@ function request_pay(){
                             console.log("결제 실패!!!!!!!! ")
                             alert("결제 실패")
                         }
-
-
-
                     } else {
                         console.log("data 안들어옴")
                     }

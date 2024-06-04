@@ -9,4 +9,6 @@ public interface OrderInfoMapper {
     int insertRegister(OrderInfoDTO oidto);
 
     OrderInfoDTO getSuccessPayInfo(OrderInfoDTO oidto);
+
+    void insert(OrderInfoVO oivo);
 }
