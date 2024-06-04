@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" th:href="@{/dist/css/myPage.css}">
+<script type="text/javascript" th:src="@{/dist/js/myPage.js}"></script>
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block sec:authorize="isAuthenticated()">
         <th:block th:fragment="content">
@@ -15,7 +16,7 @@
                                             <img th:src="@{/image/kakaoLogin.png}" alt="#">
                                         </div>
                                         <div class="myPageLeftUpInfoName">
-                                            <a sec:authentication="name"></a></li>
+                                            <a sec:authentication="name" id="myPageUserName"></a></li>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +39,7 @@
                                                 <div class="myPageLeftDownWrap4Img"><img
                                                         th:src="@{/image/kakaoLogin.png}"
                                                         alt="#"></div>
-                                                <div class="myPageLeftDownWrap4Status"><a>이용중인 구독권</a></div>
+                                                <div class="myPageLeftDownWrap4Status"><a id = "myPagesubcribe">이용중인 구독권</a></div>
                                             </div>
                                             <div class="myPageLeftDownWrap4">
                                                 <div class="myPageLeftDownWrap4Img"><img
@@ -46,7 +47,7 @@
                                                         alt="#"></div>
                                                 <div class="myPageLeftDownWrap4Status"><a>결제 내역</a></div>
                                             </div>
-                                            <div class="myPageLeftDownWrap4">
+                                            <div class="myPageLeftDownWrap4" id="modiftMyInfo">
                                                 <div class="myPageLeftDownWrap4Img"><img
                                                         th:src="@{/image/kakaoLogin.png}"
                                                         alt="#"></div>
@@ -72,6 +73,7 @@
                         <div class="myPageInfoRigthWrap">
                             <div class="myPageRight">
                                 <div class="myPageRightWrap">
+
                                     <div class="myPageRightWrapInfo">
                                         <div class="myPageRightWrapInfoText">개인정보 수정</div>
                                         <div class="myPageRightWrapInfoModWrap">
@@ -123,6 +125,11 @@
                                                     <div class="myPageModInputFormWrapBtn">
                                                         <button type="submit">회원정보 수정</button>
                                                     </div>
+                                                    <div id="header-container">
+                                                        <!-- Header content will be loaded here -->
+
+                                                    </div>
+                                                    <button type="button" id="load-header">Load Header</button>
                                                 </form>
                                             </div>
                                         </div>

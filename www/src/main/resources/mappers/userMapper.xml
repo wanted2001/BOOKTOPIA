@@ -34,5 +34,9 @@
         select count(id) from user where id=#{id}
     </select>
 
+    <select id="isSocialUser" resultType="String">
+        select user_type from user where id=#{id}
+    </select>
+
 
 </mapper>
