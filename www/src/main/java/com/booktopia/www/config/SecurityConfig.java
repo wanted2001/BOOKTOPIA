@@ -22,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.booktopia.www.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -48,7 +49,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/user/check",
+                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login/*","/user/join","/image/**","/user/check",
                                 "/community/**", "/community/register","/board/*","/board/register","/user/isSocialUser/*","/mypage/changeaddr",
                                 "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo","/user/test","/board/socialId",
                                 "/board/userId","/file/**")
@@ -60,6 +61,13 @@ public class SecurityConfig {
                         .usernameParameter("id")
                         .passwordParameter("pwd")
                         .loginPage("/user/login")
+//                        .failureHandler((request, response, exception) -> {
+////                            String err = exception.toString();
+////                            err = URLEncoder.encode(err, "UTF-8");
+////
+////                            response.sendRedirect("/user/login?error=true&err="+err);
+////                        })
+                                .failureUrl("/user/login?error")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
@@ -71,11 +79,11 @@ public class SecurityConfig {
                                 .failureHandler(oAuth2AuthenticationFailureHandler)
                 )
                 .logout(logout-> logout
-                        .logoutUrl(("/user/logout"))
+                                .logoutUrl(("/user/logout"))
 //                        .logoutUrl(("/oauth2/authorization/**?mode=unlink"))
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .logoutSuccessUrl("/")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                                .logoutSuccessUrl("/")
                 );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
