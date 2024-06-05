@@ -23,12 +23,12 @@
     justify-content: space-around;
 }
 .book-popul{
-    transform: translate(50px, 510px);
+    transform: translate(50px, 565px);
     display: flex;
     justify-content: space-around;
 }
 .book-recom{
-    transform: translate(50px, 930px);
+    transform: translate(50px, 970px);
     display: flex;
     justify-content: space-around;
 }
@@ -37,4 +37,11 @@
     width: 200px;
     height: 300px;
     background-color: rgb(155, 133, 104);
+}
+.testResult{
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    transform: translate(500px, 420px);
+    border-radius: 5px;
 }

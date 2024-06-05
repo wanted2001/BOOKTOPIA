@@ -41,32 +41,9 @@
         </div>
     </nav>
 
-    <div class="chatBotContain" >
-        <div class="chatBotText" style="display: none">
-            <div class="textTop">
-                <span>로고</span>
-                <span>BookTopia</span>
-                <button type="button" id="textBtn">X</button>
-            </div>
-            <div class="textBody">
-                <p>[[${chat}]]</p>
-            </div>
-            <div class="textFoot">
-                <button type="button" class="txtF" id="btn1">BookTopia?</button>
-                <button type="button" class="txtF" id="btn2">구독상품 문의</button>
-                <button type="button" class="txtF" id="btn3">홈페이지 오류 문의</button>
-                <button type="button" class="txtF" id="btn4">회원가입 / 로그인 문의</button>
-                <button type="button" class="txtF" id="btn5">커뮤니티 문의</button>
-                <button type="button" class="txtF" id="btn6">배송 문의</button>
-            </div>
-        </div>
-        <div class="chatBotDiv">
-            <div id="btn">
-                <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
-                <p>빠른상담</p>
-            </div>
-        </div>
-    </div>
+
+
+
     <div class="content-fluid">
         <th:block th:replace="${content}"></th:block>
     </div>

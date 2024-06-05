@@ -2,6 +2,7 @@
 <title>안녕하세요</title>
 <html lang="en">
 <!-- css area-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <!-- css area -->
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
@@ -13,6 +14,36 @@
                     <div class="slid-img">슬라이드 이미지</div>
                     <a href="#" class="icon2"><img src="/image/fronticon.png"></a>
                 </div>
+
+                <!--챗봇-->
+                <div class="chatBotContain">
+                    <div class="chatBotText animate__animated animate__rubberBand" style="display: none">
+                        <div class="textTop">
+                            <span>로고</span>
+                            <span>BookTopia</span>
+                            <button type="button" id="textBtn">X</button>
+                        </div>
+                        <div class="textBody">
+                            <p class="AnserText"></p>
+                        </div>
+                        <div class="textFoot">
+                            <button type="button" class="txtF" id="chatbtn1">BookTopia?</button>
+                            <button type="button" class="txtF" id="chatbtn2">구독상품 문의</button>
+                            <button type="button" class="txtF" id="chatbtn3">홈페이지 오류 문의</button>
+                            <button type="button" class="txtF" id="chatbtn4">회원가입 / 로그인 문의</button>
+                            <button type="button" class="txtF" id="chatbtn5">커뮤니티 문의</button>
+                            <button type="button" class="txtF" id="chatbtn6">배송 문의</button>
+                        </div>
+                    </div>
+                    <div class="chatBotDiv">
+                        <div id="btn">
+                            <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
+                            <p>빠른상담</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- booktopia 간단 소개 부분-->
                 <div class="main-simpleInfo">
                     <div class="simpleInfo">
                         <div class="Info Adv1">소개1</div>
@@ -20,6 +51,8 @@
                         <div class="Info Adv1">소개3</div>
                     </div>
                 </div>
+
+                <!--도서취향 검사 부분-->
                 <div class="bookTopia">
                     <div class="bookTopia-img"><img src="#"></div>
                     <div class="bookTopia-detail">
@@ -28,6 +61,8 @@
                         <button type="button"><a href="/booktopiaTest/test">도서 취향 검사하러 가기</a></button>
                     </div>
                 </div>
+
+                <!--커뮤니티 부분-->
                 <div class="commu">
                     <div class="commu-detail">
                         <p>다양한 사람들과의 토론을 통해 느끼는</p>

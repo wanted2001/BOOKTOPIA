@@ -82,12 +82,9 @@ document.addEventListener('click',(e)=>{
             i++;
             if(e.target.id == 'btn1'){
                 btnResult += 1;
-
             } else if(e.target.id == 'btn2'){
                 btnResult += 2;
-
             }
-
             console.log(btnResult);
         }
         else if(i == testListaArry.length){
@@ -98,9 +95,7 @@ document.addEventListener('click',(e)=>{
             }
             document.getElementById('questionDiv').style.display = "none";
             document.getElementById('resultDiv').style.display = 'block';
-
         }
-        
     }
     else if(e.target.classList.contains('result')){
         console.log(e.target.classList);
