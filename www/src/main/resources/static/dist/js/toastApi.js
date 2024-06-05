@@ -5,7 +5,7 @@ let bMainImg='';
 const editor = new toastui.Editor({
     el: document.querySelector('#editor'),
     height: '500px',
-    initialValue: '내용을 입력해주세요',
+    previewStyle: 'vertical',
     initialEditType:'markdown',
     toolbarItems:[
         ['heading','bold','italic','strike'],
@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
     ul.addEventListener("click", (e)=> {
         console.log(e)
         if (e.target.tagName === "LI") {
-            console.log(e.target.dataset.value);
-            console.log(e.target.getAttribute("data-value"));
-            console.log(e.target);
+            // console.log(e.target.dataset.value);
+            // console.log(e.target.getAttribute("data-value"));
+            // console.log(e.target);
         }
     });
 
@@ -107,11 +107,11 @@ async function handleEditor(event) {
     const commul = document.getElementById('commSelID');
     let selectedText = document.getElementById('selectedText');
     let bCate = selectedText.innerText;
-    const commSocialId= document.querySelector('.commSocialId').value;
-    console.log(commSocialId);
+    const commSaveId = document.querySelector('.commSaveId').innerText;
+    console.log(commSaveId);
 
     cateBtn.addEventListener('click', function () {
-        console.log('cateBtn clicked');
+        // console.log('cateBtn clicked');
         commul.classList.toggle('show');
     });
 
@@ -123,6 +123,7 @@ async function handleEditor(event) {
         const bWriter = document.querySelector('.IDspan').innerHTML;
 
         postData = {
+            id:commSaveId,
             bTitle: bTitle,
             bWriter: bWriter,
             bContent: bContent,
@@ -139,7 +140,7 @@ async function handleEditor(event) {
             bCate = this.textContent;
             selectedText.textContent = bCate;
             commul.classList.remove('show');
-            console.log('commli item clicked', bCate);
+            // console.log('commli item clicked', bCate);
             updatePostData();
             console.log(postData)
             submitPostData(postData).then(result=>{
