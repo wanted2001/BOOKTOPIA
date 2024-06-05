@@ -108,8 +108,6 @@ async function handleEditor(event) {
         });
     });
 
-    console.log("postData값 "+postData);
-
 
 
     // const bContent = editor.getMarkdown();
