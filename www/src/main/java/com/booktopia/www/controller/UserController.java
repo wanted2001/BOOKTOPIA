@@ -55,4 +55,7 @@ public class UserController {
         log.info("type >> {}",type);
         return type;
     }
+
+    @GetMapping("/test")
+    public void callarea(){}
 }
