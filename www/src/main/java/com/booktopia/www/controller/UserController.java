@@ -56,8 +56,20 @@ public class UserController {
         return type;
     }
 
-    @GetMapping("/test")
-    public void intodiv(){
+    @GetMapping("/myPageCoupon")
+    public void myPageCoupon(){
+    }
+    @GetMapping("/myPageModify")
+    public void myPageModify(){
+    }
+    @GetMapping("/myPageAddress")
+    public void myPageAddress(){
+    }
+    @GetMapping("/myPagePayment")
+    public void myPagePayment(){
+    }
+    @GetMapping("/myPageSub")
+    public void myPageSub(){
     }
 
 }
