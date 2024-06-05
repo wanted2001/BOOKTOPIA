@@ -38,7 +38,6 @@ public class BoardController {
         boardVO.setBContent((String) obj.get("bContent"));
         boardVO.setBWriter((String) obj.get("bWriter"));
         boardVO.setBCate((String)obj.get("bCate"));
-        boardVO.setBMainImg((String) obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
         bsv.insert(boardVO);
