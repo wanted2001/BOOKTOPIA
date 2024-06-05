@@ -41,9 +41,10 @@ public class BoardController {
         return ResponseEntity.ok("success");
     }
 
-//    @GetMapping("/detail")
-//    public String detail(Model m, @RequestParam("bno")long bno){
-//        m.addAttribute("bvo", bsv.getDetail(bno));
-//        return "/community/communityDetail";
-//    }
+    @GetMapping("/detail")
+    public void detail(Model m, @RequestParam("bno")long bno){
+        BoardVO bvo = bsv.getDetail(bno);
+        log.info("detail bvo >>>>{}",bvo);
+        m.addAttribute("bvo",bvo);
+    }
 }

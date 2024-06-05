@@ -26,5 +26,10 @@ public class UserServiceImpl implements UserService {
         return isOk;
     }
 
+    @Override
+    public String isSocialUser(String id) {
+        return userMapper.isSocialUser(id);
+    }
+
 
 }

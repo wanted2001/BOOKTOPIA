@@ -5,14 +5,14 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="commDeCate"></div>
+            <div class="commDeCate">[[${bvo.bCate}]]</div>
             <!--작성자, 등록일 하나로-->
-            <div class="commDeTitle"></div>
+            <div class="commDeTitle">[[${bvo.bTitle}]]</div>
             <div class="commDeWriterInfo">
-                <div class="commDeWriter"></div>
-                <div class="commDeRegdate"></div>
+                <div class="commDeWriter">[[${bvo.bWriter}]]</div>
+                <div class="commDeRegdate">[[${bvo.bRegDate}]]</div>
             </div>
-            <div class="commDeContent"></div>
+            <div class="commDeContent">[[${bvo.bContent}]]</div>
             <!--댓글출력란-->
             <div class="commDeComment">
                 <div class="commDe-ComInfo">
@@ -33,5 +33,6 @@
                 </form>
             </div>
         </div>
+        </th:block>
     </th:block>
 </th:block>

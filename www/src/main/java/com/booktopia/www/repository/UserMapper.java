@@ -22,4 +22,6 @@ public interface UserMapper {
     int saveOauthUser(UserVO user);
 
     int checkId(String id);
+
+    String isSocialUser(String id);
 }

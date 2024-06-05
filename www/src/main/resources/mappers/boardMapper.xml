@@ -10,10 +10,39 @@
 
     <select id="getList" resultType="com.booktopia.www.domain.BoardVO">
         select * from board
+        <include refid="search"></include>
+        order by bno desc
+        limit #{pageStart},10
     </select>
 
     <select id="getTotalCount" resultType="int">
         select count(bno) from board
+        <include refid="search"></include>
     </select>
 
+    <select id="getDetail" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board where bno=#{bno}
+    </select>
+
+    <sql id="search">
+        <if test="type!=null">
+            <trim prefix="where (" suffix=")" suffixOverrides="or">
+                <foreach collection="typeToArray" item="type">
+                    <trim suffix="or">
+                        <choose>
+                            <when test="type=='w'.toString()">
+                                b_writer like concat('%',#{keyword},'%')
+                            </when>
+                            <when test="type=='t'.toString()">
+                                b_title like concat('%',#{keyword},'%')
+                            </when>
+                            <when test="type=='c'.toString()">
+                                b_content like concat('%',#{keyword},'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
 </mapper>

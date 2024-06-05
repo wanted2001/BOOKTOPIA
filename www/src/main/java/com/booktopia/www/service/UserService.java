@@ -8,4 +8,6 @@ public interface UserService {
     int joinInsert(UserVO uvo);
 
     int checkId(String id);
+
+    String isSocialUser(String id);
 }
