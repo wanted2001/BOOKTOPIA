@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class VoteController {
 
-    private final VoteService vsv;
-    private final UserService usv;
+    private final VoteService voteService;
+    private final UserService userService;
 
 }
