@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const idElement = document.getElementById("myPageUserName");
     const modifyInfo = document.getElementById("modifyMyInfo");
     const moveContainer = document.getElementById("myPageInfoRightWrapId");
+    const socialDelete = document.getElementById("socialUser");
+    const comDelete = document.getElementById("comUser");
 
     if (!idElement || !modifyInfo || !moveContainer) {
         console.log(idElement);
@@ -18,15 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageAddress = "/mypage/changeaddr";
     const myPagePayment = "/mypage/payinfo";
     const myPageSubscribe = "/mypage/subinfo";
+    const isSocial = "/user/test";
 
     isSocialUser(idVal).then(result => {
-        console.log(result);
-        if (result !== "일반") {
-            modifyInfo.style.display = "none";
-        }
-    });
+            console.log(result);
+            if (result != "일반") {
+                pageCallarea(isSocial);
+                comDelete.style.display = "none";
+            }
+        });
 
     pageCall(myPageSubscribe);
+
 
     document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageSub').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -79,6 +84,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     }
+
+     function pageCallarea(link) {
+            const request = new XMLHttpRequest();
+            request.open("GET", link, true);
+            request.send();
+            request.onreadystatechange = function () {
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        const moveContainer = document.getElementById("deleteMemberType");
+                        if (moveContainer) {
+                            moveContainer.innerHTML = request.responseText;
+                            console.log("성공");
+                        } else {
+                            console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
+                        }
+                    } else {
+                        console.error("요청 실패, 상태 코드: " + request.status);
+                    }
+                }
+            };
+        }
 
     async function isSocialUser(id) {
         try {
