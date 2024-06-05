@@ -70,11 +70,11 @@ public class SecurityConfig {
                                 .failureHandler(oAuth2AuthenticationFailureHandler)
                 )
                 .logout(logout-> logout
-                        .logoutUrl(("/user/logout"))
+                                .logoutUrl(("/user/logout"))
 //                        .logoutUrl(("/oauth2/authorization/**?mode=unlink"))
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .logoutSuccessUrl("/")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                                .logoutSuccessUrl("/")
                 );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
