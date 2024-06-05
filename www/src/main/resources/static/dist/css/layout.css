@@ -6,7 +6,7 @@
 }
 .chatBotDiv{
     width: 70px;
-    transform: translate(-330px, 650px);
+    transform: translate(30px, 200px);
     text-align: center;
     position: absolute;
     z-index: 9;
@@ -20,7 +20,7 @@
 .chatBotText{
     /*display: none;*/
     float: right;
-    transform: translate(-750px, 60px);
+    transform: translate(-400px, -380px);
     width: 400px;
     height: 550px;
     border-radius: 20px;
@@ -69,4 +69,8 @@
     border-radius: 5px;
     box-shadow: 1px 1px 5px #c6c6c6bf;
     background: white;
+}
+.AnserText{
+    padding: 120px 0 0 20px;
+    line-height: 25px;
 }

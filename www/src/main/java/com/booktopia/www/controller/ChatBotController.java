@@ -18,11 +18,10 @@ public class ChatBotController {
 
     @PostMapping("/get")
     @ResponseBody
-    public ChatBotVO getChatBot(@RequestBody String btn, Model m){
+    public String getChatBot(@RequestBody String btn, Model m){
         log.info("controller in >>>> {}", btn);
         ChatBotVO chatBotVO = chatBotService.get(btn);
         log.info(">>>isOk >> {}", chatBotVO);
-        m.addAttribute("chat", chatBotVO);
-        return chatBotVO;
+        return "1";
     }
 }
