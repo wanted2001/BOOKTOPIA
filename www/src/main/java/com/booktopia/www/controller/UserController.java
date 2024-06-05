@@ -55,21 +55,4 @@ public class UserController {
         log.info("type >> {}",type);
         return type;
     }
-
-    @GetMapping("/myPageCoupon")
-    public void myPageCoupon(){
-    }
-    @GetMapping("/myPageModify")
-    public void myPageModify(){
-    }
-    @GetMapping("/myPageAddress")
-    public void myPageAddress(){
-    }
-    @GetMapping("/myPagePayment")
-    public void myPagePayment(){
-    }
-    @GetMapping("/myPageSub")
-    public void myPageSub(){
-    }
-
 }

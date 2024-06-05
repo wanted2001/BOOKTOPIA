@@ -49,8 +49,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login","/user/join","/image/**","/user/check",
-                                "/community/**", "/community/register","/board/*","/board/register","/user/isSocialUser/*","/user/myPageCoupon",
-                                "/user/myPageModify","/user/myPageAddress","/user/myPagePayment","/user/myPageSub")
+                                "/community/**", "/community/register","/board/*","/board/register","/user/isSocialUser/*","/mypage/changeaddr",
+                                "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()

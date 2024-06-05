@@ -1,87 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const id = document.getElementById("myPageUserName");
-    const idVal = id.innerText;
-    const modifyInfo =  document.getElementById("modiftMyInfo");
-    const headBtn = document.getElementById("load-header");
-    const moveContainer = document.getElementById("header-container");
-    // 쿠폰페이지
-    const myPageCoupon = "/user/myPageCoupon";
-    // 수정페이지(일반 회원만)
-    const myPageModify = "/user/myPageModify";
-    // 배송지 수정
-    const myPageAddress = "/user/myPageAddress";
-    // 결제내역
-    const myPagePayment = "/user/myPagePayment";
-    // 이용중인 구독권
-    const myPageSubscribe = "/user/myPageSub";
+    const idElement = document.getElementById("myPageUserName");
+    const modifyInfo = document.getElementById("modifyMyInfo");
+    const moveContainer = document.getElementById("myPageInfoRightWrapId");
 
-    isSocialUser(idVal).then(result=>{
+    if (!idElement || !modifyInfo || !moveContainer) {
+        console.log(idElement);
+        console.log(modifyMyInfo);
+        console.log(moveContainer);
+        console.error("필요한 요소 중 하나 이상이 DOM에 없습니다.");
+        return;
+    }
+
+    const idVal = idElement.innerText;
+
+    const myPageCoupon = "/mypage/couponlist";
+    const myPageModify = "/mypage/modify";
+    const myPageAddress = "/mypage/changeaddr";
+    const myPagePayment = "/mypage/payinfo";
+    const myPageSubscribe = "/mypage/subinfo";
+
+    isSocialUser(idVal).then(result => {
         console.log(result);
-        if(result !="일반"){
-                modifyInfo.style.display = "none";
-            }
+        if (result !== "일반") {
+            modifyInfo.style.display = "none";
+        }
     });
 
-    // 마이페이지 실행되면 나오는 페이지 자동 생성
-    // pageCall(myPageSubscribe);
+    pageCall(myPageSubscribe);
 
-    // 페이지 바꿔주는 이벤트
-document.addEventListener("click", (e) => {
-    let myPageMoveBtn = e.target.id;
-    console.log(myPageMoveBtn);
-    if (myPageMoveBtn == 'myPageCoupon') {
-        console.log("쿠폰 페이지 인")
-        moveContainer.innerHTML = "";
-        pageCall(myPageCoupon);
+    document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageSub').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const myPageMoveBtn = e.target.id;
+            console.log(myPageMoveBtn);
+            moveContainer.innerHTML = "";
+
+            switch (myPageMoveBtn) {
+                case 'myPageCoupon':
+                    console.log("쿠폰 페이지로 이동");
+                    pageCall(myPageCoupon);
+                    break;
+                case 'myPageModify':
+                    console.log("수정 페이지로 이동");
+                    pageCall(myPageModify);
+                    break;
+                case 'myPageAddress':
+                    console.log("주소 페이지로 이동");
+                    pageCall(myPageAddress);
+                    break;
+                case 'myPagePayment':
+                    console.log("결제 페이지로 이동");
+                    pageCall(myPagePayment);
+                    break;
+                case 'myPageSub':
+                    console.log("구독 페이지로 이동");
+                    pageCall(myPageSubscribe);
+                    break;
+            }
+        });
+    });
+
+    function pageCall(link) {
+        const request = new XMLHttpRequest();
+        request.open("GET", link, true);
+        request.send();
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    const moveContainer = document.getElementById("myPageInfoRightWrapId");
+                    if (moveContainer) {
+                        moveContainer.innerHTML = request.responseText;
+                        console.log("성공");
+                    } else {
+                        console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
+                    }
+                } else {
+                    console.error("요청 실패, 상태 코드: " + request.status);
+                }
+            }
+        };
     }
-    if (myPageMoveBtn == 'myPageModify') {
-        console.log("수정 페이지 인")
-        moveContainer.innerHTML = "";
-        pageCall(myPageModify);
-    }
-    if(myPageMoveBtn == 'myPageAddress') {
-        console.log("주소 페이지 인")
-        moveContainer.innerHTML = "";
-        pageCall(myPageAddress);
-    }
-    if(myPageMoveBtn == 'myPagePayment') {
-        console.log("결제 페이지 인")
-        moveContainer.innerHTML = "";
-        pageCall(myPagePayment);
-    }
-    if(myPageMoveBtn == 'myPageSub'){
-        console.log("구독 페이지 인");
-        moveContainer.innerHTML = "";
-        pageCall(myPageSub);
-    }
 
-});
-
-
-
-
-
-// 페이지 불러오는 메서드
-function pageCall(link) {
-    var request = new XMLHttpRequest();
-    request.open("GET", link, true);
-    request.send();
-    request.onreadystatechange = function () {
-        if (request.status === 200) {
-            document.getElementById("header-container").innerHTML = request.responseText;
-            console.log("성공");
-        }
-    }
-}
-
-// 가입 유형에 따라 개인정보 수정 활성화 / 비활성화
-async function isSocialUser(id) {
-    try {
-        const resp = await fetch("/user/isSocialUser/" + id);
-        const result = await resp.text();
-        return result;
-    } catch (error) {
-        console.log(error);
+    async function isSocialUser(id) {
+        try {
+            const resp = await fetch("/user/isSocialUser/" + id);
+            const result = await resp.text();
+            return result;
+        } catch (error) {
+            console.log(error);
         }
     }
 });
