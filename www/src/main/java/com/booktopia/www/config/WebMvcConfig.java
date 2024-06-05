@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+    //윈도우
     String uploadPath = "file:///C:\\_booktopia\\_fileUpload/";
 
     @Override
