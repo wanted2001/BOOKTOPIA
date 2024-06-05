@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" th:href="@{/dist/css/myPage.css}">
-<script type="text/javascript" th:src="@{/dist/js/myPage.js}"></script>
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block sec:authorize="isAuthenticated()">
         <th:block th:fragment="content">
@@ -13,10 +12,13 @@
                                 <div class="myPageUserInfoWrap">
                                     <div class="myPageLeftUpInfo">
                                         <div class="myPageLeftUpInfoImg">
-                                            <img th:src="@{/image/kakaoLogin.png}" alt="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+                                                <path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+                                                <path d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+                                            </svg>
                                         </div>
                                         <div class="myPageLeftUpInfoName">
-                                            <a sec:authentication="name" id="myPageUserName"></a></li>
+                                            <a sec:authentication="name"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +41,7 @@
                                                 <div class="myPageLeftDownWrap4Img"><img
                                                         th:src="@{/image/kakaoLogin.png}"
                                                         alt="#"></div>
-                                                <div class="myPageLeftDownWrap4Status"><a id = "myPagesubcribe">이용중인 구독권</a></div>
+                                                <div class="myPageLeftDownWrap4Status"><a>이용중인 구독권</a></div>
                                             </div>
                                             <div class="myPageLeftDownWrap4">
                                                 <div class="myPageLeftDownWrap4Img"><img
@@ -47,7 +49,7 @@
                                                         alt="#"></div>
                                                 <div class="myPageLeftDownWrap4Status"><a>결제 내역</a></div>
                                             </div>
-                                            <div class="myPageLeftDownWrap4" id="modiftMyInfo">
+                                            <div class="myPageLeftDownWrap4">
                                                 <div class="myPageLeftDownWrap4Img"><img
                                                         th:src="@{/image/kakaoLogin.png}"
                                                         alt="#"></div>
@@ -73,7 +75,6 @@
                         <div class="myPageInfoRigthWrap">
                             <div class="myPageRight">
                                 <div class="myPageRightWrap">
-
                                     <div class="myPageRightWrapInfo">
                                         <div class="myPageRightWrapInfoText">개인정보 수정</div>
                                         <div class="myPageRightWrapInfoModWrap">
@@ -125,11 +126,6 @@
                                                     <div class="myPageModInputFormWrapBtn">
                                                         <button type="submit">회원정보 수정</button>
                                                     </div>
-                                                    <div id="header-container">
-                                                        <!-- Header content will be loaded here -->
-
-                                                    </div>
-                                                    <button type="button" id="load-header">Load Header</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -6,7 +6,6 @@
         <!--토스트 API 스크립트-->
         <!--        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>-->
         <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
         <div class="wrap">
             <div class="wrap">
@@ -24,8 +23,8 @@
                         </ul>
                     </div>
                     <div class="commToast">
+                        <form action="/board/register" method="post" onsubmit="handleEditor(event)">
                         <!-- 게시판 선택 select 효과 -->
-                        <form action="/community/register" method="post" enctype="multipart/form-data">
                             <div class="commRegiCate">
                                 <button class="cateBtn">
                                     <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
@@ -44,14 +43,14 @@
                             <div class="commContent">
                                 <div class="commTitle">
                                     <!-- <label for="commTitleID" class="commTitleLabel">제목</label> -->
-                                    <input type="text" id="commTitleID" class="commTitle" placeholder="제목을 입력해주세요">
+                                    <input type="text" id="commTitleID" name="commTitleID" class="commTitle" placeholder="제목을 입력해주세요">
                                 </div>
                                 <!-- 토스트 에디터 부분 -->
                                 <div id="editor"></div>
                                 <!-- 내용 작성 부분 -->
                                 <div id="editorContent"></div>
                                 <div>
-                                    <button type="button" class="commRegiBtn" onclick="handleEditor()">등록</button>
+                                    <button type="submit" class="commRegiBtn">등록</button>
                                 </div>
                             </div>
                     </div>

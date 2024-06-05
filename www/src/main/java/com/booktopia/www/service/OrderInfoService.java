@@ -11,4 +11,6 @@ public interface OrderInfoService {
 
 
     OrderInfoDTO getSuccessPayInfo(OrderInfoDTO oidto);
+
+    void isnert(OrderInfoVO oivo);
 }

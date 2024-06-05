@@ -18,6 +18,8 @@ public class OrderInfoDTO {
     private String ordEmail;
     private String itemName;
     private int totalAmount;
+    private String ordAddr;
+
 
 //    private OrderInfoVO oivo;
 //    private PayVO pvo;

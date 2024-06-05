@@ -4,8 +4,45 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.booktopia.www.repository.BoardMapper">
     <insert id="insert">
-        insert into board (b_title, b_content)
-        values (#{bTitle},#{bContent})
+        insert into board (id,b_title,b_writer, b_content,b_cate)
+        values ("3503320191", #{bTitle},"김정온",#{bContent},"전체")
     </insert>
 
+    <select id="getList" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board
+        <include refid="search"></include>
+        order by bno desc
+        limit #{pageStart},10
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        select count(bno) from board
+        <include refid="search"></include>
+    </select>
+
+    <select id="getDetail" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board where bno=#{bno}
+    </select>
+
+    <sql id="search">
+        <if test="type!=null">
+            <trim prefix="where (" suffix=")" suffixOverrides="or">
+                <foreach collection="typeToArray" item="type">
+                    <trim suffix="or">
+                        <choose>
+                            <when test="type=='w'.toString()">
+                                b_writer like concat('%',#{keyword},'%')
+                            </when>
+                            <when test="type=='t'.toString()">
+                                b_title like concat('%',#{keyword},'%')
+                            </when>
+                            <when test="type=='c'.toString()">
+                                b_content like concat('%',#{keyword},'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
 </mapper>

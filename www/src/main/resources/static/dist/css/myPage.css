@@ -10,15 +10,13 @@ font-family:SCDream4;
 .myPageInfoWrap{
     width: 1400px;
     height:900px;
-    background-color: black;
     padding-top: 50px;
 
 }
 
 .myPageInfoWrap2{
-    width: 1200px;
+    width: 1300px;
     height: 700px;
-    background-color: antiquewhite;
     margin: 0 auto;
 }
 
@@ -28,40 +26,34 @@ font-family:SCDream4;
 
 .myPageInfoRigthWrap{
     float: right;
+    padding-right: 60px
 }
 
 .myPageLeftUp{
     width: 600px;
     height: 200px;
-    background-color: aqua;
+
 }
 
 .myPageLeftDown{
     width: 600px;
     height: 500px;
-    background-color: bisque;
-}
 
-.myPageRight{
-    width: 600px;
-    height: 700px;
-    background-color: blue;
 }
 
 .myPageUserInfoWrap{
     width: 400px;
     height: 100px;
     margin: 0 auto;
-    background-color: blueviolet;
 }
 
 .myPageLeftUpInfo{
-    display: flex;
+display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 34px;
     line-height: 50px;
-    margin-right: 90px;
+    margin-right: 19px;
 }
 
 .myPageLeftUpInfoName{
@@ -87,7 +79,6 @@ font-family:SCDream4;
     width: 400px;
     height: 100px;
     margin: 0 auto;
-    background-color: cadetblue;
 }
 
 .myPageSubMoveLink{
@@ -99,7 +90,6 @@ font-family:SCDream4;
 .myPageLeftDownWrap{
     width: 400px;
     height: 500px;
-    background-color: brown;
     display: flex;
     margin: 0 auto;
 }
@@ -109,7 +99,6 @@ font-family:SCDream4;
     height: 450px;
     display: flex;
     margin: auto auto;
-    background-color: #a0bfc0;
 }
 
 .myPageLeftDownWrap3{
@@ -118,21 +107,27 @@ font-family:SCDream4;
     margin: auto auto;
     display: flex;
     flex-direction: column;
-    background-color: aquamarine;
+
 }
 
-.myPageLeftDownWrap4{
-    width: 250px;
-    height: 40px;
+.myPageLeftDownWrap4 {
+    width: 300px;
+    height: 70px;
     display: flex;
-    flex-direction: row;
-    background-color: chocolate;
+    justify-content: space-between;
+    /* background-color: chocolate; */
     margin: auto auto;
-}
+    /* text-align: right; */
+    border-bottom: 1px solid black;
+    box-shadow: 1px 0px 3px;
+    padding: 15px;
+    border-radius: 5px;
+    }
 
-.myPageLeftDownWrap4Img>img{
+
+.bi{
     width: 50px;
-    height: 40px;
+    height: 50px;
 }
 
 .myPageLeftDownWrap4Status>a{
@@ -142,16 +137,54 @@ font-family:SCDream4;
 
 }
 
+    /* 오른쪽 바뀌는 부분 작업중 */
+
 .myPageRight{
     display: flex;
+    width: 600px;
+    height: 800px;
+    border: 2px solid blue;
 }
 
 .myPageRightWrap{
-    width: 500px;
-    height: 800px;
-    background-color: chartreuse;
-    margin: auto auto;
+        width: 500px;
+        height: 730px;
+        margin: auto auto;
+        border: 2px solid red;
 }
+
+
+.mypagetitle{
+    width: 500px;
+    height: 50px;
+    text-align: center;
+    font-size: 2em;
+    border: 1px solid;
+    line-height: 50px;
+}
+
+.mypageMsg{
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+    border: 1px solid;
+    margin: 160px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .myPageRightWrapInfoText{
     width: 500px;
