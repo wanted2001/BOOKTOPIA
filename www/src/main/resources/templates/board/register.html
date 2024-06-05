@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:with="auth=${#authentication.getPrincipal()}">
     <th:block th:fragment="content">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
@@ -23,9 +24,10 @@
                     </ul>
                 </div>
                 <div class="commToast" >
-                    <div id="commForm"  method="POST" onchange="handleEditor(event)">
+                    <div id="commForm" onchange="handleEditor(event)">
                         <!--아이디-->
-                        <span sec:authentication="name" class="IDspan" th:style="'display:none'"></span>
+                        <span sec:authentication="name" class="IDspan" id="commID" th:style="'display:none'"></span>
+                        <span id="deleteMemberType2"></span>
                         <!-- 게시판 선택 select 효과 -->
                         <div class="commRegiCate">
                             <button class="cateBtn">
@@ -63,5 +65,6 @@
         <!--토스트 API 스크립트-->
         <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
         <script th:src="@{/dist/js/toastApi.js}"></script>
+    </th:block>
     </th:block>
 </th:block>

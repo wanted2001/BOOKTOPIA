@@ -1,6 +1,6 @@
 console.log("toastApi js in")
 
-let mainImage='';
+let bMainImg='';
 
 const editor = new toastui.Editor({
     el: document.querySelector('#editor'),
@@ -23,9 +23,9 @@ const editor = new toastui.Editor({
                     body:formData
                 });
                 const fileName = await response.text();
-                console.log("파일명 :"+ fileName);
-                if(mainImage==='') {
-                    mainImage=fileName;
+                console.log("서버에 저장된 파일명 :"+ fileName);
+                if(bMainImg==='') {
+                    bMainImg=fileName;
                 }
 
                 const imageUrl = `/file/filePrint?fileName=${fileName}`;
@@ -36,16 +36,6 @@ const editor = new toastui.Editor({
         }
     }
 });
-
-/*selected*/
-// $(document).ready(function (){
-//     $('.commseaUl').on("click","li",function (e){
-//         console.log($(e.target).data("value"));
-//         console.log($(this).data("value"));
-//
-//         console.log(this)
-//     })
-// })
 
 document.addEventListener("DOMContentLoaded", function() {
     const ul = document.querySelector('.commul');
@@ -58,6 +48,54 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(e.target);
         }
     });
+
+    const idElement = document.getElementById('commID');
+
+    const idVal = idElement.innerText;
+    console.log(idVal);
+
+    const socialId ="/board/socialId";
+    const userId = "/board/userId";
+
+    isSocialUser(idVal).then(result => {
+        console.log(result);
+        if (result != "일반") {
+            pageCall(socialId);
+        } else {
+            pageCall(userId);
+        }
+    });
+
+    function pageCall(link) {
+        const request = new XMLHttpRequest();
+        request.open("GET", link, true);
+        request.send();
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    const moveContainer = document.getElementById("deleteMemberType2");
+                    if (moveContainer) {
+                        moveContainer.innerHTML = request.responseText;
+                        console.log("성공");
+                    } else {
+                        console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
+                    }
+                } else {
+                    console.error("요청 실패, 상태 코드: " + request.status);
+                }
+            }
+        };
+    }
+
+    async function isSocialUser(id) {
+        try {
+            const resp = await fetch("/user/isSocialUser/" + id);
+            const result = await resp.text();
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 });
 
 
@@ -69,6 +107,8 @@ async function handleEditor(event) {
     const commul = document.getElementById('commSelID');
     let selectedText = document.getElementById('selectedText');
     let bCate = selectedText.innerText;
+    const commSocialId= document.querySelector('.commSocialId').value;
+    console.log(commSocialId);
 
     cateBtn.addEventListener('click', function () {
         console.log('cateBtn clicked');
@@ -86,7 +126,8 @@ async function handleEditor(event) {
             bTitle: bTitle,
             bWriter: bWriter,
             bContent: bContent,
-            bCate: bCate
+            bCate: bCate,
+            bMainImg:bMainImg
         };
 
         console.log(postData);
@@ -107,25 +148,6 @@ async function handleEditor(event) {
                     alert("게시물이 등록되었습니다.")
                 }
             })
-            // try{
-            //         const resp = await fetch('/board/register',{
-            //             method:"POST",
-            //             headers:{
-            //                 'Content-Type':'application/json; charset=utf8'
-            //             },
-            //             body:JSON.stringify(postData)
-            //         });
-            //         if(resp.ok){
-            //             const result = await resp.text();
-            //             console.log(result)
-            //             console.log("게시글 등록 성공")
-            //             // window.location.href="/board/list";
-            //         } else {
-            //             console.log("서버 오류 : "+resp.statusText);
-            //         }
-            //     } catch (error) {
-            //         console.log("저장 실패 :"+error)
-            // }
         });
     });
 

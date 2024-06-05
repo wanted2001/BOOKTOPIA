@@ -37,6 +37,7 @@ public class BoardController {
         boardVO.setBContent((String) obj.get("bContent"));
         boardVO.setBWriter((String) obj.get("bWriter"));
         boardVO.setBCate((String)obj.get("bCate"));
+        boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
         bsv.insert(boardVO);
@@ -49,4 +50,10 @@ public class BoardController {
         log.info("detail bvo >>>>{}",bvo);
         m.addAttribute("bvo",bvo);
     }
+
+    @GetMapping("/socialId")
+    public void socialId(){}
+
+    @GetMapping("/userId")
+    public void userId(){}
 }
