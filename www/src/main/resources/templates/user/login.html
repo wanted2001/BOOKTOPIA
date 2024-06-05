@@ -10,9 +10,9 @@
                     <form action="/user/login" method="post">
                         <input type="text" name="id"placeholder="id..." id="loginId"><br>
                         <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
-                        <span>
-                        <p id="valid" class="text-danger" th:if="${error}" th:text="${exception}"></p>
-                        </span>
+                        <div th:if="errorMessage">
+                            <p id="errMsg" style="color: red; font-size:12px;"><a th:text="${errorMessage}"></a></p>
+                        </div>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>
@@ -50,5 +50,8 @@
                 </div>
             </div>
         </div>
+
+
     </th:block>
 </th:block>
+

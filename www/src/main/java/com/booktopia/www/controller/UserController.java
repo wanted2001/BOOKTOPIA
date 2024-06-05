@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition;
 
@@ -24,8 +25,26 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public void login(){
+    public String login(@RequestParam(name = "error", required = false) String error, Model model) {
+        log.info(">>>>>>>>>>>>>>> login error 잡힘!");
+        log.info("error {}", error);
+        if(error != null){
+            model.addAttribute("errorMessage", "아이디와 비밀번호를 확인해주세요.");
+            return "/user/login";
+        }else{
+            return "/user/login";
+        }
+
     }
+//
+//    @PostMapping("/login")
+//    public String loginPage(@RequestParam(name = "error", required = false) String error, Model model) {
+//        log.info(">>>>>>>>>>>>>>> login error 잡힘!");
+//        if (error != null) {
+//            model.addAttribute("errorMessage", "로그인에 실패했습니다. 다시 시도하세요.");
+//        }
+//        return "/login";
+//    }
 
     @GetMapping("/join")
     public void join(){
