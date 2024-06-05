@@ -30,7 +30,9 @@
     position: absolute;
     padding: 30px;
 }
-
+.animate__animated .animate__bounce{
+    transform: translate(20px, 20px);
+}
 .textTop{
     height: 10%;
     background: aqua;

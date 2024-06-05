@@ -11,11 +11,15 @@
                 <div class="commTopic">토론주제</div>
                 <div class="commViewVote">
                     <div class="commVoteUp" id="voteUp">
-                        <a th:href="@{/community/clickUp}"><button class="upBtn"><img src="/image/thumbs-up.png" alt="투표이미지" /></button></a>
+<!--                        <a th:href="@{/community/clickUp}"><button class="upBtn"><img src="/image/thumbs-up.png" alt="투표이미지" /></button></a>-->
+                        <button class="upBtn"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg"/></button></a>
                     </div>
-                    <div class="commVoteBar"></div>
+                    <div class="commVoteBar">
+<!--                        <div class="upPersentbox"></div>-->
+                        <div class="downPerbox"></div>
+                    </div>
                     <div class="commVoteDown">
-                        <button class="downBtn"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" /></button>
+                        <button class="downBtn"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="downImg" /></button>
                     </div>
                 </div>
             </div>
