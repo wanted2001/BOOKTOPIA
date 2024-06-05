@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
-        <!--토스트 API 스크립트-->
-        <!--        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>-->
+        <!--토스트 API-->
         <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
         <div class="wrap">
@@ -24,20 +25,23 @@
                     </div>
                     <div class="commToast">
                         <form action="/board/register" method="post" onsubmit="handleEditor(event)">
-                        <!-- 게시판 선택 select 효과 -->
+                            <!--아이디-->
+                            <th:block th:with="auth=${#authentication.getPrincipal()}">[[${auth}]]</th:block>
+                            <span sec:authentication="name" class="IDspan" th:style="'display:none'"></span>
+                            <!-- 게시판 선택 select 효과 -->
                             <div class="commRegiCate">
                                 <button class="cateBtn">
                                     <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
                                     <span id="selectedText">게시판 선택</span>
                                 </button>
-                                <ul class="commul">
-                                    <li class="commli">게시판 선택</li>
-                                    <li class="commli">소설</li>
-                                    <li class="commli">시/에세이</li>
-                                    <li class="commli">경제/경영</li>
-                                    <li class="commli">인문</li>
-                                    <li class="commli">역사/문화</li>
-                                    <li class="commli">자기개발</li>
+                                <ul class="commul" id="commSelID">
+                                    <li class="commli" data-select="1">게시판 선택</li>
+                                    <li class="commli" data-select="2">소설</li>
+                                    <li class="commli" data-select="3">시/에세이</li>
+                                    <li class="commli" data-select="4">경제/경영</li>
+                                    <li class="commli" data-select="5">인문</li>
+                                    <li class="commli" data-select="6">역사/문화</li>
+                                    <li class="commli" data-select="7">자기개발</li>
                                 </ul>
                             </div>
                             <div class="commContent">
@@ -53,6 +57,7 @@
                                     <button type="submit" class="commRegiBtn">등록</button>
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -60,7 +65,11 @@
 
         <!--토스트 API 스크립트-->
         <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-        <script th:src="@{/dist/js/select.js}"></script>
+<!--        <script th:inline="javascript">-->
+<!--            const userID = document.querySelector('.IDspan').innerHTML;-->
+<!--            console.log(userID)-->
+<!--        </script>-->
+<!--        <script th:src="@{/dist/js/select.js}"></script>-->
         <script th:src="@{/dist/js/toastApi.js}"></script>
     </th:block>
 </th:block>

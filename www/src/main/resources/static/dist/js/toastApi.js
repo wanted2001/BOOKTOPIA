@@ -37,38 +37,112 @@ const editor = new toastui.Editor({
     }
 });
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     const cateBtn = document.querySelector('.cateBtn');
+//     const commul = document.getElementById('commSelID');
+//     const selectedText = document.getElementById('selectedText');
+//
+//     cateBtn.addEventListener('click', function () {
+//         console.log('cateBtn clicked');
+//         commul.classList.toggle('show');
+//     });
+//
+//     const commliItems = document.querySelectorAll('.commli');
+//     commliItems.forEach(li => {
+//         li.addEventListener('click', function () {
+//             selectedText.textContent = this.textContent;
+//             commul.classList.remove('show');
+//             console.log('commli item clicked', this.textContent);
+//         });
+//     });
+//     let bCate = this.textContent;
+//
+// });
+
+/*selected*/
+$(document).ready(function (){
+    $('.commseaUl').on("click","li",function (e){
+        console.log($(e.target).data("value"));
+        console.log($(this).data("value"));
+
+        console.log(this)
+    })
+})
+
+
 async function handleEditor(event) {
     console.log("handle 이벤트 들어옴!");
     event.preventDefault();
 
-    const bContent = editor.getMarkdown();
-    const bTitle = document.getElementById('commTitleID').value
+    const cateBtn = document.querySelector('.cateBtn');
+    const commul = document.getElementById('commSelID');
+    let selectedText = document.getElementById('selectedText');
+    let bCate = selectedText.innerText;
 
-    const postData = {
-        bTitle:bTitle,
-        bContent: bContent
-    };
+    cateBtn.addEventListener('click', function () {
+        console.log('cateBtn clicked');
+        commul.classList.toggle('show');
+    });
 
-    console.log(postData)
-    try{
-        const resp = await fetch('/board/register',{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json; charset=utf8'
-            },
-            body:JSON.stringify(postData)
+    let postData = {};
+    const commliItems = document.querySelectorAll('.commli');
+    commliItems.forEach(li => {
+        li.addEventListener('click', function () {
+            bCate = this.textContent;
+            selectedText.textContent = bCate;
+            commul.classList.remove('show');
+            console.log('commli item clicked', bCate);
+
+            const bContent = editor.getMarkdown();
+            const bTitle = document.getElementById('commTitleID').value
+            const bWriter = document.querySelector('.IDspan').innerHTML;
+
+            postData = {
+                bTitle: bTitle,
+                bWriter: bWriter,
+                bContent: bContent,
+                bCate: bCate
+            };
+
+            console.log(postData)
         });
-        if(resp.ok){
-            const result = await resp.text();
-            console.log(result)
-            console.log("게시글 등록 성공")
-            // window.location.href="/board/list";
-        } else {
-            console.log("서버 오류 : "+resp.statusText);
-        }
-    } catch (error) {
-        console.log("저장 실패 :"+error)
-    }
+    });
+
+    console.log("postData값 "+postData);
+
+
+
+    // const bContent = editor.getMarkdown();
+    // const bTitle = document.getElementById('commTitleID').value
+    // const bWriter = document.querySelector('.IDspan').innerHTML;
+    //
+    // const postData = {
+    //     bTitle:bTitle,
+    //     bWriter:bWriter,
+    //     bContent: bContent,
+    //     bCate:bCate
+    // };
+    //
+    // console.log(postData)
+    // try{
+    //     const resp = await fetch('/board/register',{
+    //         method:"POST",
+    //         headers:{
+    //             'Content-Type':'application/json; charset=utf8'
+    //         },
+    //         body:JSON.stringify(postData)
+    //     });
+    //     if(resp.ok){
+    //         const result = await resp.text();
+    //         console.log(result)
+    //         console.log("게시글 등록 성공")
+    //         // window.location.href="/board/list";
+    //     } else {
+    //         console.log("서버 오류 : "+resp.statusText);
+    //     }
+    // } catch (error) {
+    //     console.log("저장 실패 :"+error)
+    // }
 
 }
 
