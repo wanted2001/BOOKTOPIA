@@ -37,37 +37,28 @@ const editor = new toastui.Editor({
     }
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const cateBtn = document.querySelector('.cateBtn');
-//     const commul = document.getElementById('commSelID');
-//     const selectedText = document.getElementById('selectedText');
-//
-//     cateBtn.addEventListener('click', function () {
-//         console.log('cateBtn clicked');
-//         commul.classList.toggle('show');
-//     });
-//
-//     const commliItems = document.querySelectorAll('.commli');
-//     commliItems.forEach(li => {
-//         li.addEventListener('click', function () {
-//             selectedText.textContent = this.textContent;
-//             commul.classList.remove('show');
-//             console.log('commli item clicked', this.textContent);
-//         });
-//     });
-//     let bCate = this.textContent;
-//
-// });
-
 /*selected*/
-$(document).ready(function (){
-    $('.commseaUl').on("click","li",function (e){
-        console.log($(e.target).data("value"));
-        console.log($(this).data("value"));
+// $(document).ready(function (){
+//     $('.commseaUl').on("click","li",function (e){
+//         console.log($(e.target).data("value"));
+//         console.log($(this).data("value"));
+//
+//         console.log(this)
+//     })
+// })
 
-        console.log(this)
-    })
-})
+document.addEventListener("DOMContentLoaded", function() {
+    const ul = document.querySelector('.commul');
+    console.log(ul)
+    ul.addEventListener("click", (e)=> {
+        console.log(e)
+        if (e.target.tagName === "LI") {
+            console.log(e.target.dataset.value);
+            console.log(e.target.getAttribute("data-value"));
+            console.log(e.target);
+        }
+    });
+});
 
 
 async function handleEditor(event) {
@@ -85,83 +76,81 @@ async function handleEditor(event) {
     });
 
     let postData = {};
+
+    function updatePostData(){
+        const bContent = editor.getMarkdown();
+        const bTitle = document.getElementById('commTitleID').value
+        const bWriter = document.querySelector('.IDspan').innerHTML;
+
+        postData = {
+            bTitle: bTitle,
+            bWriter: bWriter,
+            bContent: bContent,
+            bCate: bCate
+        };
+
+        console.log(postData);
+    }
+
     const commliItems = document.querySelectorAll('.commli');
     commliItems.forEach(li => {
-        li.addEventListener('click', function () {
+        li.addEventListener('click', async function () {
             bCate = this.textContent;
             selectedText.textContent = bCate;
             commul.classList.remove('show');
             console.log('commli item clicked', bCate);
-
-            const bContent = editor.getMarkdown();
-            const bTitle = document.getElementById('commTitleID').value
-            const bWriter = document.querySelector('.IDspan').innerHTML;
-
-            postData = {
-                bTitle: bTitle,
-                bWriter: bWriter,
-                bContent: bContent,
-                bCate: bCate
-            };
-
+            updatePostData();
             console.log(postData)
+            submitPostData(postData).then(result=>{
+                console.log(result);
+                if(result==="1") {
+                    alert("게시물이 등록되었습니다.")
+                }
+            })
+            // try{
+            //         const resp = await fetch('/board/register',{
+            //             method:"POST",
+            //             headers:{
+            //                 'Content-Type':'application/json; charset=utf8'
+            //             },
+            //             body:JSON.stringify(postData)
+            //         });
+            //         if(resp.ok){
+            //             const result = await resp.text();
+            //             console.log(result)
+            //             console.log("게시글 등록 성공")
+            //             // window.location.href="/board/list";
+            //         } else {
+            //             console.log("서버 오류 : "+resp.statusText);
+            //         }
+            //     } catch (error) {
+            //         console.log("저장 실패 :"+error)
+            // }
         });
     });
 
+}
 
+async function submitPostData(postData){
+    try{
+        const url = "/board/register";
+        const config = {
+            method:"POST",
+                headers:{
+                    'Content-Type':'application/json; charset=utf8'
+                },
+                body:JSON.stringify(postData)
+        };
 
-    // const bContent = editor.getMarkdown();
-    // const bTitle = document.getElementById('commTitleID').value
-    // const bWriter = document.querySelector('.IDspan').innerHTML;
-    //
-    // const postData = {
-    //     bTitle:bTitle,
-    //     bWriter:bWriter,
-    //     bContent: bContent,
-    //     bCate:bCate
-    // };
-    //
-    // console.log(postData)
-    // try{
-    //     const resp = await fetch('/board/register',{
-    //         method:"POST",
-    //         headers:{
-    //             'Content-Type':'application/json; charset=utf8'
-    //         },
-    //         body:JSON.stringify(postData)
-    //     });
-    //     if(resp.ok){
-    //         const result = await resp.text();
-    //         console.log(result)
-    //         console.log("게시글 등록 성공")
-    //         // window.location.href="/board/list";
-    //     } else {
-    //         console.log("서버 오류 : "+resp.statusText);
-    //     }
-    // } catch (error) {
-    //     console.log("저장 실패 :"+error)
-    // }
-
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return  result;
+    } catch(error) {
+        console.log(error)
+    }
 }
 
 
-// document.querySelector('.commRegiBtn').addEventListener('click',()=>{
-//     if(editorTitle==null || editorTitle=='') {
-//         alert('제목을 입력해주세요.');
-//         document.getElementById('commTitleID').focus();
-//         return false;
-//     } else if(editor.getMarkdown().length<1){
-//         alert('내용을 입력해주세요.');
-//         return false;
-//     } else {
-//         let data = {
-//             bTitle:editorTitle,
-//             bContent:editorBody,
-//             mainImage:mainImage
-//         }
-//         console.log(data);
-//     }
-// })
 
 
 

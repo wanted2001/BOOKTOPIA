@@ -5,7 +5,7 @@
 <mapper namespace="com.booktopia.www.repository.BoardMapper">
     <insert id="insert">
         insert into board (id,b_title,b_writer, b_content,b_cate)
-        values ("3503320191", #{bTitle},#{bWriter},#{bContent},"전체")
+        values ("3503320191", #{bTitle},#{bWriter},#{bContent},#{bCate})
     </insert>
 
     <select id="getList" resultType="com.booktopia.www.domain.BoardVO">
