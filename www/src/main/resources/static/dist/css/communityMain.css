@@ -78,14 +78,7 @@
     display: flex;
     justify-content: space-between;
 }
-
-.upPersentbox{
-    height: 100px;
-    width: 420px;
-    background-color: yellowgreen;
-}
-
-.downPerbox {
+.persent {
     height: 100px;
     width: 420px;
     background-color: #384c12;

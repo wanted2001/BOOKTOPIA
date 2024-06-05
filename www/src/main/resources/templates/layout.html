@@ -28,7 +28,7 @@
                         <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>
                         <th:block sec:authorize="isAuthenticated()">
                             <th:block th:with="auth=${#authentication.getPrincipal()}">
-                                <li class="right"><a th:href="@{/user/myPage}" sec:authentication="name"></a></li>
+                                <li class="userName"><a th:href="@{/user/myPage}" sec:authentication="name"></a></li>
                                 <li class="logout"><a th:href="@{/user/logout}">로그아웃</a></li>
                             </th:block>
                         </th:block>
