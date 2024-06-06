@@ -31,5 +31,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.isSocialUser(id);
     }
 
+    @Override
+    public void modifyMyinfo(UserVO uvo) {
+        userMapper.modifyMyinfo(uvo);
+    }
+
+    @Override
+    public void modifyMyinfoWithPwd(UserVO uvo) {
+        userMapper.modifyMyinfoWithPwd(uvo);
+    }
+
 
 }

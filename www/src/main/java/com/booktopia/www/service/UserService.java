@@ -10,4 +10,8 @@ public interface UserService {
     int checkId(String id);
 
     String isSocialUser(String id);
+
+    void modifyMyinfo(UserVO uvo);
+
+    void modifyMyinfoWithPwd(UserVO uvo);
 }

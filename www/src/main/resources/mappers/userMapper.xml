@@ -38,5 +38,13 @@
         select user_type from user where id=#{id}
     </select>
 
+    <update id="modifyMyinfo">
+        update user set phone=#{phone},user_up=now() where id=#{id}
+    </update>
+
+    <update id="modifyMyinfoWithPwd">
+        update user set pwd = #{pwd},phone = #{phone},user_up=now() where id=#{id}
+    </update>
+
 
 </mapper>
