@@ -51,6 +51,7 @@ public class FileController {
         fvo.setFileType(1);
 
         log.info("fvo>>>>>>{}",fvo);
+        m.addAttribute("fvo",fvo);
         fileMapper.insertFile(fvo);
 
         File dir = new File(UP_DIR);
@@ -65,6 +66,7 @@ public class FileController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @GetMapping(value = "/filePrint", produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})

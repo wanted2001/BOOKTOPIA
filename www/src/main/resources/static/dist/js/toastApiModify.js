@@ -1,9 +1,9 @@
-console.log("toastApi js in")
+console.log("toastApiModify js in")
 
 let bMainImg='';
 
 const editor = new toastui.Editor({
-    el: document.querySelector('#editor'),
+    el: document.querySelector('#editor2'),
     height: '500px',
     previewStyle: 'vertical',
     initialEditType:'markdown',
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 if (request.status === 200) {
-                    const moveContainer = document.getElementById("deleteMemberType2");
+                    const moveContainer = document.getElementById("deleteMemberType3");
                     if (moveContainer) {
                         moveContainer.innerHTML = request.responseText;
                         console.log("성공");
@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const cateBtn = document.querySelector('.cateBtn');
-    const commul = document.getElementById('commSelID');
-    let selectedText = document.getElementById('selectedText');
+    const commul = document.getElementById('commSelID2');
+    let selectedText = document.getElementById('selectedText2');
 
     cateBtn.addEventListener('click', function () {
         // console.log('cateBtn clicked');
@@ -123,18 +123,19 @@ async function handleEditor(event) {
     console.log("handle 이벤트 들어옴!");
 
     try {
-        const selectedText = document.getElementById('selectedText');
+        const selectedText = document.getElementById('selectedText2');
         let bCate = selectedText.innerText;
         const commSaveId = document.querySelector('.commSaveId').innerText;
-
+        const bno = document.querySelector('.commModBno').innerText;
         let postData = {};
 
         function updatePostData() {
             const bContent = editor.getMarkdown();
-            const bTitle = document.getElementById('commTitleID').value
+            const bTitle = document.getElementById('commTitleID2').value
             const bWriter = document.querySelector('.IDspan').innerHTML;
 
             postData = {
+                bno:bno,
                 id: commSaveId,
                 bTitle: bTitle,
                 bWriter: bWriter,
@@ -151,9 +152,9 @@ async function handleEditor(event) {
         if(bCate =='게시판 선택') {
             alert("게시판을 선택해주세요.");
             isValid = false;
-        } else if (document.getElementById('commTitleID').value == '' || document.getElementById('commTitleID').value == null) {
+        } else if (document.getElementById('commTitleID2').value == '' || document.getElementById('commTitleID2').value == null) {
             alert("제목을 입력해주세요.");
-            document.getElementById('commTitleID').focus();
+            document.getElementById('commTitleID2').focus();
             isValid = false;
         } else if (editor.getMarkdown() < 1) {
             alert("내용을 입력해주세요.");
@@ -164,7 +165,7 @@ async function handleEditor(event) {
             updatePostData();
             try{
                 await submitPostData(postData);
-                window.location.href = "localhost:8099/community/communityList";
+                window.location.href = "/community/communityList";
             } catch (error) {
                 console.log("isValid error : ", error);
             }
@@ -174,21 +175,24 @@ async function handleEditor(event) {
     }
 }
 
-async function submitPostData(postData) {
-    try {
-        const url = "/board/register";
-        const config = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json; charset=utf8'
-            },
-            body: JSON.stringify(postData)
-        };
+    async function submitPostData(postData) {
+        try {
+            const url = "/board/modify";
+            const config = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json; charset=utf8'
+                },
+                body: JSON.stringify(postData)
+            };
 
-        const resp = await fetch(url, config);
-        const result = await resp.text();
-        return result;
-    } catch (error) {
-        console.log(error)
+            const resp = await fetch(url, config);
+            const result = await resp.text();
+            return result;
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
+
+
+
