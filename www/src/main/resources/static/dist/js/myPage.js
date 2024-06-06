@@ -2,19 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const idElement = document.getElementById("myPageUserName");
     const modifyInfo = document.getElementById("modifyMyInfo");
     const moveContainer = document.getElementById("myPageInfoRightWrapId");
+    const moveContainerUserDelete = document.getElementById("deleteMemberType");
     const socialDelete = document.getElementById("socialUser");
     const comDelete = document.getElementById("comUser");
 
-    if (!idElement || !modifyInfo || !moveContainer) {
+
+    if (!idElement || !modifyInfo || !moveContainer || !moveContainerUserDelete) {
         console.log(idElement);
         console.log(modifyMyInfo);
         console.log(moveContainer);
+        console.log(moveContainerUserDelete);
         console.error("필요한 요소 중 하나 이상이 DOM에 없습니다.");
         return;
     }
 
     const idVal = idElement.innerText;
-
     const myPageCoupon = "/mypage/couponlist";
     const myPageModify = "/mypage/modify";
     const myPageAddress = "/mypage/changeaddr";
@@ -25,13 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     isSocialUser(idVal).then(result => {
             console.log(result);
             if (result != "일반") {
-                pageCallarea(isSocial);
+                pageCall(isSocial,moveContainerUserDelete);
                 comDelete.style.display = "none";
+                modifyInfo.style.display = "none";
             }
         });
-
-    pageCall(myPageSubscribe);
-
+    pageCall(myPageSubscribe,moveContainer);
 
     document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageSub').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -42,38 +43,38 @@ document.addEventListener('DOMContentLoaded', () => {
             switch (myPageMoveBtn) {
                 case 'myPageCoupon':
                     console.log("쿠폰 페이지로 이동");
-                    pageCall(myPageCoupon);
+                    pageCall(myPageCoupon,moveContainer);
                     break;
                 case 'myPageModify':
                     console.log("수정 페이지로 이동");
-                    pageCall(myPageModify);
+                    pageCall(myPageModify,moveContainer);
+
                     break;
                 case 'myPageAddress':
                     console.log("주소 페이지로 이동");
-                    pageCall(myPageAddress);
+                    pageCall(myPageAddress,moveContainer);
                     break;
                 case 'myPagePayment':
                     console.log("결제 페이지로 이동");
-                    pageCall(myPagePayment);
+                    pageCall(myPagePayment,moveContainer);
                     break;
                 case 'myPageSub':
                     console.log("구독 페이지로 이동");
-                    pageCall(myPageSubscribe);
+                    pageCall(myPageSubscribe,moveContainer);
                     break;
             }
         });
     });
 
-    function pageCall(link) {
+    function pageCall(link,callBox) {
         const request = new XMLHttpRequest();
         request.open("GET", link, true);
         request.send();
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 if (request.status === 200) {
-                    const moveContainer = document.getElementById("myPageInfoRightWrapId");
-                    if (moveContainer) {
-                        moveContainer.innerHTML = request.responseText;
+                    if (callBox) {
+                                callBox.innerHTML = request.responseText;
                         console.log("성공");
                     } else {
                         console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
@@ -85,27 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-     function pageCallarea(link) {
-            const request = new XMLHttpRequest();
-            request.open("GET", link, true);
-            request.send();
-            request.onreadystatechange = function () {
-                if (request.readyState === 4) {
-                    if (request.status === 200) {
-                        const moveContainer = document.getElementById("deleteMemberType");
-                        if (moveContainer) {
-                            moveContainer.innerHTML = request.responseText;
-                            console.log("성공");
-                        } else {
-                            console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
-                        }
-                    } else {
-                        console.error("요청 실패, 상태 코드: " + request.status);
-                    }
-                }
-            };
-        }
-
     async function isSocialUser(id) {
         try {
             const resp = await fetch("/user/isSocialUser/" + id);
@@ -115,4 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(error);
         }
     }
+
+    async function modifyInfo(){
+        const url = "/user/modify";
+        const config = {
+            method : "POST",
+        }
+
+    }
+
+
 });

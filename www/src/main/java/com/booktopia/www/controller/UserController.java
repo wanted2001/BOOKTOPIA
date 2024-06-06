@@ -56,6 +56,11 @@ public class UserController {
         return type;
     }
 
-    @GetMapping("/test")
+    @GetMapping("/deleteUser")
     public void callarea(){}
+
+    @PostMapping("/modify")
+    public void userModify(UserVO uvo){
+
+    }
 }

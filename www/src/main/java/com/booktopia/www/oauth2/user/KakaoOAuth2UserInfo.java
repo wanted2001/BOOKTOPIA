@@ -64,4 +64,9 @@ public class KakaoOAuth2UserInfo implements OAuth2UserInfo {
         return "kakao";
     }
 
+    @Override
+    public String getPhone() {
+        return "";
+    }
+
 }
