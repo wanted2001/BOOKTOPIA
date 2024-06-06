@@ -38,6 +38,7 @@ public class BoardController {
         boardVO.setBContent((String) obj.get("bContent"));
         boardVO.setBWriter((String) obj.get("bWriter"));
         boardVO.setBCate((String)obj.get("bCate"));
+        boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
         bsv.insert(boardVO);
@@ -50,6 +51,42 @@ public class BoardController {
         log.info("detail bvo >>>>{}",bvo);
         m.addAttribute("bvo",bvo);
     }
+
+    @GetMapping("/modify")
+    public void modifyBoard(Model m, @RequestParam("bno")long bno){
+        BoardVO bvo = bsv.getDetail(bno);
+        log.info("modifyBoard bvo >>>>{}",bvo);
+        m.addAttribute("bvo",bvo);
+    }
+
+    @PostMapping("/modify")
+    public String modify(@RequestBody JSONObject bvo) throws ParseException {
+        log.info("modify bvo>>>>>>{}",bvo);
+
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse(String.valueOf(bvo));
+        log.info("modify obj>>>>>>{}",obj);
+
+        BoardVO boardVO = new BoardVO();
+        boardVO.setBno(Long.parseLong((String) obj.get("bno")));
+        boardVO.setId((String)obj.get("id"));;
+        boardVO.setBTitle((String) obj.get("bTitle"));
+        boardVO.setBContent((String) obj.get("bContent"));
+        boardVO.setBWriter((String) obj.get("bWriter"));
+        boardVO.setBCate((String)obj.get("bCate"));
+        boardVO.setBMainImg((String)obj.get("bMainImg"));
+        log.info("modify boardVO>>>>>>{}",boardVO);
+
+        bsv.modify(boardVO);
+        return "/";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("bno") long bno){
+        bsv.delete(bno);
+        return "redirect:/community/communityList";
+    }
+
 
     @GetMapping("/socialId")
     public void socialId(){}

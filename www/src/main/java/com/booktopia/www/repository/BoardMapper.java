@@ -3,6 +3,7 @@ package com.booktopia.www.repository;
 import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.PagingVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,4 +16,9 @@ public interface BoardMapper {
     int getTotalCount(PagingVO pgvo);
 
     BoardVO getDetail(long bno);
+
+    void modify(BoardVO boardVO);
+
+    void delete(long bno);
+
 }

@@ -50,6 +50,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login/*","/user/join","/image/**","/user/check",
+                                "/community/**","/board/*","/board/register","/board/modify","/board/modifyBoard","/user/isSocialUser/*","/mypage/changeaddr",
+                                "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo","/user/test","/board/socialId",
+                                "/board/userId","/file/**","/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**")
                                 "/community/**", "/community/register","/board/*","/board/register","/user/isSocialUser/*","/mypage/changeaddr",
                                 "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo","/board/socialId",
                                 "/board/userId","/file/**","/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**","/user/myPage/*")

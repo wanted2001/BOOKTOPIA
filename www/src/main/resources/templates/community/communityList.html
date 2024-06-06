@@ -3,6 +3,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <link rel="stylesheet" th:href="@{/dist/css/communityList.css}">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!--마크다운 라이브러리-->
+<script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!--공지-->
@@ -53,8 +55,13 @@
                         <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bTitle}]]</a>
                     </div>
                     <div class="commWriter">[[${bvo.bWriter}]]</div>
-                    <div class="commContent">[[${bvo.bContent}]]</div>
-                    <div class="commImg"></div>
+                    <div class="commContent">
+                        <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bContent}]]</a>
+                    </div>
+                    <div class="commImg" th:if="${bvo.bMainImg ne null}">
+                        파일있음
+                        <img th:src="@{|/_fileUpload/${bvo.bMainImg}}">
+                    </div>
                     <div class="commCntInfo">
                         <div class="commCmtCnt commCnt">댓글 0</div>
                         <div class="commHeartCnt commCnt">좋아요 0</div>
@@ -91,5 +98,6 @@
                 </ul>
             </div>
         </div>
+        <script th:src="@{/dist/js/markdown.js}"></script>
     </th:block>
 </th:block>

@@ -24,19 +24,20 @@
                     </ul>
                 </div>
                 <div class="commToast" >
-                    <div id="commForm">
+                    <div id="commForm2">
                         <!--아이디-->
+                        <span th:value="${bvo.bno}" class="commModBno"></span>
                         <div class="WriterArea">
-                            <span sec:authentication="name" class="IDspan" id="commID" th:style="'display:none'"></span>
-                            <span class="commWriterArea">작성자 : </span><span id="deleteMemberType2"></span>
+                            <span sec:authentication="name" class="IDspan" id="commModiID2" th:style="'display:none'"></span>
+                            <span class="commWriterArea">작성자 : </span><span id="deleteMemberType3"></span>
                         </div>
                         <!-- 게시판 선택 select 효과 -->
                         <div class="commRegiCate">
                             <button class="cateBtn">
                                 <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
-                                <span id="selectedText">게시판 선택</span>
+                                <span id="selectedText2">[[${bvo.bCate}]]</span>
                             </button>
-                            <ul class="commul" id="commSelID">
+                            <ul class="commul" id="commSelID2">
                                 <li class="commli">게시판 선택</li>
                                 <li class="commli">소설</li>
                                 <li class="commli">시/에세이</li>
@@ -49,14 +50,14 @@
                         <div class="commContent">
                             <div class="commTitle">
                                 <!-- <label for="commTitleID" class="commTitleLabel">제목</label> -->
-                                <input type="text" id="commTitleID" name="commTitleID" class="commTitle" placeholder="제목을 입력해주세요">
+                                <input type="text" id="commTitleID2" name="commTitleID" class="commTitle" th:value="${bvo.bTitle}">
                             </div>
                             <!-- 토스트 에디터 부분 -->
-                            <div id="editor"></div>
+                            <div id="editor2">[[${bvo.bContent}]]</div>
                             <!-- 내용 작성 부분 -->
-                            <div id="editorContent"></div>
+                            <div id="editorContent2"></div>
                             <div>
-                                <a th:href="@{/board/register}"><button type="button" class="commRegiBtn" onclick="handleEditor(event)">등록</button></a>
+                                <a th:href="@{/board/modify(bno=${bvo.getBno()})}"><button type="button" class="commModiBtn" onclick="handleEditor(event)">등록</button></a>
                             </div>
                         </div>
                     </div>
@@ -66,7 +67,7 @@
 
         <!--토스트 API 스크립트-->
         <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-        <script th:src="@{/dist/js/toastApi.js}"></script>
+        <script th:src="@{/dist/js/toastApiModify.js}"></script>
     </th:block>
     </th:block>
 </th:block>
