@@ -60,4 +60,9 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
         return "naver";
     }
 
+    @Override
+    public String getPhone() {
+        return "";
+    }
+
 }

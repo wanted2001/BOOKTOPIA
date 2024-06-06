@@ -13,4 +13,8 @@ public interface BoardService {
     List<BoardVO> getList(PagingVO pgvo);
 
     BoardVO getDetail(long bno);
+
+    void modify(BoardVO boardVO);
+
+    void delete(long bno);
 }

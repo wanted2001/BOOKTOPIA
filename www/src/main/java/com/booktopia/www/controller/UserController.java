@@ -3,9 +3,8 @@ package com.booktopia.www.controller;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.validator.PublicClassValidator;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
@@ -36,15 +35,6 @@ public class UserController {
         }
 
     }
-//
-//    @PostMapping("/login")
-//    public String loginPage(@RequestParam(name = "error", required = false) String error, Model model) {
-//        log.info(">>>>>>>>>>>>>>> login error 잡힘!");
-//        if (error != null) {
-//            model.addAttribute("errorMessage", "로그인에 실패했습니다. 다시 시도하세요.");
-//        }
-//        return "/login";
-//    }
 
     @GetMapping("/join")
     public void join(){
@@ -77,4 +67,31 @@ public class UserController {
         log.info("type >> {}",type);
         return type;
     }
+
+    @GetMapping("/deleteUser")
+    public void deleteUser(){}
+
+    @PostMapping("/modify")
+    public String modifyUser(UserVO uvo, RedirectAttributes re) {
+        log.info("pwd >> {}",uvo.getPwd());
+        if (uvo.getPwd() == null || uvo.getPwd().length() <= 0) {
+            usv.modifyMyinfo(uvo);
+        } else {
+            String setPwd = passwordEncoder.encode(uvo.getPwd());
+            uvo.setPwd(setPwd);
+            usv.modifyMyinfoWithPwd(uvo);
+        }
+        re.addAttribute("modify","success");
+        return "redirect:/user/myPage";
+    }
+
+    @ResponseBody
+    @GetMapping("/findId/{userName}")
+    public String findId(@PathVariable("userName") String userName) {
+        log.info("아이디 찾는 유저의 이름 >>>>> ", userName);
+        return usv.findId(userName);
+    }
+
+
+
 }

@@ -20,4 +20,6 @@ public interface OAuth2UserInfo {
     String getPwd();
 
     String getUserType();
+
+    String getPhone();
 }
