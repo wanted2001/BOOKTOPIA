@@ -64,11 +64,14 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
         return userInfo.getName();
     }
 
-    String getUserType() {
+    public String getUserType() {
         return userInfo.getProvider().getRegistrationId();
     }
 
-    String getPhone() {
+    public String getId(){
+        return userInfo.getId(); }
+
+    public String getPhone() {
         return userInfo.getPhone();
     }
 

@@ -1,11 +1,11 @@
 console.log("toastApi js in")
 
-let mainImage='';
+let bMainImg='';
 
 const editor = new toastui.Editor({
     el: document.querySelector('#editor'),
     height: '500px',
-    initialValue: '내용을 입력해주세요',
+    previewStyle: 'vertical',
     initialEditType:'markdown',
     toolbarItems:[
         ['heading','bold','italic','strike'],
@@ -23,9 +23,9 @@ const editor = new toastui.Editor({
                     body:formData
                 });
                 const fileName = await response.text();
-                console.log("파일명 :"+ fileName);
-                if(mainImage==='') {
-                    mainImage=fileName;
+                console.log("서버에 저장된 파일명 :"+ fileName);
+                if(bMainImg==='') {
+                    bMainImg=fileName;
                 }
 
                 const imageUrl = `/file/filePrint?fileName=${fileName}`;
@@ -37,59 +37,143 @@ const editor = new toastui.Editor({
     }
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const ul = document.querySelector('.commul');
+    console.log(ul)
+    ul.addEventListener("click", (e)=> {
+        console.log(e)
+        if (e.target.tagName === "LI") {
+            // console.log(e.target.dataset.value);
+            // console.log(e.target.getAttribute("data-value"));
+            // console.log(e.target);
+        }
+    });
+
+    const idElement = document.getElementById('commID');
+
+    const idVal = idElement.innerText;
+    console.log(idVal);
+
+    const socialId ="/board/socialId";
+    const userId = "/board/userId";
+
+    isSocialUser(idVal).then(result => {
+        console.log(result);
+        if (result != "일반") {
+            pageCall(socialId);
+        } else {
+            pageCall(userId);
+        }
+    });
+
+    function pageCall(link) {
+        const request = new XMLHttpRequest();
+        request.open("GET", link, true);
+        request.send();
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    const moveContainer = document.getElementById("deleteMemberType2");
+                    if (moveContainer) {
+                        moveContainer.innerHTML = request.responseText;
+                        console.log("성공");
+                    } else {
+                        console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
+                    }
+                } else {
+                    console.error("요청 실패, 상태 코드: " + request.status);
+                }
+            }
+        };
+    }
+
+    async function isSocialUser(id) {
+        try {
+            const resp = await fetch("/user/isSocialUser/" + id);
+            const result = await resp.text();
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+});
+
+
 async function handleEditor(event) {
     console.log("handle 이벤트 들어옴!");
     event.preventDefault();
 
-    const bContent = editor.getMarkdown();
-    const bTitle = document.getElementById('commTitleID').value
+    const cateBtn = document.querySelector('.cateBtn');
+    const commul = document.getElementById('commSelID');
+    let selectedText = document.getElementById('selectedText');
+    let bCate = selectedText.innerText;
+    const commSaveId = document.querySelector('.commSaveId').innerText;
+    console.log(commSaveId);
 
-    const postData = {
-        bTitle:bTitle,
-        bContent: bContent
-    };
+    cateBtn.addEventListener('click', function () {
+        // console.log('cateBtn clicked');
+        commul.classList.toggle('show');
+    });
 
-    console.log(postData)
-    try{
-        const resp = await fetch('/board/register',{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json; charset=utf8'
-            },
-            body:JSON.stringify(postData)
-        });
-        if(resp.ok){
-            const result = await resp.text();
-            console.log(result)
-            console.log("게시글 등록 성공")
-            // window.location.href="/board/list";
-        } else {
-            console.log("서버 오류 : "+resp.statusText);
-        }
-    } catch (error) {
-        console.log("저장 실패 :"+error)
+    let postData = {};
+
+    function updatePostData(){
+        const bContent = editor.getMarkdown();
+        const bTitle = document.getElementById('commTitleID').value
+        const bWriter = document.querySelector('.IDspan').innerHTML;
+
+        postData = {
+            id:commSaveId,
+            bTitle: bTitle,
+            bWriter: bWriter,
+            bContent: bContent,
+            bCate: bCate,
+            bMainImg:bMainImg
+        };
+
+        console.log(postData);
     }
+
+    const commliItems = document.querySelectorAll('.commli');
+    commliItems.forEach(li => {
+        li.addEventListener('click', async function () {
+            bCate = this.textContent;
+            selectedText.textContent = bCate;
+            commul.classList.remove('show');
+            // console.log('commli item clicked', bCate);
+            updatePostData();
+            console.log(postData)
+            submitPostData(postData).then(result=>{
+                console.log(result);
+                if(result==="1") {
+                    alert("게시물이 등록되었습니다.")
+                }
+            })
+        });
+    });
 
 }
 
+async function submitPostData(postData){
+    try{
+        const url = "/board/register";
+        const config = {
+            method:"POST",
+                headers:{
+                    'Content-Type':'application/json; charset=utf8'
+                },
+                body:JSON.stringify(postData)
+        };
 
-// document.querySelector('.commRegiBtn').addEventListener('click',()=>{
-//     if(editorTitle==null || editorTitle=='') {
-//         alert('제목을 입력해주세요.');
-//         document.getElementById('commTitleID').focus();
-//         return false;
-//     } else if(editor.getMarkdown().length<1){
-//         alert('내용을 입력해주세요.');
-//         return false;
-//     } else {
-//         let data = {
-//             bTitle:editorTitle,
-//             bContent:editorBody,
-//             mainImage:mainImage
-//         }
-//         console.log(data);
-//     }
-// })
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return  result;
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
 
 
 

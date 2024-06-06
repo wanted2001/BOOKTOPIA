@@ -21,5 +21,6 @@ public class BoardVO {
     private String bHeartCnt; //좋아요수
     private String bIsDel; //삭제여부
     private String bCate; //게시글 카테고리
+    private String bMainImg; //업로드할 파일 이름
 
 }

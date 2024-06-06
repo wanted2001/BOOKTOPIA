@@ -15,11 +15,9 @@
     font-family: SCDream3;
 }
 .commSearchArea{
-    /*background-color: cornflowerblue;*/
     width: 350px;
     height: 40px;
     margin-top: 20px;
-    margin-left: 950px;
 }
 .commSelect{
     border: 1px solid #9a9a9a;
@@ -29,8 +27,10 @@
     color: #303030;
     height: 100%;
     width: 80px;
-    font-size: 15px;
+    height: 39.9px;
+    font-size: 13px;
     border-radius: 5px;
+    margin-left: 950px;
 }
 .commSeaBar{
     height: 37.9px;
@@ -41,6 +41,7 @@
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     font-size: 13px;
+    border-right-color: rgba(255, 255, 255, 0);
     outline: none;
 }
 .commSeaBtn{
@@ -48,11 +49,12 @@
     border: 1px solid #9a9a9a;
     height: 40px;
     width: 51px;
-    margin-left: -50px;
+    margin-left: -6px;
     color: #4c4c4c;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     font-size: 13px;
+    /*opacity: 0.5;*/
 }
 .commNoticeLine{
     /*background-color: lightseagreen;*/
@@ -94,11 +96,16 @@
     float: right;
 }
 /*게시글 한개 사이즈*/
-.commListArea{
+.commListArea, .commNon{
     background-color: lightcoral;
     width: 1000px;
     height: 200px;
     margin: 50px auto 0;
+}
+.commNon p{
+    font-size: 17px;
+    text-align: center;
+    line-height: 200px;
 }
 .commTitle,.commWriter{
     background-color: lightgoldenrodyellow;
@@ -109,23 +116,26 @@
 .commTitle{
     font-family: SCDream4;
     font-size: 18px;
+    /*padding-left: 15px;*/
 }
 .commWriter{
     margin-top: 5px;
     font-size: 13px;
+    /*padding-left: 15px;*/
 }
 .commContent{
     background-color: darkgray;
     width: 700px;
     height: 95px;
     line-height: 95px;
+    padding-left: 15px;
 }
 .commImg{
     float: right;
     background-color: olive;
     width: 250px;
     height: 160px;
-    margin: -115px 20px 0 0;
+    margin: -140px 20px 0 0;
 }
 .commCntInfo{
     /*background-color: mintcream;*/
@@ -145,64 +155,14 @@
     line-height: 40px;
     font-size: 12px;
 }
+
+.commSeaBar{
+    display: inline-block;
+}
+
 .commPage{
     background-color: darkseagreen;
     width: 1000px;
     height: 45px;
-    margin: 15px auto 0;
-}
-.commSeaBar{
-    display: inline-block;
-}
-/*셀렉트*/
-.commRegiCate{
-    width: 130px;
-}
-.cateBtn{
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 14px;
-    line-height: 14px;
-    /* border-bottom: 1px solid #C4C4C4; */
-    /* border-radius: 10px; */
-    box-sizing: border-box;
-    cursor: pointer;
-    text-align: left;
-    background-color: white;
-    color: #474747;
-    margin-left: 10px;
-}
-.cateBtn img{
-    float: right;
-    transform: rotate(90deg);
-    margin: 1px 15px 0 0;
-}
-.commul{
-    display: none;
-    position: absolute;
-    width: 100%;
-    /* top: 49px; */
-    z-index: 1000;
-    left: 0;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    box-shadow: 4px 4px 14px rgba(0, 0, 0,0.15);
-    /* border-radius: 5px; */
-    background-color: white;
-    margin-left: 18px;
-}
-.commul.show{
-    display: block;
-}
-.commli{
-    display: block;
-    padding: 10px 10px;
-    box-sizing: border-box;
-    background-color: white;
-    cursor: pointer;
-    color: #474747;
-    font-size: 14px;
-}
-.commli:hover{
-    background-color: #e9e9e998;
+    margin: 25px auto 50px;
 }

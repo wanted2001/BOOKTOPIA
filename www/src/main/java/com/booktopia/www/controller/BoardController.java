@@ -33,8 +33,11 @@ public class BoardController {
         log.info("obj>>>>>>{}",obj);
 
         BoardVO boardVO = new BoardVO();
+        boardVO.setId((String)obj.get("id"));;
         boardVO.setBTitle((String) obj.get("bTitle"));
         boardVO.setBContent((String) obj.get("bContent"));
+        boardVO.setBWriter((String) obj.get("bWriter"));
+        boardVO.setBCate((String)obj.get("bCate"));
         log.info("boardVO>>>>>>{}",boardVO);
 
         bsv.insert(boardVO);
@@ -47,4 +50,10 @@ public class BoardController {
         log.info("detail bvo >>>>{}",bvo);
         m.addAttribute("bvo",bvo);
     }
+
+    @GetMapping("/socialId")
+    public void socialId(){}
+
+    @GetMapping("/userId")
+    public void userId(){}
 }

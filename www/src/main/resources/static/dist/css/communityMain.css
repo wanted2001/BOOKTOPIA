@@ -75,6 +75,13 @@
     height: 100px;
     width: 1050px;
     background-color: lightcyan;
+    display: flex;
+    justify-content: space-between;
+}
+.persent {
+    height: 100px;
+    width: 420px;
+    background-color: #384c12;
 }
 .commVoteDown{
     height: 100px;

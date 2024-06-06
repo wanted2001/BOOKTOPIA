@@ -12,6 +12,12 @@
     font-family:SCDream4;
 
 }
+
+.text-danger{
+    color: red;
+}
+
+
 .loginWrapPage{
     width: 1000px;
     height: 500px;
