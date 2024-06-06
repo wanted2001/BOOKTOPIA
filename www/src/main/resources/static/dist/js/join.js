@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#form__wrap"); /
+  const form = document.querySelector("#form__wrap");
   const checkAll = document.querySelector(".terms__check__all input");
   const checkBoxes = document.querySelectorAll(".input__check input");
   const submitButton = document.getElementById("submitButton");

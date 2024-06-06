@@ -17,16 +17,14 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">새 비밀번호</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="pwd" placeholder="newPwd..." id="changePwd" th:value="1"><br>
-                                <span class="strongPassword-message hide">8글자 이상, 영문, 숫자, 특수문자(@$!%*#?&)를 사용하세요.</span>
+                                <input type="password" name="pwd" placeholder="newPwd..." id="changePwd"><br>
                             </div>
 
                         </div>
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">새 비밀번호 확인</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="newPwd" placeholder="checkPwd..." id="changeNewPwd" th:value="1"><br>
-                                <span class="mismatch-message hide">비밀번호가 일치하지 않습니다.</span>
+                                <input type="password" name="newPwd" placeholder="checkPwd..." id="changeNewPwd"><br>
                             </div>
                         </div>
                         <div class="myPageModInputFormWrap">
@@ -53,71 +51,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" defer>
-    document.addEventListener('DOMContentLoaded', () => {
-console.log("modify script in");
-    // 각 입력 필드의 keyup 이벤트를 감지하여 비밀번호 유효성 검사
-    function handleKeyUp(event) {
-        const target = event.target;
-        if (target.id === "changePwd") {
-            // changePwd 입력 필드에서 keyup 이벤트 감지 시
-            if (target.value.length !== 0) {
-                if (strongPassword(target.value)) {
-                    elStrongPasswordMessage.classList.add('hide');
-                } else {
-                    elStrongPasswordMessage.classList.remove('hide');
-                }
-            } else {
-                elStrongPasswordMessage.classList.add('hide');
-                toggleSubmitButton();
-            }
-        } else if (target.id === "changeNewPwd") {
-            // changeNewPwd 입력 필드에서 keyup 이벤트 감지 시
-            if (target.value.length !== 0) {
-                if (isMatch(changePwd.value, target.value)) {
-                    elMismatchMessage.classList.add('hide');
-                } else {
-                    elMismatchMessage.classList.remove('hide');
-                }
-            } else {
-                elMismatchMessage.classList.add('hide');
-                toggleSubmitButton();
-            }
-        }
-    }
-    const changePwd = document.getElementById("changePwd");
-    const changeNewPwd = document.getElementById("changeNewPwd");
-    console.log(changePwd.value);
-    console.log(changeNewPwd.value);
-    // 입력 필드에 keyup 이벤트 리스너 추가
-//    changePwd.addEventListener("keyup", handleKeyUp);
-//    changeNewPwd.addEventListener("keyup", handleKeyUp);
-
-    // 비밀번호 확인 함수
-    function validatePassword() {
-        if (changePwd.value !== changeNewPwd.value) {
-            changeNewPwd.style.color = "red";
-            console.log("비밀번호 불일치");
-        } else {
-            console.log("비밀번호 일치");
-            changeNewPwd.style.color = "green";
-        }
-    }
-
-    // 비밀번호 강력성 검사 함수
-    function strongPassword(str) {
-        return passwordRegex.test(str);
-    }
-
-    // 비밀번호 일치 여부 검사 함수
-    function isMatch(pwd, conPwd) {
-        return pwd === conPwd;
-    }
-
-    // 제출 버튼 활성/비활성화 함수
-    function toggleSubmitButton() {
-        const isFormValid = isMatch(changePwd.value, changeNewPwd.value) && strongPassword(changePwd.value);
-        submitButton.disabled = !isFormValid;
-    }
-});
-</script>
