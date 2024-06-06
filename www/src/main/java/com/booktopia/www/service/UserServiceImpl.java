@@ -41,5 +41,10 @@ public class UserServiceImpl implements UserService {
         userMapper.modifyMyinfoWithPwd(uvo);
     }
 
+    @Override
+    public String findId(String userName) {
+        return userMapper.findId(userName);
+    }
+
 
 }

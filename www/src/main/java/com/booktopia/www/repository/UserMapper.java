@@ -28,4 +28,6 @@ public interface UserMapper {
     void modifyMyinfo(UserVO uvo);
 
     void modifyMyinfoWithPwd(UserVO uvo);
+
+    String findId(String userName);
 }

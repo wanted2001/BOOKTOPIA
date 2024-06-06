@@ -22,7 +22,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.booktopia.www.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 
-import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -43,19 +42,16 @@ public class SecurityConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    //SecurityFilterChain 객체로 설정
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/index", "/", "/js**", "/dist/**","/user/login/*","/user/join","/image/**","/user/check",
-                                "/community/**","/board/*","/board/register","/board/modify","/board/modifyBoard","/user/isSocialUser/*","/mypage/changeaddr",
-                                "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo","/user/test","/board/socialId",
-                                "/board/userId","/file/**","/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**")
-                                "/community/**", "/community/register","/board/*","/board/register","/user/isSocialUser/*","/mypage/changeaddr",
-                                "/mypage/couponlist","/mypage/modify","/mypage/payinfo","/mypage/subinfo","/board/socialId",
-                                "/board/userId","/file/**","/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**","/user/myPage/*")
+                        .requestMatchers("/index", "/", "/js/**", "/dist/**", "/user/login/*", "/user/join", "/image/**", "/user/check",
+                                "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
+                                "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
+                                "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
+                                "/user/myPage/*")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
@@ -64,30 +60,23 @@ public class SecurityConfig {
                         .usernameParameter("id")
                         .passwordParameter("pwd")
                         .loginPage("/user/login")
-//                        .failureHandler((request, response, exception) -> {
-////                            String err = exception.toString();
-////                            err = URLEncoder.encode(err, "UTF-8");
-////
-////                            response.sendRedirect("/user/login?error=true&err="+err);
-////                        })
-                                .failureUrl("/user/login?error")
+                        .failureUrl("/user/login?error")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                .oauth2Login(configure ->
-                        configure.authorizationEndpoint(config -> config.authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
-                                        .baseUri("/oauth2/authorization"))
-                                .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
-                                .successHandler(oAuth2AuthenticationSuccessHandler)
-                                .failureHandler(oAuth2AuthenticationFailureHandler)
+                .oauth2Login(configure -> configure
+                        .authorizationEndpoint(config -> config.authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
+                                .baseUri("/oauth2/authorization"))
+                        .userInfoEndpoint(config -> config.userService(customOAuth2UserService))
+                        .successHandler(oAuth2AuthenticationSuccessHandler)
+                        .failureHandler(oAuth2AuthenticationFailureHandler)
                 )
-                .logout(logout-> logout
-                                .logoutUrl(("/user/logout"))
-//                        .logoutUrl(("/oauth2/authorization/**?mode=unlink"))
-                                .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID")
-                                .logoutSuccessUrl("/")
-                );  // 로그아웃은 기본설정으로 (/logout으로 인증해제)
+                .logout(logout -> logout
+                        .logoutUrl("/user/logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessUrl("/")
+                );
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -95,7 +84,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration.setAllowedOrigins(List.of("https://localhost:8099"));
@@ -109,16 +98,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    UserDetailsService userDetailsService(){
-        return new CustomUserService(); // Security 패키지에 클래스로 생성
+    UserDetailsService userDetailsService() {
+        return new CustomUserService();
     }
 
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
-
-
 }

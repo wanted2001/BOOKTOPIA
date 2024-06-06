@@ -85,6 +85,13 @@ public class UserController {
         return "redirect:/user/myPage";
     }
 
-
-
+    @ResponseBody
+    @GetMapping("/findId/{userName}")
+    public String findId(@PathVariable("userName") String userName) {
+        log.info("아이디 찾는 유저의 이름 >>>>> ", userName);
+        return usv.findId(userName);
     }
+
+
+
+}
