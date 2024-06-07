@@ -92,7 +92,7 @@ public class UserController {
     @ResponseBody
     @GetMapping("/findId/{userName}")
     public ResponseEntity<String> findId(@PathVariable("userName") String userName) {
-        log.info("아이디 찾는 유저의 이름 >>>>> ", userName);
+        log.info("아이디 찾는 유저의 이름 >>>>> {}", userName);
         return  ResponseEntity.ok(usv.findId(userName));
 
     }
