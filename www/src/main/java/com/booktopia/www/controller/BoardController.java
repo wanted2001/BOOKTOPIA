@@ -1,7 +1,13 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.BoardVO;
+import com.booktopia.www.domain.DTO.BoardDTO;
+import com.booktopia.www.domain.FileVO;
+import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.handler.FileHandler;
+import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
+import com.booktopia.www.service.FileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +20,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
     private final BoardService bsv;
+    private final FileService fsv;
 
     @GetMapping("/register")
     public void register() {}
@@ -41,8 +51,32 @@ public class BoardController {
         boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
-        bsv.insert(boardVO);
+        int isOk = bsv.insert(boardVO);
+        if(isOk == 1){
+            log.info("boardVO222222>>>>>>{}",boardVO);
+//            fsv.insertFile(boardVO.getBno());
+        }
         return ResponseEntity.ok("success");
+    }
+
+    @GetMapping("/communityList")
+    public void commList(Model m, PagingVO pgvo){
+        log.info("pgvo>>>>{}",pgvo);
+        //전체 게시글 수
+        int totalCount = bsv.getTotalCount(pgvo);
+
+        PagingHandler ph = new PagingHandler(pgvo,totalCount);
+        log.info("ph>>>>>{}",ph);
+
+        List<BoardVO> blist = bsv.getList(pgvo);
+        log.info("blist>>>{}", blist);
+
+        List<FileVO> flist = fsv.getFileList();
+        log.info("flist>>>{}", flist);
+
+        m.addAttribute("blist",blist);
+        m.addAttribute("ph",ph);
+        m.addAttribute("flist",flist);
     }
 
     @GetMapping("/detail")
@@ -93,4 +127,7 @@ public class BoardController {
 
     @GetMapping("/userId")
     public void userId(){}
+
+
+
 }

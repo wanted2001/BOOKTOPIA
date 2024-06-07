@@ -47,11 +47,11 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/index", "/", "/js/**", "/dist/**", "/user/login/*", "/user/join", "/image/**", "/user/check",
+                        .requestMatchers("/index", "/", "/upload/**","/js/**", "/dist/**", "/user/login/*", "/user/join", "/image/**", "/user/check",
                                 "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
-                                "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**","/booktopiaTest/test", "/chatbot/**",
-                                "/user/myPage/*","/vote/push")
+                                "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
+                                "/user/myPage/*","user/findId/**")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
