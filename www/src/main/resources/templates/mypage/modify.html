@@ -11,7 +11,13 @@
                             <div class="mypageModInputFormData">
                                 <input type="text" name="id" placeholder="id...."
                                        th:value="${#authentication.getName()}">
-
+                            </div>
+                        </div>
+                        <div class="myPageModInputFormWrap">
+                            <div class="myPageModInputFormText">아이디</div>
+                            <div class="mypageModInputFormData">
+                                <input type="text" name="email" placeholder="email...."
+                                       th:value="${#authentication.getPrincipal().userVO.getEmail()}">
                             </div>
                         </div>
                         <div class="myPageModInputFormWrap">

@@ -47,7 +47,7 @@
     </update>
 
     <select id="findId" resultType="String">
-        select id from user where id=#{id} and user_type = '일반' and user_del = 'N'
+        select id from user where id=#{userName} and user_type = '일반' and user_del = 'N'
     </select>
 
 

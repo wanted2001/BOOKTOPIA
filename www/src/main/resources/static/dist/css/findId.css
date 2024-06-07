@@ -1,0 +1,26 @@
+.fi_wrap{
+    width: 100%;
+
+}
+
+.fi_title{
+        width: 85%;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.8em;
+        letter-spacing: 2px;
+}
+
+.fi_input{
+       background-color: yellow;
+       width: 100%;
+       height: 300px;
+       text-align: center;
+       padding-top: 80px;
+}
+.fi_msg{
+    padding: 20px;
+
+}

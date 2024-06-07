@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageCoupon = "/mypage/couponlist";
     const myPageModify = "/mypage/modify";
     const myPageAddress = "/mypage/changeaddr";
+    const myPageAddressSocial = "/myPage/changeaddrSocial";
     const myPagePayment = "/mypage/payinfo";
     const myPageSubscribe = "/mypage/subinfo";
     const isSocial = "/user/deleteUser";
@@ -56,7 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     pageCall(myPageModify, moveContainer);
                     break;
                 case 'myPageAddress':
-                    pageCall(myPageAddress, moveContainer);
+                    isSocialUser(idVal).then(result=>{
+                    if (result !== "일반") {
+                        pageCall(myPageAddressSocial, moveContainer);
+                    }
+                    else {
+                        pageCall(myPageAddress, moveContainer);
+                    }
+                    })
                     break;
                 case 'myPagePayment':
                     pageCall(myPagePayment, moveContainer);
@@ -84,7 +92,7 @@ function pageCall(link, callBox) {
                         case '/mypage/modify':
                             loadScript('/dist/js/myPageModify.js');
                             break;
-                        case '/mypage/changeaddr':
+                        case '/mypage/changeaddr' || '/myPage/changeaddrSocial':
                             loadScript('/dist/js/changeaddr.js');
                             break;
                         case '/mypage/couponlist':
