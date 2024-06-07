@@ -1,6 +1,7 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.BookVO;
+import com.booktopia.www.domain.BooktopiaVO;
 import com.booktopia.www.repository.BookTopiaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,5 +47,10 @@ public class BookTopiaServiceImpl implements BookTopiaService{
                 break;
         }
         return list;
+    }
+
+    @Override
+    public void insert(BooktopiaVO booktopiaVO) {
+        bookTopiaMapper.insert(booktopiaVO);
     }
 }

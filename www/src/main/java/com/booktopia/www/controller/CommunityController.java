@@ -4,6 +4,7 @@ import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.DTO.BoardDTO;
 import com.booktopia.www.domain.FileVO;
 import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.domain.VoteVO;
 import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
@@ -93,4 +94,9 @@ public class CommunityController {
 //        log.info("파일 업로드 성공>>{}",imageUrl);
 //        return ResponseEntity.ok(imageUrl);
 //    }
+
+    @PostMapping("/push")
+    public void votePush(VoteVO voteVO){
+        log.info(">>> controller in >>> ,{}", voteVO);
+    }
 }
