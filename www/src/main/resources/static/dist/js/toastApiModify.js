@@ -10,7 +10,7 @@ const editor = new toastui.Editor({
     toolbarItems:[
         ['heading','bold','italic','strike'],
         ['hr','quote'],
-        ['link','image']
+        ['image']
     ],
     hooks:{
         addImageBlobHook:async (blob,callback)=> {

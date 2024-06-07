@@ -35,6 +35,7 @@ public class BoardController {
     public void register() {}
 
     @PostMapping("/register")
+    @ResponseBody
     public String register(@RequestBody JSONObject bvo) throws ParseException {
         log.info("bvo>>>>>>{}",bvo);
 
@@ -53,30 +54,10 @@ public class BoardController {
 
         bsv.insert(boardVO);
 
-        return "redirect:/board/list";
+        return "111";
     }
 
-    @GetMapping("/communityList")
-    public void commList(Model m, PagingVO pgvo){
-        log.info("pgvo>>>>{}",pgvo);
-        //전체 게시글 수
-        int totalCount = bsv.getTotalCount(pgvo);
-
-        PagingHandler ph = new PagingHandler(pgvo,totalCount);
-        log.info("ph>>>>>{}",ph);
-
-        List<BoardVO> blist = bsv.getList(pgvo);
-        log.info("blist>>>{}", blist);
-
-        List<FileVO> flist = fsv.getFileList();
-        log.info("flist>>>{}", flist);
-
-        m.addAttribute("blist",blist);
-        m.addAttribute("ph",ph);
-        m.addAttribute("flist",flist);
-    }
-
-    @GetMapping("/detail")
+    @GetMapping({"/detail","/modify"})
     public void detail(Model m, @RequestParam("bno")long bno){
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}",bvo);
@@ -84,12 +65,12 @@ public class BoardController {
         m.addAttribute("bvo",bvo);
     }
 
-    @GetMapping("/modify")
-    public void modifyBoard(Model m, @RequestParam("bno")long bno){
-        BoardVO bvo = bsv.getDetail(bno);
-        log.info("modifyBoard bvo >>>>{}",bvo);
-        m.addAttribute("bvo",bvo);
-    }
+//    @GetMapping("/modify")
+//    public void modifyBoard(Model m, @RequestParam("bno")long bno){
+//        BoardVO bvo = bsv.getDetail(bno);
+//        log.info("modifyBoard bvo >>>>{}",bvo);
+//        m.addAttribute("bvo",bvo);
+//    }
 
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {

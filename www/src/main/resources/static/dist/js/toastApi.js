@@ -10,7 +10,8 @@ const editor = new toastui.Editor({
     toolbarItems:[
         ['heading','bold','italic','strike'],
         ['hr','quote'],
-        ['link','image']
+        ['ul', 'ol'],
+        ['image']
     ],
     hooks:{
         addImageBlobHook:async (blob,callback)=> {
@@ -163,8 +164,11 @@ async function handleEditor(event) {
         if(isValid) {
             updatePostData();
             try{
-                await submitPostData(postData);
+                await submitPostData(postData).then(result=>{
+
+                console.log(result);
                 window.location.href = "/community/communityList";
+                });
             } catch (error) {
                 console.log("isValid error : ", error);
             }

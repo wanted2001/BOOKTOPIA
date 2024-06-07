@@ -5,6 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!--마크다운 라이브러리-->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+<script th:src="@{/dist/js/markdown.js}"></script>
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!--공지-->
@@ -97,6 +98,6 @@
                 </ul>
             </div>
         </div>
-        <script th:src="@{/dist/js/markdown.js}"></script>
+
     </th:block>
 </th:block>
