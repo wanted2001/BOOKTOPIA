@@ -51,11 +51,8 @@ public class BoardController {
         boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
-        int isOk = bsv.insert(boardVO);
-        if(isOk == 1){
-            log.info("boardVO222222>>>>>>{}",boardVO);
-//            fsv.insertFile(boardVO.getBno());
-        }
+        bsv.insert(boardVO);
+
         return ResponseEntity.ok("success");
     }
 
@@ -83,6 +80,7 @@ public class BoardController {
     public void detail(Model m, @RequestParam("bno")long bno){
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}",bvo);
+
         m.addAttribute("bvo",bvo);
     }
 

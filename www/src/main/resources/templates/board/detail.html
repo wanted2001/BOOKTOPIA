@@ -14,7 +14,10 @@
                 <div class="commDeWriter">[[${bvo.bWriter}]]</div>
                 <div class="commDeRegdate">[[${bvo.bRegDate}]]</div>
             </div>
-            <div class="commDeContent">[[${bvo.bContent}]]</div>
+            <div class="commDeContent">
+                [[${bvo.bContent}]]
+                <img th:src="@{|/upload/${bvo.bMainImg}|}">
+            </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">
                 <div th:if="${auth eq bvo.bWriter}" class="commBtnArea">

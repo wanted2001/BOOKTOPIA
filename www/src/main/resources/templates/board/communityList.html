@@ -58,11 +58,9 @@
                     <div class="commContent">
                         <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bContent}]]</a>
                     </div>
-                    <div class="commImg" th:if="${bvo.bMainImg!=''}">
-                        <div th:each="fvo:${flist}">
-<!--                            [[${fvo}]]-->
-
-                            <img th:src="@{|/upload/${fvo.fileName}|}">
+                    <div class="commImg">
+                        <div class="commImgArea" th:if="${bvo.bMainImg!=''}">
+                            <img th:src="@{|/upload/${bvo.bMainImg}|}" width="270px" height="200px">
                         </div>
                     </div>
                     <div class="commCntInfo">
@@ -101,6 +99,25 @@
                 </ul>
             </div>
         </div>
-        <script th:src="@{/dist/js/markdown.js}"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const converter = new showdown.Converter();
+
+                document.querySelectorAll('.commContent').forEach(function(contentElement) {
+                    const markdownText = contentElement.textContent;
+                    let htmlContent = converter.makeHtml(markdownText);
+
+                    function removeMarkdownTags(html) {
+                        html = html.replace(/<h[1-6][^>]*>.*?<\/h[1-6]>/g, '');
+                        html = html.replace(/<img[^>]*>/g, '');
+                        return html;
+                    }
+
+                    htmlContent = removeMarkdownTags(htmlContent);
+                    contentElement.innerHTML = htmlContent;
+                });
+            });
+        </script>
+<!--        <script th:src="@{/dist/js/markdown.js}"></script>-->
     </th:block>
 </th:block>
