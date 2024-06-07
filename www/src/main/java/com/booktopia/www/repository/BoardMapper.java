@@ -21,4 +21,5 @@ public interface BoardMapper {
 
     void delete(long bno);
 
+    long getBno();
 }

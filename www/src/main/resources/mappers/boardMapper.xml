@@ -33,6 +33,10 @@
         delete from board where bno=#{bno}
     </delete>
 
+    <select id="getBno" resultType="long">
+        select bno from board
+    </select>
+
     <sql id="search">
         <if test="type!=null">
             <trim prefix="where (" suffix=")" suffixOverrides="or">

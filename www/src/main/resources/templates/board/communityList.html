@@ -59,8 +59,11 @@
                         <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bContent}]]</a>
                     </div>
                     <div class="commImg" th:if="${bvo.bMainImg!=''}">
-                        파일있음
-                        <img th:src="@{|/_fileUpload/${bvo.bMainImg}}">
+                        <div th:each="fvo:${flist}">
+<!--                            [[${fvo}]]-->
+
+                            <img th:src="@{|/upload/${fvo.fileName}|}">
+                        </div>
                     </div>
                     <div class="commCntInfo">
                         <div class="commCmtCnt commCnt">댓글 0</div>
