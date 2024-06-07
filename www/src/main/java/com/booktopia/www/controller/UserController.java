@@ -1,6 +1,8 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ public class UserController {
 
     private final UserService usv;
     private final PasswordEncoder passwordEncoder;
+    private final SendEmailService sendEmailService;
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {
@@ -107,9 +110,8 @@ public class UserController {
 
             return "/user/findPw";
         }else {
-
-//            usv.findPw(uvo.getEmail(),uvo.getId());
-//            m.addAttribute("member", uvo.getEmail());
+              MailDTO dto = sendEmailService.createMailAndChangePassword(uvo.getEmail(), uvo.getId());
+                sendEmailService.mailSend(dto);
 
             return"/user/findPwDone";
         }
