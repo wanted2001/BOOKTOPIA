@@ -25,8 +25,6 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {
-        log.info(">>>>>>>>>>>>>>> login error 잡힘!");
-        log.info("error {}", error);
         if(error != null){
             model.addAttribute("errorMessage", "아이디와 비밀번호를 확인해주세요.");
             return "/user/login";
@@ -95,6 +93,26 @@ public class UserController {
         log.info("아이디 찾는 유저의 이름 >>>>> {}", userName);
         return  ResponseEntity.ok(usv.findId(userName));
 
+    }
+
+    @GetMapping("/findPw")
+    public void findPw(){}
+
+    @RequestMapping(value="/findPw", method=RequestMethod.POST)
+    public String findPw(UserVO uvo,Model m) throws Exception{
+        log.info("user pw >>"+uvo.getId());
+        if(usv.findPwCheck(uvo)==0) {
+            log.info("memberPWCheck");
+            m.addAttribute("msg", "아이디를 확인해주세요.");
+
+            return "/user/findPw";
+        }else {
+
+//            usv.findPw(uvo.getEmail(),uvo.getId());
+//            m.addAttribute("member", uvo.getEmail());
+
+            return"/user/findPwDone";
+        }
     }
 
 

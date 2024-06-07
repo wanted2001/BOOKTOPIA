@@ -50,5 +50,9 @@
         select id from user where name=#{userName} and user_type = '일반' and user_del = 'N'
     </select>
 
+    <select id="findPwCheck" resultType="int">
+        select count(id) from user where id=#{id} and email=#{email}
+    </select>
+
 
 </mapper>
