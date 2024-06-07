@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submitButton");
   const conPwd = document.getElementById('pwdConfirm');
   const pwd = document.getElementById('pwd');
+  const email = document.getElementById('userEmail');
   const inputId = document.getElementById('id');
   const joinCheckIdBtn = document.getElementById('joinCheckIdBtn');
   const userName = document.getElementById('userName');
+  const helloNum = document.getElementById('helloNum');
 
-  // 메시지 정보 가져오기
+  // Initialize helloNum value
+  helloNum.value = '0';
+
   let elSuccessMessage = document.querySelector('.success-message');
   let elFailureMessageTwo = document.querySelector('.failure-message2');
   let elMismatchMessage = document.querySelector('.mismatch-message');
@@ -20,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!submitButton) console.error("Submit button element not found");
   if (!conPwd) console.error("Password confirm element not found");
   if (!pwd) console.error("Password element not found");
+  if (!email) console.error("Email element not found");
   if (!inputId) console.error("ID input element not found");
   if (!joinCheckIdBtn) console.error("Join check ID button element not found");
 
@@ -28,23 +33,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const agreements = {
-    termsOfService: false, // 서비스 약관 동의 상태
-    privacyPolicy: false, // 개인정보 처리방침 동의 상태
-    allowPromotions: false // 프로모션 수신 동의 상태
+    termsOfService: false,
+    privacyPolicy: false,
+    allowPromotions: false
   };
 
-  // 정규식 패턴
   const idRegex = /^[A-Za-z0-9]{6,13}$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+
   function isIdOk(str) {
     return idRegex.test(str);
   }
+
   function strongPassword(str) {
     return passwordRegex.test(str);
   }
+
   function isMatch(pwd, conPwd) {
     return pwd === conPwd;
-    //입력 비밀번호가 일치할 경우 true, 아닐 경우 false 리턴
   }
 
   function toggleSubmitButton() {
@@ -53,13 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
       && privacyPolicy
       && isIdOk(inputId.value)
       && isMatch(pwd.value, conPwd.value)
-      && strongPassword(pwd.value);
+      && strongPassword(pwd.value)
+      && email.value.trim() !== ''
+      && userName.value.trim() !== ''
+      && helloNum.value === '1';
 
     joinCheckIdBtn.disabled = !isIdOk(inputId.value);
-
     submitButton.disabled = !isFormValid;
   }
-
 
   toggleSubmitButton();
 
@@ -67,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function toggleCheckbox(e) {
     const { checked, id } = e.target;
-    agreements[id] = checked
+    agreements[id] = checked;
     e.target.parentNode.classList.toggle("active");
     checkAllStatus();
     toggleSubmitButton();
@@ -97,14 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isIdOk(inputId.value) === false) {
         elSuccessMessage.classList.add('hide');
         elFailureMessageTwo.classList.remove('hide');
-      }
-      else if (isIdOk(inputId.value)) {
+      } else if (isIdOk(inputId.value)) {
         elSuccessMessage.classList.remove('hide');
         elFailureMessageTwo.classList.add('hide');
       }
       joinCheckIdBtn.disabled = false;
-    }
-    else {
+    } else {
       elSuccessMessage.classList.add('hide');
       elFailureMessageTwo.classList.add('hide');
       joinCheckIdBtn.disabled = true;
@@ -112,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleSubmitButton();
   }
 
-  // 아이디 중복 확인 비동기 함수
   async function checkId(inputIdVal) {
     try {
       const url = '/user/check';
@@ -131,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 아이디 중복 확인 버튼 클릭 이벤트 리스너
   joinCheckIdBtn.addEventListener('click', () => {
+    helloNum.value = '1';
     const inputIdVal = inputId.value;
     checkId(inputIdVal).then(result => {
       console.log("result >>>>>", result);
@@ -150,13 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 비밀번호 확인 입력 시 유효성 검사
   conPwd.addEventListener('keyup', () => {
     validatePassword();
     toggleSubmitButton();
   });
 
-  // 비밀번호와 비밀번호 확인 일치 여부 검사
   function validatePassword() {
     if (pwd.value !== conPwd.value) {
       conPwd.style.color = "red";
@@ -171,12 +173,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pwd.value.length !== 0) {
       if (strongPassword(pwd.value)) {
         elStrongPasswordMessage.classList.add('hide');
-      }
-      else {
+      } else {
         elStrongPasswordMessage.classList.remove('hide');
       }
-    }
-    else {
+    } else {
       elStrongPasswordMessage.classList.add('hide');
       toggleSubmitButton();
     }
@@ -186,12 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (conPwd.value.length !== 0) {
       if (isMatch(pwd.value, conPwd.value)) {
         elMismatchMessage.classList.add('hide');
-      }
-      else {
+      } else {
         elMismatchMessage.classList.remove('hide');
       }
-    }
-    else {
+    } else {
       elMismatchMessage.classList.add('hide');
       toggleSubmitButton();
     }
@@ -199,6 +197,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   userName.onkeyup = function () {
     if (userName.value.length !== 0) {
+      toggleSubmitButton();
+    } else {
+      submitButton.disabled = true;
+    }
+  }
+
+  email.onkeyup = function() {
+    if (email.value.length !== 0) {
       toggleSubmitButton();
     } else {
       submitButton.disabled = true;

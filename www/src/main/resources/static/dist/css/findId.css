@@ -1,0 +1,50 @@
+.fi_wrap{
+    width: 100%;
+
+}
+
+.fi_title{
+        width: 85%;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.8em;
+        letter-spacing: 2px;
+}
+
+.fi_input{
+       width: 100%;
+       height: 400px;
+       text-align: center;
+       padding-top: 80px;
+}
+.fi_msg{
+    padding: 20px;
+
+}
+
+.fi_name{
+       border: 1px solid;
+       padding: 10px;
+       border-radius: 10px;
+
+
+}
+.fi_btn{
+        /* border: 1px solid; */
+        padding: 12px;
+        border-radius: 7px;
+        box-shadow: 1px 1px 3px;
+        background-color: cornsilk;
+
+}
+
+.fi_resultArea{
+   margin-top: 10px;
+}
+
+.fi_gotologin{
+    margin-top: 5px;
+    border-bottom: 1px solid;
+}
