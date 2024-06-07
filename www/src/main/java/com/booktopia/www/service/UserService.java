@@ -16,4 +16,7 @@ public interface UserService {
     void modifyMyinfoWithPwd(UserVO uvo);
 
     String findId(String userName);
+
+    int findPwCheck(UserVO uvo);
+
 }
