@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    const idElement = document.getElementById('commID');
+    const idElement = document.getElementById('commModiID2');
 
     const idVal = idElement.innerText;
     console.log(idVal);
@@ -126,7 +126,8 @@ async function handleEditor(event) {
         const selectedText = document.getElementById('selectedText2');
         let bCate = selectedText.innerText;
         const commSaveId = document.querySelector('.commSaveId').innerText;
-        const bno = document.querySelector('.commModBno').innerText;
+        const bno = document.querySelector('.commModBno').value;
+        console.log(bno);
         let postData = {};
 
         function updatePostData() {

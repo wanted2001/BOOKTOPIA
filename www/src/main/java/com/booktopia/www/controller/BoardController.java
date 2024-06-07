@@ -35,7 +35,7 @@ public class BoardController {
     public void register() {}
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody JSONObject bvo) throws ParseException {
+    public String register(@RequestBody JSONObject bvo) throws ParseException {
         log.info("bvo>>>>>>{}",bvo);
 
         JSONParser parser = new JSONParser();
@@ -53,7 +53,7 @@ public class BoardController {
 
         bsv.insert(boardVO);
 
-        return ResponseEntity.ok("success");
+        return "redirect:/board/list";
     }
 
     @GetMapping("/communityList")

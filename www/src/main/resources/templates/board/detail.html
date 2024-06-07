@@ -16,7 +16,9 @@
             </div>
             <div class="commDeContent">
                 [[${bvo.bContent}]]
-                <img th:src="@{|/upload/${bvo.bMainImg}|}">
+                <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
+                    <img th:src="@{|/upload/${bvo.bMainImg}|}">
+                </div>
             </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">

@@ -26,7 +26,7 @@
                 <div class="commToast" >
                     <div id="commForm2">
                         <!--아이디-->
-                        <span th:value="${bvo.bno}" class="commModBno"></span>
+                        <input th:value="${bvo.bno}" type="hidden" class="commModBno">
                         <div class="WriterArea">
                             <span sec:authentication="name" class="IDspan" id="commModiID2" th:style="'display:none'"></span>
                             <span class="commWriterArea">작성자 : </span><span id="deleteMemberType3"></span>
