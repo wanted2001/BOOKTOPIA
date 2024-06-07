@@ -11,15 +11,15 @@
                 <div class="commChoice">당신의 선택은?</div>
                 <div class="commTopic">토론주제</div>
                 <div class="commViewVote">
+                    <input type="hidden" th:with="auth=${#authentication.getName()}" th:value="${auth}" name="user" id="commuUser">
                     <div class="commVoteUp" id="voteUp">
-                        <button class="upBtn"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg"/></button></a>
+                        <button type="button" class="upBtn" th:value="찬성"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg"></button></a>
                     </div>
                     <div class="commVoteBar">
-                        <a th:with="auth=${#authentication.getName()}" th:text="${auth}" id="commuUser"></a>
                         <div class="persent"></div>
                     </div>
                     <div class="commVoteDown">
-                        <button class="downBtn"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="downImg" /></button>
+                        <button type="button" class="downBtn" th:value="반대"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="downImg" /></button>
                     </div>
                 </div>
             </div>
@@ -103,6 +103,11 @@
                 </div>
             </div>
         </div>
+        <script th:inline="javascript">
+            // th:with="auth=${#authentication.getName()}"
+            const user = document.getElementById('commuUser').value;
+            console.log("user >>>>>"+user);
+        </script>
         <script th:src="@{/dist/js/voteButton.js}"></script>
     </th:block>
     </th:block>

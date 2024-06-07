@@ -50,8 +50,8 @@ public class SecurityConfig {
                         .requestMatchers("/index", "/", "/js/**", "/dist/**", "/user/login/*", "/user/join", "/image/**", "/user/check",
                                 "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
-                                "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
-                                "/user/myPage/*")
+                                "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**","/booktopiaTest/test", "/chatbot/**",
+                                "/user/myPage/*","/vote/push")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
