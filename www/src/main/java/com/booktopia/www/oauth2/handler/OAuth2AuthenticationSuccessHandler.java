@@ -92,9 +92,10 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                         .build().toUriString();
 
         } else if ("unlink".equalsIgnoreCase(mode)) {
-
+            String ut = principal.getUserVO().getUserType();
+            log.info("ut >> {}",ut);
             String accessToken = principal.getUserVO().getAccessToken();
-            OAuth2Provider provider = OAuth2Provider.valueOf(principal.getUserVO().getUserType());
+            OAuth2Provider provider = OAuth2Provider.valueOf(ut.toUpperCase());
 
             log.info("pro > {} ",provider);
             log.info("access >> {}",accessToken);

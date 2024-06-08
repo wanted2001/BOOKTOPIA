@@ -31,8 +31,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2UserInfo oAuth2UserInfo;
 
         String accessToken = userRequest.getAccessToken().getTokenValue();
-
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
+
         if (registrationId.equals("google")) {
             log.info("구글 로그인 요청");
             oAuth2UserInfo = new GoogleOAuth2UserInfo(accessToken, oAuth2User.getAttributes());
@@ -48,10 +48,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
 
         String providerId = oAuth2UserInfo.getId();
+        log.info("providerId >>> {}",providerId);
         String username = oAuth2UserInfo.getName();
         String email = oAuth2UserInfo.getEmail();
         String type = oAuth2UserInfo.getUserType();
         String role = "ROLE_USER";
+        log.info("att >> {}",oAuth2User.getAttributes());
 
         // principalName 검증
         if (providerId == null || providerId.isEmpty()) {

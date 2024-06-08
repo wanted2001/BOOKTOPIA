@@ -17,6 +17,7 @@ public class CustomUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String id)
             throws UsernameNotFoundException {
         UserVO loginUvo = userMapper.selectId(id);
+        log.info("loginUvo >> {}",loginUvo);
         loginUvo.setAuthList(userMapper.selectAuths(id));
 
         // 리턴값을 UserDetails로 변경해야함
