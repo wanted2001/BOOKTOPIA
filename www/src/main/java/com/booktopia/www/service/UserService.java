@@ -19,6 +19,5 @@ public interface UserService {
 
     int findPwCheck(UserVO uvo);
 
-
     void updateAddr(UserVO uvo);
 }
