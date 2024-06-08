@@ -1,7 +1,7 @@
 console.log("findId.js in!");
 window.addEventListener('load', function() {
     document.getElementById('findbtn').addEventListener('click', () => {
-        let name = document.getElementById('fi_name').value; // 'doucument'를 'document'로 수정했습니다.
+        let name = document.getElementById('fi_name').value;
         console.log("아이디 찾는 user의 이름 >> ", name);
         let resArea = document.getElementById('resArea');
 
@@ -18,6 +18,9 @@ window.addEventListener('load', function() {
                 resArea.innerText = "가입된 유저가 아니거나 아이디 정보가 없습니다.";
             } else {
                 resArea.innerText = "아이디는 < " + result + " > 입니다.";
+                resArea.innerHTML += `<br>`;
+                resArea.innerHTML += `<br>`;
+                resArea.innerHTML += `<a href="/user/login" class="fi_gotologin">로그인하러 가기</a>`;
             }
         });
     });

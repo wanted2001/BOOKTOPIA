@@ -2,6 +2,7 @@ package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.FileVO;
 import com.booktopia.www.repository.FileMapper;
+import com.booktopia.www.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -25,6 +26,8 @@ public class FileController {
     //저장경로
     //윈도우
     private final String UP_DIR = "C:\\_booktopia\\_fileUpload\\";
+    private final BoardService bsv;
+
 
 
     //이미지업로드용
@@ -45,23 +48,24 @@ public class FileController {
 
         FileVO fvo = new FileVO();
         fvo.setUuid(uuid);
-        fvo.setSaveDir("_booktopia\\_fileUpload\\");
+        fvo.setSaveDir("/board");
         fvo.setFileSize(image.getSize());
         fvo.setFileName(saveFilename);
         fvo.setFileType(1);
 
+
         log.info("fvo>>>>>>{}",fvo);
-        m.addAttribute("fvo",fvo);
         fileMapper.insertFile(fvo);
 
         File dir = new File(UP_DIR);
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdirs();
         }
 
         try{
             File uploadFile = new File(fileFullPath);
             image.transferTo(uploadFile);
+            m.addAttribute("fvo",fvo);
             return saveFilename;
         } catch (IOException e) {
             throw new RuntimeException(e);

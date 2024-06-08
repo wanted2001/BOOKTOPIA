@@ -5,13 +5,21 @@ const btn2 = document.getElementById('btn2');
 const result = document.getElementById('resultBtn');
 const home = document.getElementById('home');
 
-document.getElementById('next').addEventListener('click',()=>{
-    document.getElementById('questionInfo').style.display = "none";
-    document.getElementById('questionDiv').style.display = "block";
-    question.innerText = testListaArry[0].question
-    btn1.innerText = testListaArry[0].answer1
-    btn2.innerText = testListaArry[0].answer2
-       
+let brith = document.getElementById('brith');
+let nextBtn = document.getElementById('next');
+
+nextBtn.addEventListener('click',()=>{
+    if(brith.value === '' || brith === null){
+        alert("정보를 입력해주세요😊");
+        nextBtn.disable = true;
+    } else {
+        document.getElementById('questionInfo').style.display = "none";
+        document.getElementById('questionDiv').style.display = "block";
+
+        question.innerText = testListaArry[0].question
+        btn1.innerText = testListaArry[0].answer1
+        btn2.innerText = testListaArry[0].answer2
+    }
 });
 
 const testListaArry =[
@@ -71,6 +79,7 @@ const testListaArry =[
 let i = 1;
 let btnResult = 0;
 let per = 0
+
 document.addEventListener('click',(e)=>{
     if(e.target.id == 'btn1' || e.target.id == 'btn2') {
         per += 10;
@@ -78,7 +87,7 @@ document.addEventListener('click',(e)=>{
         if(i<testListaArry.length){
             question.innerText = testListaArry[i].question
             btn1.innerText = testListaArry[i].answer1
-            btn2.innerText = testListaArry[i].answer2        
+            btn2.innerText = testListaArry[i].answer2
             i++;
             if(e.target.id == 'btn1'){
                 btnResult += 1;
@@ -99,40 +108,17 @@ document.addEventListener('click',(e)=>{
     }
     else if(e.target.classList.contains('result')){
         console.log(e.target.classList);
-        location.href=`/booktopiaTest/bookList?btnResult=${btnResult}`;
+        let user = document.getElementById('commuUser').value;
+
+        let form = document.getElementById('bookTest');
+        form.action = `bookList?btnResult=${btnResult}`;
+
+        let hiddenBtn = document.getElementById('hiddenBtn');
+        hiddenBtn.click();
+        // location.href=`/booktopiaTest/bookList?btnResult=${btnResult}`;
+        // document.getElementById('hiddenBtn').click();
     }
     else if(e.target.id == 'home'){
         location.href = `/`;
     }
 });
-
-
-
-// document.addEventListener('click',(e)=>{
-//     if(e.target.id == 'btn1' || e.target.id == 'btn2'){
-//         position = Math.floor((e.pageX-offset.left)/innerWidth()*100)+1;
-//         document.querySelector('.percent').classList('transform', 'translateX('+position+'%)');
-//     }
-// });
-
-
-//  progressBar > width: 400px;
-
-const progressBar = document.querySelector('.percent');
-
-let scrollNum = 0;
-let documentHeight=0;
-
-const getPercent = (scroll, total)=>{
-    return (scroll/total)*100;
-}
-
-document.addEventListener('click',(e)=>{
-    if(e.target.tagName == 'button'){
-        scrollNum = document.documentElement.scrollTop;
-
-        documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-        progressBar.style.width = getPercent(scrollNum, documentHeight) + '%';
-    }
-})

@@ -4,6 +4,8 @@
 <link rel="stylesheet" th:href="@{/dist/css/communityDetail.css}">
 <!--마크다운 라이브러리-->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+<script th:src="@{/dist/js/markdownDetail.js}"></script>
+<link rel="stylesheet" th:href="@{/dist/css/communityDetailMarkdown.css}">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
@@ -14,7 +16,12 @@
                 <div class="commDeWriter">[[${bvo.bWriter}]]</div>
                 <div class="commDeRegdate">[[${bvo.bRegDate}]]</div>
             </div>
-            <div class="commDeContent">[[${bvo.bContent}]]</div>
+            <div class="commDeContent">
+                [[${bvo.bContent}]]
+                <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
+                    <img th:src="@{|/upload/${bvo.bMainImg}|}">
+                </div>
+            </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">
                 <div th:if="${auth eq bvo.bWriter}" class="commBtnArea">
@@ -42,7 +49,6 @@
                 </form>
             </div>
         </div>
-        <script th:src="@{/dist/js/markdown.js}"></script>
         </th:block>
     </th:block>
 </th:block>

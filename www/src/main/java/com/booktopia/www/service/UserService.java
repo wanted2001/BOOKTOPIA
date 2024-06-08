@@ -17,5 +17,8 @@ public interface UserService {
 
     String findId(String userName);
 
+    int findPwCheck(UserVO uvo);
+
+
     void updateAddr(UserVO uvo);
 }

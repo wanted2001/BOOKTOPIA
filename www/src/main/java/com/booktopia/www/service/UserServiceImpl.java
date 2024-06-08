@@ -51,5 +51,11 @@ public class UserServiceImpl implements UserService {
         userMapper.updateAddr(uvo);
     }
 
+    @Override
+    public int findPwCheck(UserVO uvo) {
+        return userMapper.findPwCheck(uvo);
+    }
+
+
 
 }

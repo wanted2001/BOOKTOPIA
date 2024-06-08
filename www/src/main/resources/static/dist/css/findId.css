@@ -14,13 +14,37 @@
 }
 
 .fi_input{
-       background-color: yellow;
        width: 100%;
-       height: 300px;
+       height: 400px;
        text-align: center;
        padding-top: 80px;
 }
 .fi_msg{
     padding: 20px;
 
+}
+
+.fi_name{
+       border: 1px solid;
+       padding: 10px;
+       border-radius: 10px;
+
+
+}
+.fi_btn{
+        /* border: 1px solid; */
+        padding: 12px;
+        border-radius: 7px;
+        box-shadow: 1px 1px 3px;
+        background-color: cornsilk;
+
+}
+
+.fi_resultArea{
+   margin-top: 10px;
+}
+
+.fi_gotologin{
+    margin-top: 5px;
+    border-bottom: 1px solid;
 }

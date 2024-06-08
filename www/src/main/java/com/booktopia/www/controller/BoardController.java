@@ -1,7 +1,13 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.BoardVO;
+import com.booktopia.www.domain.DTO.BoardDTO;
+import com.booktopia.www.domain.FileVO;
+import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.handler.FileHandler;
+import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
+import com.booktopia.www.service.FileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,18 +20,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
     private final BoardService bsv;
+    private final FileService fsv;
 
     @GetMapping("/register")
     public void register() {}
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody JSONObject bvo) throws ParseException {
+    @ResponseBody
+    public String register(@RequestBody JSONObject bvo) throws ParseException {
         log.info("bvo>>>>>>{}",bvo);
 
         JSONParser parser = new JSONParser();
@@ -42,22 +53,24 @@ public class BoardController {
         log.info("boardVO>>>>>>{}",boardVO);
 
         bsv.insert(boardVO);
-        return ResponseEntity.ok("success");
+
+        return "111";
     }
 
-    @GetMapping("/detail")
+    @GetMapping({"/detail","/modify"})
     public void detail(Model m, @RequestParam("bno")long bno){
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}",bvo);
+
         m.addAttribute("bvo",bvo);
     }
 
-    @GetMapping("/modify")
-    public void modifyBoard(Model m, @RequestParam("bno")long bno){
-        BoardVO bvo = bsv.getDetail(bno);
-        log.info("modifyBoard bvo >>>>{}",bvo);
-        m.addAttribute("bvo",bvo);
-    }
+//    @GetMapping("/modify")
+//    public void modifyBoard(Model m, @RequestParam("bno")long bno){
+//        BoardVO bvo = bsv.getDetail(bno);
+//        log.info("modifyBoard bvo >>>>{}",bvo);
+//        m.addAttribute("bvo",bvo);
+//    }
 
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {
@@ -93,4 +106,7 @@ public class BoardController {
 
     @GetMapping("/userId")
     public void userId(){}
+
+
+
 }

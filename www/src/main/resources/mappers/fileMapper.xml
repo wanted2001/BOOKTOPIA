@@ -7,4 +7,14 @@
         insert into file (uuid,save_dir,file_name,file_size,file_type)
         values (#{uuid},#{saveDir},#{fileName},#{fileSize},#{fileType})
     </insert>
+
+    <select id="getFileList" resultType="com.booktopia.www.domain.FileVO">
+        select * from file
+    </select>
+
+<!--    <insert id="insertFile2">-->
+<!--        insert into insert into file (uuid,save_dir,file_name,file_size,file_type)-->
+<!--        values (#{uuid},#{saveDir},#{fileName},#{fileSize},#{fileType})-->
+<!--    </insert>-->
+
 </mapper>

@@ -1,0 +1,56 @@
+.commDeContent h1{
+    font-size: 46px;
+    font-weight: bold;
+}
+.commDeContent h2{
+    font-size: 41px;
+    font-weight: bold;
+}
+.commDeContent h3{
+    font-size: 36px;
+    font-weight: bold;
+}
+.commDeContent h4{
+    font-size: 31px;
+    font-weight: bold;
+}
+.commDeContent h5{
+    font-size: 26px;
+    font-weight: bold;
+}
+.commDeContent h6{
+    font-size: 19px;
+    font-weight: bold;
+}
+.commDeContent strong{
+    /*color: red;*/
+    font-weight: bold;
+}
+.commDeContent em{
+    font-style: italic;
+}
+.commDeContent blockquote {
+    border-left: 4px solid grey;
+    height: 20px;
+    margin: 10px 0 0 8px;
+    padding-left: 10px;
+    line-height: 20px;
+    color: grey;
+    /*색은 나중에 바꿔도 됩니다..*/
+}
+
+.commDeContent ul li::before{
+    content:'';
+    display:inline-block;
+    width:6px;
+    height:6px;
+    margin:-5px 10px 0 0;
+    vertical-align:middle;
+    background:#242222;
+    border-radius:50%
+}
+.commDeContent ul li p{
+    margin-left: 13px;
+    margin-top: -18px;
+}
+

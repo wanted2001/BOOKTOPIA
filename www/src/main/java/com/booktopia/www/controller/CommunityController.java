@@ -4,12 +4,16 @@ import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.DTO.BoardDTO;
 import com.booktopia.www.domain.FileVO;
 import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.domain.VoteVO;
 import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -54,43 +58,9 @@ public class CommunityController {
     @GetMapping("/communityNotice")
     public void commNotice(){}
 
-//    @PostMapping("/register")
-//    @ResponseBody
-//    public String register(BoardVO bvo, @RequestParam(name="files", required = false) MultipartFile[] files){
-//        List<FileVO> flist = null;
-//
-//        log.info("files>>>{}",files);
-//        if(files[0].getSize()>0){
-//            flist=fh.uploadFiles(files);
-//        }
-//
-//        log.info("flist >>>{}",flist);
-//        log.info("bvo>>{}",bvo);
-//
-//        BoardDTO bdto = new BoardDTO(bvo, flist);
-//        log.info("bdto>>{}",bdto);
-//
-//        int isOk = bsv.insert(bdto);
-//        return isOk>0? "1":"0";
-//    }
 
-//    @PostMapping("/fileRegister")
-//    @ResponseBody
-//    public ResponseEntity<String> fileUpload(@RequestParam("image") MultipartFile image){
-//        if(image.isEmpty()){
-//            log.error("File 없음");
-//            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File is empty");
-//        }
-//
-//        List<FileVO> flist = fh.uploadFiles(new MultipartFile[]{image});
-//        log.info("flist >>>{}",flist);
-//        if(flist.isEmpty()){
-//            log.error("file 업로드 실패");
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File upload failed");
-//        }
-//
-//        String imageUrl = flist.get(0).getSaveDir()+"/"+flist.get(0).getUuid()+"_"+flist.get(0).getFileName();
-//        log.info("파일 업로드 성공>>{}",imageUrl);
-//        return ResponseEntity.ok(imageUrl);
-//    }
+    @PostMapping("/push")
+    public void votePush(VoteVO voteVO){
+        log.info(">>> controller in >>> ,{}", voteVO);
+    }
 }

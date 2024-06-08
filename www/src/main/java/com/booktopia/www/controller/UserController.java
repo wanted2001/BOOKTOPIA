@@ -1,6 +1,8 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,10 @@ public class UserController {
 
     private final UserService usv;
     private final PasswordEncoder passwordEncoder;
+    private final SendEmailService sendEmailService;
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {
-        log.info(">>>>>>>>>>>>>>> login error 잡힘!");
-        log.info("error {}", error);
         if(error != null){
             model.addAttribute("errorMessage", "아이디와 비밀번호를 확인해주세요.");
             return "/user/login";
@@ -97,16 +98,24 @@ public class UserController {
 
     }
 
+    @GetMapping("/findPw")
+    public void findPw(){}
 
-    @GetMapping("/user/modifyAddr")
-    public String modifyaddr(UserVO uvo, RedirectAttributes re){
-        usv.updateAddr(uvo);
-        re.addAttribute("modifyAddr","success");
-        return "redirect:/user/mypage";
+    @RequestMapping(value="/findPw", method=RequestMethod.POST)
+    public String findPw(UserVO uvo,Model m) throws Exception{
+        log.info("user pw >>"+uvo.getId());
+        if(usv.findPwCheck(uvo)==0) {
+            log.info("memberPWCheck");
+            m.addAttribute("msg", "아이디를 확인해주세요.");
+
+            return "/user/findPw";
+        }else {
+              MailDTO dto = sendEmailService.createMailAndChangePassword(uvo.getEmail(), uvo.getId());
+                sendEmailService.mailSend(dto);
+
+            return"/user/findPwDone";
+        }
     }
-
-
-
 
 
 
