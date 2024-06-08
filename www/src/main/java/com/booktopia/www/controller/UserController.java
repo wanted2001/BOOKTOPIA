@@ -98,5 +98,16 @@ public class UserController {
     }
 
 
+    @GetMapping("/user/modifyAddr")
+    public String modifyaddr(UserVO uvo, RedirectAttributes re){
+        usv.updateAddr(uvo);
+        re.addAttribute("modifyAddr","success");
+        return "redirect:/user/mypage";
+    }
+
+
+
+
+
 
 }

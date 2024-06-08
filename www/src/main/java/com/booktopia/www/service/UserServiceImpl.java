@@ -46,5 +46,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.findId(userName);
     }
 
+    @Override
+    public void updateAddr(UserVO uvo) {
+        userMapper.updateAddr(uvo);
+    }
+
 
 }

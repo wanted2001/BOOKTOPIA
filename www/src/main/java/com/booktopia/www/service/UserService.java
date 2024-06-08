@@ -16,4 +16,6 @@ public interface UserService {
     void modifyMyinfoWithPwd(UserVO uvo);
 
     String findId(String userName);
+
+    void updateAddr(UserVO uvo);
 }

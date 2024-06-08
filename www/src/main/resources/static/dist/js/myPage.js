@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageCoupon = "/mypage/couponlist";
     const myPageModify = "/mypage/modify";
     const myPageAddress = "/mypage/changeaddr";
-    const myPageAddressSocial = "/myPage/changeaddrSocial";
+    const myPageAddressSocial = "/mypage/changeaddrsocial";
     const myPagePayment = "/mypage/payinfo";
     const myPageSubscribe = "/mypage/subinfo";
     const isSocial = "/user/deleteUser";
@@ -57,13 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     pageCall(myPageModify, moveContainer);
                     break;
                 case 'myPageAddress':
-                    isSocialUser(idVal).then(result=>{
-                    if (result !== "일반") {
-                        pageCall(myPageAddressSocial, moveContainer);
-                    }
-                    else {
-                        pageCall(myPageAddress, moveContainer);
-                    }
+                    isSocialUser(idVal).then(result => {
+                        console.log(result);
+                        if (result !== "일반") {
+                            pageCall(myPageAddressSocial, moveContainer);
+                        }
+                         if(result == "일반"){
+                            pageCall(myPageAddress, moveContainer);
+                        }
                     })
                     break;
                 case 'myPagePayment':
@@ -92,7 +93,8 @@ function pageCall(link, callBox) {
                         case '/mypage/modify':
                             loadScript('/dist/js/myPageModify.js');
                             break;
-                        case '/mypage/changeaddr' || '/myPage/changeaddrSocial':
+                        case '/mypage/changeaddr':
+                        case '/myPage/changeaddrsocial':
                             loadScript('/dist/js/changeaddr.js');
                             break;
                         case '/mypage/couponlist':
@@ -115,6 +117,7 @@ function pageCall(link, callBox) {
 
 // 스크립트가 이미 포함되어 있는지 확인하고 추가하는 함수
 function loadScript(src) {
+    removeAllScriptsExcept(src)
     if (!isScriptAlreadyIncluded(src)) {
         const script = document.createElement('script');
         script.src = src;
@@ -133,6 +136,29 @@ function isScriptAlreadyIncluded(src) {
     return false;
 }
 
+// 특정 스크립트들을 제외하고 모든 스크립트를 제거하는 함수
+function removeAllScriptsExcept(dynamicSrc) {
+    const srcToKeep = [
+        "/dist/js/myPage.js",
+        "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js",
+        dynamicSrc // 동적으로 들어오는 src 값을 추가
+    ];
+
+    const scripts = document.getElementsByTagName('script');
+    for (let i = scripts.length - 1; i >= 0; i--) { // script 태그를 달고있는 전체 태그 개수
+        let keepScript = false;
+        for (let j = 0; j < srcToKeep.length; j++) { // script 태그를 달고있는 필수요소의 개수만큼
+            if (scripts[i].src.includes(srcToKeep[j])) { // json 형식에 있는 js 링크들
+                keepScript = true;
+                break;
+            }
+        }
+        if (!keepScript) {
+            scripts[i].parentNode.removeChild(scripts[i]);
+        }
+    }
+}
+
 // 유저 타입을 확인하는 비동기 함수
 async function isSocialUser(id) {
     try {
@@ -143,3 +169,4 @@ async function isSocialUser(id) {
         console.log(error);
     }
 }
+

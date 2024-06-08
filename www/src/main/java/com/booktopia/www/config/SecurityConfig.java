@@ -24,7 +24,6 @@ import com.booktopia.www.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 
 import java.util.List;
 
-
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
@@ -35,7 +34,6 @@ public class SecurityConfig {
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
-
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -51,7 +49,7 @@ public class SecurityConfig {
                                 "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
                                 "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
-                                "/user/myPage/*","/user/findId/*","/user/findId")
+                                "/user/myPage/*", "/user/findId/*", "/user/findId", "/mypage/changeaddrsocial")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()

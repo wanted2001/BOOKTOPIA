@@ -5,7 +5,10 @@
 <mapper namespace="com.booktopia.www.repository.UserMapper">
     
     <insert id="joinInsert">
-        insert into user(id,pwd,name,user_type) values(#{id},#{pwd},#{name},'일반')
+        insert into user(id,pwd,email,name,user_type) values(#{id},#{email},#{pwd},#{name},'일반')
+    </insert>
+    <insert id="joinInsertOauth">
+        insert into user(id,pwd,email,name,user_type) values(#{id},#{email},#{pwd},#{name},#{userType})
     </insert>
     <insert id="insertAuth">
         insert into auth values(#{id},'ROLE_USER')
@@ -39,16 +42,20 @@
     </select>
 
     <update id="modifyMyinfo">
-        update user set phone=#{phone},user_up=now() where id=#{id}
+        update user set email=#{email},phone=#{phone},user_up=now() where id=#{id}
     </update>
 
     <update id="modifyMyinfoWithPwd">
-        update user set pwd = #{pwd},phone = #{phone},user_up=now() where id=#{id}
+        update user set pwd = #{pwd},email=#{email},phone = #{phone},user_up=now() where id=#{id}
     </update>
 
     <select id="findId" resultType="String">
         select id from user where id=#{userName} and user_type = '일반' and user_del = 'N'
     </select>
+
+    <update id="updateAddr">
+        update user set =
+    </update>
 
 
 </mapper>
