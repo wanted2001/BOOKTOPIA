@@ -9,18 +9,15 @@ import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.CommunityService;
-import com.booktopia.www.service.VoteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.attribute.standard.Media;
 import java.util.List;
 
 @Slf4j
@@ -75,23 +72,22 @@ public class CommunityController {
     }
 
     @GetMapping("/communityList")
-    public void commList(Model m, PagingVO pgvo){
+    public void commListCategory(Model m, PagingVO pgvo, @RequestParam("bCate")String bCate){
         log.info("pgvo>>>>{}",pgvo);
+
         //전체 게시글 수
-        int totalCount = bsv.getTotalCount(pgvo);
+        int totalCount = bsv.getCateTotalCount(pgvo);
+        log.info("totalCount>>>>>{}",totalCount);
 
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
         log.info("ph>>>>>{}",ph);
 
-        List<BoardVO> blist = bsv.getList(pgvo);
+        List<BoardVO> blist = bsv.getCateList(pgvo);
         log.info("blist>>>{}", blist);
 
         m.addAttribute("blist",blist);
         m.addAttribute("ph",ph);
     }
-
-    @GetMapping("/communityDetail")
-    public void commDetail(){}
 
     @GetMapping("/communityNotice")
     public void commNotice(){}

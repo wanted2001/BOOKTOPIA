@@ -41,7 +41,7 @@
                     <div class="commBoardtext">자유롭게..</div>
                     <!--전체보기버튼-->
                     <div class="commBoardAll">
-                        <a th:href="@{/community/communityList}">
+                        <a th:href="@{/community/communityListAll}">
                             <span>전체보기 ></span>
                         </a>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="commCategory-top">
                             <div class="commCate1 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='novel')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="commCate2 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='poem')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="commCate3 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='finance')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -82,7 +82,7 @@
                         <div class="commCategory-bottom">
                             <div class="commCate4 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/board/communityList}">
+                                    <a th:href="@{/board/communityList(bCate='human')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="commCate5 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/board/communityList}">
+                                    <a th:href="@{/board/communityList(bCate='history')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="commCate6 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='development')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
