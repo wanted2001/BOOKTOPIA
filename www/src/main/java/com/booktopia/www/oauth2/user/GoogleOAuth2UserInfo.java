@@ -62,8 +62,4 @@ public class GoogleOAuth2UserInfo implements OAuth2UserInfo {
         return "google";
     }
 
-    @Override
-    public String getPhone() {
-        return "";
-    }
 }

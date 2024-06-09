@@ -4,7 +4,6 @@ import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,6 +44,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public String findId(String userName) {
         return userMapper.findId(userName);
+    }
+
+    @Override
+    public void updateAddr(UserVO uvo) {
+        userMapper.updateAddr(uvo);
     }
 
     @Override

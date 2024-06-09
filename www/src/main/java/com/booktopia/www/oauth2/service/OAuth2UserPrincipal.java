@@ -1,32 +1,40 @@
 package com.booktopia.www.oauth2.service;
 
-import com.booktopia.www.oauth2.user.OAuth2UserInfo;
+import com.booktopia.www.domain.AuthVO;
+import com.booktopia.www.domain.UserVO;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
 
-    private final OAuth2UserInfo userInfo;
+    private UserVO userVO;
+    private Map<String, Object> attributes;
 
-    public OAuth2UserPrincipal(OAuth2UserInfo userInfo) {
-        this.userInfo = userInfo;
+    // 일반 로그인용 생성자
+    public OAuth2UserPrincipal(UserVO userVO) {
+        this.userVO = userVO;
+    }
+
+    // 소셜 로그인용 생성자
+    public OAuth2UserPrincipal(UserVO userVO, Map<String, Object> attributes) {
+        this.userVO = userVO;
+        this.attributes = attributes;
     }
 
     @Override
     public String getPassword() {
-        return userInfo.getPwd();
+        return userVO.getPwd();
     }
 
     @Override
     public String getUsername() {
-        return userInfo.getEmail();
+        return userVO.getEmail();
     }
 
     @Override
@@ -51,7 +59,7 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
 
     @Override
     public Map<String, Object> getAttributes() {
-        return userInfo.getAttributes();
+        return attributes;
     }
 
     @Override
@@ -61,18 +69,18 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
 
     @Override
     public String getName() {
-        return userInfo.getName();
+        return userVO.getName();
     }
 
-    public String getUserType() {
-        return userInfo.getProvider().getRegistrationId();
+    public String getId() {
+        return userVO.getId();
     }
 
-    public String getId(){
-        return userInfo.getId(); }
+    public String getAddress() {
+        return userVO.getAddress();
+    }
 
     public String getPhone() {
-        return userInfo.getPhone();
+        return userVO.getPhone();
     }
-
 }

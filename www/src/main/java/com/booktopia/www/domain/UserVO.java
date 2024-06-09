@@ -2,6 +2,7 @@ package com.booktopia.www.domain;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,6 +23,7 @@ public class UserVO {
     private String userReg; //가입날짜
     private String userUp; //수정날짜
     private String userType; //가입유형
-    private List<AuthVO> authList; //권한 목록
+    private String accessToken;
+    private List<AuthVO> authList;//권한 목록
 
 }

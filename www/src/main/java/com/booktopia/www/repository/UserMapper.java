@@ -31,6 +31,10 @@ public interface UserMapper {
 
     String findId(String userName);
 
+    void updateAddr(UserVO uvo);
+
+    void joinInsertOauth(UserVO uvo);
+
     int findPwCheck(UserVO uvo);
 
     String findUserByUserId(String email);

@@ -5,13 +5,14 @@
             <div class="myPageRightWrapInfoModWrap">
                 <div class="myPageRightWrapForm">
                     <form action="/user/modifyAddr" method="POST">
-                            <input type="hidden" th:value="${#authentication.getName()}" name="id">
+                        <input type="hidden" th:value="${#authentication.getName()}" name="id">
                         <div class="myPageModInputFormWrap">
-                            <div class="myPageModInputFormText">현재 배송지</div>
+                            <div class="myPageModInputFormText">배송지</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="address" placeholder="address..." id="changeAddr"
-                                th:value="${#authentication.getPrincipal().userVO.getAddress == null ? '' :
-                                #authentication.getPrincipal().userVO.getAddress()}"><br>
+                                       th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' :
+                                       #authentication.getPrincipal().userVO.getAddress()}"
+                                ><br>
                             </div>
                         </div>
                         <div class="modifyGetAddrBtn">
@@ -23,12 +24,12 @@
                             <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="phone" placeholder="phone..." id="changePhone"
-                                       th:value="${#authentication.getPrincipal().userVO.getPhone == null ? '' :
+                                       th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
                                        #authentication.getPrincipal().userVO.getPhone()}"><br>
                             </div>
                         </div>
                         <div class="myPageModInputFormWrapBtn">
-                            <button type="submit" id="submitAddrButton">배송지 수정 일반</button>
+                            <button type="submit" id="submitAddrButton">배송지 수정 소셜</button>
                         </div>
                     </form>
                 </div>

@@ -83,7 +83,7 @@ public class UserController {
             usv.modifyMyinfoWithPwd(uvo);
         }
         re.addAttribute("modify","success");
-        return "redirect:/user/myPage";
+        return "redirect:/user/logout";
     }
 
 
