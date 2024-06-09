@@ -19,4 +19,14 @@ public interface BoardService {
     void delete(long bno);
 
     long getBno();
+
+    void updateCommentCnt(long bno);
+
+    void deleteCommentCnt(Long bvo);
+
+    List<BoardVO> getCateList(PagingVO pgvo);
+
+    int getCateTotalCount(PagingVO pgvo);
+
+    int getCateCount();
 }

@@ -30,6 +30,12 @@
     width: 1000px;
     height: 800px;
     margin: 0 auto;
+    position: relative;
+}
+.commDeImgArea{
+    position: absolute;
+    top: 300px;
+    left: 480px;
 }
 /*수정 삭제 버튼*/
 .commBtnArea{
@@ -52,9 +58,9 @@
 /*댓글*/
 .commDeComment{
     background-color: mediumvioletred;
-    width: 100%;
+    width: 1000px;
     height: 300px;
-    margin-top: 90px;
+    margin: 0 auto;
 }
 .commDe-ComInfo{
     background-color: goldenrod;
@@ -82,23 +88,27 @@
 }
 .comm-CommInputArea{
     background-color: darkslategray;
-    width: 100%;
-    height: 180px;
+    width: 1000px;
+    margin: 0 auto;
+    /*height: 180px;*/
 }
 .comm-CommInput{
     background-color: darkgray;
-    width: 100%;
+    width: 1000px;
     height: 180px;
+    margin: 0 auto;
 }
 .comm-Comment{
     border: none;
-    width: 1000px;
+    width: 980px;
     height: 100px;
-    margin: 15px 200px;
+    padding-left: 20px;
     outline: none;
 }
 .comm-CommRegBtn{
-    position: absolute;
     border: none;
-    right: 500px;
+    margin-top: 15px;
+    margin-left: 920px;
+    width: 68px;
+    height: 40px;
 }

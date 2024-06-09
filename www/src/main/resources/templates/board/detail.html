@@ -4,12 +4,19 @@
 <link rel="stylesheet" th:href="@{/dist/css/communityDetail.css}">
 <!--마크다운 라이브러리-->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
-<script th:src="@{/dist/js/markdownDetail.js}"></script>
+<script th:src="@{/dist/js/markdown.js}"></script>
 <link rel="stylesheet" th:href="@{/dist/css/communityDetailMarkdown.css}">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="commDeCate">[[${bvo.bCate}]]</div>
+            <div class="commDeCate" th:switch="${bvo.bCate}">
+                <span th:case="novel" th:text="'[소설]'"></span>
+                <span th:case="finance" th:text="'[경제/경영]'"></span>
+                <span th:case="human" th:text="'[인문]'"></span>
+                <span th:case="history" th:text="'[역사/문화]'"></span>
+                <span th:case="poem" th:text="'[시/에세이]'"></span>
+                <span th:case="development" th:text="'[자기개발]'"></span>
+            </div>
             <!--작성자, 등록일 하나로-->
             <div class="commDeTitle">[[${bvo.bTitle}]]</div>
             <div class="commDeWriterInfo">
@@ -18,9 +25,9 @@
             </div>
             <div class="commDeContent">
                 [[${bvo.bContent}]]
-                <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
-                    <img th:src="@{|/upload/${bvo.bMainImg}|}">
-                </div>
+            </div>
+            <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
+                <img th:src="@{|/upload/${bvo.bMainImg}|}">
             </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">
@@ -29,6 +36,14 @@
                     <a th:href="@{/board/delete(bno=${bvo.getBno()})}"><button type="button" class="commDelBtn">삭제</button></a>
                 </div>
             </th:block>
+            <!--댓글입력란-->
+            <div class="comm-CommInputArea">
+                <input id="cmtWriter" th:value="${bvo.bWriter}" type="hidden">
+                <div class="comm-CommInput">
+                    <input type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
+                    <button type="button" id="cmtAddBtn" class="comm-CommRegBtn">등록</button>
+                </div>
+            </div>
             <!--댓글출력란-->
             <div class="commDeComment">
                 <div class="commDe-ComInfo">
@@ -39,16 +54,24 @@
                 <!--답댓글버튼-->
                 <div class="commDe-ReComment"></div>
             </div>
-            <!--댓글입력란-->
-            <div class="comm-CommInputArea">
-                <form action="#">
-                    <div class="comm-CommInput">
-                        <input type="text" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
-                        <button type="button" class="comm-CommRegBtn">등록</button>
-                    </div>
-                </form>
+            <!-- 댓글 더보기 -->
+            <div>
+                <button type="button" id="moreBtn" data-page="1" class="moreBtnC" style="visibility:hidden">MORE +</button>
+            </div>
+            <!--댓글 수정받기-->
+            <div>
+                <input type="text" id="cmtModContent">
+                <button type="button" id="cmtModBtn">수정</button>
             </div>
         </div>
+        <script th:inline="javascript">
+            const cmtWriter = '[[${bvo.bWriter}]]';
+            const bnoVal = '[[${bvo.bno}]]';
+        </script>
+        <script th:src="@{/dist/js/boardComment.js}"></script>
+        <script>spreadCommentList(bnoVal);
+        console.log("spread in!!");
+        </script>
         </th:block>
     </th:block>
 </th:block>

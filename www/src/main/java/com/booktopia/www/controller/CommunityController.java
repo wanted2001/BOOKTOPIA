@@ -11,9 +11,6 @@ import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.commonmark.node.Node;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,24 +33,45 @@ public class CommunityController {
     @GetMapping("/communityMain")
     public void commMain(){}
 
-    @GetMapping("/communityList")
-    public void commList(Model m, PagingVO pgvo){
-        log.info("pgvo>>>>{}",pgvo);
+    @GetMapping("/communityListAll")
+    public String commListAll(Model m, PagingVO pgvo){
+        log.info("all pgvo>>>>{}",pgvo);
+
         //전체 게시글 수
         int totalCount = bsv.getTotalCount(pgvo);
 
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
-        log.info("ph>>>>>{}",ph);
+        log.info("all ph>>>>>{}",ph);
 
         List<BoardVO> blist = bsv.getList(pgvo);
+        log.info("all blist>>>{}", blist);
+
+        int AllcateCtn = bsv.getCateCount();
+        log.info("AllcateCtn>>>{}",AllcateCtn);
+
+        m.addAttribute("blist",blist);
+        m.addAttribute("ph",ph);
+        m.addAttribute("AllcateCtn",AllcateCtn);
+        return "/community/communityList";
+    }
+
+    @GetMapping("/communityList")
+    public void commListCategory(Model m, PagingVO pgvo, @RequestParam("bCate")String bCate){
+        log.info("pgvo>>>>{}",pgvo);
+
+        //전체 게시글 수
+        int totalCount = bsv.getCateTotalCount(pgvo);
+        log.info("totalCount>>>>>{}",totalCount);
+
+        PagingHandler ph = new PagingHandler(pgvo,totalCount);
+        log.info("ph>>>>>{}",ph);
+
+        List<BoardVO> blist = bsv.getCateList(pgvo);
         log.info("blist>>>{}", blist);
 
         m.addAttribute("blist",blist);
         m.addAttribute("ph",ph);
     }
-
-    @GetMapping("/communityDetail")
-    public void commDetail(){}
 
     @GetMapping("/communityNotice")
     public void commNotice(){}

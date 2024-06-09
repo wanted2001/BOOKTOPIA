@@ -10,13 +10,30 @@
 
     <select id="getList" resultType="com.booktopia.www.domain.BoardVO">
         select * from board
+        where b_is_del='N'
         <include refid="search"></include>
         order by bno desc
-        limit #{pageStart},10
+        limit #{pageStart},#{qty}
     </select>
 
     <select id="getTotalCount" resultType="int">
         select count(bno) from board
+        where b_is_del='N'
+        <include refid="search"></include>
+    </select>
+
+    <select id="getCateList" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board
+        where b_cate=#{bCate}
+        and b_is_del='N'
+        order by bno desc
+        limit #{pageStart},#{qty}
+    </select>
+    
+    <select id="getCateTotalCount" resultType="int">
+        select count(bno) from board
+        where b_is_del='N'
+        and b_cate=#{bCate}
         <include refid="search"></include>
     </select>
 
@@ -29,17 +46,33 @@
         where bno=#{bno}
     </update>
 
-    <delete id="delete">
-        delete from board where bno=#{bno}
-    </delete>
+    <update id="delete">
+        update board set b_is_del="Y" where bno=#{bno}
+    </update>
 
     <select id="getBno" resultType="long">
         select bno from board
     </select>
 
+    <update id="updateReadCnt">
+        update board set b_read_cnt = b_read_cnt+1 where bno=#{bno}
+    </update>
+
+    <update id="updateCommentCnt">
+        update board set b_cmt_cnt = b_cmt_cnt + #{cnt} where bno=#{bno}
+    </update>
+
+    <update id="deleteCommentCnt">
+        update board set b_cmt_cnt=b_cmt_cnt-1 where bno=#{bno}
+    </update>
+
+    <select id="getCateCount" resultType="int">
+        select count(b_cate) from board where b_is_del='N'
+    </select>
+
     <sql id="search">
         <if test="type!=null">
-            <trim prefix="where (" suffix=")" suffixOverrides="or">
+            <trim prefix="and (" suffix=")" suffixOverrides="or">
                 <foreach collection="typeToArray" item="type">
                     <trim suffix="or">
                         <choose>

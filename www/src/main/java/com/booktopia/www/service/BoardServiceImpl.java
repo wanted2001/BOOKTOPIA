@@ -34,6 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public BoardVO getDetail(long bno) {
+        boardMapper.updateReadCnt(bno);
         return boardMapper.getDetail(bno);
     }
 
@@ -52,5 +53,29 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.getBno();
     }
 
+    @Override
+    public void updateCommentCnt(long bno) {
+        int cnt=1;
+        boardMapper.updateCommentCnt(bno,cnt);
+    }
 
+    @Override
+    public void deleteCommentCnt(Long bvo) {
+        boardMapper.deleteCommentCnt(bvo);
+    }
+
+    @Override
+    public List<BoardVO> getCateList(PagingVO pgvo) {
+        return boardMapper.getCateList(pgvo);
+    }
+
+    @Override
+    public int getCateTotalCount(PagingVO pgvo) {
+        return boardMapper.getCateTotalCount(pgvo);
+    }
+
+    @Override
+    public int getCateCount() {
+        return boardMapper.getCateCount();
+    }
 }

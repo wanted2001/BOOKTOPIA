@@ -38,7 +38,6 @@
     color: grey;
     /*색은 나중에 바꿔도 됩니다..*/
 }
-
 .commDeContent ul li::before{
     content:'';
     display:inline-block;
@@ -50,7 +49,7 @@
     border-radius:50%
 }
 .commDeContent ul li p{
-    margin-left: 13px;
-    margin-top: -18px;
+    margin-left: 93px;
+    margin-top: -15px;
 }
 
