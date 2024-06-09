@@ -69,18 +69,9 @@ public class BoardController {
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
         log.info("ph>>>>>{}",ph);
 
-        List<BoardVO> blist = bsv.getList(pgvo);
-        log.info("blist>>>{}", blist);
-
-        List<FileVO> flist = fsv.getFileList();
-        log.info("flist>>>{}", flist);
-
-        m.addAttribute("blist",blist);
-        m.addAttribute("ph",ph);
-        m.addAttribute("flist",flist);
     }
 
-    @GetMapping("/detail")
+    @GetMapping({"/detail","/modify"})
     public void detail(Model m, @RequestParam("bno")long bno){
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}",bvo);

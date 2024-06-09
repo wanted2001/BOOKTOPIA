@@ -2,22 +2,19 @@ package com.booktopia.www.oauth2.service;
 
 import com.booktopia.www.domain.AuthVO;
 import com.booktopia.www.domain.UserVO;
-import com.booktopia.www.oauth2.exception.OAuth2AuthenticationProcessingException;
-import com.booktopia.www.oauth2.user.OAuth2UserInfo;
-import com.booktopia.www.oauth2.user.OAuth2UserInfoFactory;
+import com.booktopia.www.oauth2.user.*;
 import com.booktopia.www.repository.UserMapper;
-import com.booktopia.www.security.AuthUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,31 +28,55 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        try {
-            return processOAuth2User(userRequest, oAuth2User);
-        } catch (AuthenticationException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            // Throwing an instance of AuthenticationException will trigger the OAuth2AuthenticationFailureHandler
-            throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
-        }
-    }
-    private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
-        String registrationId = userRequest.getClientRegistration().getRegistrationId();
+        OAuth2UserInfo oAuth2UserInfo;
+
         String accessToken = userRequest.getAccessToken().getTokenValue();
+        String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
-        OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(registrationId, accessToken, oAuth2User.getAttributes());
+        if (registrationId.equals("google")) {
+            log.info("구글 로그인 요청");
+            oAuth2UserInfo = new GoogleOAuth2UserInfo(accessToken, oAuth2User.getAttributes());
+        } else if (registrationId.equals("naver")) {
+            log.info("네이버 로그인 요청");
+            oAuth2UserInfo = new NaverOAuth2UserInfo(accessToken, oAuth2User.getAttributes());
+        } else if (registrationId.equals("kakao")) {
+            log.info("카카오 로그인 요청");
+            oAuth2UserInfo = new KakaoOAuth2UserInfo(accessToken, oAuth2User.getAttributes());
+        } else {
+            log.error("지원되지 않는 로그인 요청: {}", registrationId);
+            throw new OAuth2AuthenticationException("지원되지 않는 로그인 요청");
+        }
 
-        // OAuth2UserInfo field value validation
-        if (!StringUtils.hasText(oAuth2UserInfo.getId())) {
-            throw new OAuth2AuthenticationProcessingException("OAuth2 no id");
+        String providerId = oAuth2UserInfo.getId();
+        log.info("providerId >>> {}",providerId);
+        String username = oAuth2UserInfo.getName();
+        String email = oAuth2UserInfo.getEmail();
+        String type = oAuth2UserInfo.getUserType();
+        String role = "ROLE_USER";
+        log.info("att >> {}",oAuth2User.getAttributes());
+
+        // principalName 검증
+        if (providerId == null || providerId.isEmpty()) {
+            throw new OAuth2AuthenticationException("principalName cannot be empty");
         }
-        if (!StringUtils.hasText(oAuth2UserInfo.getPwd())) {
-            throw new OAuth2AuthenticationProcessingException("OAuth2 no pwd");
+
+        UserVO user = userMapper.selectId(providerId);
+        UserVO uvo = new UserVO();
+        if (user == null) {
+            log.info("로그인이 최초 입니다.");
+            uvo.setId(providerId);
+            uvo.setName(username);
+            uvo.setEmail(email);
+            uvo.setUserType(type);
+            uvo.setAccessToken(accessToken);
+            userMapper.joinInsertOauth(uvo);
+            userMapper.insertAuth(providerId);
+            // 역할 정보를 AuthVO 객체로 생성하여 리스트에 추가
+        } else {
+            log.info("이미 로그인 한적이 있습니다.");
+            // 유저 정보 업데이트 (필요 시)
+            uvo = user;
         }
-        if (!StringUtils.hasText(oAuth2UserInfo.getName())) {
-            throw new OAuth2AuthenticationProcessingException("OAuth2 no name");
-        }
-        return new OAuth2UserPrincipal(oAuth2UserInfo);
+        return new OAuth2UserPrincipal(uvo, oAuth2User.getAttributes());
     }
 }

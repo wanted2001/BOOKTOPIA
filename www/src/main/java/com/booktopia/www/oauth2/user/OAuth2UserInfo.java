@@ -1,6 +1,5 @@
 package com.booktopia.www.oauth2.user;
 
-
 import java.util.Map;
 
 public interface OAuth2UserInfo {
@@ -21,5 +20,4 @@ public interface OAuth2UserInfo {
 
     String getUserType();
 
-    String getPhone();
 }

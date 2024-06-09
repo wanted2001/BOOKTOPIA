@@ -18,6 +18,9 @@ public class MyPageController {
     @GetMapping("/changeaddr")
     public void changeaddr() {}
 
+    @GetMapping("/changeaddrsocial")
+    public void changeaddrSocial() {}
+
     @GetMapping("/couponlist")
     public void couponlist() {}
 

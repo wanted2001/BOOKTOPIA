@@ -3,7 +3,7 @@ console.log("List js in");
 document.addEventListener("DOMContentLoaded", function() {
     const converter = new showdown.Converter();
 
-    document.querySelectorAll('.commContent').forEach(function(contentElement) {
+    document.querySelectorAll('.commDeContent').forEach(function(contentElement) {
         const markdownText = contentElement.textContent.trim();
         let htmlContent = converter.makeHtml(markdownText);
         console.log(markdownText)

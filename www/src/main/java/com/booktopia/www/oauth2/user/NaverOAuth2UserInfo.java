@@ -1,5 +1,7 @@
 package com.booktopia.www.oauth2.user;
 
+import com.booktopia.www.domain.UserVO;
+
 import java.util.Map;
 
 public class NaverOAuth2UserInfo implements OAuth2UserInfo {
@@ -10,6 +12,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
     private final String pwd;
     private final String name;
     private final String email;
+    private final UserVO userVO = new UserVO();
 
     public NaverOAuth2UserInfo(String accessToken, Map<String, Object> attributes) {
         this.accessToken = accessToken;
@@ -58,11 +61,6 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
     @Override
     public String getUserType() {
         return "naver";
-    }
-
-    @Override
-    public String getPhone() {
-        return "";
     }
 
 }

@@ -30,4 +30,14 @@ public interface UserMapper {
     void modifyMyinfoWithPwd(UserVO uvo);
 
     String findId(String userName);
+
+    void updateAddr(UserVO uvo);
+
+    void joinInsertOauth(UserVO uvo);
+
+    int findPwCheck(UserVO uvo);
+
+    String findUserByUserId(String email);
+
+    void updateUserPassword(String id, String pw);
 }

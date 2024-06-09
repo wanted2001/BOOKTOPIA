@@ -71,40 +71,17 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         if ("login".equalsIgnoreCase(mode)) {
-            // TODO: DB 저장
-            UserVO userVO = userMapper.findByEmail(principal.getUserInfo().getId());
-            if (userVO == null) {
-                userVO = new UserVO();
-                userVO.setId(principal.getUserInfo().getId());
-                userVO.setPwd(principal.getUserInfo().getPwd());
-                userVO.setEmail(principal.getUserInfo().getEmail());
-                userVO.setName(principal.getUserInfo().getName());
-                userVO.setUserType(principal.getUserInfo().getUserType());
-                log.info("Mapper 직전 uvo={}", userVO);
-                // 여기에 추가적인 필드도 설정할 수 있습니다.
-                int isOk = userMapper.saveOauthUser(userVO);
-                if (isOk > 0) {
-                    userMapper.insertAuth(userVO.getPwd());
-                } else {
-                    log.info("DB에 못들어감");
-                }
-            }
-
-
             // TODO: 액세스 토큰, 리프레시 토큰 발급
             String accessToken = tokenProvider.createToken(authentication);
             String refreshToken = tokenProvider.createRefreshToken();
 
-                // TODO: 리프레시 토큰 DB 저장
-                log.info("id={}, name={},pwd={}, accessToken={}",
-                        principal.getUserInfo().getId(),
-                        principal.getUserInfo().getName(),
-                        principal.getUserInfo().getPwd(),
-                        principal.getUserInfo().getAccessToken()
-                );
-
-
-
+            // TODO: 리프레시 토큰 DB 저장
+            log.info("id={}, name={},pwd={} accessToken{}",
+                    principal.getUserVO().getId(),
+                    principal.getUserVO().getName(),
+                    principal.getUserVO().getPwd(),
+                    principal.getUserVO().getAccessToken()
+            );
                 log.info("accessToken Handler>> {}", accessToken);
                 log.info("refreshToken Handler>> {}", refreshToken);
 
@@ -115,9 +92,10 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                         .build().toUriString();
 
         } else if ("unlink".equalsIgnoreCase(mode)) {
-
-            String accessToken = principal.getUserInfo().getAccessToken();
-            OAuth2Provider provider = principal.getUserInfo().getProvider();
+            String ut = principal.getUserVO().getUserType();
+            log.info("ut >> {}",ut);
+            String accessToken = principal.getUserVO().getAccessToken();
+            OAuth2Provider provider = OAuth2Provider.valueOf(ut.toUpperCase());
 
             log.info("pro > {} ",provider);
             log.info("access >> {}",accessToken);
