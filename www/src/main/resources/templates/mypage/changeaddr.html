@@ -36,3 +36,17 @@
         </div>
     </div>
 </div>
+
+<!-- daum 주소검색 api 사용 구문 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    document.getElementById('payGetAddrBtn').addEventListener('click', ()=>{
+        new daum.Postcode({
+            oncomplete: function(data) {
+                document.getElementById('addrInput').value = data.address;
+                document.getElementById('addrDetailInput').focus();
+            }
+        }).open();
+
+    })
+</script>
