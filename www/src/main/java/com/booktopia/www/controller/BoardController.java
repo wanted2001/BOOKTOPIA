@@ -51,6 +51,7 @@ public class BoardController {
         boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
+
         int isOk = bsv.insert(boardVO);
         if(isOk == 1){
             log.info("boardVO222222>>>>>>{}",boardVO);

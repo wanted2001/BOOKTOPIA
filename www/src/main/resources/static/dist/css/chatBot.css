@@ -8,8 +8,9 @@
     width: 70px;
     transform: translate(30px, 200px);
     text-align: center;
-    position: absolute;
-    z-index: 9;
+    position: fixed;
+    top: calc(540px);
+    z-index: 99;
 }
 #btn{
     position: sticky;
