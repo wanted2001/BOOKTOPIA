@@ -1,6 +1,7 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.VoteVO;
+import com.booktopia.www.repository.SystemInfoMapper;
 import com.booktopia.www.repository.VoteMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,25 +13,24 @@ import org.springframework.stereotype.Service;
 public class VoteServiceImpl implements VoteService {
 
     private final VoteMapper voteMapper;
+    private final SystemInfoMapper systemInfoMapper;
 
     @Override
     public void insert(VoteVO voteVO) {
+
         voteMapper.insert(voteVO);
+        log.info(">>> voteVO result 값 >>>>> {}", voteVO.getVoteResult());
+//        if(voteVO.getVoteResult().equals("찬성")){
+        if("찬성".equals(voteVO.getVoteResult())){
+            systemInfoMapper.agreeUp();
+        } else {
+            systemInfoMapper.oppUp();
+        }
     }
 
     @Override
-    public String getUser(String id) {
+    public VoteVO getUser(String id) {
         return voteMapper.getUser(id);
     }
-
-//    @Override
-//    public VoteVO getUser(String getUser) {
-//        return voteMapper.getUser(getUser);
-//    }
-//
-//    @Override
-//    public VoteVO getUser(VoteVO voteVO) {
-//        return voteMapper.getUser(voteVO);
-//    }
 
 }

@@ -15,6 +15,7 @@
                     <input type="hidden" th:with="auth=${#authentication.getName()}" th:value="${auth}" name="id" id="commuUser">
                     <!--찬성 버튼-->
                     <div class="commVoteUp" id="voteUp">
+                        <input type="text" th:with="score=${score}" th:value="${score}">
                         <button type="submit" class="upBtn" name="voteResult" th:value="찬성" >
                             <img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg">
                         </button>

@@ -43,17 +43,34 @@ public class CommunityController {
     public String votePush (@RequestBody VoteVO voteVO){
         log.info(">>> voteVO controller >>> {} ", voteVO);
 
-//        String id = voteVO.getId();
-//        log.info(">>> getUser >>> {}",id);
-//
-//        String UserId = voteService.getUser(id);
-//        log.info(">>>>>> userName >>{}",UserId);
+        String id = voteVO.getId(); // 들어온 voteVO에서 id만 추출
+        String result = voteVO.getVoteResult();
+        VoteVO vo = voteService.getUser(id); // DB에서 id 만 추출
+        log.info(">>> getUser >>> {}",id);
+        log.info(">>> voteResult >>> {}",result);
+        log.info(">>> Uerid >>> {}", vo);
 
-//        if(vo == null){
+        if(vo == null) {
             voteService.insert(voteVO);
-//        }
+            return "1";
+        }
         //셀렉트 id 때서 객체로 받아와서 select *
         // null 아니면 참여 가능
+        return "0";
+    }
+
+    // id 값이 있는지 체크
+    // 있을 경우에는 "1"을 리턴 / 아닐경우에는 "0"을 리턴
+    @GetMapping(value = "/{user}")
+    @ResponseBody
+    public String hasVote (@PathVariable("user") String id){
+
+        VoteVO vo = voteService.getUser(id); // DB에서 id 만 추출
+        log.info(">>> Uerid >>> {}", vo);
+
+        if(vo == null) {
+            return "0";
+        }
         return "1";
     }
 

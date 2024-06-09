@@ -7,9 +7,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface VoteMapper {
     void insert(VoteVO voteVO);
 
-    String getUser(String id);
+    VoteVO getUser(String id);
 
-//    VoteVO getUser(String getUser);
+//    void oppinsert(VoteVO voteVO);
 
-//    VoteVO getUser(VoteVO voteVO);
+//    void agreeUp(int score);
+//
+//    void oppUp(int score);
 }
