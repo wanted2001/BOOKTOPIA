@@ -1,7 +1,6 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.UserMapper;

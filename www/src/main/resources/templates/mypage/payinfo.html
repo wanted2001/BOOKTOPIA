@@ -4,7 +4,13 @@
             <div class="myPageRightWrapInfoText">my page</div>
             <div class="myPageRightWrapInfoModWrap">
                 <div class="myPageRightWrapForm">
-                    <span> 결제 정보 </span>
+                    <div>
+                        <ul id="payInforesult">
+                            <th:block th:each="plist:${plist}">
+                            <li>[[plist.itemName]]</li>
+                            </th:block>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
