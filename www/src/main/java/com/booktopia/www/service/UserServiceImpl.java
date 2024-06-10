@@ -1,10 +1,17 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
+import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +62,15 @@ public class UserServiceImpl implements UserService {
     public int deleteMyPageUser(String id) {
 
         return userMapper.deleteMyPageUser(id);
+    }
+
+    @Transactional
+    @Override
+    public myPagePayInfoDTO getPlist(String id) {
+        PayVO payVO = userMapper.selectPayInfo(id);
+        OrderInfoVO orderInfoVO = userMapper.selectOrderInfo(id);
+        myPagePayInfoDTO myPagePayInfoDTO = new myPagePayInfoDTO(payVO,orderInfoVO);
+        return myPagePayInfoDTO;
     }
 
     @Override
