@@ -70,6 +70,10 @@
         select count(b_cate) from board where b_is_del='N'
     </select>
 
+    <select id="getCategoryCount" resultType="int">
+        select count(b_cate) from board where b_is_del='N' and b_cate=#{bCate}
+    </select>
+
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">
