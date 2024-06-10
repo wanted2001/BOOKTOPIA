@@ -34,4 +34,6 @@ public interface BoardMapper {
     int getCateTotalCount(PagingVO pgvo);
 
     int getCateCount();
+
+    int getCategoryCount(String bCate);
 }

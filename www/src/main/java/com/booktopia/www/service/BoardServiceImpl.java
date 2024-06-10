@@ -78,4 +78,9 @@ public class BoardServiceImpl implements BoardService{
     public int getCateCount() {
         return boardMapper.getCateCount();
     }
+
+    @Override
+    public int getCategoryCount(String bCate) {
+        return boardMapper.getCategoryCount(bCate);
+    }
 }
