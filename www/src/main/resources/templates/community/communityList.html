@@ -23,9 +23,14 @@
                     <input type="text" class="commSeaBar commSearchArea" th:value="${ph.pgvo.keyword}" name="keyword" placeholder="검색어를 입력해주세요">
                     <input type="hidden" name="pageNo" th:value="1">
                     <input type="hidden" name="qty" th:value="${ph.pgvo.qty}">
-                    <button type="submit" class="commSeaBtn commSearchArea">검색[[${ph.totalCount}]]</button>
+                    <button type="submit" class="commSeaBtn commSearchArea">검색</button>
                 </div>
             </form>
+            <div class="commListAll">
+                <a th:href="@{/community/communityListAll}">
+                    <span>전체보기 ></span>
+                </a>
+            </div>
             <div class="commNoticeLine">
                 <span class="NoticeBlock">공지</span>
                 <a th:href="@{/community/communityNotice}">
@@ -35,12 +40,46 @@
             <!--카테고리선택가능라인-->
             <!--아이콘 작게해서 한줄로 6개 모두 나타내가-->
             <div class="commCateLine">
-                <div class="commCateChoice1 commCateChoice"></div>
-                <div class="commCateChoice2 commCateChoice"></div>
-                <div class="commCateChoice3 commCateChoice"></div>
-                <div class="commCateChoice4 commCateChoice"></div>
-                <div class="commCateChoice5 commCateChoice"></div>
-                <div class="commCateChoice6 commCateChoice"></div>
+                <div class="commCateChoice1 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='novel')}">
+                        <span>📖</span><span>소설</span>
+                    </a>
+                </div>
+                <div class="commCateChoice2 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='poem')}">
+                    </a>
+                    <div class="commCatetextList">
+                        <p>시/에세이</p>
+                    </div>
+                </div>
+                <div class="commCateChoice3 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='finance')}">
+                    </a>
+                    <div class="commCatetextList">
+                        <p>경제/경영</p>
+                    </div>
+                </div>
+                <div class="commCateChoice4 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='human')}">
+                    </a>
+                    <div class="commCatetextList">
+                        <p>인문</p>
+                    </div>
+                </div>
+                <div class="commCateChoice5 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='history')}">
+                    </a>
+                    <div class="commCatetextList">
+                        <p>역사/문화</p>
+                    </div>
+                </div>
+                <div class="commCateChoice6 commCateChoice">
+                    <a th:href="@{/community/communityList(bCate='development')}">
+                    </a>
+                    <div class="commCatetextList">
+                        <p>자기개발</p>
+                    </div>
+                </div>
             </div>
             <!--글쓰기 버튼-->
             <div class="commRegBtn">
@@ -83,29 +122,8 @@
             </div>
             <!-- 페이지네이션 -->
             <div class="commPage">
-                <ul th:if="${ph.totalCount eq AllcateCtn}">
-                    <!--이전-->
-                    <li th:if="${ph.prev}">
-                        <a th:href="@{/community/communityListAll(pageNo=${ph.startPage-1},qty=${ph.pgvo.qty}
-                        ,type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}"><span>&laquo;</span></a>
-                    </li>
-                    <!--페이징-->
-                    <th:block th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-                        <li th:classappend="${ph.pgvo.pageNo==i?'active':''}">
-                            <a th:href="@{/community/communityListAll(pageNo=${i},qty=${ph.pgvo.qty},
-                            type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">[[${i}]]</a>
-                        </li>
-                    </th:block>
-                    <!--다음-->
-                    <li th:if="${ph.next}">
-                        <a th:href="@{/community/communityListAll(pageNo=${ph.endPage+1},qty=${ph.pgvo.qty},
-                        type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">
-                            <span>&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
                 <!--카테고리별 페이징-->
-                    <ul th:if="${ph.totalCount ne AllcateCtn}">
+                    <ul th:if="${ph.totalCount eq cateCtn}">
                         <th:block th:each="bvo:${blist}">
                         <!--이전-->
                         <li th:if="${ph.prev}">
@@ -128,6 +146,27 @@
                         </li>
                         </th:block>
                     </ul>
+                <ul th:else="${ph.totalCount ne cateCtn}">
+                    <!--이전-->
+                    <li th:if="${ph.prev}">
+                        <a th:href="@{/community/communityListAll(pageNo=${ph.startPage-1},qty=${ph.pgvo.qty}
+                        ,type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}"><span>&laquo;</span></a>
+                    </li>
+                    <!--페이징-->
+                    <th:block th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
+                        <li th:classappend="${ph.pgvo.pageNo==i?'active':''}">
+                            <a th:href="@{/community/communityListAll(pageNo=${i},qty=${ph.pgvo.qty},
+                            type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">[[${i}]]</a>
+                        </li>
+                    </th:block>
+                    <!--다음-->
+                    <li th:if="${ph.next}">
+                        <a th:href="@{/community/communityListAll(pageNo=${ph.endPage+1},qty=${ph.pgvo.qty},
+                        type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
                 </th:block>
             </div>
         </div>

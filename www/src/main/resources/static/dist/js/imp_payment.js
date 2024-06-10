@@ -1,4 +1,6 @@
 console.log(ordName);
+console.log(ordId);
+console.log(ordEmail);
 console.log(ordPhone);
 console.log(ordMemo);
 console.log(payName)
@@ -27,10 +29,10 @@ function request_pay(){
             name: item_name,
             amount:amount,
             buyer_name:ordName,
-            buyer_email:'email',
+            buyer_email:ordName,
             buyer_tel:ordPhone,
             buyer_addr:ordaddr+" "+ordaddrdetail,
-            // buyer_addrDetail : ordaddrdetail,
+            buyer_addrDetail : ordaddrdetail,
         },
         function (rsp){
             // callback
@@ -39,10 +41,10 @@ function request_pay(){
                 console.log('결제성공 boot!');
                 console.log(rsp);
                 let registerData ={
-                    id:'test1',
+                    id:ordId,
                     impUid: rsp.imp_uid,
                     merchantUid: merchant_uid,
-                    ordEmail:'',
+                    ordEmail:ordEmail,
                     ordName:ordName,
                     ordAddr:ordaddr+" "+ordaddrdetail,
                     itemName:item_name,

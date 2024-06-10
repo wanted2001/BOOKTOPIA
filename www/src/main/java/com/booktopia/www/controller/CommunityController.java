@@ -109,6 +109,10 @@ public class CommunityController {
         List<BoardVO> blist = bsv.getCateList(pgvo);
         log.info("blist>>>{}", blist);
 
+        int cateCtn = bsv.getCategoryCount(bCate);
+        log.info("cateCtn>>>{}",cateCtn);
+
+        m.addAttribute("cateCtn",cateCtn);
         m.addAttribute("blist",blist);
         m.addAttribute("ph",ph);
     }

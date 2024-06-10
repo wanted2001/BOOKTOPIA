@@ -18,6 +18,9 @@
             </div>
 
             <form action="/pay/payInfo" method="post">
+                <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
+                <input type="hidden" id="payID" th:value="${auth.getId()}">
+                <input type="hidden" id="payEmail" th:value="${auth.getEmail()}">
                 <div class="payOutBox">
                     <div class="payInBox1">
                         <div class="payInnerDiv1">
@@ -26,11 +29,11 @@
                         <hr>
                         <div class="payInnerDiv2">
                             <p>이름</p>
-                            <input type="text" th:value="김정온" id="ordName" name="ordName" placeholder="이름을 입력해주세요.">
+                            <input type="text" th:value="${auth.getName()}" id="ordName" name="ordName">
                         </div>
                         <div class="payInnerDiv2">
                             <p>전화번호</p>
-                            <input type="text" th:value="010-7765-8487" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
+                            <input type="text" th:value="${auth.getPhone()}" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
                         </div>
                         <div class="payInnerDiv2">
                             <p>주소</p>
@@ -88,6 +91,7 @@
                     </div>
                     <!-- payOutBox div -->
                 </div>
+                </th:block>
             </form>
 
             <!-- daum 주소검색 api 사용 구문 -->
@@ -110,6 +114,8 @@
             const ordName = document.getElementById('ordName').value;
             const ordPhone = document.getElementById('ordPhone').value;
             const ordMemo = document.getElementById('ordMemo').value;
+            const ordId = document.getElementById('payID').value;
+            const ordEmail = document.getElementById('payEmail').value;
             const payName = [[${ssivo.subInMonth}]];
             const amount = [[${ssivo.subInPrice}]];
         </script>
