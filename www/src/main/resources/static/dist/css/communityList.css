@@ -10,6 +10,18 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family: SCDream5;
+    src: url(../font/S-Core_Dream_OTF/SCDream5.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+/*
+메인컬러
+네이비 #005c87
+핑크 #ffb1b0
+노랑 #fff44f
+*/
 .wrap{
     /*background-color: antiquewhite;*/
     font-family: SCDream3;
@@ -17,7 +29,7 @@
 .commSearchArea{
     width: 350px;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .commSelect{
     border: 1px solid #9a9a9a;
@@ -30,7 +42,7 @@
     height: 39.9px;
     font-size: 13px;
     border-radius: 5px;
-    margin-left: 950px;
+    margin-left: 900px;
 }
 .commSeaBar{
     height: 37.9px;
@@ -38,28 +50,26 @@
     border: 1px solid #9a9a9a;
     padding-left: 9px;
     color: #4c4c4c;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-radius: 5px;
     font-size: 13px;
-    border-right-color: rgba(255, 255, 255, 0);
     outline: none;
 }
 .commSeaBtn{
+    cursor: pointer;
     background-color: white;
-    border: 1px solid #9a9a9a;
-    height: 40px;
-    width: 51px;
-    margin-left: -6px;
-    color: #4c4c4c;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 13px;
-    /*opacity: 0.5;*/
+    position: absolute;
+    top: 122.5px;
+    right: 470px;
+}
+.commListAll{
+    margin-top: 20px;
+    margin-left: 1130px;
+    font-size: 14px;
 }
 .commNoticeLine{
     /*background-color: lightseagreen;*/
     width: 1000px;
-    margin: 40px auto 0;
+    margin: 15px auto 0;
     height: 50px;
     display: flex;
     font-size: 20px;
@@ -73,46 +83,57 @@
 .commCateLine{
     /*background-color: goldenrod;*/
     width: 1000px;
-    height: 100px;
+    height: 35px;
     margin: 20px auto 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    text-align: center;
+    line-height: 34.5px;
 }
 .commCateChoice{
-    /*background-color: mintcream;*/
-    width: 120px;
-    height: 110px;
-    border: 1px solid black;
+    background-color: rgba(1, 103, 152, 0.8);
+    /*width: 100px;*/
+    padding: 0 15px;
+    border-radius: 20px;
 }
-.commCateChoice a img{
-    width: 70px;
-    height: 70px;
-    margin: 10px 0 0 25px;
-    opacity: 0.8;
-}
-.commCatetextList p{
-    text-align: center;
-    margin-top: 9px;
-    font-size: 12px;
+.commCateChoice span{
+    color: white;
 }
 .commRegBtn{
     font-family: SCDream3;
-    /*background-color: white;*/
+    font-size: 14px;
     width: 65px;
     float: right;
-    margin: 18px 210px 0 0;
+    margin: 20px 193px 0 0;
 }
 .commRegBtn img{
     width: 15px;
-    height: 15px;
+    height: 16px;
     float: right;
+    margin-right: 7px;
+    margin-top: -2px;
 }
 /*게시글 한개 사이즈*/
 .commListArea, .commNon{
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     width: 1000px;
     height: 200px;
-    margin: 50px auto 0;
+    margin: 0 auto 0;
+    border-top: 1px solid #b1b1b1;
+    padding-top: 25px;
+    /*padding: 25px 0 0 0 ;*/
+}
+.commListArea:nth-of-type(1){
+    /*background-color: pink;*/
+    margin-top: 60px;
+}
+.commListArea:nth-of-type(10){
+    /*background-color: pink;*/
+    border-bottom: 1px solid #b1b1b1;
+}
+.commListContent:nth-child(1){
+    /*background-color: pink;*/
+    padding: 0 30px;
 }
 .commNon p{
     font-size: 17px;
@@ -120,23 +141,24 @@
     line-height: 200px;
 }
 .commTitle,.commWriter{
-    background-color: lightgoldenrodyellow;
+    /*background-color: lightgoldenrodyellow;*/
     width: 700px;
     height: 20px;
     line-height: 20px;
 }
-.commTitle{
-    font-family: SCDream4;
+.commTitle span, .commTitle a{
+    font-family: SCDream5;
     font-size: 18px;
     /*padding-left: 15px;*/
 }
 .commWriter{
-    margin-top: 5px;
-    font-size: 13px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #474747;
     /*padding-left: 15px;*/
 }
 .commContent{
-    background-color: darkgray;
+    /*background-color: darkgray;*/
     width: 700px;
     height: 95px;
     line-height: 95px;
@@ -151,21 +173,20 @@
 }
 .commCntInfo{
     /*background-color: mintcream;*/
-    width: 200px;
+    width: 220px;
     height: 40px;
-    margin: 10px;
     display: flex;
     justify-content: space-between;
 }
 .commCnt{
-    /*background-color: darkslateblue;*/
-    width: 60px;
-    height: 40px;
+    width: 65px;
+    height: 30px;
     border: 1px solid rgba(0,0,0,0.2);
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
-    line-height: 40px;
+    line-height: 30px;
     font-size: 12px;
+    color: #474747;
 }
 
 .commSeaBar{

@@ -21,7 +21,7 @@
             <div class="commDeTitle">[[${bvo.bTitle}]]</div>
             <div class="commDeWriterInfo">
                 <div class="commDeWriter">[[${bvo.bWriter}]]</div>
-                <div class="commDeRegdate">[[${bvo.bRegDate}]]</div>
+                <div class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,10)}"></div>
             </div>
             <div class="commDeContent">
                 [[${bvo.bContent}]]
