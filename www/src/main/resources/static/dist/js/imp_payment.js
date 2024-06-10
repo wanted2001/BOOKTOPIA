@@ -58,10 +58,10 @@ function request_pay(){
 
                     if(result === '1'){
                         let data ={
-                            id:'test1',
+                            id:ordId,
                             impUid : rsp.imp_uid,
                             merchantUid: merchant_uid,
-                            buyerEmail : 'email',
+                            buyerEmail : ordEmail,
                             buyerName : ordName,
                             address: ordaddr,
                             name :item_name,
