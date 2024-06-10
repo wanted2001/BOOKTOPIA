@@ -19,6 +19,8 @@ public class OrderInfoDTO {
     private String ordEmail;
     private String itemName;
     private int totalAmount;
+    private String approvedAt;
     private String ordAddr;
+
 
 }

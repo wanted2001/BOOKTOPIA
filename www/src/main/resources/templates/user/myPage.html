@@ -36,10 +36,7 @@
                                             <div class="myPageLeftUpInfoName">
                                                 <a sec:authentication="name" id="myPageUserName"></a>
                                             </div>
-                                            <div display="none" id="realId">
-                                              [[${#authentication.getPrincipal().userVO.getId}]]
-                                            </div>
-
+                                            <span sec:authentication="name" class="IDspan" id="realId" th:style="'display:none'"></span>
                                         </div>
                                     </div>
                                     <div class="myPageSubWrap">
