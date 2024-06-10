@@ -26,6 +26,19 @@
     /*background-color: rgba(255, 209, 209, 0.13);*/
     font-family: SCDream3;
 }
+.commLeftSection{
+    float: left;
+    width: 180px;
+    height: 400px;
+    background-color: navy;
+    margin-top: 80px;
+    display: flex;
+}
+.commLeft{
+    position: sticky;
+    height: 400px;
+    top: 50px;
+}
 .commSearchArea{
     width: 350px;
     height: 40px;

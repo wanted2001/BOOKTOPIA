@@ -9,19 +9,22 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="commDeCate" th:switch="${bvo.bCate}">
-                <span th:case="novel" th:text="'[소설]'"></span>
-                <span th:case="finance" th:text="'[경제/경영]'"></span>
-                <span th:case="human" th:text="'[인문]'"></span>
-                <span th:case="history" th:text="'[역사/문화]'"></span>
-                <span th:case="poem" th:text="'[시/에세이]'"></span>
-                <span th:case="development" th:text="'[자기개발]'"></span>
-            </div>
+            <div class="commDeArea">
             <!--작성자, 등록일 하나로-->
-            <div class="commDeTitle">[[${bvo.bTitle}]]</div>
+            <div class="commDeCate" th:switch="${bvo.bCate}">
+                <span th:case="novel" th:text="'소설'"></span>
+                <span th:case="finance" th:text="'경제/경영'"></span>
+                <span th:case="human" th:text="'인문'"></span>
+                <span th:case="history" th:text="'역사/문화'"></span>
+                <span th:case="poem" th:text="'시/에세이'"></span>
+                <span th:case="development" th:text="'자기개발'"></span>
+            </div>
+            <div class="commDeTitle">
+                <div class="commDetTitle">[[${bvo.bTitle}]]</div>
+            </div>
             <div class="commDeWriterInfo">
-                <div class="commDeWriter">[[${bvo.bWriter}]]</div>
-                <div class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,10)}"></div>
+                <span class="commDeWriter">작성자 : [[${bvo.bWriter}]]&nbsp·&nbsp 등록일 : &nbsp</span>
+                <span class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,10)}"></span>
             </div>
 
             <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
@@ -35,6 +38,7 @@
                     [[${bvo.bContent}]]
                 </div>
             </div>
+            </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">
                 <div th:if="${auth eq bvo.bWriter}" class="commBtnArea">
@@ -43,31 +47,33 @@
                 </div>
             </th:block>
             <!--댓글입력란-->
-            <div class="comm-CommInputArea">
-                <input id="cmtWriter" th:value="${bvo.bWriter}" type="hidden">
-                <div class="comm-CommInput">
-                    <input type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
-                    <button type="button" id="cmtAddBtn" class="comm-CommRegBtn">등록</button>
+            <div class="comm-commArea">
+                <div class="comm-CommInputArea">
+                    <input id="cmtWriter" th:value="${bvo.bWriter}" type="hidden">
+                    <div class="comm-CommInput">
+                        <input type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
+                        <button type="button" id="cmtAddBtn" class="comm-CommRegBtn">등록</button>
+                    </div>
                 </div>
-            </div>
-            <!--댓글출력란-->
-            <div class="commDeComment">
-                <div class="commDe-ComInfo">
-                    <div class="commDe-Writer"></div>
-                    <div class="commDe-RegDate"></div>
+                <!--댓글출력란-->
+                <div class="commDeComment">
+                    <div class="commDe-ComInfo">
+                        <div class="commDe-Writer"></div>
+                        <div class="commDe-RegDate"></div>
+                    </div>
+                    <div class="commDe-Content"> </div>
+                    <!--답댓글버튼-->
+                    <div class="commDe-ReComment"></div>
                 </div>
-                <div class="commDe-Content"> </div>
-                <!--답댓글버튼-->
-                <div class="commDe-ReComment"></div>
-            </div>
-            <!-- 댓글 더보기 -->
-            <div>
-                <button type="button" id="moreBtn" data-page="1" class="moreBtnC" style="visibility:hidden">MORE +</button>
-            </div>
-            <!--댓글 수정받기-->
-            <div>
-                <input type="text" id="cmtModContent">
-                <button type="button" id="cmtModBtn">수정</button>
+                <!-- 댓글 더보기 -->
+                <div>
+                    <button type="button" id="moreBtn" data-page="1" class="moreBtnC" style="visibility:hidden">MORE +</button>
+                </div>
+                <!--댓글 수정받기-->
+                <div>
+                    <input type="text" id="cmtModContent">
+                    <button type="button" id="cmtModBtn">수정</button>
+                </div>
             </div>
         </div>
         <script th:inline="javascript">
