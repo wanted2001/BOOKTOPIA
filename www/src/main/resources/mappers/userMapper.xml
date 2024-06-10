@@ -42,7 +42,7 @@
     </select>
 
     <update id="modifyMyinfo">
-        update user set phone=#{phone},user_up=now() where id=#{id}
+        update user set email=#{email}, phone=#{phone},user_up=now() where id=#{id}
     </update>
 
     <update id="modifyMyinfoWithPwd">
@@ -50,8 +50,12 @@
     </update>
 
     <select id="findId" resultType="String">
-        select id from user where id=#{id} and user_type = '일반' and user_del = 'N'
+        select id from user where name=#{name} and user_type = '일반' and user_del = 'N'
     </select>
+
+    <update id="deleteMyPageUser">
+        update set user user_del = "Y" where id=#{id}
+    </update>
 
     <select id="findPwCheck" resultType="int">
         select count(id) from user where id=#{id} and email=#{email}
@@ -64,6 +68,4 @@
     <update id="updateUserPassword">
         update user set pwd = #{pw} where id=#{id}
     </update>
-
-
 </mapper>

@@ -40,4 +40,6 @@ public interface UserMapper {
     String findUserByUserId(String email);
 
     void updateUserPassword(String id, String pw);
+
+    int deleteMyPageUser(String id);
 }
