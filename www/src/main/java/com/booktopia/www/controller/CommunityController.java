@@ -72,6 +72,29 @@ public class CommunityController {
         return "1";
     }
 
+    @GetMapping("/communityListAll")
+    public String commListAll(Model m, PagingVO pgvo){
+        log.info("all pgvo>>>>{}",pgvo);
+
+        //전체 게시글 수
+        int totalCount = bsv.getTotalCount(pgvo);
+
+        PagingHandler ph = new PagingHandler(pgvo,totalCount);
+        log.info("all ph>>>>>{}",ph);
+
+        List<BoardVO> blist = bsv.getList(pgvo);
+        log.info("all blist>>>{}", blist);
+
+        int AllcateCtn = bsv.getCateCount();
+        log.info("AllcateCtn>>>{}",AllcateCtn);
+
+        m.addAttribute("blist",blist);
+        m.addAttribute("ph",ph);
+        m.addAttribute("AllcateCtn",AllcateCtn);
+        return "/community/communityList";
+    }
+
+
     @GetMapping("/communityList")
     public void commListCategory(Model m, PagingVO pgvo, @RequestParam("bCate")String bCate){
         log.info("pgvo>>>>{}",pgvo);
