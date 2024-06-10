@@ -15,5 +15,5 @@ public interface OrderInfoMapper {
 
     void insert(OrderInfoVO oivo);
 
-    List<myPagePayInfoDTO> selectOrderInfo(String id);
+    List<OrderInfoDTO> selectOrderInfo(String id);
 }

@@ -15,7 +15,7 @@
         select * from order_info where merchant_uid=#{merchantUid}
     </select>
 
-    <select id="selectOrderInfo" resultType="com.booktopia.www.domain.DTO.myPagePayInfoDTO">
+    <select id="selectOrderInfo" resultType="com.booktopia.www.domain.DTO.OrderInfoDTO">
         SELECT *
         FROM order_info AS o
         JOIN pay AS p ON o.merchant_uid = p.merchant_uid

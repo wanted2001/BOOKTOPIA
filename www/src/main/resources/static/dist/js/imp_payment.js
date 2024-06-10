@@ -15,6 +15,7 @@ let item_name = '북토피아 '+payName+'개월 구독권';
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
+    let ordPhone = document.getElementById('ordPhone').value;
 
     console.log("테스트으으으으으"+ ordaddr);
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
@@ -31,7 +32,7 @@ function request_pay(){
             buyer_name:ordName,
             buyer_email:ordName,
             buyer_tel:ordPhone,
-            buyer_addr:ordaddr+" "+ordaddrdetail,
+            buyer_addr:ordaddr+"/"+ordaddrdetail,
             buyer_addrDetail : ordaddrdetail,
         },
         function (rsp){
@@ -46,7 +47,8 @@ function request_pay(){
                     merchantUid: merchant_uid,
                     ordEmail:ordEmail,
                     ordName:ordName,
-                    ordAddr:ordaddr+" "+ordaddrdetail,
+                    ordPhone: ordPhone,
+                    ordAddr:ordaddr+"/"+ordaddrdetail,
                     itemName:item_name,
                     totalAmount: amount,
                     pg_tid:rsp.pg_tid,
@@ -79,7 +81,7 @@ function request_pay(){
                             console.log("결제 검증 및 결제 완료! >>>> ")
                             postStorePaySuccess(data).then(result=>{
                                 console.log(result);
-                            window.location.href = "/pay/done/"+result.merchantUid;
+                            // window.location.href = "/pay/done/"+result.merchantUid;
 
                             });
                         } else {

@@ -133,7 +133,7 @@ public class UserController {
     @GetMapping("/myPagePayInfo/{id}")
     public String myPagePayInfo(@PathVariable("id")String id,Model m){
         log.info("id >> {}",id);
-        List<myPagePayInfoDTO> plist = usv.getPlist(id);
+        List<OrderInfoDTO> plist = usv.getPlist(id);
         log.info("plist >> {}",plist);
         return "/user/myPage";
     }
