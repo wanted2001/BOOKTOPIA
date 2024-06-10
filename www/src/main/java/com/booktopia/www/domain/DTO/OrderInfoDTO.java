@@ -20,7 +20,4 @@ public class OrderInfoDTO {
     private int totalAmount;
     private String ordAddr;
 
-
-//    private OrderInfoVO oivo;
-//    private PayVO pvo;
 }

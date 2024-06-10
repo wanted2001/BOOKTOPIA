@@ -53,5 +53,15 @@
         select id from user where id=#{id} and user_type = '일반' and user_del = 'N'
     </select>
 
+    <select id="findPwCheck" resultType="int">
+        select count(id) from user where id=#{id} and email=#{email}
+    </select>
 
+    <select id="findUserByUserId" resultType="String">
+        select id from user where email = #{email}
+    </select>
+
+    <update id="updateUserPassword">
+        update user set pwd = #{pw} where id=#{id}
+    </update>
 </mapper>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <!--css 영역-->
+        <link rel="stylesheet" th:href="@{/dist/css/adminPage.css}">
+
+        <nav class="admin-contain">
+            <p> 관리자 페이지</p>
+
+            <div class="admin-cate">
+                <button>회원리스트</button>
+                <button>취향검사 리스트</button>
+                <button>북토피아 구독자</button>
+                <button>결제현황</button>
+                <button>배송현황</button>
+                <button>-- 쿠폰</button>
+                <button>공지관리</button>
+                <button>커뮤니티관리</button>
+            </div>
+            <div class="cate-detail">
+
+            </div>
+        </nav>
+
+    </th:block>
+</th:block>
