@@ -42,4 +42,6 @@ public interface UserMapper {
     void updateUserPassword(String id, String pw);
 
     int deleteMyPageUser(String id);
+
+    List<UserVO> getList();
 }

@@ -4,24 +4,70 @@
     <th:block th:fragment="content">
         <!--css 영역-->
         <link rel="stylesheet" th:href="@{/dist/css/adminPage.css}">
-
+        <form action="/admin/adminPage">
         <nav class="admin-contain">
             <p class="admin"> 관리자 페이지</p>
 
             <div class="admin-cate">
-                <button>회원리스트</button>
-                <button>취향검사 리스트</button>
-                <button>북토피아 구독자</button>
-                <button>결제현황</button>
-                <button>배송현황</button>
-                <button>-- 쿠폰</button>
-                <button>공지관리</button>
-                <button>커뮤니티관리</button>
+                <button type="button" class="admin-btn aBtn1">회원리스트</button>
+                <button type="button" class="admin-btn aBtn2">취향검사 리스트</button>
+                <button type="button" class="admin-btn aBtn3">북토피아 구독자</button>
+                <button type="button" class="admin-btn aBtn4">결제현황</button>
+                <button type="button" class="admin-btn aBtn5">배송현황</button>
+                <button type="button" class="admin-btn aBtn6">-- 쿠폰</button>
+                <button type="button" class="admin-btn aBtn7">공지관리</button>
+                <button type="button" class="admin-btn aBtn8">커뮤니티관리</button>
             </div>
             <div class="cate-detail">
+                <!--회원 리스트-->
+                <table class="admin-UserList">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>이름</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>가입경로</th>
+                            <th>가입일자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="uvo:${ulist}">
+                            <td>[[${uvo.id}]]</td>
+                            <td>[[${uvo.name}]]</td>
+                            <td>[[${uvo.email}]]</td>
+                            <td>[[${uvo.phone}]]</td>
+                            <td>[[${uvo.userType}]]</td>
+                            <td>[[${uvo.userReg}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                <!--취향검사 진행자 리스트-->
+                <table class="bookTopia-user" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>BIRTH</th>
+                            <th>GENDER</th>
+                            <th>TEST_AT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="test:${testlist}">
+                            <td>[[${test.btpNO}]]</td>
+                            <td>[[${test.id}]]</td>
+                            <td>[[${test.birth}]]</td>
+                            <td>[[${test.gender}]]</td>
+                            <td>[[${test.testAt}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </nav>
+        </form>
 
+        <script th:src="@{/dist/js/adminPage.js}"></script>
     </th:block>
 </th:block>
