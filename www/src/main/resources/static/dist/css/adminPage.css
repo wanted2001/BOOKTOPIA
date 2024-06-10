@@ -1,0 +1,25 @@
+.admin-contain{
+    width: 1200px;
+    margin: 0 auto;
+}
+.admin{
+    margin: 20px 0 50px 10px;
+}
+.admin-cate {
+    background-color: #7a7a7a;
+    width: 200px;
+    margin: 10px;
+    float: left;
+}
+button {
+    display: block;
+    height: 20px;
+}
+
+.cate-detail{
+    background-color: #0086ff;
+    width: 900px;
+    height: 1000px;
+    margin: 10px;
+    float: right;
+}

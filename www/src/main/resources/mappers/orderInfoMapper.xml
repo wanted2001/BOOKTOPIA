@@ -5,8 +5,8 @@
 <mapper namespace="com.booktopia.www.repository.OrderInfoMapper">
 
     <insert id="insertRegister">
-        INSERT INTO order_info (imp_uid, id, merchant_uid, ord_email, ord_name, ord_addr)
-        values (#{impUid}, #{id}, #{merchantUid}, #{ordEmail}, #{ordName}, #{ordAddr})
+        INSERT INTO order_info (imp_uid, id, merchant_uid, ord_email, ord_name, ord_phone, ord_addr)
+        values (#{impUid}, #{id}, #{merchantUid}, #{ordEmail}, #{ordName}, #{ordPhone}, #{ordAddr})
     </insert>
 
 <!--    <insert id="insert">-->

@@ -15,12 +15,10 @@ public class OrderInfoDTO {
     private String merchantUid; //주문번호
     private String id;
     private String ordName;
+    private String ordPhone;
     private String ordEmail;
     private String itemName;
     private int totalAmount;
     private String ordAddr;
 
-
-//    private OrderInfoVO oivo;
-//    private PayVO pvo;
 }
