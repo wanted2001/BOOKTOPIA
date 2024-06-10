@@ -5,31 +5,43 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block ses:authorize = "isAuthenticated()">
     <th:block th:fragment="content">
+<!--        <form action="/community/push" method="post">-->
         <div class="wrap">
             <div class="commVote">
                 <div class="commMonth"><p>6월의 토론주제</p></div>
                 <div class="commChoice">당신의 선택은?</div>
                 <div class="commTopic">토론주제</div>
                 <div class="commViewVote">
-                    <input type="hidden" th:with="auth=${#authentication.getName()}" th:value="${auth}" name="user" id="commuUser">
+                    <input type="hidden" th:with="auth=${#authentication.getName()}" th:value="${auth}" name="id" id="commuUser">
+                    <!--찬성 버튼-->
                     <div class="commVoteUp" id="voteUp">
-                        <button type="button" class="upBtn" th:value="찬성"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg"></button></a>
+                        <input type="text" th:with="score=${score}" th:value="${score}">
+                        <button type="submit" class="upBtn" name="voteResult" th:value="찬성" >
+                            <img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="upImg">
+                        </button>
                     </div>
+
+                    <!--찬반 투표 바-->
                     <div class="commVoteBar">
                         <div class="persent"></div>
                     </div>
+
+                    <!--반대 버튼-->
                     <div class="commVoteDown">
-                        <button type="button" class="downBtn" th:value="반대"><img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="downImg" /></button>
+                        <button type="submit" class="downBtn" name="voteResult" th:value="반대">
+                            <img th:src="@{/image/thumbs-up.png}" alt="투표이미지" id="downImg" />
+                        </button>
                     </div>
                 </div>
             </div>
+
             <!--카테고리라인-->
             <div class="commBoard">
                 <div class="commBoardArea">
                     <div class="commBoardtext">자유롭게..</div>
                     <!--전체보기버튼-->
                     <div class="commBoardAll">
-                        <a th:href="@{/community/communityList}">
+                        <a th:href="@{/community/communityListAll}">
                             <span>전체보기 ></span>
                         </a>
                     </div>
@@ -38,7 +50,7 @@
                         <div class="commCategory-top">
                             <div class="commCate1 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='novel')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -48,7 +60,7 @@
                             </div>
                             <div class="commCate2 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='poem')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -58,7 +70,7 @@
                             </div>
                             <div class="commCate3 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='finance')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -70,7 +82,7 @@
                         <div class="commCategory-bottom">
                             <div class="commCate4 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/board/communityList}">
+                                    <a th:href="@{/board/communityList(bCate='human')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -80,7 +92,7 @@
                             </div>
                             <div class="commCate5 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/board/communityList}">
+                                    <a th:href="@{/board/communityList(bCate='history')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -90,7 +102,7 @@
                             </div>
                             <div class="commCate6 commCate">
                                 <div class="commCateImg">
-                                    <a th:href="@{/community/communityList}">
+                                    <a th:href="@{/community/communityList(bCate='development')}">
                                         <img th:src="@{/image/book_icon.png}" alt="책 아이콘" />
                                     </a>
                                 </div>
@@ -109,6 +121,7 @@
             console.log("user >>>>>"+user);
         </script>
         <script th:src="@{/dist/js/voteButton.js}"></script>
+<!--        </form>-->
     </th:block>
     </th:block>
 </th:block>

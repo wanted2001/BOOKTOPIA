@@ -5,13 +5,18 @@
             <div class="myPageRightWrapInfoModWrap">
                 <div class="myPageRightWrapForm">
                     <form action="/user/modify" method="POST">
-
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">아이디</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="id" placeholder="id...."
                                        th:value="${#authentication.getName()}">
-
+                            </div>
+                        </div>
+                        <div class="myPageModInputFormWrap">
+                            <div class="myPageModInputFormText">이메일</div>
+                            <div class="mypageModInputFormData">
+                                <input type="text" name="email" placeholder="email...."
+                                       th:value="${#authentication.getPrincipal().userVO.getEmail()}">
                             </div>
                         </div>
                         <div class="myPageModInputFormWrap">
@@ -38,8 +43,8 @@
                             <div class="myPageModInputFormText">휴대전화</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="phone" placeholder="phone..."
-                                       th:value="${#authentication.getPrincipal().userVO.getPhone == null ? '' :
-                                       #authentication.getPrincipal().userVO.getPhone}">
+                                       th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
+                                       #authentication.getPrincipal().userVO.getPhone()}" id="modifyPhone">
                             </div>
                         </div>
                         <div class="myPageModInputFormWrapBtn">

@@ -13,6 +13,7 @@ public class PagingVO {
     private int qty;
     private String type;
     private String keyword;
+    private String bCate;
 
     public PagingVO(){
         this.pageNo=1;
@@ -24,11 +25,12 @@ public class PagingVO {
         this.qty=qty;
     }
 
-    public PagingVO(int pageNo, int qty, String type, String keyword){
+    public PagingVO(int pageNo, int qty, String type, String keyword, String bCate){
         this.pageNo=pageNo;
         this.qty=qty;
         this.type=type;
         this.keyword=keyword;
+        this.bCate=bCate;
     }
 
     public int getPageStart(){

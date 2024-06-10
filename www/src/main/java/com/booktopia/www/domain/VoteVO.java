@@ -9,8 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 public class VoteVO {
 
-    private int voteBno; //찬반게시글번호(1)
     private String id; //투표할 유저 아이디
     private String voteResult; //투표결과 (찬성 / 반대)
+
 
 }

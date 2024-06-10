@@ -22,4 +22,16 @@ public interface BoardMapper {
     void delete(long bno);
 
     long getBno();
+
+    void updateReadCnt(long bno);
+
+    void updateCommentCnt(@Param("bno") long bno,@Param("cnt") int cnt);
+
+    void deleteCommentCnt(Long bvo);
+
+    List<BoardVO> getCateList(PagingVO pgvo);
+
+    int getCateTotalCount(PagingVO pgvo);
+
+    int getCateCount();
 }

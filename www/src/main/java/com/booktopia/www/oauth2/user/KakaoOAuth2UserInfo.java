@@ -1,5 +1,7 @@
 package com.booktopia.www.oauth2.user;
 
+import com.booktopia.www.domain.UserVO;
+
 import java.util.Map;
 
 public class KakaoOAuth2UserInfo implements OAuth2UserInfo {
@@ -22,8 +24,6 @@ public class KakaoOAuth2UserInfo implements OAuth2UserInfo {
         this.id = ((Long) attributes.get("id")).toString();
         this.name = (String) kakaoProfile.get("nickname");
         this.email = (String) kakaoAccount.get("email");
-        this.attributes.put("id", this.pwd);
-        this.attributes.put("email", this.id);
     }
 
     @Override
@@ -62,11 +62,6 @@ public class KakaoOAuth2UserInfo implements OAuth2UserInfo {
     @Override
     public String getUserType() {
         return "kakao";
-    }
-
-    @Override
-    public String getPhone() {
-        return "";
     }
 
 }
