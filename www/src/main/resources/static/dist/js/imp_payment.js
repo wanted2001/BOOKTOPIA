@@ -32,7 +32,7 @@ function request_pay(){
             buyer_email:ordName,
             buyer_tel:ordPhone,
             buyer_addr:ordaddr+" "+ordaddrdetail,
-            // buyer_addrDetail : ordaddrdetail,
+            buyer_addrDetail : ordaddrdetail,
         },
         function (rsp){
             // callback
