@@ -76,6 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    document.getElementById("comUserDelete").addEventListener("click",()=>{
+         deleteComUser(idVal).then(result =>{
+            if(result == 1){
+                alert("회원탈퇴 하셨습니다.");
+            }else if(result ==0){
+                alert("회원탈퇴 실패 ");
+            }
+        })
+
+    });
 });
 
 // 페이지 호출 함수
@@ -168,5 +179,12 @@ async function isSocialUser(id) {
     } catch (error) {
         console.log(error);
     }
+}
+
+async function deleteComUser(id){
+    const url = "/user/deleteUser"+id;
+    const resp = await fetch(url);
+    const result =  resp.text();
+    return result;
 }
 
