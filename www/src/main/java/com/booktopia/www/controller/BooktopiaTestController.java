@@ -23,13 +23,6 @@ public class BooktopiaTestController {
     @GetMapping("/test")
     public void getBooktopia(){}
 
-//    @PostMapping("test")
-//    public String pushBooktopia(BooktopiaVO booktopiaVO){
-//        log.info("controller in >>>> {}", booktopiaVO);
-//        bookTopiaService.insert(booktopiaVO);
-//        return "redirect:/booktopiaTest/bookList";
-//    }
-
     @PostMapping("/bookList")
     public String btnResult(@RequestParam("btnResult") String btnResult, Model m, BooktopiaVO booktopiaVO){
         log.info(">> btnResult >> {}", btnResult);

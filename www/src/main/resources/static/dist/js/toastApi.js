@@ -110,7 +110,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const commliItems = document.querySelectorAll('.commli');
     commliItems.forEach(li=>{
         li.addEventListener('click',function (event){
-            const bCate = event.target.textContent;
+            let bCate = event.target.textContent;
+            console.log(bCate)
             selectedText.textContent = bCate;
             commul.classList.remove('show');
         });
@@ -126,6 +127,20 @@ async function handleEditor(event) {
     try {
         const selectedText = document.getElementById('selectedText');
         let bCate = selectedText.innerText;
+        if(bCate==="소설"){
+            bCate ='novel';
+        } else if(bCate==="시/에세이"){
+            bCate="poem"
+        } else if(bCate==="경제/경영") {
+            bCate="finance"
+        } else if(bCate==="인문"){
+            bCate="human"
+        } else if(bCate==="역사/문화"){
+            bCate="history"
+        } else if(bCate==="자기개발"){
+            bCate="development"
+        }
+
         const commSaveId = document.querySelector('.commSaveId').innerText;
 
         let postData = {};
@@ -167,7 +182,7 @@ async function handleEditor(event) {
                 await submitPostData(postData).then(result=>{
 
                 console.log(result);
-                window.location.href = "/community/communityList";
+                window.location.href = "/community/communityListAll";
                 });
             } catch (error) {
                 console.log("isValid error : ", error);

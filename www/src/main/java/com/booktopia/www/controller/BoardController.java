@@ -35,8 +35,7 @@ public class BoardController {
     public void register() {}
 
     @PostMapping("/register")
-    @ResponseBody
-    public String register(@RequestBody JSONObject bvo) throws ParseException {
+    public ResponseEntity<String> register(@RequestBody JSONObject bvo) throws ParseException {
         log.info("bvo>>>>>>{}",bvo);
 
         JSONParser parser = new JSONParser();
@@ -52,25 +51,39 @@ public class BoardController {
         boardVO.setBMainImg((String)obj.get("bMainImg"));
         log.info("boardVO>>>>>>{}",boardVO);
 
-        bsv.insert(boardVO);
 
-        return "111";
+        int isOk = bsv.insert(boardVO);
+        if(isOk == 1){
+            log.info("boardVO222222>>>>>>{}",boardVO);
+//            fsv.insertFile(boardVO.getBno());
+        }
+        return ResponseEntity.ok("success");
+    }
+
+    @GetMapping("/communityList")
+    public void commList(Model m, PagingVO pgvo){
+        log.info("pgvo>>>>{}",pgvo);
+        //전체 게시글 수
+        int totalCount = bsv.getTotalCount(pgvo);
+
+        PagingHandler ph = new PagingHandler(pgvo,totalCount);
+        log.info("ph>>>>>{}",ph);
+
     }
 
     @GetMapping({"/detail","/modify"})
     public void detail(Model m, @RequestParam("bno")long bno){
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}",bvo);
-
         m.addAttribute("bvo",bvo);
     }
 
-//    @GetMapping("/modify")
-//    public void modifyBoard(Model m, @RequestParam("bno")long bno){
-//        BoardVO bvo = bsv.getDetail(bno);
-//        log.info("modifyBoard bvo >>>>{}",bvo);
-//        m.addAttribute("bvo",bvo);
-//    }
+    @GetMapping("/modify")
+    public void modifyBoard(Model m, @RequestParam("bno")long bno){
+        BoardVO bvo = bsv.getDetail(bno);
+        log.info("modifyBoard bvo >>>>{}",bvo);
+        m.addAttribute("bvo",bvo);
+    }
 
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {
