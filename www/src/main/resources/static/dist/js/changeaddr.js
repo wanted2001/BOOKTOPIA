@@ -11,5 +11,3 @@ document.getElementById('payGetAddrBtn').addEventListener('click', ()=>{
                         }
                     }).open();
                 });
-
-async function

@@ -35,7 +35,9 @@
                                             </div>
                                             <div class="myPageLeftUpInfoName">
                                                 <a sec:authentication="name" id="myPageUserName"></a>
-
+                                            </div>
+                                            <div display="none" id="realId">
+                                              [[${#authentication.getPrincipal().userVO.getId}]]
                                             </div>
 
                                         </div>
