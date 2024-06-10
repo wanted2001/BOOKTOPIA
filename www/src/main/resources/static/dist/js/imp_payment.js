@@ -46,6 +46,7 @@ function request_pay(){
                     merchantUid: merchant_uid,
                     ordEmail:ordEmail,
                     ordName:ordName,
+                    ordPhone:ordPhone,
                     ordAddr:ordaddr+" "+ordaddrdetail,
                     itemName:item_name,
                     totalAmount: amount,
@@ -58,11 +59,12 @@ function request_pay(){
 
                     if(result === '1'){
                         let data ={
-                            id:'test1',
+                            id:ordId,
                             impUid : rsp.imp_uid,
                             merchantUid: merchant_uid,
-                            buyerEmail : 'email',
+                            rdEmail:ordEmail,
                             buyerName : ordName,
+                            ordPhone:ordPhone,
                             address: ordaddr,
                             name :item_name,
                             paidAmount : amount,
@@ -78,7 +80,7 @@ function request_pay(){
                             console.log("결제 검증 및 결제 완료! >>>> ")
                             postStorePaySuccess(data).then(result=>{
                                 console.log(result);
-                            window.location.href = "/pay/done/"+result.merchantUid;
+                            // window.location.href = "/pay/done/"+result.merchantUid;
 
                             });
                         } else {
