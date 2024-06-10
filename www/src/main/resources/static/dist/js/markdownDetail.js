@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             text = text.replace(/\[(.*?)\]\(.*?\)/g, '$1');
             // 이미지 제거 (예: ![Alt text](url))
             text = text.replace(/!\[.*?\]\(.*?\)/g, '');
-            text = text.replace(/<img[^>]*>/g, '');
+
             // 수평선 제거 (예: ---)
             text = text.replace(/-{3,}/g, '');
             // 코드 블록 제거 (예: ``` code ```)
