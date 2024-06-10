@@ -1,6 +1,10 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.UserVO;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -22,4 +26,6 @@ public interface UserService {
     void updateAddr(UserVO uvo);
 
     int deleteMyPageUser(String id);
+
+    List<myPagePayInfoDTO> getPlist(String id);
 }

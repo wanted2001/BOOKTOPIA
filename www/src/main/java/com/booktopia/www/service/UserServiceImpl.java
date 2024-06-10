@@ -1,10 +1,14 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+    private final OrderInfoMapper orderInfoMapper;
 
     // 회원가입
     @Override
@@ -55,6 +60,16 @@ public class UserServiceImpl implements UserService {
     public int deleteMyPageUser(String id) {
 
         return userMapper.deleteMyPageUser(id);
+    }
+
+    @Override
+    public List<myPagePayInfoDTO> getPlist(String id) {
+        log.info("service in !! >>{} ",id);
+        List<myPagePayInfoDTO> mer_id = orderInfoMapper.selectOrderInfo(id);
+        for (myPagePayInfoDTO payInfo : mer_id) {
+            log.info("mer >>> {}",payInfo);
+        }
+        return mer_id;
     }
 
     @Override

@@ -1,11 +1,14 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.MailDTO;
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.buf.UDecoder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.PublicKey;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
@@ -124,6 +128,14 @@ public class UserController {
        int isOk =  usv.deleteMyPageUser(id);
        return isOk == 0? new ResponseEntity<String>("0", HttpStatus.OK) :
                new ResponseEntity<String>("1", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/myPagePayInfo/{id}")
+    public String myPagePayInfo(@PathVariable("id")String id,Model m){
+        log.info("id >> {}",id);
+        List<myPagePayInfoDTO> plist = usv.getPlist(id);
+        log.info("plist >> {}",plist);
+        return "/user/myPage";
     }
     
 
