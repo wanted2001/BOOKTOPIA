@@ -9,6 +9,7 @@ import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.CommunityService;
+import com.booktopia.www.service.VoteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

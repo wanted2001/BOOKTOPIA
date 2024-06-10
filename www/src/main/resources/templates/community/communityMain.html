@@ -120,6 +120,24 @@
             const user = document.getElementById('commuUser').value;
             console.log("user >>>>>"+user);
         </script>
+        <script th:inline="javascript">
+            async function getScore (){
+                try{
+                    const url = "/community/getScore";
+                    const config={
+                        method : "POST",
+                        headers :{
+                            "Content-type":"application/json; charset=UTF-8"
+                        }
+                    };
+
+
+
+                }catch (error){
+                    console.log(error);
+                }
+            }
+        </script>
         <script th:src="@{/dist/js/voteButton.js}"></script>
 <!--        </form>-->
     </th:block>
