@@ -182,7 +182,7 @@ async function isSocialUser(id) {
 }
 
 async function deleteComUser(id){
-    const url = "/user/deleteUser"+id;
+    const url = "/user/deleteMyPageUser"+id;
     const resp = await fetch(url);
     const result =  resp.text();
     return result;

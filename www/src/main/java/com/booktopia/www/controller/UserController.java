@@ -6,7 +6,6 @@ import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.PublicKey;
 
 @RequiredArgsConstructor
 @RequestMapping("/user/*")
@@ -116,6 +117,15 @@ public class UserController {
             return"/user/findPwDone";
         }
     }
+
+    @GetMapping("/deleteMyPageUser/{id}")
+    public ResponseEntity<String> deleteMyPageUser(@PathVariable("id")String id){
+        log.info("id >> {}",id);
+       int isOk =  usv.deleteMyPageUser(id);
+       return isOk == 0? new ResponseEntity<String>("0", HttpStatus.OK) :
+               new ResponseEntity<String>("1", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    
 
 
 
