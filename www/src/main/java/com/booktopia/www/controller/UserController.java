@@ -132,7 +132,8 @@ public class UserController {
 
     @GetMapping("/myPagePayInfo/{id}")
     public String myPagePayInfo(@PathVariable("id")String id,Model m){
-        myPagePayInfoDTO plist = usv.getPlist(id);
+        log.info("id >> {}",id);
+        List<myPagePayInfoDTO> plist = usv.getPlist(id);
         log.info("plist >> {}",plist);
         return "/user/myPage";
     }

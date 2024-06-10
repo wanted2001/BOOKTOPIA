@@ -1,15 +1,12 @@
 package com.booktopia.www.service;
 
-import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
-import com.booktopia.www.domain.OrderInfoVO;
-import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+    private final OrderInfoMapper orderInfoMapper;
 
     // 회원가입
     @Override
@@ -64,13 +62,14 @@ public class UserServiceImpl implements UserService {
         return userMapper.deleteMyPageUser(id);
     }
 
-    @Transactional
     @Override
-    public myPagePayInfoDTO getPlist(String id) {
-        PayVO payVO = userMapper.selectPayInfo(id);
-        OrderInfoVO orderInfoVO = userMapper.selectOrderInfo(id);
-        myPagePayInfoDTO myPagePayInfoDTO = new myPagePayInfoDTO(payVO,orderInfoVO);
-        return myPagePayInfoDTO;
+    public List<myPagePayInfoDTO> getPlist(String id) {
+        log.info("service in !! >>{} ",id);
+        List<myPagePayInfoDTO> mer_id = orderInfoMapper.selectOrderInfo(id);
+        for (myPagePayInfoDTO payInfo : mer_id) {
+            log.info("mer >>> {}",payInfo);
+        }
+        return mer_id;
     }
 
     @Override

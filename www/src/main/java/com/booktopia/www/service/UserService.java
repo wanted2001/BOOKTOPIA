@@ -27,5 +27,5 @@ public interface UserService {
 
     int deleteMyPageUser(String id);
 
-    myPagePayInfoDTO getPlist(String id);
+    List<myPagePayInfoDTO> getPlist(String id);
 }
