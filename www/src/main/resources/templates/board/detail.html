@@ -23,11 +23,17 @@
                 <div class="commDeWriter">[[${bvo.bWriter}]]</div>
                 <div class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,10)}"></div>
             </div>
-            <div class="commDeContent">
-                [[${bvo.bContent}]]
-            </div>
+
             <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
                 <img th:src="@{|/upload/${bvo.bMainImg}|}">
+                <div class="commDeContent">
+                    [[${bvo.bContent}]]
+                </div>
+            </div>
+            <div class="commDeNoImgContent" th:unless="${bvo.bMainImg!=''}">
+                <div class="commNoDeContent">
+                    [[${bvo.bContent}]]
+                </div>
             </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">

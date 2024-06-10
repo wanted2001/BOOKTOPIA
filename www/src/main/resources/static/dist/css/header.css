@@ -4,8 +4,14 @@
     font-style: normal;
     font-weight: normal;
 }
+/*
+메인컬러
+네이비 #005c87
+핑크 #ffb1b0
+노랑 #fff44f
+*/
 .wrap-header{
-    background-color: beige;
+    background-color: #ffe3e2;
     height: 80px;
     font-family:SCDream4;
 }

@@ -25,17 +25,21 @@
     width: 150px;
     height: 100%;
 }
-.commDeContent{
+.commNoDeContent{
     background-color: lightseagreen;
     width: 1000px;
-    height: 800px;
+    /*height: 800px;*/
     margin: 0 auto;
+    padding: 200px 0;
     position: relative;
 }
 .commDeImgArea{
-    position: absolute;
-    top: 300px;
-    left: 480px;
+    background-color: goldenrod;
+    width: 1000px;
+    margin: 0 auto;
+}
+.commDeImgArea, .commDeContent{
+
 }
 /*수정 삭제 버튼*/
 .commBtnArea{

@@ -110,7 +110,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("bno") long bno){
         bsv.delete(bno);
-        return "redirect:/community/communityList";
+        return "redirect:/community/communityListAll";
     }
 
 
