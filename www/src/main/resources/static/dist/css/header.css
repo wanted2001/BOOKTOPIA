@@ -4,14 +4,7 @@
     font-style: normal;
     font-weight: normal;
 }
-/*
-메인컬러
-네이비 #005c87
-핑크 #ffb1b0
-노랑 #fff44f
-*/
 .wrap-header{
-    background-color: #ffe3e2;
     height: 80px;
     font-family:SCDream4;
 }
@@ -19,6 +12,8 @@
     display: flex;
     margin-left: 30px;
 }
+
+/*
 .logo{
     width: 100px;
     height: 40px;
@@ -28,6 +23,7 @@
     margin-top: 20px;
 
 }
+*/
 
 li{
     list-style: none;
@@ -58,4 +54,13 @@ li{
 .logout{
     margin-right: 70px;
     margin-left: 30px;
+}
+
+.logo{
+        width: 200px;
+        height: 50px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 20px auto;
 }
