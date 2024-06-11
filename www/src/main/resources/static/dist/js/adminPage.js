@@ -11,7 +11,7 @@ document.addEventListener('click', (e) => {
 
 function handleButtonClick(btnId) {
         console.log(btnId);
-    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.adminCommuDiv'];
+    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.adminCommuDiv', '.commuBoard','.commuComment'];
         let index = sections[btnId.slice(-1)-1];
         console.log(index);
     sections.forEach(section => {
@@ -22,26 +22,25 @@ function handleButtonClick(btnId) {
     });
 
     const commuBoard = document.querySelector('.commuBoard');
-    const commuCommen = document.querySelector('.commuCommen');
-    const adcommuBtn1 = document.getElementById('adcommuBtn1');
-    const adcommuBtn2 = document.getElementById('adcommuBtn2');
+    const commuComment = document.querySelector('.commuComment');
+    const aBtn6 = document.getElementById('aBtn6');
+    const aBtn7 = document.getElementById('aBtn7');
 
-    if (btnId === 'aBtn7') {
+    if (btnId === 'aBtn5') {
         document.querySelector('.adminCommuDiv').style.display = 'block';
         commuBoard.style.display = 'block';
-        commuCommen.style.display = 'none';
-        adcommuBtn1.style.backgroundColor = '#ffb1b0';
-        adcommuBtn2.style.backgroundColor = 'white';
-    } else if (btnId === 'adcommuBtn2') {
+        commuComment.style.display = 'none';
+        aBtn6.style.backgroundColor = '#ffb1b0';
+        aBtn7.style.backgroundColor = 'white';
+    } else if (btnId === 'aBtn7') {
         document.querySelector('.adminCommuDiv').style.display = 'block';
         commuBoard.style.display = 'none';
-        commuCommen.style.display = 'block';
-        document.getElementById('aBtn7').style.backgroundColor = '#ffb1b0';
-        adcommuBtn1.style.backgroundColor = 'white';
-        adcommuBtn2.style.backgroundColor = '#ffb1b0';
+        commuComment.style.display = 'block';
+        aBtn6.style.backgroundColor = 'white';
+        aBtn7.style.backgroundColor = '#ffb1b0';
     } else {
-        adcommuBtn1.style.backgroundColor = '';
-        adcommuBtn2.style.backgroundColor = '';
+        aBtn6.style.backgroundColor = '';
+        aBtn7.style.backgroundColor = '';
     }
 
     const buttons = document.querySelectorAll('.admin-btn');
@@ -49,6 +48,12 @@ function handleButtonClick(btnId) {
         button.style.backgroundColor = button.id === btnId ? '#ffb1b0' : '';
     });
 }
+
+
+
+
+
+
 
 
 
@@ -88,9 +93,6 @@ function handleButtonClick(btnId) {
 //     document.querySelector('.${targetClass}').style.display = 'block';
 // }
 //
-
-
-
 
 
 
