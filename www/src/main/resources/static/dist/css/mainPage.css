@@ -20,6 +20,7 @@
     height: 50px;
     position: absolute;
 }
+
 .main-slid>.icon1{
     transform: translate(10px, 170px);
 }

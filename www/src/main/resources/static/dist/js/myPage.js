@@ -1,19 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const idElement = document.getElementById("myPageUserName");
+    const idElement = document.getElementById("realId");
     const modifyInfo = document.getElementById("modifyMyInfo");
     const moveContainer = document.getElementById("myPageInfoRightWrapId");
     const moveContainerUserDelete = document.getElementById("deleteMemberType");
     const comDelete = document.getElementById("comUser");
+    const subinfodiv = document.getElementById("myPageSubWrap");
+    const today = new Date();
 
-    // 필요한 요소가 모두 있는지 확인
-    if (!idElement || !modifyInfo || !moveContainer || !moveContainerUserDelete) {
-        console.log(idElement);
-        console.log(modifyInfo);
-        console.log(moveContainer);
-        console.log(moveContainerUserDelete);
-        console.error("필요한 요소 중 하나 이상이 DOM에 없습니다.");
-        return;
-    }
+    if (!idElement || !modifyInfo || !moveContainer || !moveContainerUserDelete || !subinfodiv) {
+            console.log("idElement:", idElement);
+            console.log("modifyInfo:", modifyInfo);
+            console.log("moveContainer:", moveContainer);
+            console.log("moveContainerUserDelete:", moveContainerUserDelete);
+            console.log("subinfodiv:", subinfodiv);
+            console.error("필요한 요소 중 하나 이상이 DOM에 없습니다.");
+            return;
+        }
 
     const idVal = idElement.innerText;
     const myPageCoupon = "/mypage/couponlist";
@@ -21,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageAddress = "/mypage/changeaddr";
     const myPageAddressSocial = "/mypage/changeaddrsocial";
     const myPagePayment = "/mypage/payinfo";
-    const myPageSubscribe = "/mypage/subinfo";
     const isSocial = "/user/deleteUser";
 
     // 유저 타입 확인 후 페이지 호출
@@ -34,7 +35,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    pageCall(myPageSubscribe, moveContainer);
+
+
+    pageCall(myPageCoupon, moveContainer);
+
+      usingsub(idVal).then(result => {
+          if (result.length === 0) {
+              subinfodiv.innerHTML = `
+              <div class="myPageSubInfo">
+                  이용중인 구독권이 없습니다.
+              </div>
+              <div class="myPageSubMove">
+                  <div class="myPageSubMoveLink">
+                      <a href="/subscribe/info">구독권 보러가기</a>
+                  </div>
+              </div>`;
+          } else {
+              var originalString = result.itemName;
+              var newString = originalString.match(/\d+/)[0]; // 1, 3, 6
+              var today = new Date(); // 현재 날짜
+              var approvedAt = new Date(result.approvedAt); // 결제 날짜
+
+              // 구독 기간 계산
+              switch (newString) {
+                  case "1":
+                      approvedAt.setMonth(approvedAt.getMonth() + 1);
+                      break;
+                  case "3":
+                      approvedAt.setMonth(approvedAt.getMonth() + 3);
+                      break;
+                  case "6":
+                      approvedAt.setMonth(approvedAt.getMonth() + 6);
+                      break;
+              }
+
+              // 날짜 비교
+              if (today > approvedAt) {
+                  subinfodiv.innerHTML = `
+                  <div class="myPageSubInfo">
+                      이용중인 구독권이 없습니다.
+                  </div>
+                  <div class="myPageSubMove">
+                      <div class="myPageSubMoveLink">
+                          <a href="/subscribe/info">구독권 보러가기</a>
+                      </div>
+                  </div>`;
+              } else {
+                  // 구독 중인 경우에 대한 처리
+                  subinfodiv.innerHTML =`<div class="myPageSubInfo">
+                      현재 구독 중입니다. <br>
+                  </div>
+                  <hr>
+                     <span> 만료일: ${approvedAt.toLocaleDateString('ko-KR')}</span>`;
+              }
+          }
+      });
+
 
     // 수정 완료 메시지 처리
     const msg = /*[[${msg}]]*/ '';
@@ -69,9 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 'myPagePayment':
                     pageCall(myPagePayment, moveContainer);
-                    break;
-                case 'myPageSub':
-                    pageCall(myPageSubscribe, moveContainer);
                     break;
             }
         });
@@ -114,9 +167,6 @@ function pageCall(link, callBox) {
                         case '/mypage/payinfo':
                             loadScript('/dist/js/payinfo.js');
                             break;
-                        case '/mypage/subinfo':
-                            loadScript('/dist/js/subinfo.js');
-                            break;
                     }
                 }
             } else {
@@ -145,6 +195,17 @@ function isScriptAlreadyIncluded(src) {
         }
     }
     return false;
+}
+
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더합니다.
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 // 특정 스크립트들을 제외하고 모든 스크립트를 제거하는 함수
@@ -184,7 +245,22 @@ async function isSocialUser(id) {
 async function deleteComUser(id){
     const url = "/user/deleteMyPageUser"+id;
     const resp = await fetch(url);
-    const result =  resp.text();
+    const result = await resp.text();
     return result;
+}
+
+async function usingsub(id){
+    try {
+            const response = await fetch("/user/usingsub/"+id);
+            if (!response.ok) {
+                throw new Error("HTTP error, status = " + response.status);
+            }
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            return null; // 오류 발생 시 null 반환 또는 적절한 오류 처리 수행
+        }
+
 }
 

@@ -12,7 +12,8 @@ public interface OrderInfoMapper {
 
     OrderInfoDTO getSuccessPayInfo(OrderInfoDTO oidto);
 
-    void insert(OrderInfoVO oivo);
-
     List<OrderInfoDTO> selectOrderInfo(String id);
+
+    OrderInfoDTO selectsublist(String id);
+
 }

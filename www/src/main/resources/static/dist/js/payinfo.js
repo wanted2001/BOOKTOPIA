@@ -1,10 +1,15 @@
-const payId = document.getElementById("realId");
-const idVal = payId.innerText;
+var payId = document.getElementById("realId");
+var idVal = payId.innerText;
 console.log(idVal);
 callPayInfo(idVal).then(result => {
     console.log(result);
     const ul = document.getElementById("payInforesult");
     ul.innerHTML = ""; // ul 내용 초기화
+
+    if(result.length == 0){
+            ul.innerHTML = `<div class= noPayinfo>결제 내역이 없습니다.</div>`;
+        }
+   else{
     result.reverse();
     result.forEach(item => {
         // 새로운 리스트 아이템 생성
@@ -15,16 +20,17 @@ callPayInfo(idVal).then(result => {
                          <div class="payInfomerchantUid">${item.merchantUid}</div>
                          <div class="payInfoLeft">
                              <div id="payInfoTitle">${item.itemName}</div>
-                             <div id="payInfoAmount">${item.approvedAt}</div>
+                             <div id="payInfoapprovedAt">${item.approvedAt}</div>
                          </div>
                          <div class="payInfoRight">
-                             <div id="payInfoName">${item.totalAmount}</div>
-                             <div id="payInfoRegiAt">${item.approvedAt}</div>
+                             <div id="payInfoAmount">${item.totalAmount}</div>
+                             <div id="payInfoDelivery">배송중 부분</div>
                          </div>
                      </div>`;
         // ul에 리스트 아이템 추가
         ul.appendChild(li);
     });
+    }
 });
 
 async function callPayInfo(id) {

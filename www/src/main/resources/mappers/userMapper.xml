@@ -54,7 +54,7 @@
     </select>
 
     <update id="deleteMyPageUser">
-        update set user user_del = "Y" where id=#{id}
+        update user set user_del = "Y" where id=#{id}
     </update>
 
     <select id="findPwCheck" resultType="int">
@@ -68,6 +68,14 @@
     <update id="updateUserPassword">
         update user set pwd = #{pw} where id=#{id}
     </update>
+
+    <update id="updateaddr">
+        update user set address = #{ordAddr} where id = #{id}
+    </update>
+
+    <select id="countAuth" resultType="int">
+        select count(role) from auth where id = #{providerId}
+    </select>
 
 
 </mapper>

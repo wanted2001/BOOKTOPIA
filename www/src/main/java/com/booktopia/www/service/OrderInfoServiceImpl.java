@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +22,11 @@ public class OrderInfoServiceImpl implements OrderInfoService{
 
 
     @Override
-    public void insertPayInfo(OrderInfoDTO orderinfoDTO) {
-
-    }
-
-    @Override
     public int insertRegister(OrderInfoDTO oidto) {
         log.info(">>> service in >>> {}", oidto);
         int isOk = orderInfomapper.insertRegister(oidto);
         payMapper.insertPayRegister(oidto);
+        userMapper.updateaddr(oidto);
 
         return isOk;
     }
@@ -39,9 +36,5 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         return orderInfomapper.getSuccessPayInfo(oidto);
     }
 
-    @Override
-    public void isnert(OrderInfoVO oivo) {
-        orderInfomapper.insert(oivo);
-    }
 
 }

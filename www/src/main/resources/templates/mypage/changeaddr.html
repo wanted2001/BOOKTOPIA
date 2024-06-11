@@ -1,34 +1,32 @@
 <div class="myPageRight">
     <div class="myPageRightWrap">
         <div class="myPageRightWrapInfo">
-            <div class="myPageRightWrapInfoText">my page</div>
+            <div class="myPageRightWrapInfoText">배송지 수정</div>
             <div class="myPageRightWrapInfoModWrap">
                 <div class="myPageRightWrapForm">
-                    <form action="/user/modifyAddr" method="POST">
+                    <form action="#" method="POST">
                             <input type="hidden" th:value="${#authentication.getName()}" name="id">
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">현재 배송지</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="address" placeholder="address..." id="changeAddr"
-                                th:value="${#authentication.getPrincipal().userVO.getAddress == null ? '' :
-                                #authentication.getPrincipal().userVO.getAddress()}"><br>
+                                <p>주소</p>
+                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
+                                       th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
+                                <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
+                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
+                                       th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
                             </div>
-                        </div>
-                        <div class="modifyGetAddrBtn">
-                            <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
-                            <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                            <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
                         </div>
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="phone" placeholder="phone..." id="changePhone"
-                                       th:value="${#authentication.getPrincipal().userVO.getPhone == null ? '' :
+                                       th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
                                        #authentication.getPrincipal().userVO.getPhone()}"><br>
                             </div>
                         </div>
                         <div class="myPageModInputFormWrapBtn">
-                            <button type="submit" id="submitAddrButton">배송지 수정 일반</button>
+                            <button type="button" id="submitAddrButton">배송지 수정 일반</button>
                         </div>
                     </form>
                 </div>

@@ -70,7 +70,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             uvo.setUserType(type);
             uvo.setAccessToken(accessToken);
             userMapper.joinInsertOauth(uvo);
-            userMapper.insertAuth(providerId);
+            int isOk = userMapper.countAuth(providerId);
+            if(isOk < 0){
+                userMapper.insertAuth(providerId);
+            }
             // 역할 정보를 AuthVO 객체로 생성하여 리스트에 추가
         } else {
             log.info("이미 로그인 한적이 있습니다.");

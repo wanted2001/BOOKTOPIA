@@ -7,6 +7,7 @@ import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.helpers.SubstituteLogger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -136,6 +137,14 @@ public class UserController {
         log.info("plist >> {}", plist);
         m.addAttribute("plist", plist);
         return plist;
+    }
+
+    @ResponseBody
+    @GetMapping("/usingsub/{id}")
+    public OrderInfoDTO usingsub(@PathVariable("id")String id, Model m){
+        OrderInfoDTO sublist = usv.getsublist(id);
+        m.addAttribute("sublist",sublist);
+        return sublist;
     }
 }
     
