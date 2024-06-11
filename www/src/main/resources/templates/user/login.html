@@ -11,7 +11,7 @@
                         <input type="text" name="id"placeholder="id..." id="loginId"><br>
                         <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
                         <div th:if="errorMessage">
-                            <p id="errMsg" style="color: red; font-size:12px;"><a th:text="${errorMessage}"></a></p>
+                            <p class="errMsg"><a th:text="${errorMessage}"></a></p>
                         </div>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
@@ -27,7 +27,7 @@
                             <a th:href="@{/user/findPw}"><button type="button" id="pwdLost" class="loginFind">비밀번호 찾기</button></a>/
                         </div>
                         <div class="loginToResister loginFindDiv">
-                            <a href="#"><button type="button" id="toResiter" class="loginFind">회원가입</button></a>
+                            <a th:href="@{/user/join}"><button type="button" id="toResiter" class="loginFind">회원가입</button></a>
                         </div>
                     </div>
                     <div class="loginSocialBtn">

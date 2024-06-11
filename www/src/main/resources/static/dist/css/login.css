@@ -20,7 +20,7 @@
 
 .loginWrapPage{
     width: 1000px;
-    height: 500px;
+   height: 680px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -30,7 +30,7 @@
 .loginAllPage{
     text-align: center;
     width: 700px;
-    height: 500px;
+    height: 100%;
     display: flex;
     border: 1px solid black;
     flex-direction: column;
@@ -99,5 +99,10 @@
     width: 30px;
     height: 30px;
     border-radius: 100px;
+}
+
+.errMsg{
+    margin-top: 10px;
+    font-color: rosybrown;
 }
 

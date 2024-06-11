@@ -7,25 +7,6 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="BooktopiaLogo" th:style="'background-image:url(../image/logo_text.png)'"></div>
-            <div class="mainImgArea">
-                <div class="maindot">
-                    <div class="mainImgDiv">
-                        <img th:src="@{/image/main1.jpg}" class="mainImg">
-                        <img th:src="@{/image/book.png}" width="300px" height="300px">
-                    </div>
-                </div>
-            </div>
-                <div class="whiteBox"></div>
-            <div class="headerCate">
-                <span class="headerCateIn bookTopiaInfo">Booktopia</span>
-                <span class="headerCateIn bookTopiaTest">Test My Booktopia</span>
-                <span class="headerCateIn community">Community</span>
-                <span class="headerCateIn subscribe">Subscribe</span>
-            </div>
-            <div class="planetImg">
-<!--                <img th:src="@{/image/planet.png}">-->
-            </div>
 <!--            <div class="main">-->
 <!--                <div class="main-slid">-->
 <!--                    <a href="#" class="icon1"><img src="/image/backicon.png"></a>-->
@@ -90,6 +71,9 @@
 <!--                    <div class="commu-img"><img src="#"></div>-->
 <!--                </div>-->
 <!--            </div>-->
+        </div>
+
+        <div class="test" th:style=" 'background-image: url(../image/main3.png)' ">
         </div>
 
     </th:block>
