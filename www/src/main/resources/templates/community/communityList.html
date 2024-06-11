@@ -10,6 +10,13 @@
     <th:block th:fragment="content">
         <!--공지-->
         <div class="wrap">
+            <!--사이드 광고?-->
+            <div class="commLeftSection">
+<!--                <div class="commLeft">-->
+<!--                    <img th:src="@{/image/little_prince_navy.jpg}" width="180px" height="400px">-->
+<!--                    <a th:href="@{/subscribe/info}"><button type="button">북토피아 구독하기</button></a>-->
+<!--                </div>-->
+            </div>
             <!--검색창-->
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>
@@ -104,7 +111,7 @@
                         <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bContent}]]</a>
                     </div>
                     <div class="commImg" th:if="${bvo.bMainImg!=''}">
-                        <img th:src="@{|/upload/${bvo.bMainImg}|}" width="270px" height="200px">
+                        <img th:src="@{|/upload/${bvo.bMainImg}|}">
                     </div>
                     <div class="commCntInfo">
                         <div class="commCmtCnt commCnt">댓글 [[${bvo.bCmtCnt}]]</div>
@@ -118,25 +125,33 @@
             <div th:if="${ph.totalCount < 1}" class="commNon">
                 <p>검색된 게시물이 없습니다.</p>
             </div>
+            <!--top버튼-->
+            <div class="commTopBtnArea">
+                <div class="commTopBtnSticky">
+                    <a href="#"><button type="button" class="commTopBtn">
+                        <img th:src="@{/image/arrow_icon.png}">
+                    </button></a>
+                </div>
+            </div>
             <!-- 페이지네이션 -->
             <div class="commPage">
                 <!--카테고리별 페이징-->
-                    <ul th:if="${ph.totalCount eq cateCtn}">
+                    <ul th:if="${ph.totalCount eq cateCtn}" class="commPaging">
                         <th:block th:with="bCate=${blist[0].getBCate()}">
                             <!--이전-->
-                            <li th:if="${ph.prev}">
+                            <li th:if="${ph.prev}" class="commPagingLi">
                                 <a th:href="@{/community/communityList(bCate=${bCate},pageNo=${ph.startPage-1},qty=${ph.pgvo.qty}
                             ,type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}"><span>&laquo;</span></a>
                             </li>
                             <!--페이징-->
                             <th:block th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-                                <li th:classappend="${ph.pgvo.pageNo==i?'active':''}">
+                                <li th:classappend="${ph.pgvo.pageNo==i?'':''}" class="commPagingLi">
                                     <a th:href="@{/community/communityList(bCate=${bCate},pageNo=${i},qty=${ph.pgvo.qty},
                                 type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">[[${i}]]</a>
                                 </li>
                             </th:block>
                             <!--다음-->
-                            <li th:if="${ph.next}">
+                            <li th:if="${ph.next}" class="commPagingLi">
                                 <a th:href="@{/community/communityList(bCate=${bCate},pageNo=${ph.endPage+1},qty=${ph.pgvo.qty},
                             type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">
                                     <span>&raquo;</span>
@@ -145,21 +160,21 @@
                         </th:block>
                     </ul>
 
-                <ul th:if="${ph.totalCount eq AllcateCtn}">
+                <ul th:if="${ph.totalCount eq AllcateCtn}" class="commPaging">
                     <!--이전-->
-                    <li th:if="${ph.prev}">
+                    <li th:if="${ph.prev}" class="commPagingLi">
                         <a th:href="@{/community/communityListAll(pageNo=${ph.startPage-1},qty=${ph.pgvo.qty}
                         ,type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}"><span>&laquo;</span></a>
                     </li>
                     <!--페이징-->
                     <th:block th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-                        <li th:classappend="${ph.pgvo.pageNo==i?'active':''}">
+                        <li th:classappend="${ph.pgvo.pageNo==i?'active':''}" class="commPagingLi">
                             <a th:href="@{/community/communityListAll(pageNo=${i},qty=${ph.pgvo.qty},
                             type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">[[${i}]]</a>
                         </li>
                     </th:block>
                     <!--다음-->
-                    <li th:if="${ph.next}">
+                    <li th:if="${ph.next}" class="commPagingLi">
                         <a th:href="@{/community/communityListAll(pageNo=${ph.endPage+1},qty=${ph.pgvo.qty},
                         type=${ph.pgvo.type},keyword=${ph.pgvo.keyword})}">
                             <span>&raquo;</span>

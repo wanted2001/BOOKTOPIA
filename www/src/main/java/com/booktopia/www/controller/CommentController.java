@@ -3,9 +3,11 @@ package com.booktopia.www.controller;
 import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.domain.RecommentVO;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.CommentService;
+import com.booktopia.www.service.ReCommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     private final CommentService comsv;
+    private final ReCommentService rcomsv;
     private final BoardService bsv;
 
     @PostMapping("/post")
@@ -84,6 +87,27 @@ public class CommentController {
         //댓글 삭제
         int isOk = comsv.deleteComment(cno);
         return isOk>0 ? "1":"0";
+    }
+
+    @PostMapping("/post/comment")
+    @ResponseBody
+    public ResponseEntity<String> postReComment(@RequestBody JSONObject rcvo) throws ParseException {
+        log.info("commentVO cvo>>>>>{}",rcvo);
+
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse(String.valueOf(rcvo));
+
+        RecommentVO rvo = new RecommentVO();
+        rvo.setCno(Long.parseLong((String)obj.get("cno")));
+        rvo.setBno(Integer.parseInt((String)obj.get("bno")));
+        rvo.setRcWriter((String) obj.get("rcWriter"));
+        rvo.setRcContent((String) obj.get("rcContent"));
+        log.info("parse rccommentVO >>>>{}", rvo);
+
+        int isOk = rcomsv.postromment(rvo);
+        bsv.updateCommentCnt(rvo.getBno());
+        return isOk>0 ? new ResponseEntity<String>("1", HttpStatus.OK):
+                new ResponseEntity<String>("0",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

@@ -78,12 +78,12 @@ public class BoardController {
         m.addAttribute("bvo",bvo);
     }
 
-    @GetMapping("/modify")
-    public void modifyBoard(Model m, @RequestParam("bno")long bno){
-        BoardVO bvo = bsv.getDetail(bno);
-        log.info("modifyBoard bvo >>>>{}",bvo);
-        m.addAttribute("bvo",bvo);
-    }
+//    @GetMapping("/modify")
+//    public void modifyBoard(Model m, @RequestParam("bno")long bno){
+//        BoardVO bvo = bsv.getDetail(bno);
+//        log.info("modifyBoard bvo >>>>{}",bvo);
+//        m.addAttribute("bvo",bvo);
+//    }
 
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {
@@ -110,7 +110,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("bno") long bno){
         bsv.delete(bno);
-        return "redirect:/community/communityList";
+        return "redirect:/community/communityListAll";
     }
 
 

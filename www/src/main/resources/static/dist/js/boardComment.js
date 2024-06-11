@@ -1,9 +1,10 @@
-console.log("boardComment 들어옴!");
-console.log("cmtWriter: ",cmtWriter);
+// console.log("boardComment 들어옴!");
+// console.log("cmtWriter: ",cmtWriter);
 console.log("bnoVal: ",bnoVal);
+const commDeUserId = document.querySelector('.commDeUserId').value;
+console.log(commDeUserId);
 
 document.getElementById('cmtAddBtn').addEventListener('click',()=>{
-    const cWriter = cmtWriter.substring(1,cmtWriter.length-1);
     const cContent  = document.getElementById('cmtContent').value;
 
     if(cContent==null||cContent=='') {
@@ -13,7 +14,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
     } else {
         let cmtData = {
             bno:bnoVal,
-            cWriter:cWriter,
+            cWriter:commDeUserId,
             cContent:cContent
         }
         console.log(cmtData);
@@ -59,34 +60,28 @@ async function getCommentList(bno,page){
 function spreadCommentList(bno,page=1) {
     getCommentList(bno,page).then(result=>{
         console.log(result);
-        const ul=document.querySelector(".commDeComment");
+        const ul=document.querySelector(".commDeOneComment");
         if(result.cmtList.length>0) {
             if(page==1) {
                 ul.innerHTML='';
             }
             for(let cvo of result.cmtList){
-                let li = `<li class="list-group-item" data-cno="${cvo.cno}">`;
-                li+=`<div class="mb-3">no.${cvo.cno} | &nbsp;`;
-                li+=`<div class="fw-bold">${cvo.cwriter}</div>${cvo.ccontent}</div>`;
-                li+=`<span class="badge rounded-pill text-bg-primary">${cvo.cregDate}</span>`
+                let li = `<div class="commDeCommentArea" data-cno="${cvo.cno}" value="${cvo.cno}">`;
+                li+=`<div class="commDe-Writer">${cvo.cwriter}</div>${cvo.cregDate.substring(0,16)}`;
+                li+=`<div class="commDe-Content" id="commentContent">${cvo.ccontent}</div>`
                 //수정, 삭제 버튼
-                li+=`&nbsp;<button type="button" class="btn btn-sm btn-outline-warning mod" data-bs-toggle="modal" data-bs-target="#myModal">수정</button>`;
-                li+=`&nbsp;<button type="button" data-cno="${cvo.cno}" class="btn btn-sm btn-outline-danger del">삭제</button>`;
-                li+=`</li>`;
+                if(commDeUserId===cvo.cwriter){
+                    li+=`<div class="cmtBtn">`
+                    li+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
+                    li+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${cvo.cno}" class="commComDelBtn">삭제</button>`;
+                    li+=`</div>`
+                }
+                li+=`<div class="commDe-ReComment" ><button type="button" id="recommendBtn"">답댓글</button></div>`;
+                li+=`</div>`;
                 ul.innerHTML+=li;
             }
-
-            //더보기 버튼
-            let moreBtn = document.getElementById('moreBtn');
-            if(result.realEndPage>result.pgvo.pageNo){
-                moreBtn.style.visibility='visible';
-                moreBtn.dataset.page=page+1;
-            } else {
-                moreBtn.style.visibility='hidden';
-            }
         } else {
-            let li = `<li>Comment List Empty</li>`
-            ul.innerHTML=li;
+            ul.innerHTML=`<div class="commDeNon"></div>`;
         }
     })
 }
@@ -127,22 +122,35 @@ async function removeComment(cnoVal){
 }
 
 document.addEventListener('click',(e)=>{
-    if(e.target.id=='moreBtn'){
-        let page = parseInt(e.target.dataset.page);
-        spreadCommentList(bnoVal,page)
-    } else if(e.target.classList.contains('mod')){
-        let li = e.target.closest('li');
-        let cContent = li.querySelector('.fw-bold').nextSibling;
+    if(e.target.classList.contains('commComModBtn')){
+        console.log("수정버튼 누름")
+
+        const cContent = e.target.closest('.commDeCommentArea');
         console.log(cContent);
-        document.getElementById('cmtModContent').value = cContent.nodeValue;
-        document.getElementById('cmtModBtn').setAttribute("data-cno",li.dataset.cno);
-    } else if(e.target.id=='cmtModBtn'){
+        const cvArea = cContent.querySelector('.commDe-Content');
+        let cv = cContent.querySelector('.commDe-Content').innerHTML;
+        console.log(cv);
+        cvArea.innerHTML='';
+
+        // let cno = document.querySelector('.commDeCommentArea').getAttribute('value');
+        let cno = cContent.getAttribute('value');
+        console.log(cno);
+
+        let modComment = `<input type="text" id="cmtModContent" value="${cv}" data-cno="${cno}">`;
+        console.log(modComment)
+        cContent.innerHTML+=modComment;
+
+        cContent.querySelector('.cmtBtn').innerHTML='';
+        cContent.innerHTML+=`<button type="button" id="commModBtn">수정하기</button>`;
+
+    } else if(e.target.id==='commModBtn'){
+        const cContent = e.target.closest('.commDeCommentArea');
         let cmtModData ={
-            cno:e.target.dataset.cno,
+            cno:cContent.getAttribute('value'),
             cContent: document.getElementById('cmtModContent').value
         };
         console.log(cmtModData);
-        
+
         getModComment(cmtModData).then(result=>{
             if(result=='1'){
                 console.log("댓글수정완료");
@@ -153,10 +161,10 @@ document.addEventListener('click',(e)=>{
         })
     }
     //삭제
-    else if(e.target.classList.contains('del')){
+    else if(e.target.classList.contains('commComDelBtn')){
         let cnoVal = e.target.dataset.cno;
         removeComment(cnoVal).then(result=>{
-            if(result=='1'){
+            if(result==='1'){
                 console.log("댓글삭제성공");
                 spreadCommentList(bnoVal);
             } else {
@@ -165,3 +173,83 @@ document.addEventListener('click',(e)=>{
         })
     }
 })
+
+document.addEventListener('click',(e)=>{
+    if(e.target.id==='recommendBtn'){
+        console.log("답댓버튼클릭");
+        const cContent = e.target.closest('.commDeCommentArea');
+        const cno = cContent.getAttribute('value');
+        cContent.innerHTML+=`<input type=text placeholder="댓글을 입력해주세요!" id="recommContent">`;
+        let reCmtData = {
+            cno:cno,
+            bno:bnoVal,
+            rcWriter:commDeUserId,
+            rcContent:document.getElementById('recommContent').value
+        }
+        console.log(reCmtData);
+        postReCommentToServer(reCmtData).then(result=>{
+            if(result==='1'){
+                console.log("대댓 등록완료");
+                spreadReCommentList(cno);
+            }
+        })
+    }
+})
+
+async function postReCommentToServer(reCmtData) {
+    try {
+        const url = "/comment/post/comment";
+        const config ={
+            method:"post",
+            headers:{
+                "content-type":"application/json; charset=utf-8"
+            },
+            body:JSON.stringify(reCmtData)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text(); //return=>isOk
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function spreadReCommentList(cno,page=1) {
+    getReCommentList(cno).then(result=>{
+        console.log(result);
+        // const ul=document.querySelector(".commDeOneComment");
+        // if(result.cmtList.length>0) {
+        //     if(page==1) {
+        //         ul.innerHTML='';
+        //     }
+        //     for(let cvo of result.cmtList){
+        //         let li = `<div class="commDeCommentArea" data-cno="${cvo.cno}" value="${cvo.cno}">`;
+        //         li+=`<div class="commDe-Writer">${cvo.cwriter}</div>${cvo.cregDate.substring(0,16)}`;
+        //         li+=`<div class="commDe-Content" id="commentContent">${cvo.ccontent}</div>`
+        //         //수정, 삭제 버튼
+        //         if(commDeUserId===cvo.cwriter){
+        //             li+=`<div class="cmtBtn">`
+        //             li+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
+        //             li+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${cvo.cno}" class="commComDelBtn">삭제</button>`;
+        //             li+=`</div>`
+        //         }
+        //         li+=`<div class="commDe-ReComment" ><button type="button" id="recommendBtn" onclick="postReComment()">답댓글</button></div>`;
+        //         li+=`</div>`;
+        //         ul.innerHTML+=li;
+        //     }
+        // } else {
+        //     ul.innerHTML=`<div class="commDeNon"></div>`;
+        // }
+    })
+}
+
+async function getReCommentList(cno){
+    try{
+        const resp = await fetch("/comment/"+cno);
+        const result = await resp.json();
+        return result;
+    } catch (error) {
+        console.log("getReCommentList error : "+error);
+    }
+}

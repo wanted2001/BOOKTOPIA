@@ -12,7 +12,6 @@
         select * from comment
         where bno=#{bno}
         order by cno desc
-        limit #{pgvo.pageStart}, #{pgvo.qty}
     </select>
 
     <select id="getSelectOneComment" resultType="int">

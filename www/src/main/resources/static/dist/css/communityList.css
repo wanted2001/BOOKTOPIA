@@ -23,8 +23,21 @@
 노랑 #fff44f
 */
 .wrap{
-    /*background-color: antiquewhite;*/
+    /*background-color: rgba(255, 209, 209, 0.13);*/
     font-family: SCDream3;
+}
+/*.commLeftSection{*/
+/*    float: left;*/
+/*    width: 180px;*/
+/*    height: 400px;*/
+/*    background-color: navy;*/
+/*    margin-top: 80px;*/
+/*    display: flex;*/
+/*}*/
+.commLeft{
+    position: sticky;
+    height: 400px;
+    top: 50px;
 }
 .commSearchArea{
     width: 350px;
@@ -56,20 +69,19 @@
 }
 .commSeaBtn{
     cursor: pointer;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 122.5px;
-    right: 470px;
+    right: 575px;
 }
 .commListAll{
-    margin-top: 20px;
-    margin-left: 1130px;
+    margin: 30px 0 0 1130px;
     font-size: 14px;
 }
 .commNoticeLine{
     /*background-color: lightseagreen;*/
     width: 1000px;
-    margin: 15px auto 0;
+    margin: 25px auto 0;
     height: 50px;
     display: flex;
     font-size: 20px;
@@ -82,18 +94,18 @@
 }
 .commCateLine{
     /*background-color: goldenrod;*/
-    width: 1000px;
+    width: 870px;
     height: 35px;
     margin: 20px auto 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     text-align: center;
     line-height: 34.5px;
 }
 .commCateChoice{
     background-color: rgba(1, 103, 152, 0.8);
     /*width: 100px;*/
-    padding: 0 15px;
+    padding: 0 20px;
     border-radius: 20px;
 }
 .commCateChoice span{
@@ -123,9 +135,13 @@
     padding-top: 25px;
     /*padding: 25px 0 0 0 ;*/
 }
-.commListArea:nth-of-type(1){
+.commListArea:nth-of-type(1),.commNon{
     /*background-color: pink;*/
     margin-top: 60px;
+}
+.commNon{
+    border-bottom: 1px solid #b1b1b1;
+    margin-bottom: 150px;
 }
 .commListArea:nth-of-type(10){
     /*background-color: pink;*/
@@ -171,6 +187,11 @@
     height: 160px;
     margin: -140px 20px 0 0;
 }
+.commImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .commCntInfo{
     /*background-color: mintcream;*/
     width: 220px;
@@ -188,14 +209,48 @@
     font-size: 12px;
     color: #474747;
 }
-
 .commSeaBar{
     display: inline-block;
 }
-
+.commTopBtnArea{
+    float: right;
+    width: 25px;
+    height: 1800px;
+    border: none;
+    margin-top: -1830px;
+    margin-right: 50px;
+}
+.commTopBtnSticky{
+    position: sticky;
+    top: 880px;
+}
+.commTopBtnArea .commTopBtn{
+    cursor: pointer;
+    background-color: white;
+}
+.commTopBtnArea .commTopBtn>img{
+    width: 25px;
+    height: 25px;
+    transform: rotate(270deg);
+    background-color: white;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    padding: 10px;
+    border-radius: 30px;
+    /*box-shadow: -3px 0 8px rgba(0,0,0,0.15)*/
+}
 .commPage{
-    background-color: darkseagreen;
-    width: 1000px;
+    /*background-color: darkseagreen;*/
+    width: 400px;
     height: 45px;
-    margin: 25px auto 50px;
+    margin: 50px auto 0;
+}
+.commPaging{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.commPagingLi{
+    width: 25px;
+    font-size: 18px;
 }
