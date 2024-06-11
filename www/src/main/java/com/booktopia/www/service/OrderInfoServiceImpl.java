@@ -2,6 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.repository.DeliMapeer;
 import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.PayMapper;
 import com.booktopia.www.repository.UserMapper;
@@ -18,6 +19,7 @@ public class OrderInfoServiceImpl implements OrderInfoService{
     private final OrderInfoMapper orderInfomapper;
     private final PayMapper payMapper;
     private final UserMapper userMapper;
+    private final DeliMapeer deliMapeer;
 
 
     @Override
@@ -30,7 +32,7 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         log.info(">>> service in >>> {}", oidto);
         int isOk = orderInfomapper.insertRegister(oidto);
         payMapper.insertPayRegister(oidto);
-
+        deliMapeer.insertDeli(oidto);
         return isOk;
     }
 

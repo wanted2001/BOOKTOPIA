@@ -1,5 +1,5 @@
 .admin-contain{
-    width: 1200px;
+    width: 1300px;
     margin: 0 auto;
 }
 .admin{
@@ -20,7 +20,7 @@ button {
     height: 46px;
     margin-bottom: 5px;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 15px;
     border-radius: 3px;
     border: 1px solid #ffb1b0;
     cursor: pointer;
@@ -28,7 +28,7 @@ button {
 
 .cate-detail{
     /*background-color: #0086ff;*/
-    width: 950px;
+    width: 1050px;
     height: 1000px;
     margin: 10px;
     float: right;
@@ -49,3 +49,15 @@ td{
     text-align: center;
 }
 
+.adminCommuDiv > button {
+    display: inline;
+}
+
+#boardDel, #boardModiy{
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    display: inline;
+    padding: 0;
+    margin-top: 5px;
+}

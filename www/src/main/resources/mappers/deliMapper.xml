@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.booktopia.www.repository.DeliMapeer">
+    <insert id="insertDeli">
+        insert into delivery (merchant_uid, ord_name, item_name)
+        values (#{merchantUid}, #{ordName}, #{itemName})
+    </insert>
+
+    <select id="getList" resultType="com.booktopia.www.domain.DeliveryVO">
+        select * from delivery
+    </select>
+</mapper>

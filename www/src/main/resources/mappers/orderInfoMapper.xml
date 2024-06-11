@@ -21,4 +21,8 @@
         JOIN pay AS p ON o.merchant_uid = p.merchant_uid
         WHERE o.id = #{id};
     </select>
+
+    <select id="orderList" resultType="com.booktopia.www.domain.OrderInfoVO">
+        select * from order_info
+    </select>
 </mapper>

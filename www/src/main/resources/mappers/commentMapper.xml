@@ -31,4 +31,8 @@
     <select id="getCommentBno" resultType="long">
         select bno from comment where cno=#{cno}
     </select>
+
+    <select id="getComList" resultType="com.booktopia.www.domain.CommentVO">
+        select * from comment
+    </select>
 </mapper>
