@@ -1,35 +1,35 @@
-.commDeContent h1{
+.commDeContent h1, .commNoDeContent h1{
     font-size: 46px;
     font-weight: bold;
 }
-.commDeContent h2{
+.commDeContent h2, .commNoDeContent h2{
     font-size: 41px;
     font-weight: bold;
 }
-.commDeContent h3{
+.commDeContent h3, .commNoDeContent h3{
     font-size: 36px;
     font-weight: bold;
 }
-.commDeContent h4{
+.commDeContent h4, .commNoDeContent h4{
     font-size: 31px;
     font-weight: bold;
 }
-.commDeContent h5{
+.commDeContent h5, .commNoDeContent h5{
     font-size: 26px;
     font-weight: bold;
 }
-.commDeContent h6{
+.commDeContent h6, .commNoDeContent h6{
     font-size: 19px;
     font-weight: bold;
 }
-.commDeContent strong{
+.commDeContent strong, .commNoDeContent strong{
     /*color: red;*/
     font-weight: bold;
 }
-.commDeContent em{
+.commDeContent em, .commNoDeContent em{
     font-style: italic;
 }
-.commDeContent blockquote {
+.commDeContent blockquote. .commNoDeContent blockquote{
     border-left: 4px solid grey;
     height: 20px;
     margin: 10px 0 0 8px;
@@ -38,7 +38,7 @@
     color: grey;
     /*색은 나중에 바꿔도 됩니다..*/
 }
-.commDeContent ul li::before{
+.commDeContent ul li::before, .commNoDeContent ul li::before{
     content:'';
     display:inline-block;
     width:6px;
@@ -48,7 +48,7 @@
     background:#242222;
     border-radius:50%
 }
-.commDeContent ul li p{
+.commDeContent ul li p .commNoDeContent ul li p{
     margin-left: 93px;
     margin-top: -15px;
 }

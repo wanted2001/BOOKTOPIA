@@ -11,7 +11,6 @@
     <select id="getCommentList" resultType="com.booktopia.www.domain.CommentVO">
         select * from comment
         where bno=#{bno}
-        order by cno desc
     </select>
 
     <select id="getSelectOneComment" resultType="int">

@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService{
         List<CommentVO> clist = commentMapper.getCommentList(bno,pgvo);
         //totalCount
         int totalCount = commentMapper.getSelectOneComment(bno);
-        PagingHandler ph = new PagingHandler(pgvo, totalCount, clist);
+        PagingHandler ph = new PagingHandler(pgvo, totalCount, clist,null);
         return ph;
     }
 
