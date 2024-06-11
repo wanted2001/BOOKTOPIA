@@ -40,9 +40,9 @@ li{
 /*    margin-left: 400px;*/
 /*    text-align: right;*/
 /*}*/
-.register{
+/*.register{
     margin-left: 515px;
-}
+}*/
 .userName{
     margin-left: 400px;
 }
@@ -63,4 +63,52 @@ li{
         background-position: center;
         background-repeat: no-repeat;
         margin: 20px auto;
+            position: relative;
+}
+
+.nav-bar{
+    border-top: 1px solid;
+    /*position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;*/
+    margin: 0 auto;
+    width: 90%;
+}
+
+.menu{
+    margin: 0 auto;
+   text-align: center;
+}
+
+.cate:hover{
+    border-bottom: 1px solid;
+}
+
+.menu2{
+    height: 20px;
+}
+
+.upcate{
+
+    width: 130px;
+    height: 20px;
+}
+
+.joinbtn{
+        position: absolute;
+        left:480px;
+}
+.loginbtn{
+     position: absolute;
+     left:600px;
+}
+
+.upHeader{
+    width: 100%;
+    display: flex;
+
+}
+
+.user-bar{
+
 }

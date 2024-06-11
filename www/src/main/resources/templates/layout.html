@@ -14,32 +14,51 @@
     </head>
     <body>
     <nav class="contain-header">
-        <div class="logo" th:style=" 'background-image: url(../image/logo.png)' "></div>
-        <div class="wrap-header">
-            <div class="contain-body">
-                <a class="logo" th:href="@{/}">로고</a>
-                <div class="cate">
-                    <ul>
-                        <li><a class="cate cate1" href="#">북토피아 소개</a></li>
-                        <li><a class="cate cate2" th:href="@{/subscribe/info}">구독상품</a></li>
-                        <li><a class="cate cate3" th:href="@{/community/communityMain}">커뮤니티</a></li>
-                        <li><a class="cate cate4" th:href="@{/booktopiaTest/test}">취향검사</a></li>
-                        <li class="right" sec:authorize="isAnonymous()">
-                            <a class="register" th:href="@{/user/join}">회원가입</a></li>
-                        <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>
-                        <th:block sec:authorize="isAuthenticated()">
-                            <th:block th:with="auth=${#authentication.getPrincipal()}">
-                                <li class="userName"><a th:href="@{/user/myPage}" sec:authentication="name"></a></li>
-                                <li class="logout"><a th:href="@{/user/logout}">로그아웃</a></li>
-                            </th:block>
-                        </th:block>
-                        <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                            <a class="nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="upHeader">
+        <div class="logo" th:style=" 'background-image: url(../image/logo.png)' ">
+            <div class="user-bar">
+                <ul class="menu2">
+                    <li class="upcate joinbtn" sec:authorize="isAnonymous()">
+                        <a class="register" th:href="@{/user/join}">회원가입</a></li>
+                    <li class="upcate loginbtn" sec:authorize="isAnonymous()">
+                        <a class="login" th:href="@{/user/login}">로그인</a></li>
+                </ul>
             </div>
         </div>
+        </div>
+        <div class="nav-bar nav-down" >
+            <ul class="menu">
+                <li><a class="cate cate1" href="#">북토피아 소개</a></li>
+                <li><a class="cate cate2" th:href="@{/subscribe/info}">구독상품</a></li>
+                <li><a class="cate cate3" th:href="@{/community/communityMain}">커뮤니티</a></li>
+                <li><a class="cate cate4" th:href="@{/booktopiaTest/test}">취향검사</a></li>
+            </ul>
+        </div>
+<!--        <div class="wrap-header">-->
+<!--            <div class="contain-body">-->
+<!--&lt;!&ndash;                <a class="logo" th:href="@{/}">로고</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="cate">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="cate cate1" href="#">북토피아 소개</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="cate cate2" th:href="@{/subscribe/info}">구독상품</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="cate cate3" th:href="@{/community/communityMain}">커뮤니티</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li><a class="cate cate4" th:href="@{/booktopiaTest/test}">취향검사</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="right" sec:authorize="isAnonymous()">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="register" th:href="@{/user/join}">회원가입</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li sec:authorize="isAnonymous()"><a class="login" th:href="@{/user/login}">로그인</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th:block sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <th:block th:with="auth=${#authentication.getPrincipal()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li class="userName"><a th:href="@{/user/myPage}" sec:authentication="name"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li class="logout"><a th:href="@{/user/logout}">로그아웃</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
     </nav>
 
 

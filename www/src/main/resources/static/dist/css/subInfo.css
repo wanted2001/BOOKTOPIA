@@ -88,7 +88,8 @@
 }
 .subTitle2{
     padding-top: 48px;
-    font-size: 2em;
+    font-size: 1.5em;
+    font-family: jalnan;
 }
 
 .subMonth{
@@ -108,11 +109,13 @@
        background-color: transparent;
        font-size: 2em;
        position: absolute;
-       transition: 0.1s
+      transition: transform 0.5s ease;
+      }
 
-}
+
 .subGoToPayBtn:hover{
     color: white;
+     transform: translateY(-5px);
 }
 
 .onem{
