@@ -8,34 +8,42 @@
     <th:block th:fragment="content">
         <div class="wrap">
             <div class="subTopBox">
-                <p class="subTitle">구독상품</p>
+                <p class="subTitle">
+                    <span>구</span>
+                    <span>독</span>
+                    <span>상</span>
+                    <span>품</span>
+                </p>
                 <p class="subTitle2">한달에 한 권! '북토피아' 에서 나만의 맞춤 도서를 받아보세요.</p>
             </div>
-            <div class="subBottomBox">
-                <div class="subTicketInfo">
-                    <p class="subMonth">1개월</p>
-                    <p> 12,900원 </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <a th:href="@{/pay/getPay(month=1)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>
-                </div>
-                <div class="subTicketInfo">
-                    <p class="subMonth">3개월</p>
-                    <p> 32,700원 </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <a th:href="@{/pay/getPay(month=3)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>
-                </div>
-                <div class="subTicketInfo">
-                    <p class="subMonth">6개월</p>
-                    <p> 59,400원 </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <p> ------------- </p>
-                    <a th:href="@{/pay/getPay(month=6)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>
-                </div>
+            <div class="subBottomBox" th:style=" 'background-image: url(../image/subinfo2.png)' ">
+                <a th:href="@{/pay/getPay(month=1)}"><button type="button" class="subGoToPayBtn onem">GO</button></a>
+                <a th:href="@{/pay/getPay(month=3)}"><button type="button" class="subGoToPayBtn threem">GO</button></a>
+                <a th:href="@{/pay/getPay(month=6)}"><button type="button" class="subGoToPayBtn sixm">GO</button></a>
+<!--                <div class="subTicketInfo">-->
+<!--                    <p class="subMonth">1개월</p>-->
+<!--                    <p> 12,900원 </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <a th:href="@{/pay/getPay(month=1)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>-->
+<!--                </div>-->
+<!--                <div class="subTicketInfo">-->
+<!--                    <p class="subMonth">3개월</p>-->
+<!--                    <p> 32,700원 </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <a th:href="@{/pay/getPay(month=3)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>-->
+<!--                </div>-->
+<!--                <div class="subTicketInfo">-->
+<!--                    <p class="subMonth">6개월</p>-->
+<!--                    <p> 59,400원 </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <p> -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; </p>-->
+<!--                    <a th:href="@{/pay/getPay(month=6)}"><button type="button" class="subGoToPayBtn">구매하기</button></a>-->
+<!--                </div>-->
             </div>
         </div>
     </th:block>
