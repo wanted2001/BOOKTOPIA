@@ -7,70 +7,89 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
-            <div class="main">
-                <div class="main-slid">
-                    <a href="#" class="icon1"><img src="/image/backicon.png"></a>
-                    <div class="slid-img">슬라이드 이미지</div>
-                    <a href="#" class="icon2"><img src="/image/fronticon.png"></a>
-                </div>
-
-                <!--챗봇-->
-                <div class="chatBotContain" >
-                    <div id="chatBotText" class="chatBotText" style="display: none">
-                        <div class="textTop">
-                            <span>로고</span>
-                            <span>BookTopia</span>
-                            <button type="button" id="textBtn">X</button>
-                        </div>
-                        <div class="textBody">
-                            <p class="AnserText"></p>
-                        </div>
-                        <div class="textFoot">
-                            <button type="button" class="txtF" id="chatbtn1">BookTopia?</button>
-                            <button type="button" class="txtF" id="chatbtn2">구독상품 문의</button>
-                            <button type="button" class="txtF" id="chatbtn3">홈페이지 오류 문의</button>
-                            <button type="button" class="txtF" id="chatbtn4">회원가입 / 로그인 문의</button>
-                            <button type="button" class="txtF" id="chatbtn5">커뮤니티 문의</button>
-                            <button type="button" class="txtF" id="chatbtn6">배송 문의</button>
-                        </div>
+            <div class="BooktopiaLogo" th:style="'background-image:url(../image/logo_text.png)'"></div>
+            <div class="mainImgArea">
+                <div class="maindot">
+                    <div class="mainImgDiv">
+                        <img th:src="@{/image/main1.jpg}" class="mainImg">
+                        <img th:src="@{/image/book.png}" width="300px" height="300px">
                     </div>
-                    <div class="chatBotDiv">
-                        <div id="btn">
-                            <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>
-                            <p>빠른상담</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- booktopia 간단 소개 부분-->
-                <div class="main-simpleInfo">
-                    <div class="simpleInfo">
-                        <div class="Info Adv1">소개1</div>
-                        <div class="Info Adv1">소개2</div>
-                        <div class="Info Adv1">소개3</div>
-                    </div>
-                </div>
-
-                <!--도서취향 검사 부분-->
-                <div class="bookTopia">
-                    <div class="bookTopia-img"><img src="#"></div>
-                    <div class="bookTopia-detail">
-                        <p>내가 원하던 바로 그책!</p>
-                        <p>나만의 맞춤 도서를 받아 볼 수 있다?!</p>
-                        <button type="button"><a href="/booktopiaTest/test">도서 취향 검사하러 가기</a></button>
-                    </div>
-                </div>
-
-                <!--커뮤니티 부분-->
-                <div class="commu">
-                    <div class="commu-detail">
-                        <p>다양한 사람들과의 토론을 통해 느끼는</p>
-                        <p>색다른 매력을 느껴보세요!</p>
-                        <button type="button"><a href="/community/communityMain">커뮤니티 바로가기</a></button>
-                    </div>
-                    <div class="commu-img"><img src="#"></div>
                 </div>
             </div>
+                <div class="whiteBox"></div>
+            <div class="headerCate">
+                <span class="headerCateIn bookTopiaInfo">Booktopia</span>
+                <span class="headerCateIn bookTopiaTest">Test My Booktopia</span>
+                <span class="headerCateIn community">Community</span>
+                <span class="headerCateIn subscribe">Subscribe</span>
+            </div>
+            <div class="planetImg">
+<!--                <img th:src="@{/image/planet.png}">-->
+            </div>
+<!--            <div class="main">-->
+<!--                <div class="main-slid">-->
+<!--                    <a href="#" class="icon1"><img src="/image/backicon.png"></a>-->
+<!--                    <div class="slid-img">슬라이드 이미지</div>-->
+<!--                    <a href="#" class="icon2"><img src="/image/fronticon.png"></a>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;챗봇&ndash;&gt;-->
+<!--                <div class="chatBotContain" >-->
+<!--                    <div id="chatBotText" class="chatBotText" style="display: none">-->
+<!--                        <div class="textTop">-->
+<!--                            <span>로고</span>-->
+<!--                            <span>BookTopia</span>-->
+<!--                            <button type="button" id="textBtn">X</button>-->
+<!--                        </div>-->
+<!--                        <div class="textBody">-->
+<!--                            <p class="AnserText"></p>-->
+<!--                        </div>-->
+<!--                        <div class="textFoot">-->
+<!--                            <button type="button" class="txtF" id="chatbtn1">BookTopia?</button>-->
+<!--                            <button type="button" class="txtF" id="chatbtn2">구독상품 문의</button>-->
+<!--                            <button type="button" class="txtF" id="chatbtn3">홈페이지 오류 문의</button>-->
+<!--                            <button type="button" class="txtF" id="chatbtn4">회원가입 / 로그인 문의</button>-->
+<!--                            <button type="button" class="txtF" id="chatbtn5">커뮤니티 문의</button>-->
+<!--                            <button type="button" class="txtF" id="chatbtn6">배송 문의</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="chatBotDiv">-->
+<!--                        <div id="btn">-->
+<!--                            <img class="chatBotIcon" th:src="@{/image/dialogue-10147498.png}"> <br>-->
+<!--                            <p>빠른상담</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; booktopia 간단 소개 부분&ndash;&gt;-->
+<!--                <div class="main-simpleInfo">-->
+<!--                    <div class="simpleInfo">-->
+<!--                        <div class="Info Adv1">소개1</div>-->
+<!--                        <div class="Info Adv1">소개2</div>-->
+<!--                        <div class="Info Adv1">소개3</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;도서취향 검사 부분&ndash;&gt;-->
+<!--                <div class="bookTopia">-->
+<!--                    <div class="bookTopia-img"><img src="#"></div>-->
+<!--                    <div class="bookTopia-detail">-->
+<!--                        <p>내가 원하던 바로 그책!</p>-->
+<!--                        <p>나만의 맞춤 도서를 받아 볼 수 있다?!</p>-->
+<!--                        <button type="button"><a href="/booktopiaTest/test">도서 취향 검사하러 가기</a></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;커뮤니티 부분&ndash;&gt;-->
+<!--                <div class="commu">-->
+<!--                    <div class="commu-detail">-->
+<!--                        <p>다양한 사람들과의 토론을 통해 느끼는</p>-->
+<!--                        <p>색다른 매력을 느껴보세요!</p>-->
+<!--                        <button type="button"><a href="/community/communityMain">커뮤니티 바로가기</a></button>-->
+<!--                    </div>-->
+<!--                    <div class="commu-img"><img src="#"></div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
     </th:block>

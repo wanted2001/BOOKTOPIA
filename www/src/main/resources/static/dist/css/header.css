@@ -11,8 +11,10 @@
 노랑 #fff44f
 */
 .wrap-header{
-    background-color: #ffe3e2;
+    /*background-color: #ffb1b0;*/
     height: 80px;
+    border-bottom: 1px solid black;
+    /*box-shadow: 3px -3px 3px grey;*/
     font-family:SCDream4;
 }
 .contain-body{
