@@ -1,7 +1,6 @@
 package com.booktopia.www.repository;
 
 import com.booktopia.www.domain.AuthVO;
-import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.UserVO;
 import org.apache.ibatis.annotations.Mapper;

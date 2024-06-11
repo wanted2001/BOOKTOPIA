@@ -1,6 +1,6 @@
 package com.booktopia.www.service;
 
-import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.UserMapper;
@@ -63,10 +63,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<myPagePayInfoDTO> getPlist(String id) {
+    public List<OrderInfoDTO> getPlist(String id) {
         log.info("service in !! >>{} ",id);
-        List<myPagePayInfoDTO> mer_id = orderInfoMapper.selectOrderInfo(id);
-        for (myPagePayInfoDTO payInfo : mer_id) {
+        List<OrderInfoDTO> mer_id = orderInfoMapper.selectOrderInfo(id);
+        for (OrderInfoDTO payInfo : mer_id) {
             log.info("mer >>> {}",payInfo);
         }
         return mer_id;

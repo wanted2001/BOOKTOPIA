@@ -1,7 +1,6 @@
 package com.booktopia.www.repository;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,5 +14,5 @@ public interface OrderInfoMapper {
 
     void insert(OrderInfoVO oivo);
 
-    List<myPagePayInfoDTO> selectOrderInfo(String id);
+    List<OrderInfoDTO> selectOrderInfo(String id);
 }

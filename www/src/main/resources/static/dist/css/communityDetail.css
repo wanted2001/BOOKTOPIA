@@ -1,53 +1,103 @@
+@font-face {
+    font-family: SCDream3;
+    src: url(../font/S-Core_Dream_OTF/SCDream3.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream4;
+    src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream5;
+    src: url(../font/S-Core_Dream_OTF/SCDream5.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+/*
+메인컬러
+네이비 #005c87
+핑크 #ffb1b0
+노랑 #fff44f
+*/
 .wrap{
-    background-color: antiquewhite;
+    /*background-color: antiquewhite;*/
+}
+.commDeArea{
+    width: 940px;
+    border-bottom: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin: 0 auto;
+    padding: 0 30px;
+    margin-top: 30px;
 }
 .commDeCate{
-    background-color: yellowgreen;
-    width: 1000px;
-    height: 50px;
-    margin: 30px auto 0;
+    width: 940px;
+    height: 25px;
+    font-family: SCDream4;
+    font-size: 20px;
+    color: #3b3b3b;
+    border-bottom: 1px solid #b7b7b7;
+    margin-top: 40px;
+    padding-bottom: 10px;
 }
 .commDeTitle{
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     width: 1000px;
     height: 55px;
-    margin: 15px auto 0;
+    margin: 0 auto ;
+    font-size: 24px;
+    font-family: SCDream5;
+    line-height: 55px;
+    padding-bottom: 10px;
+}
+.commDetTitle{
+    font-family: SCDream5;
 }
 .commDeWriterInfo{
-    background-color: darkgray;
+    /*background-color: darkgray;*/
     width: 1000px;
-    height: 45px;
+    height: 20px;
     margin: 0 auto;
     display: flex;
 }
 .commDeWriter, .commDeRegdate{
-    background-color: mintcream;
-    width: 150px;
-    height: 100%;
+    /*background-color: mintcream;*/
+    height: 20px;
+    font-family: SCDream3;
+    font-size: 15px;
+    color: #4c4c4c;
 }
-.commDeContent{
-    background-color: lightseagreen;
+.commNoDeContent{
+    /*background-color: lightseagreen;*/
     width: 1000px;
-    height: 800px;
+    /*height: 800px;*/
     margin: 0 auto;
+    padding: 180px 0;
     position: relative;
 }
 .commDeImgArea{
-    position: absolute;
-    top: 300px;
-    left: 480px;
+    /*background-color: goldenrod;*/
+    width: 1000px;
+    margin: 0 auto;
+}
+.commDeImgArea, .commDeContent{
+
 }
 /*수정 삭제 버튼*/
 .commBtnArea{
-    background-color: lightgoldenrodyellow;
-    font-size: 20px;
+    /*background-color: lightgoldenrodyellow;*/
+    font-size: 15px;
     float: right;
-    height: 60px;
-    width: 200px;
+    height: 40px;
+    width: 170px;
     margin: 15px 200px;
+    border-radius: 15px;
 }
 .commModBtn, .commDelBtn{
-    width: 85px;
+    width: 65px;
     height: 100%;
     cursor: pointer;
 }
@@ -56,51 +106,57 @@
 }
 
 /*댓글*/
+.comm-commArea{
+    background-color: #cecece;
+    width: 940px;
+    margin: 20px auto 0;
+    padding: 30px;
+}
 .commDeComment{
-    background-color: mediumvioletred;
+    /*background-color: mediumvioletred;*/
     width: 1000px;
     height: 300px;
     margin: 0 auto;
 }
 .commDe-ComInfo{
-    background-color: goldenrod;
+    /*background-color: goldenrod;*/
     display: flex;
     width: 1000px;
     margin: 0 auto;
 }
 .commDe-Writer, .commDe-RegDate{
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     width: 200px;
     height: 40px;
 }
 .commDe-Content{
-    background-color: lightcyan;
+    /*background-color: lightcyan;*/
     width: 1000px;
     height: 260px;
     margin: 0 auto;
 }
 .commDe-ReComment{
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     float: right;
     width: 100px;
     height: 40px;
     margin: -300px 200px 0 0 ;
 }
 .comm-CommInputArea{
-    background-color: darkslategray;
-    width: 1000px;
+    background-color: white;
+    width: 940px;
     margin: 0 auto;
     /*height: 180px;*/
 }
 .comm-CommInput{
-    background-color: darkgray;
-    width: 1000px;
+    /*background-color: darkgray;*/
+    width: 940px;
     height: 180px;
-    margin: 0 auto;
+    /*margin-left: -20px;*/
 }
 .comm-Comment{
     border: none;
-    width: 980px;
+    width: 880px;
     height: 100px;
     padding-left: 20px;
     outline: none;

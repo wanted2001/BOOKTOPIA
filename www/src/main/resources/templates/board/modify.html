@@ -35,7 +35,14 @@
                         <div class="commRegiCate">
                             <button class="cateBtn">
                                 <img th:src="@{/image/arrow_icon.png}" width="10px" height="10px">
-                                <span id="selectedText2">[[${bvo.bCate}]]</span>
+                                <span id="selectedText2" th:switch="${bvo.bCate}">
+                                     <span th:case="novel" th:text="'소설'"></span>
+                                    <span th:case="finance" th:text="'경제/경영'"></span>
+                                    <span th:case="human" th:text="'인문'"></span>
+                                    <span th:case="history" th:text="'역사/문화'"></span>
+                                    <span th:case="poem" th:text="'시/에세이'"></span>
+                                    <span th:case="development" th:text="'자기개발'"></span>
+                                </span>
                             </button>
                             <ul class="commul" id="commSelID2">
                                 <li class="commli">게시판 선택</li>
