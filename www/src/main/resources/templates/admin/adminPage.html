@@ -116,7 +116,7 @@
                 <div class="adminCommuDiv" style="display: none">
                 <button type="button" id="aBtn6">게시글 관리</button>
                 <button type="button" id="aBtn7">댓글 관리</button>
-                <table class="commuBoard" style="display: block">
+                <table class="commuBoard" style="display: none">
                     <thead>
                     <tr>
                         <th>No</th>
@@ -136,14 +136,11 @@
                             <td>[[${board.bContent}]]</td>
                             <td>[[${board.bRegDate}]]</td>
                             <td>[[${board.bReadCnt}]]</td>
-                            <td>
-                                <button type="button" id="boardModiy">수정</button>
-                                <button type="button" id="boardDel">삭제</button>
-                            </td>
+                            <td><button type="button" id="boardDel">삭제</button></td>
                         </tr>
                     </tbody>
                 </table>
-                <table class="commuComment" style="display: none">
+                <table class="commuComment" style="display: block">
                     <thead>
                         <tr>
                             <th>게시글 번호</th>

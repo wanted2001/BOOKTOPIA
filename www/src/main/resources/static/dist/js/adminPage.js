@@ -26,22 +26,25 @@ function handleButtonClick(btnId) {
     const aBtn6 = document.getElementById('aBtn6');
     const aBtn7 = document.getElementById('aBtn7');
 
-    if (btnId === 'aBtn5') {
+    if (btnId === 'aBtn5' || btnId === 'aBtn6') {
         document.querySelector('.adminCommuDiv').style.display = 'block';
-        commuBoard.style.display = 'block';
-        commuComment.style.display = 'none';
-        aBtn6.style.backgroundColor = '#ffb1b0';
-        aBtn7.style.backgroundColor = 'white';
-    } else if (btnId === 'aBtn7') {
+        commuBoard.style.display = 'none';
+        commuComment.style.display = 'block';
+        aBtn6.style.backgroundColor = 'white';
+        // aBtn6.style.backgroundColor = 'white';
+        aBtn7.style.backgroundColor = '#ffb1b0';
+    }
+    else if (btnId === 'aBtn7') {
         document.querySelector('.adminCommuDiv').style.display = 'block';
         commuBoard.style.display = 'none';
         commuComment.style.display = 'block';
         aBtn6.style.backgroundColor = 'white';
         aBtn7.style.backgroundColor = '#ffb1b0';
-    } else {
-        aBtn6.style.backgroundColor = '';
-        aBtn7.style.backgroundColor = '';
     }
+    // else {
+    //     aBtn6.style.backgroundColor = '';
+    //     aBtn7.style.backgroundColor = '';
+    // }
 
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {

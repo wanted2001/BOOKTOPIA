@@ -77,6 +77,7 @@ public class AdminController {
         model.addAttribute("odtolist", odtolist);
         model.addAttribute("delilist", delilist);
         model.addAttribute("boadlist", boadlist);
+        model.addAttribute("commlist",commlist);
 
         return "/admin/adminPage";
     }
