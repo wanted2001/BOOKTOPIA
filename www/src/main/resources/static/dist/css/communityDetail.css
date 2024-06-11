@@ -90,11 +90,9 @@
 .commBtnArea{
     /*background-color: lightgoldenrodyellow;*/
     font-size: 15px;
-    float: right;
     height: 40px;
     width: 170px;
-    margin: 15px 200px;
-    border-radius: 15px;
+    margin: 20px 0 0 1050px;
 }
 .commModBtn, .commDelBtn{
     width: 65px;
@@ -106,6 +104,15 @@
 }
 
 /*댓글*/
+.commDeCommentArea{
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+}
+.commDeNon{
+    margin-top: 20px;
+    height: 50px;
+}
 .comm-commArea{
     background-color: #cecece;
     width: 940px;
@@ -114,25 +121,18 @@
 }
 .commDeComment{
     /*background-color: mediumvioletred;*/
-    width: 1000px;
-    height: 300px;
     margin: 0 auto;
 }
 .commDe-ComInfo{
     /*background-color: goldenrod;*/
     display: flex;
-    width: 1000px;
     margin: 0 auto;
 }
 .commDe-Writer, .commDe-RegDate{
     /*background-color: lightcoral;*/
-    width: 200px;
-    height: 40px;
 }
 .commDe-Content{
     /*background-color: lightcyan;*/
-    width: 1000px;
-    height: 260px;
     margin: 0 auto;
 }
 .commDe-ReComment{
@@ -145,7 +145,7 @@
 .comm-CommInputArea{
     background-color: white;
     width: 940px;
-    margin: 0 auto;
+    margin: 20px auto;
     /*height: 180px;*/
 }
 .comm-CommInput{
@@ -164,7 +164,7 @@
 .comm-CommRegBtn{
     border: none;
     margin-top: 15px;
-    margin-left: 920px;
+    margin-left: 850px;
     width: 68px;
     height: 40px;
 }

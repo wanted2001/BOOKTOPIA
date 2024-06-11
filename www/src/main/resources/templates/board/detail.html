@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <title>안녕하세요</title>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="stylesheet" th:href="@{/dist/css/communityDetail.css}">
 <!--마크다운 라이브러리-->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
@@ -8,8 +8,10 @@
 <link rel="stylesheet" th:href="@{/dist/css/communityDetailMarkdown.css}">
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+        <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
             <div class="commDeArea">
+            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
             <!--작성자, 등록일 하나로-->
             <div class="commDeCate" th:switch="${bvo.bCate}">
                 <span th:case="novel" th:text="'소설'"></span>
@@ -24,7 +26,7 @@
             </div>
             <div class="commDeWriterInfo">
                 <span class="commDeWriter">작성자 : [[${bvo.bWriter}]]&nbsp·&nbsp 등록일 : &nbsp</span>
-                <span class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,10)}"></span>
+                <span class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,16)}"></span>
             </div>
 
             <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
@@ -46,33 +48,25 @@
                     <a th:href="@{/board/delete(bno=${bvo.getBno()})}"><button type="button" class="commDelBtn">삭제</button></a>
                 </div>
             </th:block>
-            <!--댓글입력란-->
             <div class="comm-commArea">
+                <!--댓글출력란-->
+                <div class="commDeComment">
+                    <div class="commDeCommentCtn">댓글 [[${bvo.bCmtCnt}]]</div>
+                    <div class="commDeOneComment">
+                        <div class="commDe-ComInfo">
+                            <div class="commDe-Writer"></div>
+                            <div class="commDe-RegDate"></div>
+                        </div>
+                        <div class="commDe-Content"> </div>
+                    </div>
+                </div>
+                <!--댓글입력란-->
                 <div class="comm-CommInputArea">
-                    <input id="cmtWriter" th:value="${bvo.bWriter}" type="hidden">
+                    <input id="cmtWriter" th:value="${auth.getId()}" type="hidden">
                     <div class="comm-CommInput">
                         <input type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
                         <button type="button" id="cmtAddBtn" class="comm-CommRegBtn">등록</button>
                     </div>
-                </div>
-                <!--댓글출력란-->
-                <div class="commDeComment">
-                    <div class="commDe-ComInfo">
-                        <div class="commDe-Writer"></div>
-                        <div class="commDe-RegDate"></div>
-                    </div>
-                    <div class="commDe-Content"> </div>
-                    <!--답댓글버튼-->
-                    <div class="commDe-ReComment"></div>
-                </div>
-                <!-- 댓글 더보기 -->
-                <div>
-                    <button type="button" id="moreBtn" data-page="1" class="moreBtnC" style="visibility:hidden">MORE +</button>
-                </div>
-                <!--댓글 수정받기-->
-                <div>
-                    <input type="text" id="cmtModContent">
-                    <button type="button" id="cmtModBtn">수정</button>
                 </div>
             </div>
         </div>
