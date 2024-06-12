@@ -55,7 +55,7 @@ ul {
       align-items: baseline;
       align-content: space-around;
   }
-}
+
 
 #form__wrap .terms__check__all label {
       margin-left: 3px;
@@ -126,12 +126,12 @@ label.required::after {
 
 .innerDiv{
     width: 80%;
-        padding-left: 50px;
+        padding-left: 119px;
         padding-right: 50px;
         text-align: -webkit-center;
     }
 
-}
+
 /* 여기까지 */
 
 .joinAgreeContent>input{
@@ -222,7 +222,7 @@ label.required::after {
        align-items: stretch;
        margin-right: 200px;
    }
-}
+
 
 
 .joinSocialBtn {
