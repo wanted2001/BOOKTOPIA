@@ -3,8 +3,10 @@ package com.booktopia.www.config;
 import com.booktopia.www.jwt.JwtAuthorizationFilter;
 import com.booktopia.www.oauth2.service.CustomOAuth2UserService;
 import com.booktopia.www.oauth2.utill.HttpCookieOAuth2AuthorizationRequestRepository;
+import com.booktopia.www.security.CustomAuthenticationEntryPoint;
 import com.booktopia.www.security.CustomUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,6 +38,9 @@ public class SecurityConfig {
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -47,11 +52,11 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/index", "/", "/upload/**","/js/**", "/dist/**", "/user/login/*", "/user/join", "/image/**", "/user/check",
-                                "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
+                        .requestMatchers("/index", "/", "/upload/**", "/js/**", "/dist/**", "/user/login/**", "/user/join", "/image/**", "/user/check",
+                                "/community/**", "/board/**", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/**",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
                                 "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
-                                "/user/myPage/*","user/findId/**", "user/findPw/**","user/findPwDone/**","/user/myPagePayInfo/*","/user/usingsub/*")
+                                "/user/myPage/**", "/user/findId/**", "/user/findPw/**", "/user/findPwDone/**", "/user/myPagePayInfo/**")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
@@ -76,6 +81,9 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .logoutSuccessUrl("/")
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint(customAuthenticationEntryPoint)
                 );
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

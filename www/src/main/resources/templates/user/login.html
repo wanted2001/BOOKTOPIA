@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
 <script type="text/javascript" th:src="@{/dist/js/login.js}"></script>
-<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
             <div class="loginWrapPage">
@@ -51,6 +51,14 @@
             </div>
         </div>
 
+        <script th:inline="javascript">
+            window.onload = function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('error')) {
+                    alert('로그인 후 이용 가능합니다.');
+                }
+            };
+        </script>
 
     </th:block>
 </th:block>
