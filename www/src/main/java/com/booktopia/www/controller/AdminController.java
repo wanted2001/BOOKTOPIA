@@ -67,6 +67,8 @@ public class AdminController {
         // board 리스트 DB에서 가져오기
         List<BoardVO> boadlist = boardMapper.getboarList();
 
+        log.info(">>> boadlist >>> {}", boadlist);
+
         // comment 리스트 DB에서 가져오기
         List<CommentVO> commlist = commentMapper.getComList();
         log.info(">>> commlist >>> {}", commlist);
@@ -82,8 +84,9 @@ public class AdminController {
     }
 
     @PostMapping("postStatus")
-    public String postStatus(Model model) {
-        return "1";
+    public void postStatus(Model model) {
+        log.info("controller in >>>> ");
+//        return "1";
     }
 
 }

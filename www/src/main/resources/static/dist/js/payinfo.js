@@ -24,7 +24,7 @@ callPayInfo(idVal).then(result => {
                          </div>
                          <div class="payInfoRight">
                              <div id="payInfoAmount">${item.totalAmount}</div>
-                             <button type="button" id="payInfoDelivery" value="배송준비중">배송준비중</button>
+                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>
                          </div>
                      </div>`;
         // ul에 리스트 아이템 추가

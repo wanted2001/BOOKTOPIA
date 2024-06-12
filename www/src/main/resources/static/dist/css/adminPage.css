@@ -36,19 +36,22 @@ button {
 
 th, td {
     border: 1px solid black;
-    width: 158px;
+    width: 153px;
     height: 30px;
     line-height: 30px;
+    padding: 0 30px;
 }
 th{
     font-size: 15px;
     font-weight: 700;
 }
 td{
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
 }
-
+.admin-UserList>thead>tr>th:nth-of-type(2){
+    width: 35px;
+}
 .adminCommuDiv > button {
     display: inline;
 }
@@ -60,4 +63,33 @@ td{
     display: inline;
     padding: 0;
     margin-top: 5px;
+}
+
+#adminapproval{
+    height: 31px;
+}
+
+.commuBoard > thead > tr > th:nth-of-type(2) {
+    width: 50px;
+}
+.commuBoard > thead > tr > th:nth-of-type(3),
+.commuBoard > thead > tr > th:nth-of-type(4) {
+    width: 150px;
+}
+
+.commuBoard > tbody > tr > td.adcontent {
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.adcontentArea{
+    width: 250px;
+    height: 80px;
+}
+
+.adcontentArea img{
+    width: 100%;
+    height: 30%;
+    object-fit: cover;
 }
