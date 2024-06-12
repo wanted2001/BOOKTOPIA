@@ -33,4 +33,8 @@
     <delete id="deleteCommentFromBoard">
         delete from comment where bno=#{bno}
     </delete>
+
+    <select id="getComList" resultType="com.booktopia.www.domain.CommentVO">
+        select * from comment
+    </select>
 </mapper>

@@ -23,4 +23,6 @@ public interface CommentMapper {
     List<CommentVO> getCommentList(int bno, PagingVO pgvo);
 
     void deleteCommentFromBoard(long bno);
+
+    List<CommentVO> getComList();
 }
