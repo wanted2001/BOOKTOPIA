@@ -10,9 +10,9 @@
                     <form action="/user/login" method="post">
                         <input type="text" name="id"placeholder="id..." id="loginId"><br>
                         <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
-                        <div th:if="errorMessage">
-                            <p class="errMsg"><a th:text="${errorMessage}"></a></p>
-                        </div>
+<!--                        <div th:if="errorMessage">-->
+<!--                            <p class="errMsg"><a th:text="${errorMessage}"></a></p>-->
+<!--                        </div>-->
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>
@@ -56,6 +56,8 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 if (urlParams.has('error')) {
                     alert('로그인 후 이용 가능합니다.');
+                }else if(urlParams.has('false')){
+                    alert('아이디와 비밀번호를 확인해주세요.');
                 }
             };
         </script>
