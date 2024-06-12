@@ -6,19 +6,33 @@ document.addEventListener('click', (e) => {
 
         const btnId = target.id
         handleButtonClick(btnId);
+    } else if(e.target.id === 'adminapproval'){
+        // 배송현황 > 결제승인 버튼을 클릭 했을 때...
+        let status = document.getElementById('adminapproval').value;
+        console.log(status);
+        status = '결제승인/배송중';
+        console.log(status);
+        postStatus(status).then(result =>{
+            console.log(result);
+        })
     }
-    // else if(e.target.id === 'adminapproval'){
-    //     // 배송현황 > 결제승인 버튼을 클릭 했을 때...
-    //     let status = document.getElementById('adminapproval').value;
-    //     console.log(status);
-    //     status.value += '결제승인/배송중';
-    //     postStatus(status).then(result =>{
-    //         console.log(result);
-    //     })
-    // }
 });
 
-async function postStatus (status){
+// function changeStatus(){
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', '/changeStaatus');
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.onload = function (){
+//         if(xhr.status === 200){
+//             console.log('상태변경 성공');
+//         } else {
+//             console.log('상태변경 실패');
+//         }
+//     };
+//     xhr.send(JSON.stringify({merchant_uid:merchant_uid}));
+// }
+
+async function postStatus (){
     try {
         const url = "/admin/postStatus";
         const config = {
@@ -26,7 +40,7 @@ async function postStatus (status){
             headers : {
                 "Content-type":"application/json; charset=UTF-8"
             },
-            body : JSON.stringify(status)
+            body : JSON.stringify()
         };
 
         const resp = await fetch(url, config);
@@ -41,7 +55,7 @@ async function postStatus (status){
 
 function handleButtonClick(btnId) {
         console.log(btnId);
-    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.adminCommuDiv', '.commuBoard','.commuComment'];
+    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
         let index = sections[btnId.slice(-1)-1];
         console.log(index);
     sections.forEach(section => {
@@ -50,31 +64,6 @@ function handleButtonClick(btnId) {
         console.log(displayStyle);
         document.querySelector(section).style.display = displayStyle;
     });
-
-    const commuBoard = document.querySelector('.commuBoard');
-    const commuComment = document.querySelector('.commuComment');
-    const aBtn6 = document.getElementById('aBtn6');
-    const aBtn7 = document.getElementById('aBtn7');
-
-    if (btnId === 'aBtn5' || btnId === 'aBtn6') {
-        document.querySelector('.adminCommuDiv').style.display = 'block';
-        commuBoard.style.display = 'none';
-        commuComment.style.display = 'block';
-        aBtn6.style.backgroundColor = 'white';
-        // aBtn6.style.backgroundColor = 'white';
-        aBtn7.style.backgroundColor = '#ffb1b0';
-    }
-    else if (btnId === 'aBtn7') {
-        document.querySelector('.adminCommuDiv').style.display = 'block';
-        commuBoard.style.display = 'none';
-        commuComment.style.display = 'block';
-        aBtn6.style.backgroundColor = 'white';
-        aBtn7.style.backgroundColor = '#ffb1b0';
-    }
-    // else {
-    //     aBtn6.style.backgroundColor = '';
-    //     aBtn7.style.backgroundColor = '';
-    // }
 
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
