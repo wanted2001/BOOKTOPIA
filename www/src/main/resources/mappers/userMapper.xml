@@ -69,6 +69,10 @@
         update user set pwd = #{pw} where id=#{id}
     </update>
 
+    <select id="getList" resultType="com.booktopia.www.domain.UserVO">
+        select * from user
+    </select>
+
     <update id="updateaddr">
         update user set address = #{ordAddr} where id = #{id}
     </update>
@@ -76,6 +80,10 @@
     <select id="countAuth" resultType="int">
         select count(role) from auth where id = #{providerId}
     </select>
+
+    <update id="modifyaddrandphone">
+        update user set address=#{address} , phone=#{phone} where id =#{id}
+    </update>
 
 
 </mapper>

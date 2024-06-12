@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BooktopiaVO {
+    private int btpNO;
     private String id; // 사용자 id
     private String birth; //사용자 생일
     private String gender; //사용자 성별

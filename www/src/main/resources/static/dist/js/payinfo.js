@@ -17,18 +17,20 @@ callPayInfo(idVal).then(result => {
         // 각 필드 값을 리스트 아이템에 추가
         li.innerHTML = `
          <div id="payInfoWrap">
-                         <div class="payInfomerchantUid">${item.merchantUid}</div>
+                         <div class="payInfomerchantUid">주문번호 : ${item.merchantUid}</div>
                          <div class="payInfoLeft">
                              <div id="payInfoTitle">${item.itemName}</div>
                              <div id="payInfoapprovedAt">${item.approvedAt}</div>
                          </div>
                          <div class="payInfoRight">
                              <div id="payInfoAmount">${item.totalAmount}</div>
-                             <div id="payInfoDelivery">배송중 부분</div>
+                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>
                          </div>
                      </div>`;
         // ul에 리스트 아이템 추가
         ul.appendChild(li);
+        let deli = document.getElementById('payInfoDelivery');
+        console.log(deli.value);
     });
     }
 });

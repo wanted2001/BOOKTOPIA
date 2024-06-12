@@ -3,25 +3,182 @@
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!--css 영역-->
+        <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+        <script th:src="@{/dist/js/markdown.js}"></script>
         <link rel="stylesheet" th:href="@{/dist/css/adminPage.css}">
-
+        <form action="/admin/adminPage">
         <nav class="admin-contain">
             <p class="admin"> 관리자 페이지</p>
 
             <div class="admin-cate">
-                <button>회원리스트</button>
-                <button>취향검사 리스트</button>
-                <button>북토피아 구독자</button>
-                <button>결제현황</button>
-                <button>배송현황</button>
-                <button>-- 쿠폰</button>
-                <button>공지관리</button>
-                <button>커뮤니티관리</button>
+                <button type="button" class="admin-btn" id="aBtn1">회원리스트</button>
+                <button type="button" class="admin-btn" id="aBtn2">취향검사 리스트</button>
+                <button type="button" class="admin-btn" id="aBtn3">구독자리스트(결제현황)</button>
+                <button type="button" class="admin-btn" id="aBtn4">배송현황</button>
+                <button type="button" class="admin-btn" id="aBtn5">게시글관리</button>
+                <button type="button" class="admin-btn" id="aBtn6">댓글관리</button>
+                <button type="button" class="admin-btn" id="aBtn00">-- 쿠폰</button>
+                <button type="button" class="admin-btn" id="aBtn01">공지관리</button>
             </div>
             <div class="cate-detail">
+                <!--회원 리스트-->
+                <table class="admin-UserList" style="display: block">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>이름</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>가입경로</th>
+                            <th>가입일자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="uvo:${ulist}">
+                            <td>[[${uvo.id}]]</td>
+                            <td>[[${uvo.name}]]</td>
+                            <td>[[${uvo.email}]]</td>
+                            <td>[[${uvo.phone}]]</td>
+                            <td>[[${uvo.userType}]]</td>
+                            <td>[[${uvo.userReg}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--취향검사 진행자 리스트-->
+                <table class="bookTopia-user" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>BIRTH</th>
+                            <th>GENDER</th>
+                            <th>TEST_AT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="test:${testlist}">
+                            <td>[[${test.btpNO}]]</td>
+                            <td>[[${test.id}]]</td>
+                            <td>[[${test.birth}]]</td>
+                            <td>[[${test.gender}]]</td>
+                            <td>[[${test.testAt}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--구독자 리스트-->
+                <table class="subUser" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>주문번호</th>
+                            <th>구독상품</th>
+                            <th>이름</th>
+                            <th>전화번호</th>
+                            <th>배송지</th>
+                            <th>결제비용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="odtolist:${odtolist}">
+                            <td>[[${odtolist.merchantUid}]]</td>
+                            <td>[[${odtolist.itemName}]]</td>
+                            <td>[[${odtolist.ordName}]]</td>
+                            <td>[[${odtolist.ordPhone}]]</td>
+                            <td>[[${odtolist.ordAddr}]]</td>
+                            <td>[[${odtolist.totalAmount}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 배송현황 -->
+                <table class="delivery" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>주문번호</th>
+                            <th>결제상품</th>
+                            <th>결제/승인날짜</th>
+                            <th>상태</th>
+                            <th>배송처리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="deli:${delilist}">
+                            <td>[[${deli.deliNo}]]</td>
+                            <td>[[${deli.merchantUid}]]</td>
+                            <td>[[${deli.itemName}]]</td>
+                            <td>[[${deli.deliDate}]]</td>
+                            <td>[[${deli.deliStatus}]]</td>
+                            <td><button type="button" id="adminapproval">[[${deli.deliStatus}]]</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--게시글 관리-->
+                <table class="commuBoard" style="display: none">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Cate</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Writer</th>
+                        <th>RegDate</th>
+<!--                        <th>admin</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="board:${boadlist}">
+                            <td>[[${board.bno}]]</td>
+                            <td>[[${board.bCate}]]</td>
+                            <td>[[${board.bTitle}]]</td>
+                            <td class="adcontentArea" th:if="${board.bMainImg!=''}">
+                                <img th:src="@{|/upload/${board.bMainImg}|}">
+                                <div class="adcontent">[[${board.bContent}]]</div>
+                            </td>
+                            <td class="adcontentNoImg" th:unless="${board.bMainImg!=''}">
+                                <div class="adcontent">[[${board.bContent}]]</div>
+                            </td>
+                            <td>[[${board.bWriter}]]</td>
+                            <td>[[${board.bRegDate}]]</td>
+<!--                            <td><button type="button" id="boardDel">삭제</button></td>-->
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--댓글관리-->
+                <table class="commuComment" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>게시글 번호</th>
+                            <th>작성자</th>
+                            <th>내용</th>
+                            <th>작성일</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="commen:${commlist}">
+                            <td>[[${commen.bno}]]</td>
+                            <td>[[${commen.cWriter}]]</td>
+                            <td>[[${commen.cContent}]]</td>
+                            <td>[[${commen.cRegDate}]]</td>
+                            <td><button type="button">삭제</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 쿠폰 -->
+
+                <!--공지관리-->
+
+                <!--페이지네이션 라인-->
 
             </div>
         </nav>
+        </form>
 
+        <script th:src="@{/dist/js/adminPage.js}"></script>
     </th:block>
 </th:block>

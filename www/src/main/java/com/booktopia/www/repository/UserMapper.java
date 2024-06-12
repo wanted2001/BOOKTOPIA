@@ -45,9 +45,13 @@ public interface UserMapper {
 
     int deleteMyPageUser(String id);
 
+    List<UserVO> getList();
+
     PayVO selectPayInfo(String id);
 
     void updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
+
+    int modifyaddrandphone(UserVO uvo);
 }
