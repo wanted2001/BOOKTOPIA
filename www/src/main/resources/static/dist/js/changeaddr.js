@@ -22,12 +22,29 @@ document.getElementById("submitAddrButton").addEventListener("click",()=>{
             address : addall,
             phone : modphone
         };
+        modifyaddr(moddata).then(result =>{
+            if(result == 1){
+                alert("수정이 완료되었습니다.");
+                
+            }else{
+                alert("수정을 하지 못했습니다.");
+            }
+        })
 
 
 });
 
-//async function modifyaddr(moddata){
-//
-//    const url = "/user/"
-//
-//}
+async function modifyaddr(moddata){
+
+    const url = "/user/moddata";
+    const config = {
+                method : 'post',
+                headers : {
+                    'content-type':'application/json; charset =utf-8'
+                },
+                body :JSON.stringify(moddata)
+            };
+    const resp = await fetch(url,config);
+    const result = await resp.text();
+    return result;
+}
