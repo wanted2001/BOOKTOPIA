@@ -38,9 +38,13 @@ public class PagingHandler {
         this.next=this.endPage<realEndPage;
     }
 
-    public PagingHandler(PagingVO pgvo, int totalCount,List<CommentVO> cmtList, List<RecommentVO> rcmtList){
+    public PagingHandler(PagingVO pgvo, int totalCount,List<CommentVO> cmtList){
         this(pgvo,totalCount);
         this.cmtList=cmtList;
+    }
+
+    public PagingHandler(PagingVO pgvo,List<RecommentVO> rcmtList){
+        this.pgvo=pgvo;
         this.rcmtList=rcmtList;
     }
 }

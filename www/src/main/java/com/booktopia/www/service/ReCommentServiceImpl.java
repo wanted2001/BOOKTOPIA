@@ -23,11 +23,10 @@ public class ReCommentServiceImpl implements ReCommentService{
     }
 
     @Override
-    public PagingHandler getCommentList(int cno, PagingVO pgvo) {
-        List<RecommentVO> rclist = reCommentMapper.getCommentList(cno,pgvo);
-        //totalCount
-        int totalCount = reCommentMapper.getSelectOneComment(cno);
-        PagingHandler ph = new PagingHandler(pgvo, totalCount, null, rclist);
+    public PagingHandler getReCommentList(int cno, PagingVO pgvo) {
+        List<RecommentVO> rclist = reCommentMapper.getReCommentList(cno,pgvo);
+        PagingHandler ph = new PagingHandler(pgvo, rclist);
+        log.info("service rclist>>>>>>>>>>>>>>>{}",rclist);
         return ph;
     }
 }

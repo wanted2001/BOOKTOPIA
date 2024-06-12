@@ -112,11 +112,11 @@ public class CommentController {
                 new ResponseEntity<String>("0",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/{cno}/{page}")
+    @GetMapping("/rc/{cno}/{page}")
     @ResponseBody
     public ResponseEntity<PagingHandler> getReComment(@PathVariable("cno") int cno,@PathVariable("page")int page){
         PagingVO pgvo = new PagingVO(page,5);
-        PagingHandler ph = rcomsv.getCommentList(cno,pgvo);
+        PagingHandler ph = rcomsv.getReCommentList(cno,pgvo);
 
         log.info("rrrrrcomment ph>>>{}",ph);
 
