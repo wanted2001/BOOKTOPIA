@@ -6,7 +6,7 @@
 <!--마크다운 라이브러리-->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 <script th:src="@{/dist/js/markdown.js}"></script>
-<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <!--공지-->
         <div class="wrap">
