@@ -11,7 +11,7 @@
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
             <div class="commDeArea">
-            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
+            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserId">
             <!--작성자, 등록일 하나로-->
             <div class="commDeCate" th:switch="${bvo.bCate}">
                 <span th:case="novel" th:text="'소설'"></span>
@@ -51,7 +51,7 @@
             <div class="comm-commArea">
                 <!--댓글출력란-->
                 <div class="commDeComment">
-                    <div class="commDeCommentCtn">댓글 [[${bvo.bCmtCnt}]]</div>
+                    <div class="commDeCommentCtn">댓글</div>
                     <div class="commDeOneComment">
                         <div class="commDe-ComInfo">
                             <div class="commDe-Writer"></div>

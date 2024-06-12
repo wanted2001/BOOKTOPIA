@@ -29,4 +29,8 @@
     <select id="getCommentBno" resultType="long">
         select bno from comment where cno=#{cno}
     </select>
+
+    <delete id="deleteCommentFromBoard">
+        delete from comment where bno=#{bno}
+    </delete>
 </mapper>

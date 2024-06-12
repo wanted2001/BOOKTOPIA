@@ -9,7 +9,14 @@
     </insert>
 
     <select id="getReCommentList" resultType="com.booktopia.www.domain.RecommentVO">
-        select * from recomment
-        where cno=#{cno}
+        select * from recomment where cno=#{cno}
     </select>
+
+    <delete id="deleteFromBoard">
+        delete from recomment where bno=#{bno}
+    </delete>
+
+    <delete id="deleteReComment">
+        delete from recomment where cno=#{cno}
+    </delete>
 </mapper>

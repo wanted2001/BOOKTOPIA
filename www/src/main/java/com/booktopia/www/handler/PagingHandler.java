@@ -1,6 +1,7 @@
 package com.booktopia.www.handler;
 
 import com.booktopia.www.domain.CommentVO;
+import com.booktopia.www.domain.DTO.CommentDTO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.domain.RecommentVO;
 import lombok.Getter;
@@ -18,8 +19,7 @@ public class PagingHandler {
     private boolean prev,next;
     private int totalCount;
     private PagingVO pgvo;
-    private List<CommentVO> cmtList;
-    private List<RecommentVO> rcmtList;
+    private List<CommentDTO> cmtList;
 
     public PagingHandler(PagingVO pgvo, int totalCount) {
         this.pgvo=pgvo;
@@ -38,13 +38,9 @@ public class PagingHandler {
         this.next=this.endPage<realEndPage;
     }
 
-    public PagingHandler(PagingVO pgvo, int totalCount,List<CommentVO> cmtList){
+    public PagingHandler(PagingVO pgvo, int totalCount, List<CommentDTO> cmtList){
         this(pgvo,totalCount);
         this.cmtList=cmtList;
-    }
 
-    public PagingHandler(PagingVO pgvo,List<RecommentVO> rcmtList){
-        this.pgvo=pgvo;
-        this.rcmtList=rcmtList;
     }
 }

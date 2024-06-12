@@ -114,7 +114,7 @@
     height: 50px;
 }
 .comm-commArea{
-    background-color: #cecece;
+    background-color: rgba(243, 243, 243, 0.78);
     width: 940px;
     margin: 20px auto 0;
     padding: 30px;

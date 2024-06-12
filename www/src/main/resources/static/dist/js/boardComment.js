@@ -63,85 +63,40 @@ function spreadCommentList(bno,page=1) {
         console.log(result);
         const ul=document.querySelector(".commDeOneComment");
         const rc = document.querySelector('.commDe-ReComment');
-        console.log(rc)
         if(result.cmtList.length>0) {
+            console.log(result.cmtList);
             if(page==1) {
                 ul.innerHTML='';
             }
-            for(let cvo of result.cmtList){
-                let li = `<div class="commDeCommentArea" data-cno="${cvo.cno}" value="${cvo.cno}" id="commDeCommentAreaId">`;
-                li+=`<div class="commDe-Writer">${cvo.cwriter}</div>${cvo.cregDate.substring(0,16)}`;
-                li+=`<div class="commDe-Content" id="commentContent">${cvo.ccontent}</div>`
+            for(let obj of result.cmtList){
+                console.log(obj.cvo.cno);
+
+                let li = `<div class="commDeCommentArea" data-cno="${obj.cvo.cno}" value="${obj.cvo.cno}" id="commDeCommentAreaId">`;
+                li+=`<div class="commDe-Writer">${obj.cvo.cwriter}</div>${obj.cvo.cregDate}`;
+                li+=`<div class="commDe-Content" id="commentContent">${obj.cvo.ccontent}</div>`
                 li+=`<div class="commDe-ReComment"><button type="button" id="recommendBtn">답댓글</button></div>`;
-                // li+=`<div class="commDe-ReComment"><button type="button" id="showRecommendBtn">답댓글보기</button></div>`;
-                li+=`<div class="recomm" data-cno="${cvo.cno}"></div>`
+                li+=`<div class="recomm" data-cno="${obj.cvo.cno}"></div>`
                 //수정, 삭제 버튼
-                if(commDeUserId===cvo.cwriter){
+                if(commDeUserId===obj.cvo.cwriter){
                     li+=`<div class="cmtBtn">`
                     li+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
-                    li+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${cvo.cno}" class="commComDelBtn">삭제</button>`;
+                    li+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${obj.cvo.cno}" class="commComDelBtn">삭제</button>`;
                     li+=`</div>`
+                }
+                for(let rcvo of obj.rclist){
+                    li+=`<div class="commDeReCommentArea" data-cno="${rcvo.cno}">`;
+                    li+=`<div class="commDe-Writer">${rcvo.rcWriter}-${rcvo.cno}</div>${rcvo.rcRegDate}`;
+                    li+=`<div class="commDe-Content" id="commentContent">${rcvo.rcContent}</div>`
                 }
                 li+=`</div>`;
                 ul.innerHTML+=li;
-                console.log("11");
-                let cNum= 0;
-                let printArea=document.querySelectorAll('.recomm');
-                //let c = printArea.dataset.cno;
-                printArea.forEach((c)=>{
-                    console.log(c);
-                   cNum= c.dataset.cno;
-                    console.log(cNum);
-                    console.log(cvo.cno);
-                    if(cNum == cvo.cno ) {
-                        console.log("ok");
-                        //spreadReCommentList(c, cNum, page);
-                        getReCommentList(cvo.cno,page=1).then(result=>{
-                            // console.log(result);
-                            // document.getElementById('recomment').innerHTML='';
-                            //let printArea=document.querySelector('.recomm');
-                            console.log(c);
-                            console.log(result.rcmtList)
-                            let plusPrint="";
-                            for(let rcvo of result.rcmtList) {
-                                console.log(rcvo.rcCno);
-                                // printArea.setAttribute("data-cno",rcvo.rcCno)
-                                // console.log(printArea.dataset.cno)
-                                // if(printArea.dataset.cno===rcvo.cno){
-                                //     console.log("cno일치");
-                                // } else {
-                                //     console.log("불일치")
-                                // }
-                                plusPrint += `<div class="commDeReCommentArea" data-cno="${rcvo.cno}">`;
-                                plusPrint+=`<div class="commDe-Writer">${rcvo.rcWriter}-${rcvo.cno}</div>${rcvo.rcRegDate}`;
-                                plusPrint+=`<div class="commDe-Content" id="commentContent">${rcvo.rcContent}</div>`
-                                //console.log(printArea);
-                                //수정, 삭제 버튼
-                                if(commDeUserId===rcvo.rcwriter){
-                                    plusPrint+=`<div class="cmtBtn">`
-                                    plusPrint+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
-                                    plusPrint+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${rcvo.cno}" class="commComDelBtn">삭제</button>`;
-                                    plusPrint+=`</div>`
-                                }
-                                plusPrint+=`</div>`;
-
-
-                            }
-                            console.log(plusPrint);
-                            c.innerHTML=plusPrint;
-                        })
-                    }
-
-                });
-
-
-
-                console.log("2222");
             }
         } else {
             ul.innerHTML=`<div class="commDeNon"></div>`;
         }
-    })
+    }).catch(error => {
+        console.error("Error fetching comments:", error);
+    });
 }
 
 document.addEventListener('click',(e)=>{
@@ -166,18 +121,11 @@ document.addEventListener('click',(e)=>{
             postReCommentToServer(reCmtData).then(result=>{
                 if(result==='1'){
                     console.log("대댓 등록완료");
+                    spreadCommentList(bnoVal)
                 }
             })
         })
-            // document.getElementById('showRecommendBtn').addEventListener('click',()=>{
-            //     spreadReCommentList(cno,page=1);
-            // });
-        }
-    // } else if(e.target.id==='showRecommendBtn'){
-    //     const cContent = e.target.closest('.commDeCommentArea');
-    //     const cno = cContent.getAttribute('value');
-    //     spreadReCommentList(cno,page=1)
-    // }
+    }
 })
 
 async function postReCommentToServer(reCmtData) {
@@ -198,56 +146,6 @@ async function postReCommentToServer(reCmtData) {
         console.log(error);
     }
 }
-
-function spreadReCommentList(c, cno,page=1) {
-    getReCommentList(cno,page).then(result=>{
-        // console.log(result);
-        // document.getElementById('recomment').innerHTML='';
-        //let printArea=document.querySelector('.recomm');
-        console.log(c);
-        console.log(result.rcmtList)
-        let plusPrint="";
-        for(let rcvo of result.rcmtList) {
-            console.log(rcvo.rcCno);
-            // printArea.setAttribute("data-cno",rcvo.rcCno)
-            // console.log(printArea.dataset.cno)
-            // if(printArea.dataset.cno===rcvo.cno){
-            //     console.log("cno일치");
-            // } else {
-            //     console.log("불일치")
-            // }
-            plusPrint += `<div class="commDeReCommentArea" data-cno="${rcvo.cno}">`;
-            plusPrint+=`<div class="commDe-Writer">${rcvo.rcWriter}-${rcvo.cno}</div>${rcvo.rcRegDate}`;
-            plusPrint+=`<div class="commDe-Content" id="commentContent">${rcvo.rcContent}</div>`
-            //console.log(printArea);
-            //수정, 삭제 버튼
-            if(commDeUserId===rcvo.rcwriter){
-                plusPrint+=`<div class="cmtBtn">`
-                plusPrint+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
-                plusPrint+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${rcvo.cno}" class="commComDelBtn">삭제</button>`;
-                plusPrint+=`</div>`
-            }
-            plusPrint+=`</div>`;
-
-
-        }
-        console.log(plusPrint);
-        c.innerHTML=plusPrint;
-        console.log(c);
-    })
-}
-
-async function getReCommentList(cno,page){
-    try{
-        const resp = await fetch("/comment/rc/"+cno+"/"+page);
-        const result = await resp.json();
-        // console.log(result);
-        return result;
-    } catch (error) {
-        console.log("getReCommentList error : "+error);
-    }
-}
-
 
 //수정
 async function getModComment(cmtModData) {

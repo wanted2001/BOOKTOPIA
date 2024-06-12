@@ -74,6 +74,10 @@
         select count(b_cate) from board where b_is_del='N' and b_cate=#{bCate}
     </select>
 
+    <delete id="deleteCommentFromBoard">
+        delete from comment where bno=#{bno}
+    </delete>
+
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">
