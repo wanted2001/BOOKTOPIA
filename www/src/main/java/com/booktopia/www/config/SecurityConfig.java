@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/index", "/", "/upload/**", "/js/**", "/dist/**", "/user/login/**", "/user/join", "/image/**", "/user/check",
-                                "/community/**", "/board/**", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/**",
+                                "/community/**", "/board/**","/board/detail/**", "/user/isSocialUser/**",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
                                 "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
                                 "/user/myPage/**", "/user/findId/**", "/user/findPw/**", "/user/findPwDone/**", "/user/myPagePayInfo/**")

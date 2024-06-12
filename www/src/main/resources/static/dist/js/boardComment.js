@@ -24,7 +24,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
                 console.log("댓글 등록 성공");
                 document.getElementById('cmtContent').value='';
                 spreadCommentList(bnoVal);
-                spreadReCommentList(bnoVal);
+                // spreadReCommentList(bnoVal);
             }
         })
     }
@@ -74,7 +74,7 @@ function spreadCommentList(bno,page=1) {
                 li+=`<div class="commDe-Content" id="commentContent">${cvo.ccontent}</div>`
                 li+=`<div class="commDe-ReComment"><button type="button" id="recommendBtn">답댓글</button></div>`;
                 // li+=`<div class="commDe-ReComment"><button type="button" id="showRecommendBtn">답댓글보기</button></div>`;
-                li+=`<div id="recomm" data-cno="${cvo.cno}"></div>`
+                li+=`<div class="recomm" data-cno="${cvo.cno}"></div>`
                 //수정, 삭제 버튼
                 if(commDeUserId===cvo.cwriter){
                     li+=`<div class="cmtBtn">`
@@ -85,7 +85,57 @@ function spreadCommentList(bno,page=1) {
                 li+=`</div>`;
                 ul.innerHTML+=li;
                 console.log("11");
-                spreadReCommentList(cvo.cno, page);
+                let cNum= 0;
+                let printArea=document.querySelectorAll('.recomm');
+                //let c = printArea.dataset.cno;
+                printArea.forEach((c)=>{
+                    console.log(c);
+                   cNum= c.dataset.cno;
+                    console.log(cNum);
+                    console.log(cvo.cno);
+                    if(cNum == cvo.cno ) {
+                        console.log("ok");
+                        //spreadReCommentList(c, cNum, page);
+                        getReCommentList(cvo.cno,page=1).then(result=>{
+                            // console.log(result);
+                            // document.getElementById('recomment').innerHTML='';
+                            //let printArea=document.querySelector('.recomm');
+                            console.log(c);
+                            console.log(result.rcmtList)
+                            let plusPrint="";
+                            for(let rcvo of result.rcmtList) {
+                                console.log(rcvo.rcCno);
+                                // printArea.setAttribute("data-cno",rcvo.rcCno)
+                                // console.log(printArea.dataset.cno)
+                                // if(printArea.dataset.cno===rcvo.cno){
+                                //     console.log("cno일치");
+                                // } else {
+                                //     console.log("불일치")
+                                // }
+                                plusPrint += `<div class="commDeReCommentArea" data-cno="${rcvo.cno}">`;
+                                plusPrint+=`<div class="commDe-Writer">${rcvo.rcWriter}-${rcvo.cno}</div>${rcvo.rcRegDate}`;
+                                plusPrint+=`<div class="commDe-Content" id="commentContent">${rcvo.rcContent}</div>`
+                                //console.log(printArea);
+                                //수정, 삭제 버튼
+                                if(commDeUserId===rcvo.rcwriter){
+                                    plusPrint+=`<div class="cmtBtn">`
+                                    plusPrint+=`&nbsp;<button type="button" id="cmtModBtn" class="commComModBtn">수정</button>`;
+                                    plusPrint+=`&nbsp;<button type="button" id="comDelBtn" data-cno="${rcvo.cno}" class="commComDelBtn">삭제</button>`;
+                                    plusPrint+=`</div>`
+                                }
+                                plusPrint+=`</div>`;
+
+
+                            }
+                            console.log(plusPrint);
+                            c.innerHTML=plusPrint;
+                        })
+                    }
+
+                });
+
+
+
                 console.log("2222");
             }
         } else {
@@ -99,6 +149,7 @@ document.addEventListener('click',(e)=>{
         console.log("답댓버튼클릭");
         const cContent = e.target.closest('.commDeCommentArea');
         const cno = cContent.getAttribute('value');
+        console.log(cno);
         let plusData = `<div class="reCommentArea" id="recomment">`
         plusData+=`<input type=text placeholder="댓글을 입력해주세요!" id="recommContent">`;
         plusData+=`<button type="button" id="recommBtn">등록</button>`;
@@ -148,25 +199,27 @@ async function postReCommentToServer(reCmtData) {
     }
 }
 
-function spreadReCommentList(cno,page=1) {
+function spreadReCommentList(c, cno,page=1) {
     getReCommentList(cno,page).then(result=>{
         // console.log(result);
         // document.getElementById('recomment').innerHTML='';
-        let printArea=document.getElementById('recomm');
-        console.log(printArea);
+        //let printArea=document.querySelector('.recomm');
+        console.log(c);
         console.log(result.rcmtList)
+        let plusPrint="";
         for(let rcvo of result.rcmtList) {
             console.log(rcvo.rcCno);
-            console.log(document.getElementById('commDeCommentAreaId').getAttribute("data-cno"))
-            if(document.querySelector('.commDeCommentArea').getAttribute("data-cno")===rcvo.rcCno){
-                console.log("cno일치");
-            } else {
-                console.log("불일치")
-            }
-            let plusPrint = `<div class="commDeReCommentArea" data-cno="${rcvo.rcCno}">`;
-            plusPrint+=`<div class="commDe-Writer">${rcvo.rcWriter}</div>${rcvo.rcRegDate}`;
+            // printArea.setAttribute("data-cno",rcvo.rcCno)
+            // console.log(printArea.dataset.cno)
+            // if(printArea.dataset.cno===rcvo.cno){
+            //     console.log("cno일치");
+            // } else {
+            //     console.log("불일치")
+            // }
+            plusPrint += `<div class="commDeReCommentArea" data-cno="${rcvo.cno}">`;
+            plusPrint+=`<div class="commDe-Writer">${rcvo.rcWriter}-${rcvo.cno}</div>${rcvo.rcRegDate}`;
             plusPrint+=`<div class="commDe-Content" id="commentContent">${rcvo.rcContent}</div>`
-            console.log(printArea);
+            //console.log(printArea);
             //수정, 삭제 버튼
             if(commDeUserId===rcvo.rcwriter){
                 plusPrint+=`<div class="cmtBtn">`
@@ -175,10 +228,12 @@ function spreadReCommentList(cno,page=1) {
                 plusPrint+=`</div>`
             }
             plusPrint+=`</div>`;
-            console.log(plusPrint);
-            printArea.innerHTML+=plusPrint;
-            console.log(printArea);
+
+
         }
+        console.log(plusPrint);
+        c.innerHTML=plusPrint;
+        console.log(c);
     })
 }
 
