@@ -6,15 +6,16 @@ document.addEventListener('click', (e) => {
 
         const btnId = target.id
         handleButtonClick(btnId);
-    } else if(e.target.id === 'adminapproval'){
-        // 배송현황 > 결제승인 버튼을 클릭 했을 때...
-        let status = document.getElementById('adminapproval').value;
-        console.log(status);
-        status.value += '결제승인/배송중';
-        postStatus(status).then(result =>{
-            console.log(result);
-        })
     }
+    // else if(e.target.id === 'adminapproval'){
+    //     // 배송현황 > 결제승인 버튼을 클릭 했을 때...
+    //     let status = document.getElementById('adminapproval').value;
+    //     console.log(status);
+    //     status.value += '결제승인/배송중';
+    //     postStatus(status).then(result =>{
+    //         console.log(result);
+    //     })
+    // }
 });
 
 async function postStatus (status){
