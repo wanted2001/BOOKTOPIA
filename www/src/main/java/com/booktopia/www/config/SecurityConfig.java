@@ -51,7 +51,7 @@ public class SecurityConfig {
                                 "/community/**", "/board/*", "/board/register", "/board/modify", "/board/modifyBoard", "/user/isSocialUser/*",
                                 "/mypage/changeaddr", "/mypage/couponlist", "/mypage/modify", "/mypage/payinfo", "/mypage/subinfo", "/user/test",
                                 "/board/socialId", "/board/userId", "/file/**", "/pay/**", "/subscribe/**", "/booktopiaTest/**", "/chatbot/**",
-                                "/user/myPage/*","user/findId/**", "user/findPw/**","user/findPwDone/**","/user/myPagePayInfo/*")
+                                "/user/myPage/*","user/findId/**", "user/findPw/**","user/findPwDone/**","/user/myPagePayInfo/*","/user/usingsub/*")
                         .permitAll()
                         .requestMatchers("/subscribe/info").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()

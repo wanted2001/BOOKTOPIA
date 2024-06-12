@@ -25,4 +25,15 @@
     <select id="orderList" resultType="com.booktopia.www.domain.OrderInfoVO">
         select * from order_info
     </select>
+
+    <select id="selectsublist">
+        SELECT *
+        FROM order_info AS o
+        JOIN pay AS p ON o.merchant_uid = p.merchant_uid
+        WHERE o.id = #{id}
+        ORDER BY p.approved_at desc
+        LIMIT 1;
+    </select>
+
+
 </mapper>

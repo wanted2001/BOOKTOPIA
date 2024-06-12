@@ -19,4 +19,7 @@ public interface OrderInfoMapper {
     List<OrderInfoVO> orderList();
 
     List<OrderInfoDTO> selectOrderInfo(String id);
+
+    OrderInfoDTO selectsublist(String id);
+
 }

@@ -54,7 +54,7 @@
     </select>
 
     <update id="deleteMyPageUser">
-        update set user user_del = "Y" where id=#{id}
+        update user set user_del = "Y" where id=#{id}
     </update>
 
     <select id="findPwCheck" resultType="int">
@@ -71,6 +71,14 @@
 
     <select id="getList" resultType="com.booktopia.www.domain.UserVO">
         select * from user
+    </select>
+
+    <update id="updateaddr">
+        update user set address = #{ordAddr} where id = #{id}
+    </update>
+
+    <select id="countAuth" resultType="int">
+        select count(role) from auth where id = #{providerId}
     </select>
 
 

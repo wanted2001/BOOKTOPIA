@@ -2,6 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.domain.RecommentVO;
 import com.booktopia.www.handler.PagingHandler;
 
 public interface CommentService {

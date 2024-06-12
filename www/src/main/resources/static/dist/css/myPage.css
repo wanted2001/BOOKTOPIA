@@ -134,7 +134,6 @@ display: flex;
     line-height: 40px;
     margin-left: 10px;
     font-size: 20px;
-
 }
 
     /* 오른쪽 바뀌는 부분 작업중 */
@@ -143,14 +142,12 @@ display: flex;
     display: flex;
     width: 600px;
     height: 800px;
-    border: 2px solid blue;
 }
 
 .myPageRightWrap{
         width: 500px;
         height: 730px;
         margin: auto auto;
-        border: 2px solid red;
 }
 
 
@@ -173,50 +170,51 @@ display: flex;
 }
 
 #payInfoWrap{
-    border: 1px solid black;
-    height : 100px;
-    width : 700px;
-    justify-content: space-between;
+    height : 170px;
+    width : 500px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap : wrap;
+    padding-left : 20px;
+    align-content: space-between;
 
 }
 
 
 .payInfoLeft{
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
     float: left;
-    height: 80%;
-    width: 350px;
+    height: 100px;
+    width: 260px;
+
 }
 
 .payInfomerchantUid{
-    border-bottom: 1px solid black;
     width: 100%;
-    height: 20%;
-    padding-left: 10px;
+    height: 50px;
+    line-height: 50px;
 }
 
 
 .payInfoRight{
-    display: flex;
-    float: right;
-    flex-direction: column;
-    height: 80%;
-    width: 350px;
-    text-align: right;
+    display:inline-block;
+    height: 100px;
+    width: 200px;
+    text-align : right;
 }
 
-#payInfoTitle,#payInfoAmount,#payInfoName,#payInfoRegiAt{
-    width: 150px;
+#payInfoTitle,#payInfoAmount{
+    margin-bottom : 10px;
+}
+
+#payInfoTitle,#payInfoAmount,#payInfoapprovedAt,#payInfoDelivery{
+    width: 200px;
     height: 30px;
+    font-size : 18px;
 }
 .myPageRightWrapInfoText{
     width: 500px;
     height: 80px;
-    background-color: darkorange;
     margin: 0 auto;
     line-height: 100px;
     font-size: 20px;
@@ -226,18 +224,14 @@ display: flex;
 .myPageRightWrapInfoModWrap{
     width: 450px;
     height: 700px;
-    margin: 0 auto;
-    background-color: deeppink;
     display: flex;
 }
 
 .myPageRightWrapForm{
     display: flex;
     justify-content: center;
-    flex-direction: column;
     margin: 0 auto;
-    width: 450px;
-    background-color: aquamarine;
+    width: 500px;
 }
 
 .myPageModInputFormWrap{

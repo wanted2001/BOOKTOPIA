@@ -73,6 +73,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public OrderInfoDTO getsublist(String id) {
+        OrderInfoDTO sublist =  orderInfoMapper.selectsublist(id);
+        return sublist;
+    }
+
+    @Override
     public int findPwCheck(UserVO uvo) {
         return userMapper.findPwCheck(uvo);
     }

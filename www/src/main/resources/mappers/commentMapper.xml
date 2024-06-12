@@ -11,8 +11,6 @@
     <select id="getCommentList" resultType="com.booktopia.www.domain.CommentVO">
         select * from comment
         where bno=#{bno}
-        order by cno desc
-        limit #{pgvo.pageStart}, #{pgvo.qty}
     </select>
 
     <select id="getSelectOneComment" resultType="int">

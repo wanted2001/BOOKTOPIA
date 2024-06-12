@@ -37,9 +37,11 @@
                         </div>
                         <div class="payInnerDiv2">
                             <p>주소</p>
-                            <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
+                            <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
+                                   th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
                             <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                            <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
+                            <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
+                                   th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
                         </div>
                         <div class="payInnerDiv2">
                             <p>배송 메모</p>
@@ -101,6 +103,7 @@
                     new daum.Postcode({
                         oncomplete: function(data) {
                             document.getElementById('addrInput').value = data.address;
+                            document.getElementById('addrDetailInput').value = "";
                             document.getElementById('addrDetailInput').focus();
                         }
                     }).open();

@@ -2,6 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.PagingVO;
+import com.booktopia.www.domain.RecommentVO;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.repository.CommentMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class CommentServiceImpl implements CommentService{
         List<CommentVO> clist = commentMapper.getCommentList(bno,pgvo);
         //totalCount
         int totalCount = commentMapper.getSelectOneComment(bno);
-        PagingHandler ph = new PagingHandler(pgvo, totalCount, clist);
+        PagingHandler ph = new PagingHandler(pgvo, totalCount, clist,null);
         return ph;
     }
 
@@ -45,4 +46,5 @@ public class CommentServiceImpl implements CommentService{
     public long getCommentBno(long cno) {
         return commentMapper.getCommentBno(cno);
     }
+
 }

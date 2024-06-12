@@ -1,10 +1,10 @@
-const changePwd = document.getElementById("changePwd");
-const changeNewPwd = document.getElementById("changeNewPwd");
+var changePwd = document.getElementById("changePwd");
+var changeNewPwd = document.getElementById("changeNewPwd");
 const submitButton = document.getElementById("submitButton");
-const phone = document.getElementById("modifyPhone");
+var phone = document.getElementById("modifyPhone");
 
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
-const phoneRegex = /^(010)-?[0-9]{4}-?[0-9]{4}$/;
+var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+var phoneRegex = /^(010)-?[0-9]{4}-?[0-9]{4}$/;
 
 console.log("modify script in");
 
