@@ -26,9 +26,10 @@
 .payInBox1{
     border: 1px solid gray;
     border-radius: 10px;
-    width: 40%;
+    width: 42%;
     padding-left: 20px;
     padding-right: 20px;
+    height: 780px;
 }
 .payInBox2{
     border: 1px solid gray;
@@ -52,9 +53,10 @@
     margin-bottom: 15px;
     width: 560px;
     height: 40px;
-    border: none;
-    border-radius: 2px;
+    border: 1px solid;
+    border-radius: 19px;
     font-family: SCDream4;
+    padding: 5px;
 }
 
 .payInnerDiv2 > .addrInput{
