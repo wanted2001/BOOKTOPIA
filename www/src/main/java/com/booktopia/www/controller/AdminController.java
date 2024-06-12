@@ -71,7 +71,6 @@ public class AdminController {
         List<CommentVO> commlist = commentMapper.getComList();
         log.info(">>> commlist >>> {}", commlist);
 
-
         model.addAttribute("ulist", ulist);
         model.addAttribute("testlist", btlist);
         model.addAttribute("odtolist", odtolist);
@@ -82,5 +81,9 @@ public class AdminController {
         return "/admin/adminPage";
     }
 
+    @PostMapping("postStatus")
+    public String postStatus(Model model) {
+        return "1";
+    }
 
 }

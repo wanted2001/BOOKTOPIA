@@ -107,7 +107,7 @@
                             <td>[[${deli.itemName}]]</td>
                             <td>[[${deli.deliDate}]]</td>
                             <td>[[${deli.deliStatus}]]</td>
-                            <td><button type="button">결제승인</button></td>
+                            <td><button type="button" id="adminapproval" th:value="${deli.deliStatus}">[[${deli.deliStatus}]]</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -6,8 +6,37 @@ document.addEventListener('click', (e) => {
 
         const btnId = target.id
         handleButtonClick(btnId);
+    } else if(e.target.id === 'adminapproval'){
+        // 배송현황 > 결제승인 버튼을 클릭 했을 때...
+        let status = document.getElementById('adminapproval').value;
+        console.log(status);
+        status.value += '결제승인/배송중';
+        postStatus(status).then(result =>{
+            console.log(result);
+        })
     }
 });
+
+async function postStatus (status){
+    try {
+        const url = "/admin/postStatus";
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(status)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+
+    }catch (error){
+        console.log(error);
+    }
+}
+
 
 function handleButtonClick(btnId) {
         console.log(btnId);
@@ -51,6 +80,7 @@ function handleButtonClick(btnId) {
         button.style.backgroundColor = button.id === btnId ? '#ffb1b0' : '';
     });
 }
+
 
 
 
