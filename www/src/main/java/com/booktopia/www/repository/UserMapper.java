@@ -52,4 +52,6 @@ public interface UserMapper {
     void updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
+
+    int modifyaddrandphone(UserVO uvo);
 }

@@ -29,4 +29,6 @@ public interface UserService {
     List<OrderInfoDTO> getPlist(String id);
 
     OrderInfoDTO getsublist(String id);
+
+    int modifyaddrandphone(UserVO uvo);
 }

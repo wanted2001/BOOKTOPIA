@@ -5,12 +5,12 @@
             <div class="myPageRightWrapInfoModWrap">
                 <div class="myPageRightWrapForm">
                     <form action="#" method="POST">
-                            <input type="hidden" th:value="${#authentication.getName()}" name="id">
+                            <input type="hidden" th:value="${#authentication.getPrincipal().userVO.getId()}" name="id" id="modaddrname">
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">현재 배송지</div>
                             <div class="mypageModInputFormData">
                                 <p>주소</p>
-                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
+                                <input type="text" name="ordAddr" class="addrInput" id="changeAddr" placeholder="주소를 입력해주세요."
                                        th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
                                 <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."

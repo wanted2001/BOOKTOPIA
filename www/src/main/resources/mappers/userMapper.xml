@@ -81,5 +81,9 @@
         select count(role) from auth where id = #{providerId}
     </select>
 
+    <update id="modifyaddrandphone">
+        update user set address=#{address} , phone=#{phone} where id =#{id}
+    </update>
+
 
 </mapper>

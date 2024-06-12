@@ -79,6 +79,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int modifyaddrandphone(UserVO uvo) {
+       int isOk =  userMapper.modifyaddrandphone(uvo);
+       return isOk;
+    }
+
+    @Override
     public int findPwCheck(UserVO uvo) {
         return userMapper.findPwCheck(uvo);
     }

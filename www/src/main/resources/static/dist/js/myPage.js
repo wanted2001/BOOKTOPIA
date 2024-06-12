@@ -158,7 +158,7 @@ function pageCall(link, callBox) {
                             loadScript('/dist/js/myPageModify.js');
                             break;
                         case '/mypage/changeaddr':
-                        case '/myPage/changeaddrsocial':
+                        case '/mypage/changeaddrsocial':
                             loadScript('/dist/js/changeaddr.js');
                             break;
                         case '/mypage/couponlist':

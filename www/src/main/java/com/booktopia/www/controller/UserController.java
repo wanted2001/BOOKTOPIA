@@ -5,9 +5,9 @@ import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
+import kotlin.collections.IntIterator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.helpers.SubstituteLogger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -145,6 +145,14 @@ public class UserController {
         OrderInfoDTO sublist = usv.getsublist(id);
         m.addAttribute("sublist",sublist);
         return sublist;
+    }
+
+    @ResponseBody
+    @PostMapping("/moddata")
+    public int modifyaddr(@RequestBody UserVO uvo){
+        log.info("uvo >> {}",uvo);
+        int isOk = usv.modifyaddrandphone(uvo);
+        return isOk;
     }
 }
     
