@@ -51,14 +51,19 @@
                             <p>결제 방식</p>
                         </div>
                         <hr>
-                        <button type="button">카카오페이</button>
+                            <select name="pay" class="selectBox">
+                                <option value="kakaopay">카카오페이</option>
+                            </select>
                     </div>
                     <div class="payInBox2">
                         <div class="payInnerDiv1">
                             <p>선택 상품 정보</p>
                         </div>
                         <div class="payInnerDiv1">
-                            subTicket img
+                            <div class="subTicketimg">
+                                <p class="fText">북토피아 [[${ssivo.subInMonth}]]개월 구독권</p>
+                                <p class="sText">[[${ssivo.subInPrice}]]원</p>
+                            </div>
                         </div>
     <!--                    <th:block th:value="${ssivo.subInMonth}"></th:block>-->
                         <div class="payInnerDiv1">

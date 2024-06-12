@@ -65,7 +65,7 @@ public class SecurityConfig {
                         .usernameParameter("id")
                         .passwordParameter("pwd")
                         .loginPage("/user/login")
-                        .failureUrl("/user/login?error")
+                        .failureUrl("/user/login?false")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )

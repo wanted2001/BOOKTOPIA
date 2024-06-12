@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       현재 구독 중입니다. <br>
                   </div>
                   <hr>
-                     <span> 만료일: ${approvedAt.toLocaleDateString('ko-KR')}</span>`;
+                     <span class="myPageSubInfo"> 만료일: ${approvedAt.toLocaleDateString('ko-KR')}</span>`;
               }
           }
       });
