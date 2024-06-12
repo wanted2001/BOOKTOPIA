@@ -22,6 +22,10 @@
         WHERE o.id = #{id};
     </select>
 
+    <select id="orderList" resultType="com.booktopia.www.domain.OrderInfoVO">
+        select * from order_info
+    </select>
+
     <select id="selectsublist">
         SELECT *
         FROM order_info AS o

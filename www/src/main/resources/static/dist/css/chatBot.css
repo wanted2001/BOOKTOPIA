@@ -1,12 +1,12 @@
 .chatBotIcon{
-    width: 50px;
+    width: 70px;
 }
 .chatBotContain{
     float: right;
 }
 .chatBotDiv{
     width: 70px;
-    transform: translate(30px, 200px);
+    transform: translate(-20px, 200px);
     text-align: center;
     position: fixed;
     top: calc(540px);
@@ -21,13 +21,13 @@
 .chatBotText{
     /*display: none;*/
     float: right;
-    transform: translate(-400px, -380px);
+    transform: translate(-439px, 39px);
     width: 400px;
     height: 550px;
     border-radius: 20px;
     box-shadow: 1px 2px 8px #bdbdbd;
     background-color: white;
-    z-index: 10;
+    z-index: 100;
     position: absolute;
     padding: 30px;
 }

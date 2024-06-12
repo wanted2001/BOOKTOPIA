@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/comment/*")
 @RequiredArgsConstructor
 @Slf4j
@@ -108,6 +110,17 @@ public class CommentController {
         bsv.updateCommentCnt(rvo.getBno());
         return isOk>0 ? new ResponseEntity<String>("1", HttpStatus.OK):
                 new ResponseEntity<String>("0",HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/{cno}/{page}")
+    @ResponseBody
+    public ResponseEntity<PagingHandler> getReComment(@PathVariable("cno") int cno,@PathVariable("page")int page){
+        PagingVO pgvo = new PagingVO(page,5);
+        PagingHandler ph = rcomsv.getCommentList(cno,pgvo);
+
+        log.info("rrrrrcomment ph>>>{}",ph);
+
+        return new ResponseEntity<PagingHandler>(ph, HttpStatus.OK);
     }
 
 }

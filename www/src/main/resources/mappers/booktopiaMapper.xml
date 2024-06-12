@@ -16,4 +16,8 @@
         insert into booktopia (id, birth, gender, btn_result) values (#{id}, #{birth}, #{gender}, #{btnResult})
     </insert>
 
+    <select id="bTestList" resultType="com.booktopia.www.domain.BooktopiaVO">
+        select * from booktopia
+    </select>
+
 </mapper>

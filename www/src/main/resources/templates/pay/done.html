@@ -4,13 +4,13 @@
 <!-- css area-->
 <link rel="stylesheet" th:href="@{/dist/css/payDone.css}">
 <!-- css area -->
-<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <div class="wrap">
             <div class="payDoneBox">
                 <div><span >[[${#authentication.getName()}]] 님</span> 결제 완료되었습니다.</div>
                 <div> 주문번호 : [[${id}]] </div>
-                <div><button type="button" class="payDoneGoToMainBtn">메인으로</button></div>
+                <div><button type="button" class="payDoneGoToMainBtn"><a th:href="@{/}">메인으로</a></button></div>
             </div>
         </div>
     </th:block>

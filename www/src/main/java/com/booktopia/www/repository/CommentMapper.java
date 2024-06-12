@@ -20,4 +20,6 @@ public interface CommentMapper {
     int deleteComment(long cno);
 
     long getCommentBno(long cno);
+
+    List<CommentVO> getComList();
 }

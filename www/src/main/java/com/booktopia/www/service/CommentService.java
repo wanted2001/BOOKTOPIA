@@ -15,5 +15,4 @@ public interface CommentService {
     int deleteComment(long cno);
 
     long getCommentBno(long cno);
-
 }

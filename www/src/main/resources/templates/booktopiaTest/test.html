@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:ses="http://www/thymeleaf.org/extras/spring-security">
-<th:block th:replace="~{layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block ses:authorize = "isAuthenticated()">
     <th:block th:fragment="content">
         <!--booktopia Test css-->
@@ -55,7 +55,7 @@
         </form>
 
         <!--js 영역-->
-        <script th:src="@{/dist/js/testScript.js}" ></script>
+        <script th:src="@{/dist/js/testScript.js}"></script>
     </th:block>
     </th:block>
 </th:block>

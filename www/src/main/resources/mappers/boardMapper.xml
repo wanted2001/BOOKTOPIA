@@ -70,6 +70,10 @@
         select count(b_cate) from board where b_is_del='N'
     </select>
 
+    <select id="getboarList" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board
+    </select>
+
     <select id="getCategoryCount" resultType="int">
         select count(b_cate) from board where b_is_del='N' and b_cate=#{bCate}
     </select>

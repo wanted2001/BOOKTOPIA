@@ -15,4 +15,5 @@ public interface BookTopiaMapper {
 
     void insert(BooktopiaVO booktopiaVO);
 
+    List<BooktopiaVO> bTestList();
 }

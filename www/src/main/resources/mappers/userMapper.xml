@@ -69,6 +69,10 @@
         update user set pwd = #{pw} where id=#{id}
     </update>
 
+    <select id="getList" resultType="com.booktopia.www.domain.UserVO">
+        select * from user
+    </select>
+
     <update id="updateaddr">
         update user set address = #{ordAddr} where id = #{id}
     </update>

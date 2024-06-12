@@ -166,7 +166,7 @@ async function handleEditor(event) {
             updatePostData();
             try{
                 await submitPostData(postData);
-                window.location.href = "/community/communityList";
+                window.location.href = "/board/detail?bno="+bno;
             } catch (error) {
                 console.log("isValid error : ", error);
             }

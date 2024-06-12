@@ -5,6 +5,16 @@
 <mapper namespace="com.booktopia.www.repository.ReCommentMapper">
     <insert id="postromment">
         insert into recomment (cno, bno, rc_writer, rc_content)
-        values (#{cno},#{bno},#{rcWriter},#{reContent})
+        values (#{cno},#{bno},#{rcWriter},#{rcContent})
     </insert>
+
+    <select id="getReCommetList" resultType="com.booktopia.www.domain.RecommentVO">
+        select * from recomment
+        where cno=#{cno}
+    </select>
+
+    <select id="getSelectOneComment" resultType="int">
+        select count(rc_cno) from recomment where cno=#{cno}
+    </select>
+
 </mapper>
