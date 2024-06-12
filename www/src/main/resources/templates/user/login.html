@@ -4,12 +4,12 @@
 <script type="text/javascript" th:src="@{/dist/js/login.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="wrap">
+        <div class="wrap" style="background-image: url(../image/loginmain.jpg">
             <div class="loginWrapPage">
                 <div class="loginAllPage">
                     <form action="/user/login" method="post">
-                        <input type="text" name="id"placeholder="id..." id="loginId"><br>
-                        <input type="password" name="pwd" placeholder="pwd" id="loginPwd"><br>
+                        <input type="text" name="id"placeholder="아이디를 입력해주세요." id="loginId"><br>
+                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd"><br>
                         <div th:if="errorMessage">
                             <p class="errMsg"><a th:text="${errorMessage}"></a></p>
                         </div>
@@ -20,14 +20,11 @@
                     <div class="loginLostWrap">
 <!--                        이름입력으로-->
                         <div class="loginLostLogin loginFindDiv">
-                            <a th:href="@{/user/findId}"><button type="button" id="loginLost" class="loginFind">아이디 찾기</button></a>/
+                            <a th:href="@{/user/findId}"><button type="button" id="loginLost" class="loginFind">아이디 찾기</button></a>
                         </div>
 <!--                        아이디 입력으로-->
                         <div class="loginLostPwd loginFindDiv">
-                            <a th:href="@{/user/findPw}"><button type="button" id="pwdLost" class="loginFind">비밀번호 찾기</button></a>/
-                        </div>
-                        <div class="loginToResister loginFindDiv">
-                            <a th:href="@{/user/join}"><button type="button" id="toResiter" class="loginFind">회원가입</button></a>
+                            <a th:href="@{/user/findPw}"><button type="button" id="pwdLost" class="loginFind">비밀번호 찾기</button></a>
                         </div>
                     </div>
                     <div class="loginSocialBtn">

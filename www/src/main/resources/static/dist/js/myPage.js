@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    pageCall(myPageCoupon, moveContainer);
+    pageCall(myPagePayment, moveContainer);
 
       usingsub(idVal).then(result => {
           if (result.length === 0) {

@@ -27,12 +27,12 @@ function strongPassword(str) {
 
 // 전화번호 유효성 검사 함수
 function strongPhone(str) {
-    return phoneRegex.test(str);
+    return phoneRegex.test(str) || str.length == 0;
 }
 
 // 제출 버튼 활성/비활성화 함수
 function toggleSubmitButton() {
-    const arePasswordsEmpty = changePwd.value.length === 0 && changeNewPwd.value.length === 0;
+    const arePasswordsEmpty = changePwd.value.length === 0 && changeNewPwd.value.length === 0; //
     const isPasswordValid = strongPassword(changePwd.value) && changePwd.value === changeNewPwd.value;
     const isPhoneValid = strongPhone(phone.value);
 

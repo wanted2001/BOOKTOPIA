@@ -5,11 +5,25 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: jalnan;
+    src: url(../font/Jalnan2.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 
 .wrap{
     width:1400x;
-    border: 1px solid aqua;
     font-family:SCDream4;
+    background-size : cover;
 
 }
 
@@ -24,27 +38,27 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    border: 1px solid red;
 
 }
 .loginAllPage{
     text-align: center;
     width: 700px;
-    height: 100%;
+    height: 500px;
     display: flex;
-    border: 1px solid black;
     flex-direction: column;
     justify-content: center;
 }
 .loginAllPage>form{
-    border: 1px solid brown;
     margin-bottom: 10px;
 }
 .loginAllPage>form>input{
-    background-color: antiquewhite;
-    border: 0;
-    width: 200px;
-    height: 30px;
+   border: 1px solid;
+       width: 350px;
+       height: 50px;
+       font-size: 20px;
+       padding-left: 10px;
+       border-radius: 20px;
+       font-family: 'Pretendard-Regular';
 }
 .loginAllPage>form>input:nth-child(1){
     margin-bottom: 10px;
@@ -53,38 +67,34 @@
    width: 200px;
    height: 30px;
    border-radius: 10px;
-   background-color: antiquewhite;
    margin: 0 auto;
    margin-top: 20px;
 }
 .loginAllPage>form>.loginLoginBtn>button{
-    width: 200px;
-    border: 0;
-    line-height: 30px;
-    background-color: transparent;
+    width: 95px;
+        height: 35px;
+        border-radius: 10px;
+        line-height: 30px;
+        background-color: transparent;
+        box-shadow: 0px 1px 10px 1px #FFB1B0;
 }
-.loginAllPage>form>.loginLoginBtn:hover{
-    background-color: red;
-    color: white;
+.loginAllPage>form>.loginLoginBtn>button:hover{
+    color: #fff44F;
 }
 .loginLostWrap{
-    margin: 0 auto;
-    width: 300px;
+    margin: 25px auto;
+    display: flex;
     text-align: center;
-    margin-bottom: 15px;
+    width: 350px;
+    justify-content: center;
 }
 .loginFindDiv{
+    height:20px;
+    width:100px;
     display: inline-block;
 }
 .loginFindDiv>a>button{
-    border-radius: 50px;
-    border: 0;
-    background-color: transparent;
-
-}
-.loginFindDiv>a>button:hover{
-    /* 버튼 색 바꾸기 */
-    color: red;
+  background-color: transparent;
 
 }
 .loginSocialBtn{
@@ -99,6 +109,10 @@
     width: 30px;
     height: 30px;
     border-radius: 100px;
+}
+
+.loginFind:hover{
+ border-bottom : 1px solid black;
 }
 
 .errMsg{
