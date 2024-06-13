@@ -7,7 +7,7 @@
 <body>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="wrap">
+        <div class="wrap" style="background-image: url(../image/loginmain.jpg">
             <div class="joinWrapPage">
                 <div class="joinAgreePage">
                     <div class="contents">
@@ -108,7 +108,7 @@
                             <div div class="innerDiv second">
                                 <div class="joinAllPage">
                                     <div class="joinTitleText">
-                                        <h1>BOOKTOPIA 회원가입</h1>
+<!--                                        <h1>BOOKTOPIA 회원가입</h1>-->
                                     </div>
                                     <div class="join">
                                         <div class="joinIdArea joinArea">
@@ -132,12 +132,12 @@
                                         </div>
                                         <div class="joinNameArea joinArea">
                                             <div class="joinTextBox"><span class="joinStar">*</span>이름</div>
-                                            <input type="text" name="name" id="userName" placeholder="실명을 입력하세요" class="joininput">
+                                            <input type="text" name="name" id="userName" placeholder="실명을 입력하세요." class="joininput">
                                             <span class="joinUnderline"></span>
                                         </div>
                                         <div class="joinNameArea joinArea">
                                             <div class="joinTextBox"><span class="joinStar">*</span>이메일</div>
-                                            <input type="text" name="email" id="userEmail" placeholder="실제 사용하는 이메일을 입력하세요" class="joininput">
+                                            <input type="text" name="email" id="userEmail" placeholder="실제 사용하는 이메일을 입력하세요." class="joininput">
                                             <input type="hidden" id="helloNum"></input>
                                         </div>
                                         <div class="joinJoinBtn">

@@ -10,7 +10,7 @@ font-family:SCDream4;
 .myPageInfoWrap{
     width: 1400px;
     height:900px;
-    padding-top: 50px;
+    padding-top: 100px;
 
 }
 
@@ -22,17 +22,19 @@ font-family:SCDream4;
 
 .myPageInfoLeftWrap{
     float: left;
-}
-
-.myPageInfoRigthWrap{
-    float: right;
-    padding-right: 60px
+    display:flex;
+    align-items : center;
+    flex-direction: column;
 }
 
 .myPageLeftUp{
-    width: 600px;
-    height: 200px;
-
+    width: 400px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: -2px -2px 10px 1px #c6e7ad;
+        border-radius: 7px;
 }
 
 .myPageLeftDown{
@@ -126,6 +128,11 @@ display: flex;
     border-radius: 5px;
     }
 
+.myPageLeftDownWrap4Img>img{
+    width: 55px;
+    height: 45px;
+}
+
 
 .bi{
     width: 50px;
@@ -143,13 +150,18 @@ display: flex;
 .myPageRight{
     display: flex;
     width: 600px;
+    height: 700px;
+}
+
+.myPageInfoRightWrap{
+    display: flex;
+    width: 600px;
     height: 800px;
 }
 
 .myPageRightWrap{
         width: 500px;
-        height: 730px;
-        margin: auto auto;
+        height: 750px;
 }
 
 
@@ -173,12 +185,12 @@ display: flex;
 
 #payInfoWrap{
     background-color: #ffec78;
-    width: 420px;
     height: 143px;
+    width: 420px;
+    padding-left: 15px;
     border-radius: 10px;
-    margin-bottom: 12px;
     box-shadow: 1px 2px 4px;
-    border: 1px solid;
+    margin-bottom: 12px;
 }
 
 
@@ -186,7 +198,7 @@ display: flex;
     display: inline-block;
     float: left;
     height: 100px;
-    width: 240px;
+    width: 245px;
     margin-top: 5px;
     padding-left: 20px;
 }
@@ -196,14 +208,14 @@ display: flex;
     height: 50px;
     line-height: 65px;
     font-size: 13px;
-    padding-left: 20px;
+    paddin-left: 20px;
 }
 .payInfoRight{
     display: inline-block;
     height: 100px;
     width: 125px;
     margin-top: 5px;
-    padding-left: 50px;
+    padding-left 50px;
 }
 
 #payInfoTitle{
@@ -214,9 +226,10 @@ display: flex;
 }
 #payInfoapprovedAt{
     font-size: 16px;
-    margin-top: 13px;
+    margin-top: 25px;
 
 }
+
 #payInfoAmount{
     text-align: right;
     padding-right: 10px;
@@ -226,34 +239,36 @@ display: flex;
 #payInfoDelivery{
     font-size: 15px;
 }
+
 #payInfoAmount,#payInfoDelivery{
     width: 100px;
     height: 30px;
 }
-.myPageRightWrapInfoText{
-    width: 500px;
-    height: 80px;
-    margin: 0 auto;
-    line-height: 10px;
-    font-size: 1.5em;
-    margin-left: 91px;
-}
+/*.myPageRightWrapInfoText{*/
+/*    width: 500px;*/
+/*    height: 80px;*/
+/*    margin: 0 auto;*/
+/*    line-height: 10px;*/
+/*    font-size: 1.5em;*/
+/*    margin-left: 91px;*/
+/*}*/
 
 .myPageRightWrapInfoModWrap{
-    width: 450px;
-    height: 622px;
+    width: 520px;
+    height: 700px;
     display: flex;
-    border: 1px solid;
     border-radius: 10px;
-    /* padding-left: 51px; */
-    margin-left: 90px;
-    padding-top: 27px;
+    padding-top: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .myPageRightWrapForm{
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    padding-top: 40px;
     width: 500px;
 }
 
@@ -261,28 +276,67 @@ display: flex;
     width: 400px;
     height: 80px;
     margin: 0 auto;
-    background-color: crimson;
+    margin-bottom: 2px;
 }
 
 .myPageModInputFormText{
-    font-size: 20px;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
+.mypageModInputFormData {
+    padding-left: 10px;
+}
+
 
 .mypageModInputFormData>input{
     width: 250px;
     height: 30px;
+    padding-left: 20px;
+    padding-bottom: 2px;
+    font-size: 20px;
+}
+
+.mypageModInputFormData>input:focus{
+    outline : none;
+}
+
+.addrphoneNum{
+    margin-top: 70px;
 }
 
 .myPageModInputFormWrapBtn{
     float: right;
-}
-
-.myPageModInputFormWrapBtn>button{
-    font-size: 20px;
+    margin-top: 20px;
 }
 
 #myPageSubWrap{
-    position: relative;
+    display:flex;
+    flex-direction :column;
+    align-items :center;
+    width:330px;
+}
+
+.myPageModBtn{
+    width: 130px;
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 18px;
+    background-color: transparent
+}
+
+.myPageModBtn:hover{
+    color : #FFB1B0;
+}
+
+
+
+.pencil{
+    width : 350px;
+    height : 17px;
+    background-size:contain;
+    background-repeat: no-repeat;
 }
 
 .couponWrap{
