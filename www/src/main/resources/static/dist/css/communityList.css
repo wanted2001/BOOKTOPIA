@@ -17,6 +17,12 @@
     font-weight: normal;
 }
 @font-face {
+    font-family: SCDream6;
+    src: url(../font/S-Core_Dream_OTF/SCDream6.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
     font-family: cafe;
     src: url(../font/Cafe24Ssurround-v2.0.otf) format("opentype");
     font-style: normal;
@@ -83,8 +89,11 @@
     border-radius: 3px;
 }
 .NoticeBlock{
-    font-family: SCDream4;
+    font-family: SCDream6;
     padding: 0 30px;
+}
+.NoticeTitle{
+    font-family: SCDream5;
 }
 .commCateLine{
     /*background-color: goldenrod;*/
@@ -106,8 +115,6 @@
 .commCateChoice:hover{
     background-color: #fda4a3;
     border: none;
-    color: white;
-    /*fda4a3*/
 }
 .commCateChoice span{
     font-family: cafe;

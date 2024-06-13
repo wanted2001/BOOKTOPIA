@@ -168,6 +168,15 @@
     margin-top: 50px;
     font-size: 20px;
 }
+.commNotice{
+    font-size: 16px;
+    color: #919191;
+    width: 145px;
+}
+.commNotice:hover{
+    color: black;
+    font-weight: bold;
+}
 .commBoardAll{
     float: right;
     width: 130px;

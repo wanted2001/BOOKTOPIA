@@ -98,6 +98,17 @@
     width: 65px;
     height: 100%;
     cursor: pointer;
+    border: 1px solid #7a7a7a;
+    border-radius: 3px;
+    background-color: white;
+}
+.commModBtn:hover{
+    background-color: #b4b4b4;
+    border: none;
+}
+.commDelBtn:hover{
+    background-color: #ff1d1d;
+    border: none;
 }
 .commDelBtn{
     margin-left: 10px;
@@ -157,7 +168,7 @@
     height: 195px;
     /*margin-left: -20px;*/
 }
-.comm-Comment, #recommContent{
+.comm-Comment, #recommContent,#cmtModContent{
     font-family: SCDream4;
     border: none;
     resize: none;
@@ -186,12 +197,24 @@
     font-size: 13.5px;
     margin: 5px 0 0 28px;
 }
+#cmtModContent{
+    width: 805px;
+    height: 50px;
+    margin-left: 5px;
+}
 #comDelBtn, #cmtModBtn{
     border: 1px solid #919191;
     padding: 5px;
     border-radius: 2px;
     cursor: pointer;
 }
+#commModBtn{
+    margin: 10px 0 0 743px;
+    padding: 5px;
+    width: 73px;
+    border: 1px solid;
+}
+
 /*대댓*/
 .commDeReCommentArea{
     margin: 13px 0 0 30px;
@@ -206,10 +229,16 @@
     margin: -28px 0 0 35px;
 }
 /*대댓글 달기*/
-#recommendBtn{
+.commDe-ReComment{
     font-size: 13px;
     background-color: rgba(241, 241, 241, 0.5);
+}
+#recommendBtn{
     cursor: pointer;
+    background-color: rgba(145, 145, 145, 0);
+}
+.commDe-ReComment:hover{
+    background-color: #fdeded;
 }
 #recommContent{
     font-size: 14px;

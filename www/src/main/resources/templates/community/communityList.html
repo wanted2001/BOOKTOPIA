@@ -10,13 +10,6 @@
     <th:block th:fragment="content">
         <!--공지-->
         <div class="wrap">
-            <!--사이드 광고?-->
-            <div class="commLeftSection">
-<!--                <div class="commLeft">-->
-<!--                    <img th:src="@{/image/little_prince_navy.jpg}" width="180px" height="400px">-->
-<!--                    <a th:href="@{/subscribe/info}"><button type="button">북토피아 구독하기</button></a>-->
-<!--                </div>-->
-            </div>
             <!--검색창-->
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>
@@ -43,7 +36,7 @@
             <div class="commNoticeLine">
                 <span class="NoticeBlock">공지</span>
                 <a th:href="@{/community/communityNotice}">
-                    <div class="NoticeTitle">공지제목</div>
+                    <div class="NoticeTitle">북토피아 커뮤니티 이용안내 및 공지사항</div>
                 </a>
             </div>
             <!--카테고리선택가능라인-->
