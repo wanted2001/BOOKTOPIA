@@ -1,8 +1,7 @@
 <div class="myPageRight">
     <div class="myPageRightWrap">
         <div class="myPageRightWrapInfo">
-            <div class="myPageRightWrapInfoText">배송지 수정</div>
-            <div class="myPageRightWrapInfoModWrap">
+            <div class="myPageRightWrapInfoModWrap" style="background-image: url(../image/modifybg.png">
                 <div class="myPageRightWrapForm">
                     <form action="#" method="POST">
                             <input type="hidden" th:value="${#authentication.getPrincipal().userVO.getId()}" name="id" id="modaddrname">
@@ -13,20 +12,23 @@
                                 <input type="text" name="ordAddr" class="addrInput" id="changeAddr" placeholder="주소를 입력해주세요."
                                        th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
+                                <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                                 <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
                                        th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
+                                <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>
-                        <div class="myPageModInputFormWrap">
+                        <div class="myPageModInputFormWrap addrphoneNum">
                             <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
                                 <input type="text" name="phone" placeholder="phone..." id="changePhone"
                                        th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
-                                       #authentication.getPrincipal().userVO.getPhone()}"><br>
+                                       #authentication.getPrincipal().userVO.getPhone()}">
+                                <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>
                         <div class="myPageModInputFormWrapBtn">
-                            <button type="button" id="submitAddrButton">배송지 수정 일반</button>
+                            <button type="button" id="submitAddrButton" class="myPageModBtn">배송지 수정</button>
                         </div>
                     </form>
                 </div>

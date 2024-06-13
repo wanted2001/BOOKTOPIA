@@ -32,7 +32,7 @@
                 <th:block sec:authorize="isAuthenticated()">
                     <th:block th:with="auth=${#authentication.getPrincipal()}">
                         <li class="cate userName"><a th:href="@{/user/myPage}">마이페이지</a></li>
-                        <li class="cate logout"><a th:href="@{/user/logout}">로그아웃</a></li>
+                        <li class="cate logout"><a th:href="@{/user/logout}" id="logoutuser">로그아웃</a></li>
                         <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>
                         </li>
@@ -59,6 +59,7 @@
     </footer>
 
     <script th:src="@{/dist/js/chatBot.js}"></script>
+    <script th:src="@{/dist/js/header.js}"></script>
     </body>
 </th:block>
 </html>

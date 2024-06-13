@@ -1,6 +1,6 @@
 var changePwd = document.getElementById("changePwd");
 var changeNewPwd = document.getElementById("changeNewPwd");
-const submitButton = document.getElementById("submitButton");
+var submitButton = document.getElementById("submitButton");
 var phone = document.getElementById("modifyPhone");
 
 var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
@@ -38,6 +38,15 @@ function toggleSubmitButton() {
 
     // 비밀번호가 비어 있고 전화번호가 유효한 경우, 혹은 비밀번호가 유효하고 전화번호가 유효한 경우
     submitButton.disabled = !(isPhoneValid && (arePasswordsEmpty || isPasswordValid));
+}
+
+function button_event(){
+  if (confirm("정말 수정하시겠습니까??") == true){    //확인
+       document.getElementById('myinfoModifyForm').submit();
+       alert("수정 완료 되었습니다.");
+  }else{   //취소
+      return;
+  }
 }
 
 // 입력 필드에 keyup 이벤트 리스너 추가
