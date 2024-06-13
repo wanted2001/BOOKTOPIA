@@ -7,18 +7,17 @@
 .wrap{
     height: 500px;
     font-family: SCDream4;
-    background-color: blueviolet;
      display: flex;
      justify-content: center;
 }
 .payDoneBox{
-    background-color: mediumaquamarine;
     padding-top: 200px;
     text-align: center;
     width: 50%;
     height: 50%;
 }
 .payDoneBox div{
+    font-size: 1.5em;
     width: 100%;
     text-align: center;
     margin-top: 20px;
