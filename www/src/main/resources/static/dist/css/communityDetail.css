@@ -126,7 +126,7 @@
 .comm-commArea{
     background-color: rgba(241, 241, 241, 0.5);
     width: 940px;
-    margin: 20px auto 0;
+    margin: 20px auto 50px;
     padding: 30px;
 }
 .commDeComment{
@@ -190,6 +190,7 @@
     border: 1px solid #919191;
     padding: 5px;
     border-radius: 2px;
+    cursor: pointer;
 }
 /*대댓*/
 .commDeReCommentArea{
@@ -208,6 +209,7 @@
 #recommendBtn{
     font-size: 13px;
     background-color: rgba(241, 241, 241, 0.5);
+    cursor: pointer;
 }
 #recommContent{
     font-size: 14px;
@@ -224,5 +226,6 @@ button#recommBtn {
     border: 1px solid #919191;
     border-radius: 2.5px;
     padding: 5px;
-    font-size: 13px
+    font-size: 13px;
+    cursor: pointer;
 }
