@@ -78,15 +78,9 @@ public class CommunityController {
 
         //전체 게시글 수
         int totalCount = bsv.getTotalCount(pgvo);
-
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
-        log.info("all ph>>>>>{}",ph);
-
         List<BoardVO> blist = bsv.getList(pgvo);
-        log.info("all blist>>>{}", blist);
-
         int AllcateCtn = bsv.getCateCount();
-        log.info("AllcateCtn>>>{}",AllcateCtn);
 
         m.addAttribute("blist",blist);
         m.addAttribute("ph",ph);
@@ -101,16 +95,9 @@ public class CommunityController {
 
         //전체 게시글 수
         int totalCount = bsv.getCateTotalCount(pgvo);
-        log.info("totalCount>>>>>{}",totalCount);
-
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
-        log.info("ph>>>>>{}",ph);
-
         List<BoardVO> blist = bsv.getCateList(pgvo);
-        log.info("blist>>>{}", blist);
-
         int cateCtn = bsv.getCategoryCount(bCate);
-        log.info("cateCtn>>>{}",cateCtn);
 
         m.addAttribute("cateCtn",cateCtn);
         m.addAttribute("blist",blist);

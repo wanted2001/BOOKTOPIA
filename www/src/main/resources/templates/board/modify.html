@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
-    <th:block th:with="auth=${#authentication.getPrincipal()}">
     <th:block th:fragment="content">
+    <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" th:href="@{/dist/css/communityRegi.css}">
         <!--토스트 API-->
@@ -14,13 +14,13 @@
                 <!-- 왼쪽 카테고리 -->
                 <div class="commUl">
                     <ul>
-                        <li><a th:href="@{/community/communityList}">전체 게시글</a></li>
-                        <li><a th:href="@{/community/novel}">소설</a></li>
-                        <li><a th:href="@{/communtiy/poet}">시/에세이</a></li>
-                        <li><a th:href="@{/community/finance}">경제/경영</a></li>
-                        <li><a th:href="@{/community/human}">인문</a></li>
-                        <li><a th:href="@{/community/history}">역사/문화</a></li>
-                        <li><a th:href="@{/community/development}">자기개발</a></li>
+                        <li><a th:href="@{/community/communityListAll}">전체 게시글</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='novel')}">소설</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='poem')}">시/에세이</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='finance')}">경제/경영</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='human')}">인문</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='history')}">역사/문화</a></li>
+                        <li><a th:href="@{/community/communityList(bCate='development')}">자기개발</a></li>
                     </ul>
                 </div>
                 <div class="commToast" >
@@ -28,8 +28,8 @@
                         <!--아이디-->
                         <input th:value="${bvo.bno}" type="hidden" class="commModBno">
                         <div class="WriterArea">
-                            <span sec:authentication="name" class="IDspan" id="commModiID2" th:style="'display:none'"></span>
-                            <span class="commWriterArea">작성자 : </span><span id="deleteMemberType3"></span>
+                            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
+                            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
                         </div>
                         <!-- 게시판 선택 select 효과 -->
                         <div class="commRegiCate">

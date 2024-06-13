@@ -15,4 +15,6 @@ public interface ReCommentMapper {
     int deleteFromBoard(long bno);
 
     int deleteReComment(long cno);
+
+    int rcCount(long cno);
 }

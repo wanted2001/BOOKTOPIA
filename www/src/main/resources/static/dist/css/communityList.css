@@ -72,7 +72,7 @@
     background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 122.5px;
-    right: 575px;
+    right: 475px;
 }
 .commListAll{
     margin: 30px 0 0 1130px;
@@ -106,7 +106,7 @@
     background-color: rgba(1, 103, 152, 0.8);
     /*width: 100px;*/
     padding: 0 20px;
-    border-radius: 20px;
+    border-radius: 18px;
 }
 .commCateChoice span{
     color: white;
@@ -194,13 +194,13 @@
 }
 .commCntInfo{
     /*background-color: mintcream;*/
-    width: 220px;
+    width: 230px;
     height: 40px;
     display: flex;
     justify-content: space-between;
 }
 .commCnt{
-    width: 65px;
+    width: 70px;
     height: 30px;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 20px;

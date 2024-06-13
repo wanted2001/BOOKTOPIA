@@ -10,9 +10,6 @@
                     <form action="/user/login" method="post">
                         <input type="text" name="id"placeholder="아이디를 입력해주세요." id="loginId"><br>
                         <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd"><br>
-                        <div th:if="errorMessage">
-                            <p class="errMsg"><a th:text="${errorMessage}"></a></p>
-                        </div>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>
