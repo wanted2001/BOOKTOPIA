@@ -11,9 +11,10 @@
             <div class="wrap">
                 <div class="test-contain">
                     <div class="test-title">
+                        <img th:src="@{|/image/testIcon.png|}">
                         <div class="title">
-                            <h1>BookTopia 취향검사 Test</h1>
-                            <h1>나만의 도서 취향을 선택해보세요</h1>
+                            <h1>정보를 입력하고,</h1>
+                            <h1>나만의 도서 취향 찾기!</h1>
                         </div>
                     </div>
                     <div class="test">
@@ -23,16 +24,17 @@
                             </div>
                         </div>
                         <div class="test-content">
+<!--                            <img th:src="@{/image/testBox.png}">-->
                             <div id="questionInfo" style="display:block;">
                                 <div class="innerText">
                                     <input type="hidden" name="id" th:with="auth=${#authentication.getName()}" id="commuUser" th:value="${auth}">
                                     <p>생년월일 </p>
-                                    <input type="text" name="birth" id="brith" class="placeholder" placeholder="  ex) 19900101">
+                                    <input type="text" name="birth" id="brith" class="placeholder" placeholder="ex) 19900101">
                                     <p>성별</p>
                                     <input type="radio" name="gender" value="남"> 남
                                     <input type="radio" name="gender" value="여"> 여
                                 </div>
-                                <button type="button" id="next" class="testBtn"> Next </button>
+                                <button type="button" id="next" class="testInfoBtn"> Next </button>
                             </div>
 
                             <div class="content-detail" id="questionDiv" style="display: none;">
