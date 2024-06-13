@@ -38,4 +38,6 @@ public interface BoardMapper {
     int getCategoryCount(String bCate);
 
     List<BoardVO> getboarList();
+
+    int boardDel(long bno);
 }

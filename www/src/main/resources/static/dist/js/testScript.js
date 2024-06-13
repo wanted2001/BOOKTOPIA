@@ -8,10 +8,14 @@ const home = document.getElementById('home');
 let brith = document.getElementById('brith');
 let nextBtn = document.getElementById('next');
 
+// 개인정보 입력 라인...
 nextBtn.addEventListener('click',()=>{
-    if(brith.value === '' || brith === null){
+    const isValidNumber = /^\d+$/.test(brith.value);
+    if(brith === null || brith.value === ''){
         alert("정보를 입력해주세요😊");
         nextBtn.disable = true;
+    } else if(!isValidNumber){
+        alert("숫자만 입력 가능합니다.")
     } else {
         document.getElementById('questionInfo').style.display = "none";
         document.getElementById('questionDiv').style.display = "block";
@@ -80,6 +84,7 @@ let i = 1;
 let btnResult = 0;
 let per = 0
 
+// 테스트 진행 라인...
 document.addEventListener('click',(e)=>{
     if(e.target.id == 'btn1' || e.target.id == 'btn2') {
         per += 10;

@@ -17,16 +17,14 @@
                 <button type="button" class="admin-btn" id="aBtn4">배송현황</button>
                 <button type="button" class="admin-btn" id="aBtn5">게시글관리</button>
                 <button type="button" class="admin-btn" id="aBtn6">댓글관리</button>
-                <button type="button" class="admin-btn" id="aBtn00">-- 쿠폰</button>
-                <button type="button" class="admin-btn" id="aBtn01">공지관리</button>
             </div>
             <div class="cate-detail">
                 <!--회원 리스트-->
                 <table class="admin-UserList" style="display: block">
                     <thead>
-                        <tr>
+                        <tr class="adUserTr">
                             <th>ID</th>
-                            <th>이름</th>
+                            <th style="width: 80px">이름</th>
                             <th>E-mail</th>
                             <th>Phone</th>
                             <th>가입경로</th>
@@ -36,7 +34,7 @@
                     <tbody>
                         <tr th:each="uvo:${ulist}">
                             <td>[[${uvo.id}]]</td>
-                            <td>[[${uvo.name}]]</td>
+                            <td style="text-align: center">[[${uvo.name}]]</td>
                             <td>[[${uvo.email}]]</td>
                             <td>[[${uvo.phone}]]</td>
                             <td>[[${uvo.userType}]]</td>
@@ -49,9 +47,9 @@
                 <table class="bookTopia-user" style="display: none">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>ID</th>
-                            <th>BIRTH</th>
+                            <th style="width: 45px">No</th>
+                            <th style="width: 150px">ID</th>
+                            <th style="">BIRTH</th>
                             <th>GENDER</th>
                             <th>TEST_AT</th>
                         </tr>
@@ -86,7 +84,7 @@
                             <td>[[${odtolist.ordName}]]</td>
                             <td>[[${odtolist.ordPhone}]]</td>
                             <td>[[${odtolist.ordAddr}]]</td>
-                            <td>[[${odtolist.totalAmount}]]</td>
+                            <td style="text-align: center">[[${odtolist.totalAmount}]]</td>
                         </tr>
                     </tbody>
                 </table>
@@ -95,10 +93,10 @@
                 <table class="delivery" style="display: none">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>주문번호</th>
-                            <th>결제상품</th>
-                            <th>결제/승인날짜</th>
+                            <th style="width: 45px">No</th>
+                            <th style="width: 220px">주문번호</th>
+                            <th style="width: 180px">결제상품</th>
+                            <th style="width: 180px">결제/승인날짜</th>
                             <th>상태</th>
                             <th>배송처리</th>
                         </tr>
@@ -110,7 +108,7 @@
                             <td>[[${deli.itemName}]]</td>
                             <td>[[${deli.deliDate}]]</td>
                             <td>[[${deli.deliStatus}]]</td>
-                            <td><button type="button" id="adminapproval">[[${deli.deliStatus}]]</button></td>
+                            <td><button type="button" id="adminapproval">결제승인</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -119,18 +117,18 @@
                 <table class="commuBoard" style="display: none">
                     <thead>
                     <tr>
-                        <th>No</th>
+                        <th style="width: 30px">No</th>
                         <th>Cate</th>
                         <th>Title</th>
                         <th>Content</th>
                         <th>Writer</th>
                         <th>RegDate</th>
-<!--                        <th>admin</th>-->
+                        <th>관리</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr th:each="board:${boadlist}">
-                            <td>[[${board.bno}]]</td>
+                            <td style="text-align: center" class="adbbno">[[${board.bno}]]</td>
                             <td>[[${board.bCate}]]</td>
                             <td>[[${board.bTitle}]]</td>
                             <td class="adcontentArea" th:if="${board.bMainImg!=''}">
@@ -142,7 +140,7 @@
                             </td>
                             <td>[[${board.bWriter}]]</td>
                             <td>[[${board.bRegDate}]]</td>
-<!--                            <td><button type="button" id="boardDel">삭제</button></td>-->
+                            <td><button type="button" class="boardDel">삭제</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -160,11 +158,11 @@
                     </thead>
                     <tbody>
                         <tr th:each="commen:${commlist}">
-                            <td>[[${commen.bno}]]</td>
+                            <td class="adcbno">[[${commen.bno}]]</td>
                             <td>[[${commen.cWriter}]]</td>
                             <td>[[${commen.cContent}]]</td>
                             <td>[[${commen.cRegDate}]]</td>
-                            <td><button type="button">삭제</button></td>
+                            <td><button type="button" class="commentDel">삭제</button></td>
                         </tr>
                     </tbody>
                 </table>

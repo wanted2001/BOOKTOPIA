@@ -33,36 +33,32 @@ button {
     margin: 10px;
     float: right;
 }
-
 th, td {
     border: 1px solid black;
-    width: 153px;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 30px;
+    white-space: nowrap;
+    padding: 10px;
 }
 th{
     font-size: 15px;
     font-weight: 700;
 }
 td{
-    font-size: 12px;
-    text-align: center;
+    font-size: 14px;
 }
-.admin-UserList>thead>tr>th:nth-of-type(2){
-    width: 35px;
-}
+
 .adminCommuDiv > button {
     display: inline;
 }
 
-#boardDel, #boardModiy{
+#boardDel, #boardModiy, #adminapproval{
     width: 70px;
-    height: 30px;
     text-align: center;
     display: inline;
     padding: 0;
-    margin-top: 5px;
+}
+
+.bookTopia-user, .delivery{
+    text-align: center;
 }
 
 #adminapproval{
@@ -90,6 +86,7 @@ td{
 
 .adcontentArea img{
     width: 100%;
-    height: 30%;
+    height: 100%;
     object-fit: cover;
+    margin: -122px 0 -76px 0;
 }

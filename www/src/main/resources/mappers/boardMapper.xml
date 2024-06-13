@@ -71,7 +71,7 @@
     </select>
 
     <select id="getboarList" resultType="com.booktopia.www.domain.BoardVO">
-        select * from board
+        select * from board where b_is_del='N'
     </select>
 
     <select id="getCategoryCount" resultType="int">

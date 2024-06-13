@@ -172,14 +172,13 @@ display: flex;
 }
 
 #payInfoWrap{
-    background-color: rgba(0, 92, 135, 0.27);
-    height: 192px;
-    width: 446px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
+    background-color: #ffec78;
+    width: 420px;
+    height: 143px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    box-shadow: 1px 2px 4px;
+    border: 1px solid;
 }
 
 
@@ -187,8 +186,9 @@ display: flex;
     display: inline-block;
     float: left;
     height: 100px;
-    width: 260px;
+    width: 240px;
     margin-top: 5px;
+    padding-left: 20px;
 }
 
 .payInfomerchantUid{
@@ -196,15 +196,14 @@ display: flex;
     height: 50px;
     line-height: 65px;
     font-size: 13px;
+    padding-left: 20px;
 }
-
-
 .payInfoRight{
     display: inline-block;
     height: 100px;
-    width: 200px;
-    /* text-align: right; */
+    width: 125px;
     margin-top: 5px;
+    padding-left: 50px;
 }
 
 #payInfoTitle{
@@ -218,10 +217,18 @@ display: flex;
     margin-top: 13px;
 
 }
+#payInfoAmount{
+    text-align: right;
+    padding-right: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+#payInfoDelivery{
+    font-size: 15px;
+}
 #payInfoAmount,#payInfoDelivery{
-    width: 200px;
+    width: 100px;
     height: 30px;
-    font-size : 18px;
 }
 .myPageRightWrapInfoText{
     width: 500px;
@@ -276,4 +283,22 @@ display: flex;
 
 #myPageSubWrap{
     position: relative;
+}
+
+.couponWrap{
+    width: 420px;
+    height: 165px;
+    border: 1px solid black;
+    background-color: rgba(0, 92, 135, 0.27);
+    padding: 30px 20px;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+.couponWrap > p{
+    margin-bottom: 8px;
+}
+
+.couponWrap > p:nth-of-type(2){
+    font-size: 30px;
+    font-weight: 700;
 }
