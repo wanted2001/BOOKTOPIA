@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css}">
+
 <script type="text/javascript" th:src="@{/dist/js/login.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
@@ -9,7 +11,10 @@
                 <div class="loginAllPage">
                     <form action="/user/login" method="post">
                         <input type="text" name="id"placeholder="아이디를 입력해주세요." id="loginId"><br>
-                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd"><br>
+                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd">
+                        <i class="fa fa-eye fa-lg" id="eye"></i>
+                        <br>
+
 <!--                        <div th:if="errorMessage">-->
 <!--                            <p class="errMsg"><a th:text="${errorMessage}"></a></p>-->
 <!--                        </div>-->
@@ -57,6 +62,27 @@
                     alert('아이디와 비밀번호를 확인해주세요.');
                 }
             };
+        </script>
+
+        <!-- 비밀번호 보이게 하는 코드 -->
+        <script th:inline="javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                const eyeIcons = document.querySelectorAll('.loginAllPage i');
+
+        eyeIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+        const input = this.previousElementSibling;
+        input.classList.toggle('active');
+                    if (input.classList.contains('active')) {
+                    this.className = "fa fa-eye-slash fa-lg";
+                    input.type = "text";
+                    } else {
+                    this.className = "fa fa-eye fa-lg";
+                    input.type = "password";
+                    }
+                 });
+            });
+        });
         </script>
 
     </th:block>
