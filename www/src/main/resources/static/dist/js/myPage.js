@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageCoupon = "/mypage/couponlist";
     const myPageModify = "/mypage/modify";
     const myPageAddress = "/mypage/changeaddr";
-    const myPageAddressSocial = "/mypage/changeaddrsocial";
     const myPagePayment = "/mypage/payinfo";
     const isSocial = "/user/deleteUser";
 
@@ -45,10 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="myPageSubInfo">
                   이용중인 구독권이 없습니다.
               </div>
-              <div class="myPageSubMove">
-                  <div class="myPageSubMoveLink">
-                      <a href="/subscribe/info">구독권 보러가기</a>
-                  </div>
+              <div class="myPageSubMoveLink">
+                 <a class="myPageSubInfoSpan" href="/subscribe/info">구독권 보러가기</a>
               </div>`;
           } else {
               var originalString = result.itemName;
@@ -75,18 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="myPageSubInfo">
                       이용중인 구독권이 없습니다.
                   </div>
-                  <div class="myPageSubMove">
-                      <div class="myPageSubMoveLink">
-                          <a href="/subscribe/info">구독권 보러가기</a>
-                      </div>
+                  <div class="myPageSubMoveLink">
+                       <a class="myPageSubInfoSpan"  href="/subscribe/info">구독권 보러가기</a>
                   </div>`;
               } else {
                   // 구독 중인 경우에 대한 처리
                   subinfodiv.innerHTML =`<div class="myPageSubInfo">
                       현재 구독 중입니다. <br>
                   </div>
-                  <hr>
-                     <span class="myPageSubInfo"> 만료일: ${approvedAt.toLocaleDateString('ko-KR')}</span>`;
+                     <span class="myPageSubInfoSpan"> 만료일: ${approvedAt.toLocaleDateString('ko-KR')}</span>`;
               }
           }
       });
@@ -113,15 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     pageCall(myPageModify, moveContainer);
                     break;
                 case 'myPageAddress':
-                    isSocialUser(idVal).then(result => {
-                        console.log(result);
-                        if (result !== "일반") {
-                            pageCall(myPageAddressSocial, moveContainer);
-                        }
-                         if(result == "일반"){
                             pageCall(myPageAddress, moveContainer);
-                        }
-                    })
                     break;
                 case 'myPagePayment':
                     pageCall(myPagePayment, moveContainer);
@@ -158,7 +144,6 @@ function pageCall(link, callBox) {
                             loadScript('/dist/js/myPageModify.js');
                             break;
                         case '/mypage/changeaddr':
-                        case '/mypage/changeaddrsocial':
                             loadScript('/dist/js/changeaddr.js');
                             break;
                         case '/mypage/couponlist':
@@ -213,6 +198,7 @@ function removeAllScriptsExcept(dynamicSrc) {
     const srcToKeep = [
         "/dist/js/myPage.js",
         "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js",
+        "/dist/js/header.js",
         dynamicSrc // 동적으로 들어오는 src 값을 추가
     ];
 
@@ -222,6 +208,9 @@ function removeAllScriptsExcept(dynamicSrc) {
         for (let j = 0; j < srcToKeep.length; j++) { // script 태그를 달고있는 필수요소의 개수만큼
             if (scripts[i].src.includes(srcToKeep[j])) { // json 형식에 있는 js 링크들
                 keepScript = true;
+                if(srcToKeep[j]== '/dist/js/payinfo.js'){
+                    keepScript = false;
+                }
                 break;
             }
         }

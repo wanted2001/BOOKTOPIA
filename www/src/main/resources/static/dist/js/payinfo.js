@@ -7,7 +7,7 @@ callPayInfo(idVal).then(result => {
     ul.innerHTML = ""; // ul 내용 초기화
 
     if(result.length == 0){
-            ul.innerHTML = `<div class= noPayinfo>결제 내역이 없습니다.</div>`;
+            ul.innerHTML = `<div class ="noPayinfo">결제 내역이 없습니다.</div>`;
         }
    else{
     result.reverse();
