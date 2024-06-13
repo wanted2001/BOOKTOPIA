@@ -23,7 +23,7 @@ ul {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 1000px
+    height: 850px;
 }
 
 .wrap .logo {
@@ -269,7 +269,6 @@ label.required::after {
      line-height: 50px;
      text-align: 50px;
      background-color: white;
-     letter-spacing: 3px;
      border-radius: 17px;
      box-shadow: 0 0 13px lightskyblue;
  }
