@@ -10,9 +10,9 @@ import java.util.List;
 public interface ReCommentMapper {
     int postromment(RecommentVO rvo);
 
-    List<RecommentVO> getReCommetList(int cno);
+    List<RecommentVO> getReCommentList(long cno, PagingVO pgvo);
 
-    List<RecommentVO> getCommentList(int cno, PagingVO pgvo);
+    int deleteFromBoard(long bno);
 
-    int getSelectOneComment(int cno);
+    int deleteReComment(long cno);
 }

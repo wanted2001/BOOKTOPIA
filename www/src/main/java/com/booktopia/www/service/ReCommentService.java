@@ -9,5 +9,7 @@ import java.util.List;
 public interface ReCommentService {
     int postromment(RecommentVO rvo);
 
-    PagingHandler getCommentList(int cno, PagingVO pgvo);
+    int deleteCommentFromBoard(long bno);
+
+//    PagingHandler getReCommentList(int cno, PagingVO pgvo);
 }

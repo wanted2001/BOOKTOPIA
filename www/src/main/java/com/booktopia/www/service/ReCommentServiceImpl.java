@@ -4,6 +4,7 @@ import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.domain.RecommentVO;
 import com.booktopia.www.handler.PagingHandler;
+import com.booktopia.www.repository.CommentMapper;
 import com.booktopia.www.repository.ReCommentMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReCommentServiceImpl implements ReCommentService{
     private final ReCommentMapper reCommentMapper;
+    private final CommentMapper commentMapper;
 
     @Override
     public int postromment(RecommentVO rvo) {
@@ -23,11 +25,12 @@ public class ReCommentServiceImpl implements ReCommentService{
     }
 
     @Override
-    public PagingHandler getCommentList(int cno, PagingVO pgvo) {
-        List<RecommentVO> rclist = reCommentMapper.getCommentList(cno,pgvo);
-        //totalCount
-        int totalCount = reCommentMapper.getSelectOneComment(cno);
-        PagingHandler ph = new PagingHandler(pgvo, totalCount, null, rclist);
-        return ph;
+    public int deleteCommentFromBoard(long bno) {
+        int isOk = reCommentMapper.deleteFromBoard(bno);
+        if(isOk>0) {
+            commentMapper.deleteCommentFromBoard(bno);
+        }
+        return isOk;
     }
+
 }

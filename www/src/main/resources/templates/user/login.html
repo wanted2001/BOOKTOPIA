@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/dist/css/login.css}">
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css}">
+
 <script type="text/javascript" th:src="@{/dist/js/login.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="wrap" style="background-image: url(../image/loginmain.jpg">
+        <div class="wrap" style="background-image: url(../image/loginmain.jpg)">
             <div class="loginWrapPage">
                 <div class="loginAllPage">
                     <form action="/user/login" method="post">
                         <input type="text" name="id"placeholder="아이디를 입력해주세요." id="loginId"><br>
-                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd"><br>
+                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." id="loginPwd">
+                        <i class="fa fa-eye fa-lg" id="eye"></i>
+                        <br>
                         <div class="loginLoginBtn">
                             <button type="submit">로그인</button>
                         </div>

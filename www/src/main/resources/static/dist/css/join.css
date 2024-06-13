@@ -20,6 +20,10 @@ ul {
 
 .wrap {
   margin: auto;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 850px;
 }
 
 .wrap .logo {
@@ -265,13 +269,11 @@ label.required::after {
      line-height: 50px;
      text-align: 50px;
      background-color: white;
-     letter-spacing: 3px;
      border-radius: 17px;
      box-shadow: 0 0 13px lightskyblue;
  }
- .joinJoinBtn:hover{
-     background-color: red;
-     color: white;
+.joinJoinBtn>button:hover{
+    box-shadow: 0 0 13px #fa87cc;
  }
 
  .joinduplicationBtn{
@@ -280,7 +282,7 @@ label.required::after {
 
 .joinTitleText{
     width: 300px;
-    height: 50px;
+    height: 25px;
 }
 
 .joinTitleText h1{

@@ -1,13 +1,16 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.BoardVO;
+import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.DTO.BoardDTO;
 import com.booktopia.www.domain.FileVO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.service.BoardService;
+import com.booktopia.www.service.CommentService;
 import com.booktopia.www.service.FileService;
+import com.booktopia.www.service.ReCommentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +32,7 @@ import java.util.List;
 @RequestMapping("/board/*")
 public class BoardController {
     private final BoardService bsv;
-    private final FileService fsv;
+    private final ReCommentService rcsv;
 
     @GetMapping("/register")
     public void register() {}
@@ -110,6 +113,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("bno") long bno){
         bsv.delete(bno);
+        rcsv.deleteCommentFromBoard(bno);
         return "redirect:/community/communityListAll";
     }
 

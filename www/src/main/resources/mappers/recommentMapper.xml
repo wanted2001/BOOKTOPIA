@@ -8,13 +8,15 @@
         values (#{cno},#{bno},#{rcWriter},#{rcContent})
     </insert>
 
-    <select id="getReCommetList" resultType="com.booktopia.www.domain.RecommentVO">
-        select * from recomment
-        where cno=#{cno}
+    <select id="getReCommentList" resultType="com.booktopia.www.domain.RecommentVO">
+        select * from recomment where cno=#{cno}
     </select>
 
-    <select id="getSelectOneComment" resultType="int">
-        select count(rc_cno) from recomment where cno=#{cno}
-    </select>
+    <delete id="deleteFromBoard">
+        delete from recomment where bno=#{bno}
+    </delete>
 
+    <delete id="deleteReComment">
+        delete from recomment where cno=#{cno}
+    </delete>
 </mapper>
