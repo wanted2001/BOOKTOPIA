@@ -1,4 +1,8 @@
 console.log("toastApi js in")
+const commDeUserId = document.querySelector('.commDeUserId').value;
+const commDeUserEmail = document.querySelector('.commDeUserEmail').value;
+console.log(commDeUserId);
+console.log(commDeUserEmail);
 
 let bMainImg='';
 
@@ -44,59 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
     ul.addEventListener("click", (e)=> {
         console.log(e)
         if (e.target.tagName === "LI") {
-            // console.log(e.target.dataset.value);
-            // console.log(e.target.getAttribute("data-value"));
-            // console.log(e.target);
         }
     });
-
-    const idElement = document.getElementById('commID');
-
-    const idVal = idElement.innerText;
-    console.log(idVal);
-
-    const socialId ="/board/socialId";
-    const userId = "/board/userId";
-
-    isSocialUser(idVal).then(result => {
-        console.log(result);
-        if (result != "일반") {
-            pageCall(socialId);
-        } else {
-            pageCall(userId);
-        }
-    });
-
-    function pageCall(link) {
-        const request = new XMLHttpRequest();
-        request.open("GET", link, true);
-        request.send();
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.status === 200) {
-                    const moveContainer = document.getElementById("deleteMemberType2");
-                    if (moveContainer) {
-                        moveContainer.innerHTML = request.responseText;
-                        console.log("성공");
-                    } else {
-                        console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
-                    }
-                } else {
-                    console.error("요청 실패, 상태 코드: " + request.status);
-                }
-            }
-        };
-    }
-
-    async function isSocialUser(id) {
-        try {
-            const resp = await fetch("/user/isSocialUser/" + id);
-            const result = await resp.text();
-            return result;
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const cateBtn = document.querySelector('.cateBtn');
     const commul = document.getElementById('commSelID');
@@ -141,24 +94,30 @@ async function handleEditor(event) {
             bCate="development"
         }
 
-        const commSaveId = document.querySelector('.commSaveId').innerText;
-
         let postData = {};
 
         function updatePostData() {
             const bContent = editor.getMarkdown();
             const bTitle = document.getElementById('commTitleID').value
-            const bWriter = document.querySelector('.IDspan').innerHTML;
-
-            postData = {
-                id: commSaveId,
-                bTitle: bTitle,
-                bWriter: bWriter,
-                bContent: bContent,
-                bCate: bCate,
-                bMainImg: bMainImg
-            };
-
+            if(commDeUserEmail==null || commDeUserEmail=='') {
+                postData = {
+                    id: commDeUserId,
+                    bTitle: bTitle,
+                    bWriter: commDeUserId,
+                    bContent: bContent,
+                    bCate: bCate,
+                    bMainImg: bMainImg
+                };
+            } else if(commDeUserEmail!==null || commDeUserEmail!==''){
+                postData={
+                    id: commDeUserId,
+                    bTitle: bTitle,
+                    bWriter: commDeUserEmail,
+                    bContent: bContent,
+                    bCate: bCate,
+                    bMainImg: bMainImg
+                }
+            }
             console.log(postData);
         }
 

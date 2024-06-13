@@ -19,4 +19,8 @@
     <delete id="deleteReComment">
         delete from recomment where cno=#{cno}
     </delete>
+
+    <select id="rcCount" resultType="int">
+        select count(rc_cno) from recomment where cno=#{cno}
+    </select>
 </mapper>

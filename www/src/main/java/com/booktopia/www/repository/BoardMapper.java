@@ -27,7 +27,7 @@ public interface BoardMapper {
 
     void updateCommentCnt(@Param("bno") long bno,@Param("cnt") int cnt);
 
-    void deleteCommentCnt(Long bvo);
+    void deleteCommentCnt(long bno);
 
     List<BoardVO> getCateList(PagingVO pgvo);
 
@@ -39,5 +39,5 @@ public interface BoardMapper {
 
     List<BoardVO> getboarList();
 
-    int boardDel(long bno);
+    void deleteAllCommentCnt(@Param("bno")Long bvo, @Param("rccnt")int rcCount);
 }

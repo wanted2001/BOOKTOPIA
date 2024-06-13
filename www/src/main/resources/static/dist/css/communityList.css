@@ -16,6 +16,12 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family: cafe;
+    src: url(../font/Cafe24Ssurround-v2.0.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 /*
 메인컬러
 네이비 #005c87
@@ -25,19 +31,6 @@
 .wrap{
     /*background-color: rgba(255, 209, 209, 0.13);*/
     font-family: SCDream3;
-}
-/*.commLeftSection{*/
-/*    float: left;*/
-/*    width: 180px;*/
-/*    height: 400px;*/
-/*    background-color: navy;*/
-/*    margin-top: 80px;*/
-/*    display: flex;*/
-/*}*/
-.commLeft{
-    position: sticky;
-    height: 400px;
-    top: 50px;
 }
 .commSearchArea{
     width: 350px;
@@ -72,7 +65,7 @@
     background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 122.5px;
-    right: 575px;
+    right: 475px;
 }
 .commListAll{
     margin: 30px 0 0 1130px;
@@ -87,6 +80,7 @@
     font-size: 20px;
     line-height: 50px;
     border: 1px solid crimson;
+    border-radius: 3px;
 }
 .NoticeBlock{
     font-family: SCDream4;
@@ -100,23 +94,37 @@
     display: flex;
     justify-content: space-around;
     text-align: center;
-    line-height: 34.5px;
+    line-height: 30px;
 }
 .commCateChoice{
-    background-color: rgba(1, 103, 152, 0.8);
+    /*background-color: rgba(1, 103, 152, 0.8);*/
     /*width: 100px;*/
     padding: 0 20px;
-    border-radius: 20px;
+    border: 1px solid #cacaca;
+    border-radius: 18px;
+}
+.commCateChoice:hover{
+    background-color: #fda4a3;
+    border: none;
+    color: white;
+    /*fda4a3*/
 }
 .commCateChoice span{
-    color: white;
+    font-family: cafe;
+    font-size: 14px;
+}
+
+.commLine2 img{
+    margin-top: 12px;
+    margin-left: 216px;
+    width: 970px
 }
 .commRegBtn{
     font-family: SCDream3;
     font-size: 14px;
     width: 65px;
     float: right;
-    margin: 20px 193px 0 0;
+    margin: 18px 193px 0 0;
 }
 .commRegBtn img{
     width: 15px;
@@ -137,7 +145,7 @@
 }
 .commListArea:nth-of-type(1),.commNon{
     /*background-color: pink;*/
-    margin-top: 60px;
+    margin-top: 41px;
 }
 .commNon{
     border-bottom: 1px solid #b1b1b1;
@@ -194,13 +202,13 @@
 }
 .commCntInfo{
     /*background-color: mintcream;*/
-    width: 220px;
+    width: 230px;
     height: 40px;
     display: flex;
     justify-content: space-between;
 }
 .commCnt{
-    width: 65px;
+    width: 70px;
     height: 30px;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 20px;

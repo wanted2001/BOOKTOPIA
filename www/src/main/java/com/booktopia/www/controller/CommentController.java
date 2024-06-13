@@ -84,10 +84,11 @@ public class CommentController {
         // 댓글 수 삭제 먼저
         Long bvo = comsv.getCommentBno(cno);
         log.info("delete bvo>>>>{}",bvo);
-        bsv.deleteCommentCnt(bvo);
+        bsv.deleteCommentCnt(bvo, cno);
 
         //댓글 삭제
         int isOk = comsv.deleteComment(cno);
+        log.info("delete comment isOk>>>>>{}",isOk);
         return isOk>0 ? "1":"0";
     }
 

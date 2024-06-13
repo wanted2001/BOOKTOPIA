@@ -11,7 +11,8 @@
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
             <div class="commDeArea">
-            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserId">
+            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
+            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
             <!--작성자, 등록일 하나로-->
             <div class="commDeCate" th:switch="${bvo.bCate}">
                 <span th:case="novel" th:text="'소설'"></span>
@@ -30,7 +31,7 @@
             </div>
 
             <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
-                <img th:src="@{|/upload/${bvo.bMainImg}|}">
+                <img th:src="@{|/upload/${bvo.bMainImg}|}" class="commDeImg">
                 <div class="commDeContent">
                     [[${bvo.bContent}]]
                 </div>
@@ -66,14 +67,13 @@
                 <div class="comm-CommInputArea">
                     <input id="cmtWriter" th:value="${auth.getId()}" type="hidden">
                     <div class="comm-CommInput">
-                        <input type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요">
+                        <textarea type="text" id="cmtContent" name="comm-Comment" class="comm-Comment" placeholder="댓글을 입력해주세요"></textarea>
                         <button type="button" id="cmtAddBtn" class="comm-CommRegBtn">등록</button>
                     </div>
                 </div>
             </div>
         </div>
         <script th:inline="javascript">
-            const cmtWriter = '[[${bvo.bWriter}]]';
             const bnoVal = '[[${bvo.bno}]]';
         </script>
         <script th:src="@{/dist/js/boardComment.js}"></script>

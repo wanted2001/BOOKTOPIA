@@ -22,7 +22,7 @@ public interface BoardService {
 
     void updateCommentCnt(long bno);
 
-    void deleteCommentCnt(Long bvo);
+    void deleteCommentCnt(Long bvo, long cno);
 
     List<BoardVO> getCateList(PagingVO pgvo);
 

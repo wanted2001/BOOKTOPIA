@@ -66,6 +66,10 @@
         update board set b_cmt_cnt=b_cmt_cnt-1 where bno=#{bno}
     </update>
 
+    <update id="deleteAllCommentCnt">
+        update board set b_cmt_cnt=b_cmt_cnt - (#{rccnt}+1) where bno=#{bno}
+    </update>
+
     <select id="getCateCount" resultType="int">
         select count(b_cate) from board where b_is_del='N'
     </select>

@@ -81,13 +81,6 @@ public class BoardController {
         m.addAttribute("bvo",bvo);
     }
 
-//    @GetMapping("/modify")
-//    public void modifyBoard(Model m, @RequestParam("bno")long bno){
-//        BoardVO bvo = bsv.getDetail(bno);
-//        log.info("modifyBoard bvo >>>>{}",bvo);
-//        m.addAttribute("bvo",bvo);
-//    }
-
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {
         log.info("modify bvo>>>>>>{}",bvo);
@@ -116,14 +109,5 @@ public class BoardController {
         rcsv.deleteCommentFromBoard(bno);
         return "redirect:/community/communityListAll";
     }
-
-
-    @GetMapping("/socialId")
-    public void socialId(){}
-
-    @GetMapping("/userId")
-    public void userId(){}
-
-
 
 }
