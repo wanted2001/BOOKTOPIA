@@ -75,7 +75,7 @@
     width: 1000px;
     /*height: 800px;*/
     margin: 0 auto;
-    padding: 180px 0;
+    padding: 90px 0;
     position: relative;
 }
 .commDeImgArea{
@@ -83,8 +83,8 @@
     width: 1000px;
     margin: 0 auto;
 }
-.commDeImgArea, .commDeContent{
-
+.commDeImg{
+    padding: 41px 0 40px 0;
 }
 /*수정 삭제 버튼*/
 .commBtnArea{
@@ -98,49 +98,89 @@
     width: 65px;
     height: 100%;
     cursor: pointer;
+    border: 1px solid #7a7a7a;
+    border-radius: 3px;
+    background-color: white;
+}
+.commModBtn:hover{
+    background-color: #b4b4b4;
+    border: none;
+}
+.commDelBtn:hover{
+    background-color: #ff1d1d;
+    border: none;
 }
 .commDelBtn{
     margin-left: 10px;
 }
 
+/*좋아요*/
+.commHeartArea{
+    width: 50px;
+    margin: 130px 0 30px 434px;
+    text-align: center;
+    height: 50px;
+    border: 1px solid;
+    padding: 15px;
+    border-radius: 50px;
+}
+.whiteHeart{
+    width: 105px;
+    height: 105px;
+    margin-top: -23px;
+    margin-left: -30px;
+}
+.hrtBtn{
+    background-color: #ffffff00;
+    cursor: pointer;
+    outline: none;
+}
+.redHeart{
+    width: 51px;
+    margin-top: 2px;
+}
+
 /*댓글*/
+.commImg, .commImg2{
+    width: 30px;
+}
+.commImg img,.commImg2 img{
+    width: 30px;
+    height: 30px;
+}
 .commDeCommentArea{
     margin-top: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #d3d3d3;
     padding-bottom: 15px;
+}
+.commDeContent{
+    margin-bottom: 50px;
 }
 .commDeNon{
     margin-top: 20px;
     height: 50px;
 }
 .comm-commArea{
-    background-color: rgba(243, 243, 243, 0.78);
+    background-color: rgba(241, 241, 241, 0.5);
     width: 940px;
-    margin: 20px auto 0;
+    margin: 20px auto 50px;
     padding: 30px;
 }
 .commDeComment{
     /*background-color: mediumvioletred;*/
     margin: 0 auto;
 }
-.commDe-ComInfo{
-    /*background-color: goldenrod;*/
-    display: flex;
-    margin: 0 auto;
-}
-.commDe-Writer, .commDe-RegDate{
+.commComInfo{
     /*background-color: lightcoral;*/
+    margin:-28px 0 0 35px;
+}
+.commComInfo span:nth-of-type(2),.commDeReInfo span:nth-of-type(2) {
+    font-size: 11px;
 }
 .commDe-Content{
-    /*background-color: lightcyan;*/
-    margin: 0 auto;
-}
-.commDe-ReComment{
-    /*background-color: lightcoral;*/
-    float: right;
-    /*width: 100px;*/
-    /*height: 40px;*/
-    /*margin: -300px 200px 0 0 ;*/
+    margin-top: 10px;
+    width: 800px;
+    line-height: 22px;
 }
 .comm-CommInputArea{
     background-color: white;
@@ -151,20 +191,98 @@
 .comm-CommInput{
     /*background-color: darkgray;*/
     width: 940px;
-    height: 180px;
+    height: 195px;
     /*margin-left: -20px;*/
 }
-.comm-Comment{
+.comm-Comment, #recommContent,#cmtModContent{
+    font-family: SCDream4;
     border: none;
-    width: 880px;
-    height: 100px;
-    padding-left: 20px;
+    resize: none;
     outline: none;
+}
+.comm-Comment{
+    width: 889px;
+    height: 100px;
+    padding-left: 21px;
+    margin-top: 18px;
+    font-size: 15px;
 }
 .comm-CommRegBtn{
     border: none;
+    border-radius: 5px;
     margin-top: 15px;
     margin-left: 850px;
     width: 68px;
     height: 40px;
+}
+.commDe-Writer, .commDe-Writer span{
+    font-size: 15px;
+}
+.cmtBtn{
+    width: 100px;
+    font-size: 13.5px;
+    margin: 5px 0 0 28px;
+}
+#cmtModContent{
+    width: 805px;
+    height: 50px;
+    margin-left: 5px;
+}
+#comDelBtn, #cmtModBtn{
+    border: 1px solid #919191;
+    padding: 5px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#commModBtn{
+    margin: 2px 0 0 741px;
+    padding: 5px;
+    width: 73px;
+    border: 1px solid #919191;
+    border-radius: 2.5px;
+    cursor: pointer;
+}
+
+/*대댓*/
+.commDeReCommentArea{
+    margin: 13px 0 0 30px;
+}
+.commDe-ReComment{
+    float: right;
+    border: 1px solid #919191;
+    border-radius:2.5px;
+    padding: 5px;
+}
+.commDeReInfo{
+    margin: -28px 0 0 35px;
+}
+/*대댓글 달기*/
+.commDe-ReComment{
+    font-size: 13px;
+    background-color: rgba(241, 241, 241, 0.5);
+}
+#recommendBtn{
+    cursor: pointer;
+    background-color: rgba(145, 145, 145, 0);
+}
+.commDe-ReComment:hover{
+    background-color: #fdeded;
+}
+#recommContent{
+    font-size: 14px;
+    margin: 5px 0 0 35px;
+    padding: 10px;
+    width: 770px;
+    height: 50px;
+}
+/*대댓글 등록버튼*/
+button#recommBtn {
+    float: right;
+    margin-top: 49px;
+    margin-right: 46px;
+    border: 1px solid #919191;
+    border-radius: 2.5px;
+    padding: 5px;
+    font-size: 13px;
+    cursor: pointer;
 }

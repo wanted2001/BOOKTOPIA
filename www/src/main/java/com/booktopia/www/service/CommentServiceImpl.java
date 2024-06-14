@@ -59,8 +59,9 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public int deleteComment(long cno) {
         int isOk = reCommentMapper.deleteReComment(cno);
-        if(isOk>0){
-                commentMapper.deleteComment(cno);
+        if(isOk>=0){
+            commentMapper.deleteComment(cno);
+            isOk=1;
         }
         return isOk;
     }

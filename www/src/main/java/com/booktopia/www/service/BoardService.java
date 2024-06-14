@@ -22,7 +22,7 @@ public interface BoardService {
 
     void updateCommentCnt(long bno);
 
-    void deleteCommentCnt(Long bvo);
+    void deleteCommentCnt(Long bvo, long cno);
 
     List<BoardVO> getCateList(PagingVO pgvo);
 
@@ -31,4 +31,8 @@ public interface BoardService {
     int getCateCount();
 
     int getCategoryCount(String bCate);
+
+    void updateHeartCount(long bno);
+
+    int getHeartCnt(long bno);
 }

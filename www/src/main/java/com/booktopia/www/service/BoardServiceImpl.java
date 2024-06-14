@@ -3,6 +3,7 @@ package com.booktopia.www.service;
 import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.repository.BoardMapper;
+import com.booktopia.www.repository.ReCommentMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardMapper boardMapper;
+    private final ReCommentMapper reCommentMapper;
 
     @Override
     public int insert(BoardVO boardVO) {
@@ -60,8 +62,15 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void deleteCommentCnt(Long bvo) {
-        boardMapper.deleteCommentCnt(bvo);
+    public void deleteCommentCnt(Long bvo, long cno) {
+        int rcCount = reCommentMapper.rcCount(cno);
+        log.info("rccount>>>>>{}",rcCount);
+        if(rcCount>0){
+            log.info("대댓글 있음{}",rcCount);
+            boardMapper.deleteAllCommentCnt(bvo, rcCount);
+        } else if(rcCount==0) {
+            boardMapper.deleteCommentCnt(bvo);
+        }
     }
 
     @Override
@@ -70,9 +79,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int getCateTotalCount(PagingVO pgvo) {
-        return boardMapper.getCateTotalCount(pgvo);
-    }
+    public int getCateTotalCount(PagingVO pgvo) { return boardMapper.getCateTotalCount(pgvo); }
 
     @Override
     public int getCateCount() {
@@ -82,5 +89,15 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public int getCategoryCount(String bCate) {
         return boardMapper.getCategoryCount(bCate);
+    }
+
+    @Override
+    public void updateHeartCount(long bno) {
+        boardMapper.updateHeartCount(bno);
+    }
+
+    @Override
+    public int getHeartCnt(long bno) {
+        return boardMapper.getHeartCnt(bno);
     }
 }

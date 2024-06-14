@@ -1,4 +1,8 @@
 console.log("toastApiModify js in")
+const commDeUserId = document.querySelector('.commDeUserId').value;
+const commDeUserEmail = document.querySelector('.commDeUserEmail').value;
+console.log(commDeUserId);
+console.log(commDeUserEmail);
 
 let bMainImg='';
 
@@ -10,6 +14,7 @@ const editor = new toastui.Editor({
     toolbarItems:[
         ['heading','bold','italic','strike'],
         ['hr','quote'],
+        ['ul', 'ol'],
         ['image']
     ],
     hooks:{
@@ -43,59 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
     ul.addEventListener("click", (e)=> {
         console.log(e)
         if (e.target.tagName === "LI") {
-            // console.log(e.target.dataset.value);
-            // console.log(e.target.getAttribute("data-value"));
-            // console.log(e.target);
         }
     });
 
-    const idElement = document.getElementById('commModiID2');
-
-    const idVal = idElement.innerText;
-    console.log(idVal);
-
-    const socialId ="/board/socialId";
-    const userId = "/board/userId";
-
-    isSocialUser(idVal).then(result => {
-        console.log(result);
-        if (result != "일반") {
-            pageCall(socialId);
-        } else {
-            pageCall(userId);
-        }
-    });
-
-    function pageCall(link) {
-        const request = new XMLHttpRequest();
-        request.open("GET", link, true);
-        request.send();
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.status === 200) {
-                    const moveContainer = document.getElementById("deleteMemberType3");
-                    if (moveContainer) {
-                        moveContainer.innerHTML = request.responseText;
-                        console.log("성공");
-                    } else {
-                        console.error("요소 'myPageInfoRigthWrap'을 찾을 수 없습니다.");
-                    }
-                } else {
-                    console.error("요청 실패, 상태 코드: " + request.status);
-                }
-            }
-        };
-    }
-
-    async function isSocialUser(id) {
-        try {
-            const resp = await fetch("/user/isSocialUser/" + id);
-            const result = await resp.text();
-            return result;
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const cateBtn = document.querySelector('.cateBtn');
     const commul = document.getElementById('commSelID2');
@@ -125,7 +80,20 @@ async function handleEditor(event) {
     try {
         const selectedText = document.getElementById('selectedText2');
         let bCate = selectedText.innerText;
-        const commSaveId = document.querySelector('.commSaveId').innerText;
+        if(bCate==="소설"){
+            bCate ='novel';
+        } else if(bCate==="시/에세이"){
+            bCate="poem"
+        } else if(bCate==="경제/경영") {
+            bCate="finance"
+        } else if(bCate==="인문"){
+            bCate="human"
+        } else if(bCate==="역사/문화"){
+            bCate="history"
+        } else if(bCate==="자기개발"){
+            bCate="development"
+        }
+
         const bno = document.querySelector('.commModBno').value;
         console.log(bno);
         let postData = {};
@@ -133,17 +101,28 @@ async function handleEditor(event) {
         function updatePostData() {
             const bContent = editor.getMarkdown();
             const bTitle = document.getElementById('commTitleID2').value
-            const bWriter = document.querySelector('.IDspan').innerHTML;
 
-            postData = {
-                bno:bno,
-                id: commSaveId,
-                bTitle: bTitle,
-                bWriter: bWriter,
-                bContent: bContent,
-                bCate: bCate,
-                bMainImg: bMainImg
-            };
+            if(commDeUserEmail==null || commDeUserEmail=='') {
+                postData = {
+                    bno:bno,
+                    id: commDeUserId,
+                    bTitle: bTitle,
+                    bWriter: commDeUserId,
+                    bContent: bContent,
+                    bCate: bCate,
+                    bMainImg: bMainImg
+                };
+            } else if(commDeUserEmail!==null || commDeUserEmail!==''){
+                postData={
+                    bno:bno,
+                    id: commDeUserId,
+                    bTitle: bTitle,
+                    bWriter: commDeUserEmail,
+                    bContent: bContent,
+                    bCate: bCate,
+                    bMainImg: bMainImg
+                }
+            }
 
             console.log(postData);
         }
@@ -166,6 +145,7 @@ async function handleEditor(event) {
             updatePostData();
             try{
                 await submitPostData(postData);
+                alert("게시물이 수정되었습니다.");
                 window.location.href = "/board/detail?bno="+bno;
             } catch (error) {
                 console.log("isValid error : ", error);

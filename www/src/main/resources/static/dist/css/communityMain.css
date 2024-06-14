@@ -4,152 +4,227 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family: SCDream5;
+    src: url(../font/S-Core_Dream_OTF/SCDream5.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream6;
+    src: url(../font/S-Core_Dream_OTF/SCDream6.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: jalnan;
+    src: url(../font/Jalnan2.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: cafe;
+    src: url(../font/Cafe24Ssurround-v2.0.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 .wrap {
     font-family: SCDream3;
-    background-color: antiquewhite;
 }
 .commVote{
     width: 1000px;
-    height: 380px;
-    margin: 20px auto;
-    background-color: lightpink;
+    height: 310px;
+    margin: 50px auto 0;
+    /*background-color: lightpink;*/
     display: block;
  }
+.commVoteTitle{
+    font-family: jalnan;
+    font-size: 33px;
+    height: 30px;
+    text-align: center;
+}
 .commMonth{
     width: 800px;
-    background-color: olivedrab;
-    height: 40px;
+    /*background-color: olivedrab;*/
+    height: 20px;
     padding-top: 20px;
     margin: 0 auto;
+    text-align: center;
+}
+.commMonth p{
+    font-size: 20px;
+    font-family: SCDream5;
 }
 .commChoice{
     width: 800px;
-    background-color: cadetblue;
-    height: 50px;
-    margin: 0 auto;
+    /*background-color: cadetblue;*/
+    height: 20px;
+    margin: 10px auto;
+    text-align: center;
 }
 .commTopic{
-    width: 100%;
-    background-color: darkseagreen;
-    height: 110px;
-    margin: 30px auto 0;
+    width: 700px;
+    /*background-color: darkseagreen;*/
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25px;
+    font-family: cafe;
+    border:1px solid black;
+    border-radius: 4px;
+    line-height: 50px;
 }
 .commViewVote{
-    width: 100%;
-    background: chocolate;
+    /*background: chocolate;*/
     height: 100px;
-    margin: 0 auto;
+    margin: 10px 0 0 6px;
     display: flex;
     justify-content: center;
     clear: both;
 }
-.commVoteUp, .commVoteDown{
-    height: 100px;
-    width: 120px;
-    background-color: cornflowerblue;
-
-}
-.upBtn, .downBtn{
+.voteBtn{
     border: none;
+    height: 50px;
+    width: 50px;
     background-color: rgba(100,149,237,0);
     cursor: pointer;
 }
-.commVoteUp img{
-    width: 70px;
-    height: 70px;
-    margin: 10px 0 0 20px;
+.voteBtn img{
+    width: 50px;
+    height: 50px;
 }
 .commVoteDown img{
-    width: 70px;
-    height: 70px;
     transform: rotate(180deg);
-    margin-top: 10px;
+    margin: 12px 0 0 7px;
 }
-.commVoteUp{
-    height: 100px;
-    width: 100px;
-    background-color: cornflowerblue;
-
+.commVoteUp img{
+    margin: 11px 0 0 -10px;
 }
+.vote div{
+    width: 50px;
+}
+.commVoteUp div{
+    margin-top: 4px;
+}
+.commVoteDown div{
+    margin-top: 5px;
+    margin-left: 17px;
+}
+.voteText{
+    margin-top: -20px;
+    margin-left: 110px;
+    height: 10px;
+}
+.voteText span{
+    margin-left: 735px;
+}
+/*바닥(퍼센트)*/
 .commVoteBar{
-    height: 100px;
-    width: 1050px;
-    background-color: lightcyan;
+    height: 20px;
+    width: 700px;
+    background-color: #0075ab;
     display: flex;
-    justify-content: space-between;
+    margin-top: 35px;
+    border-radius: 30px;
 }
+/*채워지는값*/
 .persent {
-    height: 100px;
-    width: 420px;
-    background-color: #384c12;
+    height: 20px;
+    width: 350px;
+    background-color: #fda4a3;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
 }
-.commVoteDown{
-    height: 100px;
-    width: 100px;
-    background-color: cornflowerblue;
+
+.commLine img{
+    margin-top: -22px;
+    margin-left: 204px;
+    width: 970px
 }
+
+/*보드*/
 .commBoard{
-    background-color: yellowgreen;
+    /*background-color: yellowgreen;*/
     width: 1000px;
     height: 380px;
-    margin: 0 auto;
+    margin: 75px auto;
 }
 .commBoardArea{
     display: flex;
     clear: both;
 }
+.commBoardTitle{
+    font-family: jalnan;
+    font-size: 33px;
+    height: 30px;
+}
 .commBoardtext{
-    background-color: crimson;
-    width: 550px;
+    /*background-color: crimson;*/
+    width: 643px;
     height: 330px;
-    margin-top: 30px;
+    margin-left: -218px;
+    line-height: 35px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.commNotice{
+    font-size: 16px;
+    color: #919191;
+    width: 145px;
+}
+.commNotice:hover{
+    color: black;
+    font-weight: bold;
 }
 .commBoardAll{
     float: right;
     width: 130px;
     position: absolute;
-    right: 420px;
-    top: 512px;
+    right: 410px;
+    top: 605px;
 }
 .commBoardAll{
     font-family: SCDream3;
     font-size: 13px;
 }
 .CommBoardCate{
-    background-color: gold;
-    width: 850px;
-    height: 330px;
-    margin-top: 30px;
+    /*background-color: gold;*/
+    width: 740px;
+    margin-top: 50px;
+    font-size: 18px;
+    line-height: 5;
+}
+.commCatetext p:hover{
+    background-color: #ffffc8;
 }
 .commCategory-top{
-    background-color: mintcream;
+    /*background-color: mintcream;*/
     display: flex;
     justify-content: space-around;
     clear: both;
     width: 100%;
-    height: 165px;
+    height: 135px;
 }
 .commCategory-bottom{
-    background-color: lightpink;
+    /*background-color: lightpink;*/
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 165px;
-}
-.commCate{
-    background-color: mediumaquamarine;
-    width: 150px;
-    height: 165px;
-}
-.commCate img{
-    margin: 15px 0 0 24px;
-    width: 100px;
-    height: 100px;
+    height: 132px;
 }
 .commCatetext p{
     /*background-color: white;*/
-    font-family: SCDream3;
-    width: 80px;
+    width: 103px;
     margin: 0 auto;
     text-align: center;
+    border: 1px solid;
+    padding: 15px;
+    line-height: 69px;
+    height: 69px;
+    box-shadow: 3px 6px 8px 0px gainsboro;
+    font-family: cafe;
+    font-size: 19.5px;
+    border-radius: 82px;
+    /*background-color: #fffaad;*/
 }

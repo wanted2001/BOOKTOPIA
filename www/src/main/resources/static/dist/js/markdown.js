@@ -1,4 +1,4 @@
-console.log("List js in");
+// console.log("List js in");
 
 document.addEventListener("DOMContentLoaded", function() {
     const converter = new showdown.Converter();
@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.commDeContent').forEach(function(contentElement) {
         const markdownText = contentElement.textContent.trim();
         let htmlContent = converter.makeHtml(markdownText);
-        console.log(markdownText)
-        console.log(htmlContent);
+        // console.log(markdownText)
+        // console.log(htmlContent);
 
         function removeMarkdownSyntax(text) {
             // 제목 제거 (예: ### Title)
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         htmlContent = removeMarkdownSyntax(htmlContent);
         contentElement.innerHTML = htmlContent;
-        console.log(htmlContent);
+        // console.log(htmlContent);
 
     });
 

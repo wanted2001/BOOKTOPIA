@@ -182,7 +182,7 @@ display: flex;
 }
 
 #payInfoWrap{
-    background-color: #c6e7ad;
+    background-color: #ffec78;
     height: 143px;
     width: 420px;
     padding-left: 15px;
@@ -206,7 +206,7 @@ display: flex;
     height: 50px;
     line-height: 65px;
     font-size: 13px;
-    padding-left: 20px;
+    paddin-left: 20px;
 }
 
 
@@ -215,15 +215,14 @@ display: flex;
     height: 100px;
     width: 125px;
     margin-top: 5px;
-    padding-left 50px;
-    position: relative;
+    padding-left: 50px;
 }
 
 #payInfoTitle{
     margin-bottom : 10px;
     font-size: 22px;
     font-weight: 700;
-    color: #feffe3;
+    color: #005c87;
 }
 #payInfoapprovedAt{
     font-size: 16px;
@@ -239,12 +238,6 @@ display: flex;
 }
 #payInfoDelivery{
     font-size: 15px;
-    margin-top: 8px;
-    border-radius: 10px;
-    position: absolute;
-    right: -7px;
-    top: 30px;
-
 }
 
 #payInfoAmount,#payInfoDelivery{
@@ -329,25 +322,11 @@ display: flex;
     color : #FFB1B0;
 }
 
-.myPageSubMoveLink:hover{
-    cursor: pointer;
-}
+
 
 .pencil{
     width : 350px;
     height : 17px;
     background-size:contain;
     background-repeat: no-repeat;
-}
-
-.delmembertype:hover{
-    cursor: pointer;
-}
-
-.myPageLeftDownWrap4Status:hover{
-    cursor:pointer;
-}
-
-.myPageSubInfo:hove{
-    cursor:pointer;
 }

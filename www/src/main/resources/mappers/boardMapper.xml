@@ -66,6 +66,10 @@
         update board set b_cmt_cnt=b_cmt_cnt-1 where bno=#{bno}
     </update>
 
+    <update id="deleteAllCommentCnt">
+        update board set b_cmt_cnt=b_cmt_cnt - (#{rccnt}+1) where bno=#{bno}
+    </update>
+
     <select id="getCateCount" resultType="int">
         select count(b_cate) from board where b_is_del='N'
     </select>
@@ -81,6 +85,14 @@
     <delete id="deleteCommentFromBoard">
         delete from comment where bno=#{bno}
     </delete>
+
+    <update id="updateHeartCount">
+        update board set b_heart_cnt=b_heart_cnt+1 where bno=#{bno}
+    </update>
+
+    <select id="getHeartCnt" resultType="int">
+        select b_heart_cnt from board where bno=#{bno}
+    </select>
 
     <sql id="search">
         <if test="type!=null">
