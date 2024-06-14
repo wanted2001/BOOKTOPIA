@@ -73,9 +73,9 @@ display: flex;
 }
 
 .myPageSubInfo{
-    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
-    margin-top: 20px
+    left: 222px;
 }
 
 .myPageSubWrap{
@@ -85,6 +85,7 @@ display: flex;
 }
 
 .myPageSubMoveLink{
+    padding-top: 20px;
     text-align: center;
     text-decoration: underline;
 }
@@ -208,8 +209,6 @@ display: flex;
     font-size: 13px;
     paddin-left: 20px;
 }
-
-
 .payInfoRight{
     display: inline-block;
     height: 100px;
@@ -227,7 +226,6 @@ display: flex;
 #payInfoapprovedAt{
     font-size: 16px;
     margin-top: 25px;
-
 }
 
 #payInfoAmount{
@@ -244,6 +242,14 @@ display: flex;
     width: 100px;
     height: 30px;
 }
+/*.myPageRightWrapInfoText{*/
+/*    width: 500px;*/
+/*    height: 80px;*/
+/*    margin: 0 auto;*/
+/*    line-height: 10px;*/
+/*    font-size: 1.5em;*/
+/*    margin-left: 91px;*/
+/*}*/
 
 .myPageRightWrapInfoModWrap{
     width: 520px;
@@ -329,4 +335,22 @@ display: flex;
     height : 17px;
     background-size:contain;
     background-repeat: no-repeat;
+}
+
+.couponWrap{
+    width: 420px;
+    height: 165px;
+    border: 1px solid black;
+    background-color: rgba(0, 92, 135, 0.27);
+    padding: 30px 20px;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+.couponWrap > p{
+    margin-bottom: 8px;
+}
+
+.couponWrap > p:nth-of-type(2){
+    font-size: 30px;
+    font-weight: 700;
 }
