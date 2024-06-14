@@ -22,5 +22,5 @@ public class OrderInfoDTO {
     private String approvedAt;
     private String ordAddr;
 
-
+    private String  deliStatus;
 }

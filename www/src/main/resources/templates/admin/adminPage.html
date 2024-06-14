@@ -98,17 +98,17 @@
                             <th style="width: 180px">결제상품</th>
                             <th style="width: 180px">결제/승인날짜</th>
                             <th>상태</th>
-                            <th>배송처리</th>
+                            <th style="width: 100px">배송처리</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="deli:${delilist}">
                             <td>[[${deli.deliNo}]]</td>
-                            <td>[[${deli.merchantUid}]]</td>
+                            <td class="deliUid">[[${deli.merchantUid}]]</td>
                             <td>[[${deli.itemName}]]</td>
                             <td>[[${deli.deliDate}]]</td>
                             <td>[[${deli.deliStatus}]]</td>
-                            <td><button type="button" id="adminapproval">결제승인</button></td>
+                            <td><button type="button" class="adminapproval">[[${deli.deliStatus}]]</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -11,4 +11,8 @@
     <select id="getList" resultType="com.booktopia.www.domain.DeliveryVO">
         select * from delivery
     </select>
+
+    <update id="updateStaus">
+        update delivery set deli_status = '결제승인/배송' where merchant_uid=${merchantUid}
+    </update>
 </mapper>

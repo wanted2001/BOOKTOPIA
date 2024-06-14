@@ -14,6 +14,8 @@ callPayInfo(idVal).then(result => {
     result.forEach(item => {
         // 새로운 리스트 아이템 생성
         const li = document.createElement("li");
+        console.log(item+">>>>>>>>")
+        console.log(item.innerHTML);
         // 각 필드 값을 리스트 아이템에 추가
         li.innerHTML = `
          <div id="payInfoWrap">
@@ -23,8 +25,7 @@ callPayInfo(idVal).then(result => {
                              <div id="payInfoapprovedAt">${item.approvedAt}</div>
                          </div>
                          <div class="payInfoRight">
-
-                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>
+                             <button type="button" id="payInfoDelivery" onclick="postStatus()"></button>
                          </div>
                      </div>`;
         // ul에 리스트 아이템 추가

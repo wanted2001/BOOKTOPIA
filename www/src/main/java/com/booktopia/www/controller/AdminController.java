@@ -115,4 +115,12 @@ public class AdminController {
         commentMapper.deleteCommentFromBoard(bno);
         return "1";
     }
+
+    @PostMapping("/deliUid")
+    @ResponseBody
+    public String delistatus(@RequestBody String deliUid) {
+        log.info("status: {}", deliUid);
+        deliMapeer.updateStaus(deliUid);
+        return "1";
+    }
 }

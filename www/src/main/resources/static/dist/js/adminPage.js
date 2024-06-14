@@ -4,24 +4,26 @@ document.addEventListener('click', (e) => {
     console.log(e.target);
     if (target.classList.contains('admin-btn')) {
         e.preventDefault();
-
         const btnId = target.id
         handleButtonClick(btnId);
-    } else if(e.target.id === 'adminapproval'){
+    } else if(e.target.classList.contains('adminapproval')){
         // 배송현황 > 결제승인 버튼을 클릭 했을 때...
-        // let status = document.getElementById('adminapproval').value;
-        // console.log(status);
-        // status = '결제승인/배송중';
-        // console.log(status);
-        // postStatus(status).then(result =>{
-        //     console.log(result);
-        // })
+        const tr = e.target.closest('tr');
+        let deliUid = tr.querySelector('.deliUid').innerText;
+        console.log(deliUid);
+        postStatus(deliUid).then(result =>{
+            console.log(result);
+            if (result == 1){
+                alert("배송처리 되었습니다.")
+            }
+        })
+
+
     } else if (e.target.classList.contains('boardDel')){
         // 게시글 삭제 버튼을 눌렀을 때...
         const tr = e.target.closest('tr');
         let bno = tr.querySelector(".adbbno").innerText;
         console.log(bno);
-
         boardDelToServer(bno).then(result =>{
             console.log(result);
             if(result == "1"){
@@ -35,17 +37,17 @@ document.addEventListener('click', (e) => {
         const tr = e.target.closest('tr');
         let bno = tr.querySelector(".adcbno").innerText;
         console.log(bno);
-                CommentDelToServer(bno).then(result =>{
-                    if(result === "1"){
-                        console.log(result);
-                        alert('댓글 삭제 되었습니다.');
-                        tr.parentNode.removeChild(tr);
+        CommentDelToServer(bno).then(result =>{
+            if(result === "1"){
+                console.log(result);
+                alert('댓글 삭제 되었습니다.');
+                tr.parentNode.removeChild(tr);
             }
         })
     }
 });
 
-// 관리자 페이지 내용 부분
+// 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
         console.log(btnId);
     const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
@@ -97,36 +99,22 @@ async function CommentDelToServer(bno){
 }
 
 // 배송현황 버튼 처리
-// function changeStatus(){
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('POST', '/changeStaatus');
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//     xhr.onload = function (){
-//         if(xhr.status === 200){
-//             console.log('상태변경 성공');
-//         } else {
-//             console.log('상태변경 실패');
-//         }
-//     };
-//     xhr.send(JSON.stringify({merchant_uid:merchant_uid}));
-// }
+async function postStatus (deliUid){
+    try {
+        const url = "/admin/deliUid";
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(deliUid)
+        };
 
-// async function postStatus (){
-//     try {
-//         const url = "/admin/postStatus";
-//         const config = {
-//             method : "POST",
-//             headers : {
-//                 "Content-type":"application/json; charset=UTF-8"
-//             },
-//             body : JSON.stringify()
-//         };
-//
-//         const resp = await fetch(url, config);
-//         const result = await resp.text();
-//         return result;
-//
-//     }catch (error){
-//         console.log(error);
-//     }
-// }
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+
+    }catch (error){
+        console.log(error);
+    }
+}

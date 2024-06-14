@@ -11,4 +11,6 @@ public interface DeliMapeer {
     void insertDeli(OrderInfoDTO oidto);
 
     List<DeliveryVO> getList();
+
+    void updateStaus(String deliUid);
 }

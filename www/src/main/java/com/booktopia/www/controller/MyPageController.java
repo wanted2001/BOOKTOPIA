@@ -1,16 +1,22 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.DeliveryVO;
+import com.booktopia.www.repository.DeliMapeer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/mypage/*")
 public class MyPageController {
+
+    private final DeliMapeer deliMapeer;
 
     @GetMapping("/modify")
     public void modify() {}
@@ -28,5 +34,11 @@ public class MyPageController {
     public void subinfo() {}
 
     @GetMapping("/payinfo")
-    public void payinfo() {}
+    public void payinfo(Model model) {
+        List<DeliveryVO> deliveryList = deliMapeer.getList();
+        log.info("dellist >>> {}", deliveryList);
+
+        model.addAttribute("deliveryList", deliveryList);
+    }
+
 }
