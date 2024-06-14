@@ -1,0 +1,88 @@
+.bookDe {
+    height: 2000px;
+}
+.bkimg {
+    float: left;
+    position: sticky;
+    top: 10px;
+}
+.bkimg img{
+    width: 480px;
+    margin: 66px 0 0 160px;
+}
+/*1*/
+.bkRight1 {
+    float: right;
+    margin: 69px 375px 0 0;
+}
+.bkCate1 {
+    font-size: 18px;
+    width: 125px;
+    height: 16px;
+    margin-left: 5px;
+}
+.bkTitle1{
+    font-size: 50px;
+    margin: 29px 0 32px;
+}
+.bkStory1 {
+    margin: 20px 0 20px 0;
+    font-size: 18px;
+}
+
+/*5*/
+.bkRight5 {
+    float: right;
+    margin: 69px 375px 0 0;
+}
+.bkCate5 {
+    font-size: 18px;
+    width: 125px;
+    height: 16px;
+    margin-left: 5px;
+}
+.bkTitle5{
+    font-size: 50px;
+    margin: 29px 0 32px;
+}
+.bkStory5 {
+    margin-left: 8px;
+}
+
+/*10*/
+.bkRight10 {
+    float: right;
+    margin: 69px 375px 0 0;
+}
+.bkCate10 {
+    font-size: 18px;
+    width: 125px;
+    height: 16px;
+    margin-left: 5px;
+}
+.bkTitle10{
+    font-size: 50px;
+    margin: 29px 0 32px;
+}
+.bkStory10 {
+    margin-left: 8px;
+}
+
+/*15*/
+.bkRight15 {
+    float: right;
+    margin: 69px 375px 0 0;
+}
+.bkCate15 {
+    font-size: 18px;
+    width: 125px;
+    height: 16px;
+    margin-left: 5px;
+}
+.bkTitle15{
+    font-size: 50px;
+    margin: 29px 0 32px;
+}
+.bkStory15 {
+    margin-left: 8px;
+}

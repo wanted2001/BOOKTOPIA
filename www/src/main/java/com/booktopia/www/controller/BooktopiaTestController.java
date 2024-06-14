@@ -34,6 +34,14 @@ public class BooktopiaTestController {
         return "/booktopiaTest/bookList";
     }
 
+    @GetMapping("/detail")
+    public void bookDetail(@RequestParam("book") int book, Model m, BookVO bookVO) {
+        List<BookVO> blist = bookTopiaService.getBookList(book);
+        log.info(">>> blist >> {}", blist);
+        log.info("book detail>>>>>>>>>{}", book);
+        m.addAttribute("blist", blist);
+    }
+
 }
 
 

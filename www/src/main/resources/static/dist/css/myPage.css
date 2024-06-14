@@ -72,13 +72,12 @@ display: flex;
     line-height: 100px;
 }
 
-.myPageSubInfo{
+.myPageSubInfo {
     margin-top: 20px;
     text-align: center;
     padding-bottom: 20px;
     left: 222px;
 }
-
 .myPageSubWrap{
     width: 400px;
     height: 100px;

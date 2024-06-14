@@ -10,4 +10,6 @@ public interface BookTopiaService {
     List<BookVO> getList(String btnResult);
 
     void insert(BooktopiaVO booktopiaVO);
+
+    List<BookVO> getBookList(int book);
 }

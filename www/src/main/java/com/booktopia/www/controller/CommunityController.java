@@ -25,7 +25,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityController {
 
-//    private final CommunityService csv;
     private final BoardService bsv;
     private final FileHandler fh;
     private final VoteService voteService;
