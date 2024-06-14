@@ -19,10 +19,6 @@ public interface UserMapper {
 
     UserVO selectId(String id);
 
-    UserVO findByEmail(String pwd);
-
-    int saveOauthUser(UserVO user);
-
     int checkId(String id);
 
     String isSocialUser(String id);
@@ -47,11 +43,13 @@ public interface UserMapper {
 
     List<UserVO> getList();
 
-    PayVO selectPayInfo(String id);
-
     void updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
 
     int modifyaddrandphone(UserVO uvo);
+
+    void updateAccessToken(UserVO uvo);
+
+    UserVO comusercheck(String id);
 }

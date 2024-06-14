@@ -59,6 +59,27 @@
                 }
             };
         </script>
+        <!— 비밀번호 보이게 하는 코드 —>
+        <script th:inline="javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                const eyeIcons = document.querySelectorAll('.loginAllPage i');
+
+        eyeIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+        const input = this.previousElementSibling;
+        input.classList.toggle('active');
+                    if (input.classList.contains('active')) {
+                    this.className = "fa fa-eye-slash fa-lg";
+                    input.type = "text";
+                    } else {
+                    this.className = "fa fa-eye fa-lg";
+                    input.type = "password";
+                    }
+                 });
+            });
+        });
+        </script>
+
 
     </th:block>
 </th:block>

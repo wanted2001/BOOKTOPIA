@@ -16,7 +16,7 @@ public class CustomUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String id)
             throws UsernameNotFoundException {
-        UserVO loginUvo = userMapper.selectId(id);
+        UserVO loginUvo = userMapper.comusercheck(id);
         log.info("loginUvo >> {}",loginUvo);
         loginUvo.setAuthList(userMapper.selectAuths(id));
 

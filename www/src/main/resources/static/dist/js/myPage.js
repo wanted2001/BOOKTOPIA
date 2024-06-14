@@ -116,17 +116,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById("comUserDelete").addEventListener("click",()=>{
-         deleteComUser(idVal).then(result =>{
-            if(result == 1){
-                alert("회원탈퇴 하셨습니다.");
-            }else if(result ==0){
-                alert("회원탈퇴 실패 ");
-            }
-        })
-
+    document.getElementById("comUserDelete").addEventListener("click", () => {
+        const isRealDelete = button_event();
+        console.log(isRealDelete);
+        if (isRealDelete) {
+            deleteComUser(idVal).then(result => {
+                if (result == 1) {
+                    logout();
+                    alert("회원탈퇴 하셨습니다.");
+                } else if (result == 0) {
+                    alert("회원탈퇴 실패 ");
+                }
+            });
+        }
     });
 });
+
+function button_event(){
+  return confirm("정말 탈퇴 하시겠습니까??") == true ? true : false;
+}
+
+function logout() {
+    // 로그아웃 요청을 서버로 보냄
+    fetch('/user/logout')
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/login'; // 로그아웃 후 로그인 페이지로 리디렉션
+        } else {
+            console.error('Failed to log out.');
+            alert('로그아웃에 실패했습니다.');
+        }
+    })
+    .catch(error => {
+        console.error('Logout error:', error);
+        alert('로그아웃 중 오류가 발생했습니다.');
+    });
+}
 
 // 페이지 호출 함수
 function pageCall(link, callBox) {
@@ -232,7 +257,7 @@ async function isSocialUser(id) {
 }
 
 async function deleteComUser(id){
-    const url = "/user/deleteMyPageUser"+id;
+    const url = "/user/deleteMyPageUser/"+id;
     const resp = await fetch(url);
     const result = await resp.text();
     return result;

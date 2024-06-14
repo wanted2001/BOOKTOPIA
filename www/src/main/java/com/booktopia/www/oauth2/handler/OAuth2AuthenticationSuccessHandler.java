@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             String refreshToken = tokenProvider.createRefreshToken();
 
             // TODO: 리프레시 토큰 DB 저장
-            log.info("id={}, name={},pwd={} accessToken{}",
+            log.info("id={}, name={},pwd={} accessToken={}",
                     principal.getUserVO().getId(),
                     principal.getUserVO().getName(),
                     principal.getUserVO().getPwd(),
@@ -96,15 +97,19 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             log.info("ut >> {}",ut);
             String accessToken = principal.getUserVO().getAccessToken();
             OAuth2Provider provider = OAuth2Provider.valueOf(ut.toUpperCase());
+            String id = principal.getUserVO().getId();
 
             log.info("pro > {} ",provider);
             log.info("access >> {}",accessToken);
 
             // TODO: DB 삭제
+            userMapper.deleteMyPageUser(id);
             // TODO: 리프레시 토큰 삭제
+
             oAuth2UserUnlinkManager.unlink(provider, accessToken);
 
             return UriComponentsBuilder.fromUriString(targetUrl)
+                    .path("/user/logout")
                     .queryParam("unlink", "success")
                     .build().toUriString();
         }
