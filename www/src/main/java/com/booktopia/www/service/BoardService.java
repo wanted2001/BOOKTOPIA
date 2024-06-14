@@ -31,4 +31,5 @@ public interface BoardService {
     int getCateCount();
 
     int getCategoryCount(String bCate);
+
 }

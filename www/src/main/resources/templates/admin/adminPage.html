@@ -48,10 +48,10 @@
                     <thead>
                         <tr>
                             <th style="width: 45px">No</th>
-                            <th style="width: 150px">ID</th>
-                            <th style="">BIRTH</th>
-                            <th>GENDER</th>
-                            <th>TEST_AT</th>
+                            <th style="width: 210px">ID</th>
+                            <th style="width: 165px">BIRTH</th>
+                            <th style="width: 100px;">GENDER</th>
+                            <th style="width: 200px;">TEST_AT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,9 +71,9 @@
                         <tr>
                             <th>주문번호</th>
                             <th>구독상품</th>
-                            <th>이름</th>
+                            <th style="width: 70px;">이름</th>
                             <th>전화번호</th>
-                            <th>배송지</th>
+                            <th style="width: 320px">배송지</th>
                             <th>결제비용</th>
                         </tr>
                     </thead>
@@ -81,9 +81,9 @@
                         <tr th:each="odtolist:${odtolist}">
                             <td>[[${odtolist.merchantUid}]]</td>
                             <td>[[${odtolist.itemName}]]</td>
-                            <td>[[${odtolist.ordName}]]</td>
+                            <td style="text-align: center">[[${odtolist.ordName}]]</td>
                             <td>[[${odtolist.ordPhone}]]</td>
-                            <td>[[${odtolist.ordAddr}]]</td>
+                            <td style="text-align: center">[[${odtolist.ordAddr}]]</td>
                             <td style="text-align: center">[[${odtolist.totalAmount}]]</td>
                         </tr>
                     </tbody>
@@ -117,10 +117,10 @@
                 <table class="commuBoard" style="display: none">
                     <thead>
                     <tr>
-                        <th style="width: 30px">No</th>
+                        <th style="width: 45px">No</th>
                         <th>Cate</th>
                         <th>Title</th>
-                        <th>Content</th>
+                        <th style="width: 230px;">Content</th>
                         <th>Writer</th>
                         <th>RegDate</th>
                         <th>관리</th>
@@ -149,27 +149,23 @@
                 <table class="commuComment" style="display: none">
                     <thead>
                         <tr>
-                            <th>게시글 번호</th>
-                            <th>작성자</th>
-                            <th>내용</th>
-                            <th>작성일</th>
-                            <th>관리</th>
+                            <th>게시글 No</th>
+                            <th style="width: 200px">작성자</th>
+                            <th style="width: 350px">내용</th>
+                            <th style="width: 180px">작성일</th>
+                            <th style="width: 80px">관리</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="commen:${commlist}">
-                            <td class="adcbno">[[${commen.bno}]]</td>
-                            <td>[[${commen.cWriter}]]</td>
-                            <td>[[${commen.cContent}]]</td>
-                            <td>[[${commen.cRegDate}]]</td>
+                            <td class="adcbno" style="text-align: center">[[${commen.bno}]]</td>
+                            <td style="text-align: center">[[${commen.cWriter}]]</td>
+                            <td style="padding-left: 20px">[[${commen.cContent}]]</td>
+                            <td style="text-align: center">[[${commen.cRegDate}]]</td>
                             <td><button type="button" class="commentDel">삭제</button></td>
                         </tr>
                     </tbody>
                 </table>
-
-                <!-- 쿠폰 -->
-
-                <!--공지관리-->
 
                 <!--페이지네이션 라인-->
 

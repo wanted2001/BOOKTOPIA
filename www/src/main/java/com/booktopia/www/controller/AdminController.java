@@ -5,6 +5,7 @@ import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.repository.*;
 import com.booktopia.www.service.BoardService;
 import com.booktopia.www.service.BoardServiceImpl;
+import com.booktopia.www.service.CommentService;
 import com.booktopia.www.service.ReCommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.Entity;
+import retrofit2.http.DELETE;
+import retrofit2.http.PATCH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ public class AdminController {
     private final CommentMapper commentMapper;
 
     private final BoardService boardService;
+    private final CommentService commentService;
     private final ReCommentService reCommentService;
 
     @GetMapping("/adminPage")
@@ -97,9 +101,18 @@ public class AdminController {
     @ResponseBody
     public String boardDel(@PathVariable("bno") long bno) {
         log.info("controller in >>>> ");
-        boardService.delete(bno);
-        reCommentService.deleteCommentFromBoard(bno);
-        return "1";
+        int isOk = boardMapper.bnoDel(bno);
+        commentMapper.deleteCommentFromBoard(bno);
+        return isOk > 0 ? "1" : "0";
+
     }
 
+    // 댓글 삭제 구문
+    @DeleteMapping ("/commentDel/{bno}")
+    @ResponseBody
+    public String commentDel (@PathVariable("bno") long bno){
+        log.info("comment controller in >>>> ");
+        commentMapper.deleteCommentFromBoard(bno);
+        return "1";
+    }
 }

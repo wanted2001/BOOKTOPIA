@@ -86,6 +86,9 @@
         delete from comment where bno=#{bno}
     </delete>
 
+    <update id="bnoDel">
+        update board set b_is_del='Y' where bno=#{bno}
+    </update>
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">

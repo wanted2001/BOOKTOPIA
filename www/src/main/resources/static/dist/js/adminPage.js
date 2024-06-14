@@ -19,33 +19,33 @@ document.addEventListener('click', (e) => {
     } else if (e.target.classList.contains('boardDel')){
         // 게시글 삭제 버튼을 눌렀을 때...
         const tr = e.target.closest('tr');
-        console.log(tr);
         let bno = tr.querySelector(".adbbno").innerText;
         console.log(bno);
 
         boardDelToServer(bno).then(result =>{
-            if(result == 1){
+            console.log(result);
+            if(result == "1"){
                 console.log(result);
                 alert('게시글 삭제 완료되었습니다.');
                 tr.parentNode.removeChild(tr);
             }
         })
     } else if(e.target.classList.contains('commentDel')){
+        // 댓글관리 페이지에서 삭제 버튼 눌렀을 때...
         const tr = e.target.closest('tr');
-        console.log(tr);
         let bno = tr.querySelector(".adcbno").innerText;
         console.log(bno);
-
-        CommentDelToServer(bno).then(result =>{
-            if(result == 1){
-                console.log(result);
-                alert('댓글 삭제 되었습니다.');
-                tr.parentNode.removeChild(tr);
+                CommentDelToServer(bno).then(result =>{
+                    if(result === "1"){
+                        console.log(result);
+                        alert('댓글 삭제 되었습니다.');
+                        tr.parentNode.removeChild(tr);
             }
         })
     }
 });
 
+// 관리자 페이지 내용 부분
 function handleButtonClick(btnId) {
         console.log(btnId);
     const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
@@ -61,6 +61,8 @@ function handleButtonClick(btnId) {
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
         button.style.backgroundColor = button.id === btnId ? '#ffb1b0' : '';
+        button.style.color = button.id === btnId ? '#ffffff' : '';
+        button.style.fontWeight = button.id === btnId ? '700' : '';
     });
 }
 
@@ -71,22 +73,6 @@ async function boardDelToServer(bno){
         const config = {
             method : 'delete',
         };
-
-        const resp = await fetch(url, config);
-        const result = await resp.text();
-        return result;
-    } catch (error){
-        console.log(error);
-    }
-}
-
-async function CommentDelToServer(bno){
-    try {
-        const url = "/admin/commentDel/"+bno;
-        const config = {
-            method : 'delete',
-        };
-
         const resp = await fetch(url, config);
         const result = await resp.text();
         return result;
@@ -96,9 +82,21 @@ async function CommentDelToServer(bno){
 }
 
 // 댓글 관리 > 삭제
+async function CommentDelToServer(bno){
+    try {
+        const url = "/admin/commentDel/"+bno;
+        const config = {
+            method : 'delete',
+        };
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+    } catch (error){
+        console.log(error);
+    }
+}
 
 // 배송현황 버튼 처리
-
 // function changeStatus(){
 //     const xhr = new XMLHttpRequest();
 //     xhr.open('POST', '/changeStaatus');
