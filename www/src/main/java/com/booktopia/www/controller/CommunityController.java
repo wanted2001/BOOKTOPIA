@@ -25,19 +25,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityController {
 
-    private final CommunityService csv;
     private final BoardService bsv;
     private final FileHandler fh;
     private final VoteService voteService;
     private final SystemInfoMapper systemInfoMapper;
 
     @GetMapping("/communityMain")
-    public String commMain(Model model){
-        int Score = systemInfoMapper.getScore();
-        log.info(">>> getScore >>> {}",Score);
+    public void commMain(Model model){
 
-        model.addAttribute("score",Score);
-        return "/community/communityMain";
     }
 
     // 커뮤니티 찬반투표

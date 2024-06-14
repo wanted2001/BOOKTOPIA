@@ -1,6 +1,7 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.HeartVO;
+import com.booktopia.www.repository.BoardMapper;
 import com.booktopia.www.repository.HeartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class HeartServiceImpl implements HeartService{
 
     private final HeartMapper heartMapper;
+    private final BoardMapper boardMapper;
 
     @Override
     public HeartVO getUser(String id, long bno) {
