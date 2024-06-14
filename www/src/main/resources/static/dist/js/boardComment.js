@@ -225,12 +225,12 @@ document.addEventListener('click',(e)=>{
         let cno = cContent.getAttribute('value');
         console.log(cno);
 
-        let modComment = `<input type="text" id="cmtModContent" value="${cv}" data-cno="${cno}">`;
+        let modComment = `<textarea type="text" id="cmtModContent" data-cno="${cno}">${cv}</textarea>`;
         console.log(modComment)
-        cContent.innerHTML+=modComment;
 
         cContent.querySelector('.cmtBtn').innerHTML='';
-        cContent.innerHTML+=`<button type="button" id="commModBtn">수정하기</button>`;
+        document.querySelector('.cmtBtn').innerHTML+=modComment;
+        document.querySelector('.cmtBtn').innerHTML+=`<button type="button" id="commModBtn">수정하기</button>`;
 
     } else if(e.target.id==='commModBtn'){
         const cContent = e.target.closest('.commDeCommentArea');
