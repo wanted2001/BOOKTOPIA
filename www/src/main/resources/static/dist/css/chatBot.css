@@ -22,7 +22,7 @@
     /*display: none;*/
     float: right;
     transform: translate(-439px, 39px);
-    width: 400px;
+    width: 398px;
     height: 550px;
     border-radius: 20px;
     box-shadow: 1px 2px 8px #bdbdbd;
@@ -36,32 +36,57 @@
 }
 .textTop{
     height: 10%;
-    background: aqua;
     line-height: 55px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    background-color:#21cfbf;
+    color: white;
 }
+
 .textTop > span:nth-of-type(1){
-    margin: 0 40px;
-}
-.textTop > span:nth-of-type(2){
-    font-size: 18px;
+    margin-left: 33px;
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: 4px;
     margin-right: 100px;
 }
 .textTop > #textBtn {
-    width: 40px;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
     background-color: unset;
     cursor: pointer;
+    border: 1px solid;
+    line-height: 30px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 3px;
+    position: absolute;
+    right: 48px;
+}
+
+.textTop > #textBtn:hover{
+    background-color: indianred;
 }
 .textBody{
     height: 60%;
-    background: antiquewhite;
     /*line-height: 330px;*/
+    border: 1px solid gray;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
 }
+
 .textFoot{
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
     height: 25%;
-    background: aquamarine;
+    background: #ffffff;
     padding: 20px 0 0 14px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .textFoot > .txtF {
     height: 30px;
@@ -73,7 +98,23 @@
     box-shadow: 1px 1px 5px #c6c6c6bf;
     background: white;
 }
-.AnserText{
-    padding: 120px 0 0 20px;
-    line-height: 25px;
+
+.txtF:hover{
+    background-color : #21cfbf;;
+    color: white;
 }
+.AnserText{
+    width: 285px;
+    height: 100px;
+    line-height: 32px;
+    color: white;
+    text-shadow: 1px 2px 3px gray;
+    margin: 104px 24px 29px 69px;
+    overflow: auto;
+}
+
+
+
+
+
+
