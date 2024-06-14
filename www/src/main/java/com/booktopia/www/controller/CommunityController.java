@@ -1,15 +1,12 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.BoardVO;
-import com.booktopia.www.domain.DTO.BoardDTO;
-import com.booktopia.www.domain.FileVO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.domain.VoteVO;
 import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.repository.SystemInfoMapper;
 import com.booktopia.www.service.BoardService;
-import com.booktopia.www.service.CommunityService;
 import com.booktopia.www.service.VoteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

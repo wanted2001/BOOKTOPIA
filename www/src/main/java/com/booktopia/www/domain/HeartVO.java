@@ -14,4 +14,5 @@ public class HeartVO {
     private String id; //좋아요 누르는 유저의 id
     private long bno; //좋아요 눌리는 게시물 번호
     private int heartYn; //좋아요 여부
+
 }

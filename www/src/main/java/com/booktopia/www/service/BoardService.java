@@ -16,7 +16,7 @@ public interface BoardService {
 
     void modify(BoardVO boardVO);
 
-    int delete(long bno);
+    void delete(long bno);
 
     long getBno();
 
@@ -32,4 +32,7 @@ public interface BoardService {
 
     int getCategoryCount(String bCate);
 
+    void updateHeartCount(long bno);
+
+    int getHeartCnt(long bno);
 }

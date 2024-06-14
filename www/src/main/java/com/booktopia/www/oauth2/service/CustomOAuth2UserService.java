@@ -1,7 +1,8 @@
 package com.booktopia.www.oauth2.service;
 
-import com.booktopia.www.domain.AuthVO;
+
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.booktopia.www.oauth2.user.*;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.security.auth.login.AccountNotFoundException;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -62,6 +63,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         UserVO user = userMapper.selectId(providerId);
         UserVO uvo = new UserVO();
+
         if (user == null) {
             log.info("로그인이 최초 입니다.");
             uvo.setId(providerId);
@@ -74,11 +76,20 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             if(isOk < 0){
                 userMapper.insertAuth(providerId);
             }
-            // 역할 정보를 AuthVO 객체로 생성하여 리스트에 추가
-        } else {
+            log.info("uvo >> {}",uvo);
+        } else if(user.getUserDel().equals("Y")){
+            try {
+                throw new AccountNotFoundException("유저가 탈퇴처리 중입니다.");
+            } catch (AccountNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
             log.info("이미 로그인 한적이 있습니다.");
             // 유저 정보 업데이트 (필요 시)
             uvo = user;
+            uvo.setAccessToken(accessToken);
+            userMapper.updateAccessToken(uvo);
         }
         return new OAuth2UserPrincipal(uvo, oAuth2User.getAttributes());
     }

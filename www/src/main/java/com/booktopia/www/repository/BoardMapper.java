@@ -42,4 +42,8 @@ public interface BoardMapper {
     void deleteAllCommentCnt(@Param("bno")Long bvo, @Param("rccnt")int rcCount);
 
     int bnoDel(long bno);
+
+    void updateHeartCount(long bno);
+
+    int getHeartCnt(long bno);
 }

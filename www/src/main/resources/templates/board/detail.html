@@ -11,36 +11,48 @@
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
             <div class="commDeArea">
-            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
-            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
-            <!--작성자, 등록일 하나로-->
-            <div class="commDeCate" th:switch="${bvo.bCate}">
-                <span th:case="novel" th:text="'소설'"></span>
-                <span th:case="finance" th:text="'경제/경영'"></span>
-                <span th:case="human" th:text="'인문'"></span>
-                <span th:case="history" th:text="'역사/문화'"></span>
-                <span th:case="poem" th:text="'시/에세이'"></span>
-                <span th:case="development" th:text="'자기개발'"></span>
-            </div>
-            <div class="commDeTitle">
-                <div class="commDetTitle">[[${bvo.bTitle}]]</div>
-            </div>
-            <div class="commDeWriterInfo">
-                <span class="commDeWriter">작성자 : [[${bvo.bWriter}]]&nbsp·&nbsp 등록일 : &nbsp</span>
-                <span class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,16)}"></span>
-            </div>
-
-            <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
-                <img th:src="@{|/upload/${bvo.bMainImg}|}" class="commDeImg">
-                <div class="commDeContent">
-                    [[${bvo.bContent}]]
+                <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
+                <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
+                <!--작성자, 등록일 하나로-->
+                <div class="commDeCate" th:switch="${bvo.bCate}">
+                    <span th:case="novel" th:text="'소설'"></span>
+                    <span th:case="finance" th:text="'경제/경영'"></span>
+                    <span th:case="human" th:text="'인문'"></span>
+                    <span th:case="history" th:text="'역사/문화'"></span>
+                    <span th:case="poem" th:text="'시/에세이'"></span>
+                    <span th:case="development" th:text="'자기개발'"></span>
                 </div>
-            </div>
-            <div class="commDeNoImgContent" th:unless="${bvo.bMainImg!=''}">
-                <div class="commNoDeContent">
-                    [[${bvo.bContent}]]
+                <div class="commDeTitle">
+                    <div class="commDetTitle">[[${bvo.bTitle}]]</div>
                 </div>
-            </div>
+                <div class="commDeWriterInfo">
+                    <span class="commDeWriter">작성자 : [[${bvo.bWriter}]]&nbsp·&nbsp 등록일 : &nbsp</span>
+                    <span class="commDeRegdate" th:text="${#strings.substring(bvo.bRegDate,0,16)}"></span>
+                </div>
+                <!--이미지 있을 때 내용-->
+                <div class="commDeImgArea" th:if="${bvo.bMainImg!=''}">
+                    <img th:src="@{|/upload/${bvo.bMainImg}|}" class="commDeImg">
+                    <div class="commDeContent">
+                        [[${bvo.bContent}]]
+                    </div>
+                </div>
+                <!--이미지 없을 때 내용-->
+                <div class="commDeNoImgContent" th:unless="${bvo.bMainImg!=''}">
+                    <div class="commNoDeContent">
+                        [[${bvo.bContent}]]
+                    </div>
+                </div>
+                <!--좋아요-->
+                <div class="commHeartArea">
+                    <button type="submit" class="hrtBtn">
+                        <div th:if="${heartCnt eq 0}" class="whiteHeartA">
+                            <img th:src="@{/image/heart_white.png}" class="whiteHeart">
+                        </div>
+                        <div th:unless="${heartCnt eq 0}">
+                            <img th:src="@{/image/heart.png}" class="redHeart">
+                        </div>
+                    </button>
+                </div>
             </div>
             <!--수정/삭제 버튼-->
             <th:block th:with="auth=${#authentication.getName()}">
@@ -78,6 +90,7 @@
         </script>
         <script th:src="@{/dist/js/boardComment.js}"></script>
         <script>spreadCommentList(bnoVal);</script>
+        <script th:src="@{/dist/js/heart.js}"></script>
         </th:block>
     </th:block>
 </th:block>

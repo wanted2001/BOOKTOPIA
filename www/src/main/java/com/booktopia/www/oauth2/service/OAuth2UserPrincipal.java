@@ -83,4 +83,8 @@ public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
     public String getPhone() {
         return userVO.getPhone();
     }
+
+    public String getAccessToken(){
+        return userVO.getAccessToken();
+    }
 }

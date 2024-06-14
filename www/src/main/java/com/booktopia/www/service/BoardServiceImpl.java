@@ -46,9 +46,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int delete(long bno) {
+    public void delete(long bno) {
         boardMapper.delete(bno);
-        return 0;
     }
 
     @Override
@@ -92,4 +91,13 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.getCategoryCount(bCate);
     }
 
+    @Override
+    public void updateHeartCount(long bno) {
+        boardMapper.updateHeartCount(bno);
+    }
+
+    @Override
+    public int getHeartCnt(long bno) {
+        return boardMapper.getHeartCnt(bno);
+    }
 }

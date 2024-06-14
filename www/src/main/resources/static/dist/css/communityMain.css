@@ -195,6 +195,9 @@
     font-size: 18px;
     line-height: 5;
 }
+.commCatetext p:hover{
+    background-color: #ffffc8;
+}
 .commCategory-top{
     /*background-color: mintcream;*/
     display: flex;

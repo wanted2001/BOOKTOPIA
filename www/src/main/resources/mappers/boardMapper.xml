@@ -75,7 +75,7 @@
     </select>
 
     <select id="getboarList" resultType="com.booktopia.www.domain.BoardVO">
-        select * from board where b_is_del='N'
+        select * from board
     </select>
 
     <select id="getCategoryCount" resultType="int">
@@ -89,6 +89,14 @@
     <update id="bnoDel">
         update board set b_is_del='Y' where bno=#{bno}
     </update>
+    <update id="updateHeartCount">
+        update board set b_heart_cnt=b_heart_cnt+1 where bno=#{bno}
+    </update>
+
+    <select id="getHeartCnt" resultType="int">
+        select b_heart_cnt from board where bno=#{bno}
+    </select>
+
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">
