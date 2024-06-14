@@ -23,8 +23,10 @@
                         </button>
                     </div>
                     <!--찬반 투표 바-->
-                    <div class="commVoteBar" th:with="score=${score}">
-                        <div class="persent">[[${score}]]</div>
+                    <div class="commVoteBar" >
+                        <div class="persent">
+                            <input type="hidden" th:value="${score}" class="socre">
+                        </div>
                     </div>
                     <!--반대 버튼-->
                     <div class="commVoteDown vote">

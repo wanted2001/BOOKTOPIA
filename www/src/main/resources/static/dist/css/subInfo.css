@@ -12,6 +12,13 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: cafe;
+    src: url(../font/Cafe24Ssurround-v2.0.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
 
 .wrap{
 
@@ -53,7 +60,7 @@
   top: 20px;
   display: inline-block;
   animation: bounce .3s ease infinite alternate;
-  font-family: jalnan, cursive;
+  font-family: cafe, cursive;
   color: #3f3f3f;
   text-shadow: 0 1px 0 #CCC,
                0 2px 0 #CCC,
@@ -91,7 +98,7 @@
 .subTitle2{
     padding-top: 48px;
     font-size: 1.5em;
-    font-family: jalnan;
+    font-family: cafe;
 }
 
 .subMonth{

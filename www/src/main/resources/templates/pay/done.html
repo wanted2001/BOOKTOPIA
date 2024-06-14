@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/dist/css/payDone.css}">
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <div class="wrap">
+        <div class="wrap" style="background-image: url(../image/loginmain.jpg">
             <div class="payDoneBox">
                 <div><span >[[${#authentication.getName()}]] 님</span> 결제 완료되었습니다.</div>
                 <div> 주문번호 : [[${id}]] </div>

@@ -31,8 +31,12 @@ public class CommunityController {
     private final SystemInfoMapper systemInfoMapper;
 
     @GetMapping("/communityMain")
-    public void commMain(Model model){
+    public String commMain(Model model){
+        int Score = systemInfoMapper.getScore();
+        log.info(">>> getScore >>> {}",Score);
 
+        model.addAttribute("score",Score);
+        return "/community/communityMain";
     }
 
     // 커뮤니티 찬반투표

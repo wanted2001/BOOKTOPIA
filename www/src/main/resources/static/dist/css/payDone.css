@@ -5,20 +5,20 @@
     font-weight: normal;
 }
 .wrap{
-    height: 500px;
+    height: 700px;
     font-family: SCDream4;
-    background-color: blueviolet;
-     display: flex;
-     justify-content: center;
+    display: flex;
+    justify-content: center;
+    margin: 100px auto;
 }
 .payDoneBox{
-    background-color: mediumaquamarine;
     padding-top: 200px;
     text-align: center;
     width: 50%;
     height: 50%;
 }
 .payDoneBox div{
+    font-size: 1.5em;
     width: 100%;
     text-align: center;
     margin-top: 20px;
