@@ -2,6 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.BookVO;
 import com.booktopia.www.domain.BooktopiaVO;
+import com.booktopia.www.repository.BookMapper;
 import com.booktopia.www.repository.BookTopiaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import java.util.List;
 public class BookTopiaServiceImpl implements BookTopiaService{
 
     private final BookTopiaMapper bookTopiaMapper;
+    private final BookMapper bookMapper;
 
     @Override
     public List<BookVO> getList(String btnResult) {
@@ -52,5 +54,10 @@ public class BookTopiaServiceImpl implements BookTopiaService{
     @Override
     public void insert(BooktopiaVO booktopiaVO) {
         bookTopiaMapper.insert(booktopiaVO);
+    }
+
+    @Override
+    public List<BookVO> getBookList(int book) {
+        return bookMapper.getBookList(book);
     }
 }

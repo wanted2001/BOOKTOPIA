@@ -3,12 +3,11 @@
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <link rel="stylesheet" th:href="@{/dist/css/bookList.css}">
-
         <div class="wrap">
             <div class="book-list-contain">
                 <div class="book-taste" > <!--취향 도서 list-->
                     <div class="taste book1" th:each="book:${blist}">
-                        <img th:with="img=${book.bookImg}" th:src="@{|/image/book_img/${img}|}">
+                        <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}"><img th:with="img=${book.bookImg}" th:src="@{|/image/book_img/${img}|}"></a>
                         <div style="display:none;">
                             <p>[[${book.bookTitle}]]</p>
                             <p>[[${book.bookWriter}]]</p>
