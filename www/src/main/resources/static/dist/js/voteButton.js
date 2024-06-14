@@ -1,14 +1,14 @@
 console.log("js in");
 console.log(user +">>>>>>>>>>>>> js in");
-let score = document.querySelector('.persent').innerText;
+let score = parseInt(document.querySelector('.socre').value);
 console.log(score);
 
-let per = 50;
-let downPer = 50;
+// let per = 50;
+let downPer = 0;
 const upBtn = document.querySelector('.upBtn').value;
 const downBtn = document.querySelector('.downBtn').value;
 
-let hasVote = false; // 투표 참여 여부
+document.querySelector('.persent').style.width = `${score}%`;
 
 document.addEventListener('click',(e)=>{
     if(e.target.tagName === "IMG"){
@@ -24,9 +24,9 @@ document.addEventListener('click',(e)=>{
                     // e.target.disabled = true;
                 } else {
                     console.log(upBtn);
-                    per +=3;
-                    downPer = 100-per;
-                    document.querySelector('.persent').style.width = `${per}%`;
+                    score +=3;
+                    downPer = 100-score;
+                    document.querySelector('.persent').style.width = `${score}%`;
 
                     let data ={
                         id:user,
@@ -37,7 +37,7 @@ document.addEventListener('click',(e)=>{
                         console.log(result);
                     });
 
-                    console.log("per >> "+per)
+                    console.log("score >> "+score)
                     console.log("downper >> "+downPer);
                 }
             })
@@ -52,9 +52,9 @@ document.addEventListener('click',(e)=>{
                     // e.target.disabled = true;
                 } else {
                     console.log(downBtn);
-                    per -=3;
-                    downPer = 100-per;
-                    document.querySelector('.persent').style.width = `${per}%`;
+                    score -=3;
+                    // downPer = 100-score;
+                    document.querySelector('.persent').style.width = `${score}%`;
                     let data ={
                         id:user,
                         voteResult:'반대'
@@ -63,7 +63,7 @@ document.addEventListener('click',(e)=>{
                     push(data).then(result=>{
                         console.log(result);
                     });
-                    console.log("per >> "+per)
+                    console.log("score >> "+score)
                     console.log("downper >> "+downPer);
                 }
 
