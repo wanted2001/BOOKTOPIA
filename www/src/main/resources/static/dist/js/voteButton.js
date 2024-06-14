@@ -1,5 +1,7 @@
 console.log("js in");
 console.log(user +">>>>>>>>>>>>> js in");
+let score = document.querySelector('.persent').innerText;
+console.log(score);
 
 let per = 50;
 let downPer = 50;

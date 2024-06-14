@@ -22,8 +22,8 @@
                         </button>
                     </div>
                     <!--찬반 투표 바-->
-                    <div class="commVoteBar">
-                        <div class="persent"></div>
+                    <div class="commVoteBar" th:with="score=${score}">
+                        <div class="persent">[[${score}]]</div>
                     </div>
                     <!--반대 버튼-->
                     <div class="commVoteDown vote">
