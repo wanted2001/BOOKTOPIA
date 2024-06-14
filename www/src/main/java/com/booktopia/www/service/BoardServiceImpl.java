@@ -90,4 +90,14 @@ public class BoardServiceImpl implements BoardService{
     public int getCategoryCount(String bCate) {
         return boardMapper.getCategoryCount(bCate);
     }
+
+    @Override
+    public void updateHeartCount(long bno) {
+        boardMapper.updateHeartCount(bno);
+    }
+
+    @Override
+    public int getHeartCnt(long bno) {
+        return boardMapper.getHeartCnt(bno);
+    }
 }

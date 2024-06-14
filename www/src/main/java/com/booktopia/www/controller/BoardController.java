@@ -1,16 +1,10 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.BoardVO;
-import com.booktopia.www.domain.CommentVO;
+import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.BoardDTO;
-import com.booktopia.www.domain.FileVO;
-import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.handler.FileHandler;
 import com.booktopia.www.handler.PagingHandler;
-import com.booktopia.www.service.BoardService;
-import com.booktopia.www.service.CommentService;
-import com.booktopia.www.service.FileService;
-import com.booktopia.www.service.ReCommentService;
+import com.booktopia.www.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.Path;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,81 +28,128 @@ import java.util.List;
 public class BoardController {
     private final BoardService bsv;
     private final ReCommentService rcsv;
+    private final HeartService hsv;
 
     @GetMapping("/register")
-    public void register() {}
+    public void register() {
+    }
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody JSONObject bvo) throws ParseException {
-        log.info("bvo>>>>>>{}",bvo);
+        log.info("bvo>>>>>>{}", bvo);
 
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(String.valueOf(bvo));
-        log.info("obj>>>>>>{}",obj);
+        log.info("obj>>>>>>{}", obj);
 
         BoardVO boardVO = new BoardVO();
-        boardVO.setId((String)obj.get("id"));;
+        boardVO.setId((String) obj.get("id"));
+        ;
         boardVO.setBTitle((String) obj.get("bTitle"));
         boardVO.setBContent((String) obj.get("bContent"));
         boardVO.setBWriter((String) obj.get("bWriter"));
-        boardVO.setBCate((String)obj.get("bCate"));
-        boardVO.setBMainImg((String)obj.get("bMainImg"));
-        log.info("boardVO>>>>>>{}",boardVO);
+        boardVO.setBCate((String) obj.get("bCate"));
+        boardVO.setBMainImg((String) obj.get("bMainImg"));
+        log.info("boardVO>>>>>>{}", boardVO);
 
 
         int isOk = bsv.insert(boardVO);
-        if(isOk == 1){
-            log.info("boardVO222222>>>>>>{}",boardVO);
+        if (isOk == 1) {
+            log.info("boardVO222222>>>>>>{}", boardVO);
 //            fsv.insertFile(boardVO.getBno());
         }
         return ResponseEntity.ok("success");
     }
 
     @GetMapping("/communityList")
-    public void commList(Model m, PagingVO pgvo){
-        log.info("pgvo>>>>{}",pgvo);
+    public void commList(Model m, PagingVO pgvo) {
+        log.info("pgvo>>>>{}", pgvo);
         //전체 게시글 수
         int totalCount = bsv.getTotalCount(pgvo);
 
-        PagingHandler ph = new PagingHandler(pgvo,totalCount);
-        log.info("ph>>>>>{}",ph);
+        PagingHandler ph = new PagingHandler(pgvo, totalCount);
+        log.info("ph>>>>>{}", ph);
 
     }
 
-    @GetMapping({"/detail","/modify"})
-    public void detail(Model m, @RequestParam("bno")long bno){
+    @GetMapping({"/detail", "/modify"})
+    public void detail(Model m, @RequestParam("bno") long bno) {
         BoardVO bvo = bsv.getDetail(bno);
-        log.info("detail bvo >>>>{}",bvo);
-        m.addAttribute("bvo",bvo);
+        log.info("detail bvo >>>>{}", bvo);
+        int heartCnt = bsv.getHeartCnt(bno);
+        log.info("heartCnt>>>>>{}",heartCnt);
+        m.addAttribute("heartCnt",heartCnt);
+        m.addAttribute("bvo", bvo);
     }
 
     @PostMapping("/modify")
     public String modify(@RequestBody JSONObject bvo) throws ParseException {
-        log.info("modify bvo>>>>>>{}",bvo);
+        log.info("modify bvo>>>>>>{}", bvo);
 
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(String.valueOf(bvo));
-        log.info("modify obj>>>>>>{}",obj);
+        log.info("modify obj>>>>>>{}", obj);
 
         BoardVO boardVO = new BoardVO();
         boardVO.setBno(Long.parseLong((String) obj.get("bno")));
-        boardVO.setId((String)obj.get("id"));;
+        boardVO.setId((String) obj.get("id"));
+        ;
         boardVO.setBTitle((String) obj.get("bTitle"));
         boardVO.setBContent((String) obj.get("bContent"));
         boardVO.setBWriter((String) obj.get("bWriter"));
-        boardVO.setBCate((String)obj.get("bCate"));
-        boardVO.setBMainImg((String)obj.get("bMainImg"));
-        log.info("modify boardVO>>>>>>{}",boardVO);
+        boardVO.setBCate((String) obj.get("bCate"));
+        boardVO.setBMainImg((String) obj.get("bMainImg"));
+        log.info("modify boardVO>>>>>>{}", boardVO);
 
         bsv.modify(boardVO);
         return "/";
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("bno") long bno){
+    public String delete(@RequestParam("bno") long bno) {
         bsv.delete(bno);
         rcsv.deleteCommentFromBoard(bno);
         return "redirect:/community/communityListAll";
     }
+
+    @PostMapping("/heart/{bno}")
+    @ResponseBody
+    public String heart(@RequestBody HeartVO hvo, @PathVariable("bno") long bno) {
+        log.info("hvo>>{}", hvo);
+
+        String id = hvo.getId();
+        log.info("id>>>{}",id);
+
+        HeartVO heartVO = hsv.getUser(id,hvo.getBno());
+        if (heartVO != null) {
+            log.info("heartVO>>>>>>{}", heartVO);
+            return "0";
+        } else {
+            hsv.insertHeart(hvo);
+            log.info("heartVO222>>>>>>{}", heartVO);
+            return "1";
+        }
+    }
+
+    @GetMapping("/heart/{bno}/{id}")
+    @ResponseBody
+    public String clickHeartUser(@PathVariable("bno") long bno, @PathVariable("id") String id) {
+
+        HeartVO heartVO = hsv.getBno(bno);
+        log.info("hvo click heart>>{}", heartVO);
+        if (heartVO == null) {
+            bsv.updateHeartCount(bno);
+            return "0";
+        } else {
+            HeartVO hvo = hsv.getHeartInfo(heartVO,id);
+            if(hvo == null) {
+                bsv.updateHeartCount(bno);
+                return "0";
+            }
+        }
+        return "1";
+
+    }
+
 
 }

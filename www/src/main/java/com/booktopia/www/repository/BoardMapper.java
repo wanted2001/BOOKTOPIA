@@ -40,4 +40,8 @@ public interface BoardMapper {
     List<BoardVO> getboarList();
 
     void deleteAllCommentCnt(@Param("bno")Long bvo, @Param("rccnt")int rcCount);
+
+    void updateHeartCount(long bno);
+
+    int getHeartCnt(long bno);
 }

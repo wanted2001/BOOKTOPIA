@@ -139,7 +139,7 @@ async function handleEditor(event) {
             updatePostData();
             try{
                 await submitPostData(postData).then(result=>{
-
+                alert("게시물이 등록되었습니다.");
                 console.log(result);
                 window.location.href = "/community/communityListAll";
                 });

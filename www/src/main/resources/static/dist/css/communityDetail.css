@@ -114,6 +114,32 @@
     margin-left: 10px;
 }
 
+/*좋아요*/
+.commHeartArea{
+    width: 50px;
+    margin: 130px 0 30px 434px;
+    text-align: center;
+    height: 50px;
+    border: 1px solid;
+    padding: 15px;
+    border-radius: 50px;
+}
+.whiteHeart{
+    width: 105px;
+    height: 105px;
+    margin-top: -23px;
+    margin-left: -30px;
+}
+.hrtBtn{
+    background-color: #ffffff00;
+    cursor: pointer;
+    outline: none;
+}
+.redHeart{
+    width: 51px;
+    margin-top: 2px;
+}
+
 /*댓글*/
 .commImg, .commImg2{
     width: 30px;
@@ -209,10 +235,12 @@
     cursor: pointer;
 }
 #commModBtn{
-    margin: 10px 0 0 743px;
+    margin: 2px 0 0 741px;
     padding: 5px;
     width: 73px;
-    border: 1px solid;
+    border: 1px solid #919191;
+    border-radius: 2.5px;
+    cursor: pointer;
 }
 
 /*대댓*/
