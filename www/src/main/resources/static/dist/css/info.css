@@ -71,7 +71,8 @@
 
 .container {
     max-width: 1200px;
-    margin: 150px auto 0;
+    margin: 0 auto ;
+    height: 3468px;
     display: flex;
     flex-direction: column;
     justify-content: center;

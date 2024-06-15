@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/dist/css/bookDetail.css}">
+        <div class="wrap">
+            <div class="bookDe" th:each="book:${blist}">
+                <div class="bkimg">
+                    <img th:with="img=${book.bookImg2}" th:src="@{|/image/book2/${img}|}">
+                    <th:block th:text="${#strings.length(book.bookTitle)}"></th:block>
+                </div>
+                <th:block th:with="bookTitle=${#strings.length(book.bookTitle)}">
+                    <div class="bkRight1" th:if="${bookTitle<5}">
+                    <div class="bkCate1" th:switch="${book.bookCate}">
+                        <span th:case="novel" th:text="'소설'"></span>
+                        <span th:case="finance" th:text="'경제/경영'"></span>
+                        <span th:case="human" th:text="'인문'"></span>
+                        <span th:case="history" th:text="'역사/문화'"></span>
+                        <span th:case="poem" th:text="'시/에세이'"></span>
+                        <span th:case="development" th:text="'자기개발'"></span>
+                    </div>
+                    <div class="bkTitle1">[[${book.bookTitle}]]</div>
+                    <div class="bkWriter1">[[${book.bookWriter}]]<span>지음</span></div>
+                    <div class="bkStory1">[[${book.bookStory}]]</div>
+                    <div class="bkLink1">
+                        <div class="joinLink">구매하러 가기</div>
+                        <span class="aladin"><a href="https://www.aladin.co.kr/home/welcome.aspx">알라딘<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="yes24"><a href="https://www.yes24.com/Main/default.aspx?pid=123487&cosemkid=go14913754070663498&
+                        utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_
+                        240530_google_pc_cc_book_pc_yes24&utm_term=%3f%ub349%ub4aa24%3f%uafa9%uaf4c&gad
+                        _source=1&gclid=CjwKCAjw1K-zBhBIEiwAWeCOF8fX4GDIgpFdnkswZEBzCYUpk-G60RMIAa4ZxdnJS7cJuEVD
+                        Qk51MhoCR_0QAvD_BwE">예스24<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="kyobo"><a href="https://www.kyobobook.co.kr/">교보문고<img th:src="@{/image/rightarrow.png}"></a></span>
+                    </div>
+                </div>
+
+                <div class="bkRight5" th:if="${bookTitle>=5} and ${bookTitle<=7}">
+                    <div class="bkCate5" th:switch="${book.bookCate}">
+                        <span th:case="novel" th:text="'소설'"></span>
+                        <span th:case="finance" th:text="'경제/경영'"></span>
+                        <span th:case="human" th:text="'인문'"></span>
+                        <span th:case="history" th:text="'역사/문화'"></span>
+                        <span th:case="poem" th:text="'시/에세이'"></span>
+                        <span th:case="development" th:text="'자기개발'"></span>
+                    </div>
+                    <div class="bkTitle5">[[${book.bookTitle}]]</div>
+                    <div class="bkWriter5">[[${book.bookWriter}]]<span>지음</span></div>
+                    <div class="bkStory5">[[${book.bookStory}]]</div>
+                    <div class="bkLink5">
+                        <div class="joinLink">구매하러 가기</div>
+                        <span class="aladin"><a href="https://www.aladin.co.kr/home/welcome.aspx">알라딘<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="yes24"><a href="https://www.yes24.com/Main/default.aspx?pid=123487&cosemkid=go14913754070663498&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_yes24&utm_term=%3f%ub349%ub4aa24%3f%uafa9%uaf4c&gad_source=1&gclid=CjwKCAjw1K-zBhBIEiwAWeCOF8fX4GDIgpFdnkswZEBzCYUpk-G60RMIAa4ZxdnJS7cJuEVDQk51MhoCR_0QAvD_BwE">예스24<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="kyobo"><a href="https://www.kyobobook.co.kr/">교보문고<img th:src="@{/image/rightarrow.png}"></a></span>
+                    </div>
+                </div>
+
+                <div class="bkRight8" th:if="${bookTitle>=8} and ${bookTitle<10}">
+                    <div class="bkCate8" th:switch="${book.bookCate}">
+                        <span th:case="novel" th:text="'소설'"></span>
+                        <span th:case="finance" th:text="'경제/경영'"></span>
+                        <span th:case="human" th:text="'인문'"></span>
+                        <span th:case="history" th:text="'역사/문화'"></span>
+                        <span th:case="poem" th:text="'시/에세이'"></span>
+                        <span th:case="development" th:text="'자기개발'"></span>
+                    </div>
+                    <div class="bkTitle8">[[${book.bookTitle}]]</div>
+                    <div class="bkWriter8">[[${book.bookWriter}]]<span>지음</span></div>
+                    <div class="bkStory8">[[${book.bookStory}]]</div>
+                    <div class="bkLink8">
+                        <div class="joinLink">구매하러 가기</div>
+                        <span class="aladin"><a href="https://www.aladin.co.kr/home/welcome.aspx">알라딘<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="yes24"><a href="https://www.yes24.com/Main/default.aspx?pid=123487&cosemkid=go14913754070663498&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_yes24&utm_term=%3f%ub349%ub4aa24%3f%uafa9%uaf4c&gad_source=1&gclid=CjwKCAjw1K-zBhBIEiwAWeCOF8fX4GDIgpFdnkswZEBzCYUpk-G60RMIAa4ZxdnJS7cJuEVDQk51MhoCR_0QAvD_BwE">예스24<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="kyobo"><a href="https://www.kyobobook.co.kr/">교보문고<img th:src="@{/image/rightarrow.png}"></a></span>
+                    </div>
+                </div>
+
+                <div class="bkRight10" th:if="${bookTitle>=10} and ${bookTitle<15}">
+                    <div class="bkCate10" th:switch="${book.bookCate}">
+                        <span th:case="novel" th:text="'소설'"></span>
+                        <span th:case="finance" th:text="'경제/경영'"></span>
+                        <span th:case="human" th:text="'인문'"></span>
+                        <span th:case="history" th:text="'역사/문화'"></span>
+                        <span th:case="poem" th:text="'시/에세이'"></span>
+                        <span th:case="development" th:text="'자기개발'"></span>
+                    </div>
+                    <div class="bkTitle10">[[${book.bookTitle}]]</div>
+                    <div class="bkWriter10">[[${book.bookWriter}]]<span>지음</span></div>
+                    <div class="bkStory10">[[${book.bookStory}]]</div>
+                    <div class="bkLink10">
+                        <div class="joinLink">구매하러 가기</div>
+                        <span class="aladin"><a href="https://www.aladin.co.kr/home/welcome.aspx">알라딘<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="yes24"><a href="https://www.yes24.com/Main/default.aspx?pid=123487&cosemkid=go14913754070663498&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_yes24&utm_term=%3f%ub349%ub4aa24%3f%uafa9%uaf4c&gad_source=1&gclid=CjwKCAjw1K-zBhBIEiwAWeCOF8fX4GDIgpFdnkswZEBzCYUpk-G60RMIAa4ZxdnJS7cJuEVDQk51MhoCR_0QAvD_BwE">예스24<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="kyobo"><a href="https://www.kyobobook.co.kr/">교보문고<img th:src="@{/image/rightarrow.png}"></a></span>
+                    </div>
+                </div>
+
+                <div class="bkRight15" th:if="${bookTitle>=15}">
+                    <div class="bkCate15" th:switch="${book.bookCate}">
+                        <span th:case="novel" th:text="'소설'"></span>
+                        <span th:case="finance" th:text="'경제/경영'"></span>
+                        <span th:case="human" th:text="'인문'"></span>
+                        <span th:case="history" th:text="'역사/문화'"></span>
+                        <span th:case="poem" th:text="'시/에세이'"></span>
+                        <span th:case="development" th:text="'자기개발'"></span>
+                    </div>
+                    <div class="bkTitle15">[[${book.bookTitle}]]</div>
+                    <div class="bkWriter15">[[${book.bookWriter}]]<span>지음</span></div>
+                    <div class="bkStory15">[[${book.bookStory}]]</div>
+                    <div class="bkLink15">
+                        <div class="joinLink">구매하러 가기</div>
+                        <span class="aladin"><a href="https://www.aladin.co.kr/home/welcome.aspx">알라딘<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="yes24"><a href="https://www.yes24.com/Main/default.aspx?pid=123487&cosemkid=go14913754070663498&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_yes24&utm_term=%3f%ub349%ub4aa24%3f%uafa9%uaf4c&gad_source=1&gclid=CjwKCAjw1K-zBhBIEiwAWeCOF8fX4GDIgpFdnkswZEBzCYUpk-G60RMIAa4ZxdnJS7cJuEVDQk51MhoCR_0QAvD_BwE">예스24<img th:src="@{/image/rightarrow.png}"></a></span>
+                        <span class="kyobo"><a href="https://www.kyobobook.co.kr/">교보문고<img th:src="@{/image/rightarrow.png}"></a></span>
+                    </div>
+                </div>
+                </th:block>
+            </div>
+        </div>
+    </th:block>
+</th:block>

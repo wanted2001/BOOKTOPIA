@@ -181,7 +181,7 @@ label.required::after {
     outline: hidden;
     border: 1px solid;
     border-radius: 13px;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 3px;
 
 }
@@ -257,19 +257,19 @@ label.required::after {
 }
 
 .joinJoinBtn{
-       width: 200px;
-       height: 50px;
-       border-radius: 7px;
-       margin: 0 auto;
-       margin-top: 50px;
+    width: 200px;
+    height: 50px;
+    border-radius: 7px;
+    margin: 0 auto;
+    margin-top: 50px;
  }
  .joinJoinBtn>button{
-     width: 150px;
+     width: 120px;
      border: 0;
      line-height: 50px;
      text-align: 50px;
      background-color: white;
-     border-radius: 17px;
+     border-radius: 25px;
      box-shadow: 0 0 13px lightskyblue;
  }
 .joinJoinBtn>button:hover{

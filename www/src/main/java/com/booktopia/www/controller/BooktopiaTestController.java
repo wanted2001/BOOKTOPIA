@@ -44,17 +44,24 @@ public class BooktopiaTestController {
 
         log.info(">>> booktopiaVO >> {}", booktopiaVO);
         bookTopiaService.insert(booktopiaVO);
-
         m.addAttribute("blist", blist);
         m.addAttribute("popblist", popblist);
         m.addAttribute("newblist", newblist);
-        
+
         return "/booktopiaTest/bookList";
     }
 
     private int generateRandomNumber(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
+    }
+
+    @GetMapping("/detail")
+    public void bookDetail(@RequestParam("book") int book, Model m, BookVO bookVO) {
+        List<BookVO> blist = bookTopiaService.getBookList(book);
+        log.info(">>> blist >> {}", blist);
+        log.info("book detail>>>>>>>>>{}", book);
+        m.addAttribute("blist", blist);
     }
 
 }

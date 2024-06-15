@@ -7,6 +7,7 @@
     <th:block th:fragment="content">
 <!--        <form action="/community/push" method="post">-->
         <div class="wrap">
+            <div class="yhidden">
             <div class="commVote">
                 <div class="commVoteTitle">VOTE</div>
                 <div class="commMonth"><p>6월의 토론주제</p></div>
@@ -22,8 +23,10 @@
                         </button>
                     </div>
                     <!--찬반 투표 바-->
-                    <div class="commVoteBar" th:with="score=${score}">
-                        <div class="persent">[[${score}]]</div>
+                    <div class="commVoteBar" >
+                        <div class="persent">
+                            <input type="hidden" th:value="${score}" class="socre">
+                        </div>
                     </div>
                     <!--반대 버튼-->
                     <div class="commVoteDown vote">
@@ -104,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
         <script th:inline="javascript">

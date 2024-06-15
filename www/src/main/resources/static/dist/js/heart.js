@@ -10,6 +10,7 @@ document.querySelector('.hrtBtn').addEventListener('click',()=>{
     getUserId(bnoVal,id).then(result=>{
         if(result==='1'){
             console.log("이미 누른 사람")
+            alert("이미 좋아요를 눌렀습니다.");
         } else {
             console.log("하트 가능")
             let data={
