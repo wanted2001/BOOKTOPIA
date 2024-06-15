@@ -100,4 +100,9 @@ public class BoardServiceImpl implements BoardService{
     public int getHeartCnt(long bno) {
         return boardMapper.getHeartCnt(bno);
     }
+
+    @Override
+    public void deleteHeartCnt(long bno) {
+        boardMapper.deleteHeartCnt(bno);
+    }
 }

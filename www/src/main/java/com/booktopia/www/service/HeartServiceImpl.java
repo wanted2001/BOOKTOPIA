@@ -31,8 +31,18 @@ public class HeartServiceImpl implements HeartService{
     }
 
     @Override
-    public HeartVO getHeartInfo(HeartVO heartVO, String id) {
-        return heartMapper.getHeartInfo(heartVO, id);
+    public HeartVO getUserBno(long bno, String id) {
+        return heartMapper.getUSerBno(bno, id);
+    }
+
+    @Override
+    public Integer getHeartYN(long bno, String id) {
+        return heartMapper.getHeartYN(bno,id);
+    }
+
+    @Override
+    public int deleteHeart(long bno, String id) {
+        return heartMapper.deleteHeart(bno,id);
     }
 
 

@@ -13,5 +13,9 @@ public interface HeartMapper {
 
     HeartVO getBno(long bno);
 
-    HeartVO getHeartInfo(HeartVO heartVO, String id);
+    HeartVO getUSerBno(long bno, String id);
+
+    Integer getHeartYN(@Param("bno") long bno, @Param("id") String id);
+
+    int deleteHeart(@Param("bno") long bno,@Param("id") String id);
 }

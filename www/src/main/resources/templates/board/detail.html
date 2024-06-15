@@ -45,10 +45,10 @@
                 <!--좋아요-->
                 <div class="commHeartArea">
                     <button type="submit" class="hrtBtn">
-                        <div th:if="${heartCnt eq 0}" class="whiteHeartA">
+                        <div th:if="${hvo eq 0}" class="whiteHeartA">
                             <img th:src="@{/image/heart_white.png}" class="whiteHeart">
                         </div>
-                        <div th:unless="${heartCnt eq 0}">
+                        <div th:if="${hvo eq 1}">
                             <img th:src="@{/image/heart.png}" class="redHeart">
                         </div>
                     </button>
@@ -90,7 +90,8 @@
         </script>
         <script th:src="@{/dist/js/boardComment.js}"></script>
         <script>spreadCommentList(bnoVal);</script>
-        <script th:src="@{/dist/js/heart.js}"></script>
+<!--        <script th:src="@{/dist/js/heart.js}"></script>-->
+        <script th:src="@{/dist/js/heart2.js}"></script>
         </th:block>
     </th:block>
 </th:block>
