@@ -5,32 +5,54 @@
         <link rel="stylesheet" th:href="@{/dist/css/bookList.css}">
 
         <div class="wrap">
-            <div class="book-list-contain">
-                <div class="book-taste" > <!--취향 도서 list-->
-                    <div class="taste book1" th:each="book:${blist}">
-                        <img th:with="img=${book.bookImg}" th:src="@{|/image/book_img/${img}|}">
-                        <div style="display:none;">
-                            <p>[[${book.bookTitle}]]</p>
-                            <p>[[${book.bookWriter}]]</p>
-                            <p>[[${book.bookStory}]]</p>
+            <div class="booklistwrap">
+                <div class="book-list-contain">
+                    <div class="bestbooklistwrap">
+                        <div class="booktopiabigtitle">당신을 만나고 싶어 하는 책은?</div>
+                        <div class="book-taste"> <!--취향 도서 list-->
+                            <div th:each="book, iterStat : ${blist}">
+                                <div class='taste book1'>
+                                    <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
+                                    <div style="display:none;">
+                                        <p>[[${book.bookTitle}]]</p>
+                                        <p>[[${book.bookWriter}]]</p>
+                                        <p>[[${book.bookStory}]]</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button type="button" class="testResult"><a th:href="@{/subscribe/info}">북토피아 구독하기</a></button>
-
-                <div class="book-popul"> <!--인기 도서 list-->
-                    <div class="popul book1"></div>
-                    <div class="popul book2"></div>
-                    <div class="popul book3"></div>
-                    <div class="popul book4"></div>
-                    <div class="popul book5"></div>
-                </div>
-                <div class="book-recom"> <!--추천 도서 list-->
-                    <div class="recom book1"></div>
-                    <div class="recom book2"></div>
-                    <div class="recom book3"></div>
-                    <div class="recom book4"></div>
-                    <div class="recom book5"></div>
+                    <button type="button" class="testResult"><a th:href="@{/subscribe/info}">북토피아 구독하기</a></button>
+                    <div class="bestbooklistwrap">
+                        <div class="booktopiabigtitle">이달의 인기도서</div>
+                        <div class="book-popul"> <!--인기 도서 list-->
+                            <div th:each="book, iterStat : ${popblist}">
+                                <div class='taste book1'>
+                                    <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
+                                    <div style="display:none;">
+                                        <p>[[${book.bookTitle}]]</p>
+                                        <p>[[${book.bookWriter}]]</p>
+                                        <p>[[${book.bookStory}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bestbooklistwrap">
+                        <div class="booktopiabigtitle">이달의 추천도서</div>
+                        <div class="book-recom"> <!--추천 도서 list-->
+                            <div th:each="book, iterStat : ${newblist}">
+                                <div class='taste book1'>
+                                    <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
+                                    <div style="display:none;">
+                                        <p>[[${book.bookTitle}]]</p>
+                                        <p>[[${book.bookWriter}]]</p>
+                                        <p>[[${book.bookStory}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
