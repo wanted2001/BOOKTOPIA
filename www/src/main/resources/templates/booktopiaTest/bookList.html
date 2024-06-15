@@ -11,6 +11,7 @@
                         <div class="book-taste"> <!--취향 도서 list-->
                             <div th:each="book, iterStat : ${blist}">
                                 <div class='taste book1'>
+                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
                                     <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
                                     <div style="display:none;">
                                         <p>[[${book.bookTitle}]]</p>
@@ -27,6 +28,7 @@
                         <div class="book-popul"> <!--인기 도서 list-->
                             <div th:each="book, iterStat : ${popblist}">
                                 <div class='taste book1'>
+                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
                                     <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
                                     <div style="display:none;">
                                         <p>[[${book.bookTitle}]]</p>
@@ -42,6 +44,7 @@
                         <div class="book-recom"> <!--추천 도서 list-->
                             <div th:each="book, iterStat : ${newblist}">
                                 <div class='taste book1'>
+                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
                                     <img th:src="@{|/image/book_img/${book.bookImg}|}" th:class="'imgaction' + ${iterStat.index + 1}" >
                                     <div style="display:none;">
                                         <p>[[${book.bookTitle}]]</p>
