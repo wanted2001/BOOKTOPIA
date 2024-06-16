@@ -10,6 +10,8 @@
     <th:block th:fragment="content">
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
+            <!--목록으로 돌아가기-->
+            <div class="commListBtn"><a th:href="@{/community/communityListAll}">목록으로 돌아가기 <img th:src="@{/image/arrow_icon.png}" width="11px" height="11px"></a></div>
             <div class="commDeArea">
                 <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
                 <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
