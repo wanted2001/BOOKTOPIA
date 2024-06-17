@@ -5,16 +5,16 @@
     font-weight: normal;
 }
 .bookDe {
-    height: 1200px;
+    height: 1500px;
 }
 .bkimg {
     float: left;
     position: sticky;
-    top: 70px;
+    top: 60px;
 }
 .bkimg img{
     width: 480px;
-    margin: 66px 0 0 70px;
+    margin: 73px 0 0 70px;
 }
 
 .bkRight {
