@@ -97,6 +97,17 @@
         select b_heart_cnt from board where bno=#{bno}
     </select>
 
+    <select id="getCount" resultType="int">
+        select count(bno) from board
+        where b_is_del='N'
+    </select>
+
+    <select id="adminBoardList" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board
+        where b_is_del='N'
+        order by bno desc
+        limit #{pageStart},#{qty}
+    </select>
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">

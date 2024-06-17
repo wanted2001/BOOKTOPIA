@@ -37,4 +37,8 @@
     <select id="getComList" resultType="com.booktopia.www.domain.CommentVO">
         select * from comment
     </select>
+
+    <select id="getCount" resultType="int">
+        select count(
+    </select>
 </mapper>

@@ -2,7 +2,9 @@ package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.DeliveryVO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.repository.DeliMapeer;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
 import kotlin.collections.IntIterator;
@@ -17,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,6 +31,7 @@ public class UserController {
     private final UserService usv;
     private final PasswordEncoder passwordEncoder;
     private final SendEmailService sendEmailService;
+    private final DeliMapeer deliMapeer;
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {
@@ -131,11 +135,21 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/myPagePayInfo/{id}")
-    public List<OrderInfoDTO> myPagePayInfo(@PathVariable("id") String id, Model m) {
+    public List<OrderInfoDTO> myPagePayInfo(@PathVariable("id") String id) {
         log.info("id >> {}", id);
         List<OrderInfoDTO> plist = usv.getPlist(id);
         log.info("plist >> {}", plist);
-        m.addAttribute("plist", plist);
+
+//        for(int i=0;i<plist.size();i++){
+//            String merchantUid = plist.get(i).getMerchantUid();
+//            String deliStatus = deliMapeer.getStatus(merchantUid);
+//            plist.get(i).setDeliStatus(deliStatus);
+//        }
+        for(OrderInfoDTO p : plist) {
+            String deliStatus = deliMapeer.getStatus(p.getMerchantUid());
+            p.setDeliStatus(deliStatus);
+        }
+        log.info("plist >> {}", plist);
         return plist;
     }
 

@@ -14,8 +14,7 @@ callPayInfo(idVal).then(result => {
     result.forEach(item => {
         // 새로운 리스트 아이템 생성
         const li = document.createElement("li");
-        console.log(item+">>>>>>>>")
-        console.log(item.innerHTML);
+        console.log(item)
         // 각 필드 값을 리스트 아이템에 추가
         li.innerHTML = `
          <div id="payInfoWrap">
@@ -25,16 +24,50 @@ callPayInfo(idVal).then(result => {
                              <div id="payInfoapprovedAt">${item.approvedAt}</div>
                          </div>
                          <div class="payInfoRight">
-                             <button type="button" id="payInfoDelivery" onclick="postStatus()"></button>
+                             <button type="button" id="payInfoDelivery" onclick="deliSuccess()">${item.deliStatus}</button>
                          </div>
                      </div>`;
         // ul에 리스트 아이템 추가
         ul.appendChild(li);
-        let deli = document.getElementById('payInfoDelivery');
-        console.log(deli.value);
+        // let deli = document.getElementById('payInfoDelivery');
+        // console.log(deli.value);
     });
     }
 });
+
+// 구매확정 버튼 클릭 시...
+function deliSuccess() {
+    let merchantUid = (document.querySelector('.payInfomerchantUid').innerText).substring(7);
+    console.log(merchantUid);
+
+    deliToServer(merchantUid).then(result =>{
+        console.log(result);
+        if(result == 1){
+            alert("구매확정되었습니다.")
+        }
+    })
+}
+
+// 구매확정 DB update 구문
+async function deliToServer(merchantUid){
+    console.log(merchantUid)
+    try {
+        const url = "/mypage/deliSuccess";
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(merchantUid)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+    } catch (error){
+        console.log(error);
+    }
+}
 
 async function callPayInfo(id) {
     try {

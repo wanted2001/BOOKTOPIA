@@ -1,14 +1,16 @@
 package com.booktopia.www.handler;
 
-import com.booktopia.www.domain.CommentVO;
+import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.CommentDTO;
-import com.booktopia.www.domain.PagingVO;
-import com.booktopia.www.domain.RecommentVO;
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+class ListType<T> {
+
+}
 
 @Getter
 @Setter
@@ -19,6 +21,12 @@ public class PagingHandler {
     private boolean prev,next;
     private int totalCount;
     private PagingVO pgvo;
+
+    private List<BoardVO> boardlist;
+    private List<DeliveryVO> deliveries;
+    private List<OrderInfoDTO> orderInfoDTOList;
+    private List<BooktopiaVO> booktopia;
+    private List<UserVO> userList;
     private List<CommentDTO> cmtList;
 
     public PagingHandler(PagingVO pgvo, int totalCount) {
@@ -37,10 +45,13 @@ public class PagingHandler {
         this.prev=this.startPage>1;
         this.next=this.endPage<realEndPage;
     }
+//    public PagingHandler(PagingVO pgvo, int totalCount, List<UserVO> userList){
+//        this(pgvo,totalCount);
+//        this.userList=userList;
+//    }
 
     public PagingHandler(PagingVO pgvo, int totalCount, List<CommentDTO> cmtList){
         this(pgvo,totalCount);
         this.cmtList=cmtList;
-
     }
 }

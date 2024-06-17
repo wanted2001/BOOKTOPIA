@@ -10,14 +10,24 @@ document.addEventListener('click', (e) => {
         // 배송현황 > 결제승인 버튼을 클릭 했을 때...
         const tr = e.target.closest('tr');
         let deliUid = tr.querySelector('.deliUid').innerText;
+        let deliStatus = tr.querySelector('.deliStatus').innerText;
         console.log(deliUid);
-        postStatus(deliUid).then(result =>{
-            console.log(result);
-            if (result == 1){
-                alert("배송처리 되었습니다.")
-            }
-        })
-
+        console.log(deliStatus);
+        if(deliStatus == '배송준비중'){
+            postStatus(deliUid).then(result =>{
+                console.log(result);
+                if (result == 1){
+                    alert("배송처리 되었습니다.");
+                }
+            })
+        } else {
+            postSecondStatus(deliUid).then(result =>{
+                console.log(result);
+                if(result == 1){
+                    alert("배송완료처리");
+                }
+            })
+        }
 
     } else if (e.target.classList.contains('boardDel')){
         // 게시글 삭제 버튼을 눌렀을 때...
@@ -60,12 +70,184 @@ function handleButtonClick(btnId) {
         document.querySelector(section).style.display = displayStyle;
     });
 
+    if(index === '.admin-UserList'){ //회원리스트
+        userListToServer(page=1).then(result=>{
+            console.log(result)
+            const tr = document.getElementById('adminUserList');
+            console.log(tr);
+            if(result.userList.length > 0){
+                if(page == 1){
+                    tr.innerHTML = '';
+                }
+                for(let uvo of result.userList){
+                    let td = `<td>${uvo.id}</td>`;
+                    td += `<td style="text-align: center">${uvo.name}</td>`;
+                    td += `<td>${uvo.email}</td>`;
+                    td += `<td>${uvo.phone}</td>`;
+                    td += `<td>${uvo.userType}</td>`;
+                    td += `<td>${uvo.userReg}</td></tr>`;
+
+                    tr.innerHTML += td;
+                }
+            } else {
+                tr.innerHTML = `<div> List Empty </div>`;
+            }
+        })
+    } else if(index === '.bookTopia-user'){ //취향검사 리스트
+        bookTopiaToServer(page=1).then(result =>{
+            console.log(result);
+            const tbody = document.getElementById('adminTestList');
+            if(result.booktopia.length > 0){
+                if(page == 1){
+                    tbody.innerHTML = '';
+                }
+                for (let test of result.booktopia){
+                    let td = `<td>${test.id}</td>`;
+                        td += `<td>${test.birth}</td>`;
+                        td += `<td>${test.gender}</td>`;
+                        td += `<td>${test.testAt}</td>`;
+
+                        tbody.innerHTML += td;
+                }
+            } else {
+                tbody.innerHTML = `<div> List Empty </div>`;
+            }
+        })
+    } else if(index === '.subUser'){ // 구독자 리스트
+        subUserToServer(page=1).then(result => {
+            console.log(result);
+            const tbody = document.getElementById('adminSubList');
+            if(result.orderInfoDTOList.length > 0){
+                if(page == 1){
+                    tbody.innerHTML = '';
+                }
+                for(let sub of result.orderInfoDTOList){
+                    let td = `<td>${sub.merchantUid}</td>`
+                        td += `<td>${sub.itemName}</td>`;
+                        td += `<td style="text-align: center">${sub.ordName}</td>`;
+                        td += `<td>${sub.ordPhone}</td>`;
+                        td += `<td style="text-align: center">${sub.ordAddr}</td>`;
+                        td += `<td style="text-align: center">${sub.totalAmount}</td>`;
+
+                        tbody.innerHTML += td;
+                }
+            } else {
+                tbody.innerHTML = `<div> List Empty </div>`;
+            }
+        })
+    } else if(index === '.delivery'){ //배송 리스트
+        deliToServer(page=1).then(result => { //배송 리스트
+            console.log(result);
+            const tbody = document.getElementById('adminDeliList');
+            if(result.deliveries.length > 0){
+                if(page === 1){
+                    tbody.innerHTML = '';
+                }
+                for (let deli of result.deliveries){
+                    let td = `<td class="deliUid">${deli.merchantUid}</td>`;
+                        td += `<td>${deli.itemName}</td>`;
+                        td += `<td>${deli.deliDate}</td>`;
+                        td += `<td class="deliStatus">${deli.deliStatus}</td>`;
+                        td += `<td><button type="button" class="adminapproval">${deli.deliStatus}</button></td>`;
+
+                        tbody.innerHTML += td;
+                }
+            } else {
+                tbody.innerHTML = `<div> List Empty </div>`;
+            }
+        })
+    } else if(index === '.commuBoard'){ // 게시글 리스트
+        communBoardToServer(page=1).then(result =>{
+            console.log(result);
+            const tbody = document.getElementById('adminBoardList');
+            if(result.boardlist.length > 0){
+                if(page == 1){
+                    tbody.innerHTML = '';
+                }
+                for (let board of result.boardlist){
+                    let td =  `<td style="text-align: center" class="adbbno">${board.bno}</td>`;
+                        td += `<td>${board.bcate}</td>`;
+                        td += `<td>${board.btitle}</td>`;
+                        if(board.bmainImg!= ''){
+                            td += `<td><img src="/upload/${board.bmainImg}">`
+                            // td += `<div class="adcontent">${board.bcontent}</div></td>`;
+                        } else {
+                            td += `<td><div class="adcontent">${board.bcontent}</div></td>`;
+                        }
+                        td += `<td>${board.bwriter}</td>`;
+                        td += `<td>${board.bregDate}</td>`;
+                        td += `<td><button type="button" class="boardDel">삭제</button></td>`;
+
+                        tbody.innerHTML += td;
+                }
+            } else {
+                tbody.innerHTML = `<div> list Empty </div>`;
+            }
+        })
+    }else {
+
+    }
+
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
         button.style.backgroundColor = button.id === btnId ? '#ffb1b0' : '';
         button.style.color = button.id === btnId ? '#ffffff' : '';
         button.style.fontWeight = button.id === btnId ? '700' : '';
     });
+}
+
+/*
+   프론트 : N페이지 회원 리스트를 "/admin/getUserList/"+pageNo 주소로 서버한테 요청
+   서버 : GET ("/getUserList/{pageNo}")
+         PagingVO > N페이지 보여질 갯수는 10개(qty)로 정하고
+         리스트에 전체 갯수를 totalCount로 받아오고
+         PagingHandler ph > 이전에 만든 PagingVO와 totalCount를 넣어줌
+         내가 가지게 되는 정보 값 > startPage / endPage / prev, next / totalCount / pgvo
+         Mapper에서 list 가지고 올 때 limit (pageStart, qty) 조건으로 넣으면
+         내가 요청한 페이지에 대한 목록을 받음 (ResponseBody) > json
+   프론트 : 리스트를 html에 뿌려
+*/
+
+// 회원리스트 요청
+async function userListToServer(pageNo){
+    const resp = await fetch("/admin/getUserList/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+//취향검사 리스트 요청
+async function bookTopiaToServer(pageNo){
+    const resp = await fetch("/admin/testList/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 구독자리스트(결제)
+async function subUserToServer(pageNo) {
+    const resp = await fetch("/admin/subUser/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 배송 리스트
+async function deliToServer(pageNo){
+    const resp = await  fetch("/admin/delivery/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 게시글관리
+async function communBoardToServer(pageNo){
+    const resp = await  fetch("/admin/boardList/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 댓글 관리
+async function commentBoardToServer(pageNo){
+    const resp = await fetch("/admin/commentList/"+pageNo);
+    const result = await resp.json();
+    return result;
 }
 
 // 게시글 관리 > 삭제
@@ -98,7 +280,7 @@ async function CommentDelToServer(bno){
     }
 }
 
-// 배송현황 버튼 처리
+// 배송현황 버튼 처리(처음클릭)
 async function postStatus (deliUid){
     try {
         const url = "/admin/deliUid";
@@ -118,3 +300,25 @@ async function postStatus (deliUid){
         console.log(error);
     }
 }
+
+// 배송현황 버튼 처리(두번째 클릭)
+async function postSecondStatus (deliUid){
+    try {
+        const url = "/admin/secondStatus";
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(deliUid)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+
+    }catch (error){
+        console.log(error);
+    }
+}
+

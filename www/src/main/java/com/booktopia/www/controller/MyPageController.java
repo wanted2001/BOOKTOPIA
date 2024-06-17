@@ -41,4 +41,11 @@ public class MyPageController {
         model.addAttribute("deliveryList", deliveryList);
     }
 
+    @PostMapping("/deliSuccess")
+    @ResponseBody
+    public String deliSuccess(@RequestBody String merchantUid){
+        log.info("merchantUid >>> {}", merchantUid);
+        deliMapeer.updatefinal(merchantUid);
+        return "1";
+    }
 }

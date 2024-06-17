@@ -93,6 +93,14 @@
         select * from user where id=#{id} and user_del = "N"
     </select>
 
+    <select id="getTotal" resultType="int">
+        select count(id) from user
+    </select>
 
+    <select id="adminUserList" resultType="com.booktopia.www.domain.UserVO">
+        select * from user
+        order by user_reg desc
+        limit #{pageStart}, #{qty}
+    </select>
 
 </mapper>

@@ -46,4 +46,8 @@ public interface BoardMapper {
     void updateHeartCount(long bno);
 
     int getHeartCnt(long bno);
+
+    int getCount();
+
+    List<BoardVO> adminBoardList(PagingVO boardPgvo);
 }
