@@ -13,8 +13,6 @@ class ListType<T> {
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
 public class PagingHandler {
     private int startPage;
     private int endPage;

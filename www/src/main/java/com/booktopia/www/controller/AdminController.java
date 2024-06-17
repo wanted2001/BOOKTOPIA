@@ -1,6 +1,7 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.*;
+import com.booktopia.www.domain.DTO.CommentDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.repository.*;
@@ -34,6 +35,7 @@ public class AdminController {
     private final DeliMapeer deliMapeer;
     private final BoardMapper boardMapper;
     private final CommentMapper commentMapper;
+    private final ReCommentMapper reCommentMapper;
 
     private final BoardService boardService;
     private final CommentService commentService;
@@ -185,16 +187,29 @@ public class AdminController {
         return boardPh;
     }
 
+    // 댓글 리스트 요청
     @GetMapping("admincommentList/{pageNo}")
     @ResponseBody
-    public String adminGetcommentList(@PathVariable("pageNo") int pageNo){
+    public PagingHandler adminGetcommentList(@PathVariable("pageNo") int pageNo){
         PagingVO commenPagingVO = new PagingVO(pageNo, 10);
         int commentCount = commentMapper.getCount();
-        log.info("commentCount >>> {}", commentCount);
-        return "1";
+        int recommentCoount = reCommentMapper.getreCommentCount();
+        int tatolCount = commentCount+recommentCoount;
+        log.info("tatolCount >>> {}", tatolCount);
+
+        List<CommentDTO> recmolist = reCommentMapper.adminreCommtneList();
+        log.info("recmolist >>> {}", recmolist);
+
+        PagingHandler commenPh = new PagingHandler(commenPagingVO, tatolCount, recmolist);
+        log.info("commenPh >>> {}", commenPh);
+        commenPh.setCmtList(commentMapper.admingetCommentList(commenPagingVO));
+//        commenPh.setCmtList(reCommentMapper.adminreCommtneList(commenPagingVO));
+        log.info("commenPh >>> {}", commenPh);
+
+        return commenPh;
     }
 
-    //배송현황 구문 (첫번째 클릭)
+    //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")
     @ResponseBody
     public String delistatus(@RequestBody String deliUid) {
@@ -203,7 +218,7 @@ public class AdminController {
         return "1";
     }
 
-    //배송현황 두번째 클릭 구문
+    //배송현황 구문 (결제승인/배송 > 결제완료)
     @PostMapping("/secondStatus")
     @ResponseBody
     public String secondStatus(@RequestBody String deliUid) {
@@ -216,9 +231,12 @@ public class AdminController {
     @DeleteMapping ("/boardDel/{bno}")
     @ResponseBody
     public String boardDel(@PathVariable("bno") long bno) {
-        log.info("controller in >>>> ");
-        int isOk = boardMapper.bnoDel(bno);
-        commentMapper.deleteCommentFromBoard(bno);
+        log.info("board controller in >>>> ");
+//        commentMapper.deleteCommentFromBoard(bno);
+//        int isOk = boardMapper.bnoDel(bno);
+
+        int isOk = boardService.delete(bno);
+        reCommentService.deleteCommentFromBoard(bno);
         return isOk > 0 ? "1" : "0";
 
     }

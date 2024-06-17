@@ -184,8 +184,10 @@ function handleButtonClick(btnId) {
                 tbody.innerHTML = `<div> list Empty </div>`;
             }
         })
-    }else {
-
+    }else if(index === '.commuComment') {
+        commentBoardToServer(page=1).then(result=>{
+            console.log(result);
+        })
     }
 
     const buttons = document.querySelectorAll('.admin-btn');

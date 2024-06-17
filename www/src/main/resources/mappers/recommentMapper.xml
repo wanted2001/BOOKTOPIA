@@ -23,4 +23,12 @@
     <select id="rcCount" resultType="int">
         select count(rc_cno) from recomment where cno=#{cno}
     </select>
+
+    <select id="getreCommentCount" resultType="int">
+        select count(rc_cno) from recomment
+    </select>
+
+    <select id="adminreCommtneList" resultType="com.booktopia.www.domain.RecommentVO">
+        select * from recomment
+    </select>
 </mapper>
