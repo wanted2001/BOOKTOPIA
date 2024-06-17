@@ -13,22 +13,14 @@
     position: relative;
 }
 
-/*
-.logo{
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
-    margin-left: 50px;
-    margin-right: 40px;
-    margin-top: 20px;
-
-}
-*/
-
 li{
     list-style: none;
-    display: inline;
     color: black;
+}
+
+.headertwoul{
+    display: flex;
+
 }
 
 .cate, .register, .login {
@@ -40,21 +32,9 @@ li{
     border-bottom: 1px solid;
 }
 
-/*.right{*/
-/*    margin-left: 400px;*/
-/*    text-align: right;*/
-/*}*/
-/*.register{
-    margin-left: 515px;
-}*/
 .userName{
     margin-left: 275px;
 }
-/*.login{*/
-/*    margin-left: 30px;*/
-/*    margin-right: 30px;*/
-/*    text-align: right;*/
-/*}*/
 .logout{
     margin-right: 70px;
     margin-left: 30px;
@@ -74,6 +54,6 @@ li{
 
 .outcate{
     position: absolute;
-    /* right: 334px; */
+    width: 1100px;
     right: 10px;
 }
