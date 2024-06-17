@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: SCDream4;
     src: url(../font/S-Core_Dream_OTF/SCDream4.otf) format("opentype");
@@ -25,10 +26,8 @@
 }
 */
 
-li{
-    list-style: none;
-    display: inline;
-    color: black;
+.headertwoul{
+    display:flex;
 }
 
 .cate, .register, .login {
@@ -48,7 +47,9 @@ li{
     margin-left: 515px;
 }*/
 .userName{
-    margin-left: 275px;
+    width: 240px;
+    margin-left: 175px;
+    text-align: right
 }
 /*.login{*/
 /*    margin-left: 30px;*/
@@ -67,8 +68,6 @@ li{
     background-position: center;
     background-repeat: no-repeat;
     margin: 20px;
-    position: relative;
-    right: -5px;
 }
 
 
@@ -77,3 +76,4 @@ li{
     /* right: 334px; */
     right: 10px;
 }
+
