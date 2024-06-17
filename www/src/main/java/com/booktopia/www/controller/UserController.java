@@ -45,10 +45,11 @@ public class UserController {
     }
     
     @PostMapping("/join")
-    public String joinInsert(UserVO uvo){
+    public String joinInsert(UserVO uvo, Model m){
         uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         log.info("uvo >> {}",uvo);
         int isOk = usv.joinInsert(uvo);
+        m.addAttribute("msg", "가입이 완료되었습니다. 로그인해주세요.");
         return "/user/login";
     }
 
