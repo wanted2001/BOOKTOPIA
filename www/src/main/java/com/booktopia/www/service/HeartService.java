@@ -10,5 +10,9 @@ public interface HeartService {
 
     HeartVO getBno(long bno);
 
-    HeartVO getHeartInfo(HeartVO heartVO, String id);
+    HeartVO getUserBno(long bno, String id);
+
+    Integer getHeartYN(long bno, String id);
+
+    int deleteHeart(long bno, String id);
 }

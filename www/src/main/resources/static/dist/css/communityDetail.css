@@ -25,13 +25,18 @@
 .wrap{
     /*background-color: antiquewhite;*/
 }
+.commListBtn{
+    float: right;
+    margin:-27px 204px;
+    font-size: 14.5px;
+    color: gray;
+}
 .commDeArea{
     width: 940px;
     border-bottom: 1px solid #dadada;
     border-top: 1px solid #dadada;
-    margin: 0 auto;
     padding: 0 30px;
-    margin-top: 30px;
+    margin: 60px auto 0;
 }
 .commDeCate{
     width: 940px;
@@ -125,10 +130,10 @@
     border-radius: 50px;
 }
 .whiteHeart{
-    width: 105px;
-    height: 105px;
-    margin-top: -23px;
-    margin-left: -30px;
+    width: 123px;
+    height: 123px;
+    margin-top: -31px;
+    margin-left: -40px;
 }
 .hrtBtn{
     background-color: #ffffff00;

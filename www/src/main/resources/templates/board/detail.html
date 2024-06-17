@@ -10,6 +10,8 @@
     <th:block th:fragment="content">
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
+            <!--목록으로 돌아가기-->
+            <div class="commListBtn"><a th:href="@{/community/communityListAll}">목록으로 돌아가기 <img th:src="@{/image/arrow_icon.png}" width="11px" height="11px"></a></div>
             <div class="commDeArea">
                 <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
                 <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
@@ -45,10 +47,10 @@
                 <!--좋아요-->
                 <div class="commHeartArea">
                     <button type="submit" class="hrtBtn">
-                        <div th:if="${heartCnt eq 0}" class="whiteHeartA">
+                        <div th:if="${hvo eq 0}" class="whiteHeartA">
                             <img th:src="@{/image/heart_white.png}" class="whiteHeart">
                         </div>
-                        <div th:unless="${heartCnt eq 0}">
+                        <div th:if="${hvo eq 1}">
                             <img th:src="@{/image/heart.png}" class="redHeart">
                         </div>
                     </button>
@@ -90,7 +92,8 @@
         </script>
         <script th:src="@{/dist/js/boardComment.js}"></script>
         <script>spreadCommentList(bnoVal);</script>
-        <script th:src="@{/dist/js/heart.js}"></script>
+<!--        <script th:src="@{/dist/js/heart.js}"></script>-->
+        <script th:src="@{/dist/js/heart2.js}"></script>
         </th:block>
     </th:block>
 </th:block>

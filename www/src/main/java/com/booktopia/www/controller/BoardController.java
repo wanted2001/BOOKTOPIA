@@ -78,6 +78,12 @@ public class BoardController {
         log.info("detail bvo >>>>{}", bvo);
         int heartCnt = bsv.getHeartCnt(bno);
         log.info("heartCnt>>>>>{}",heartCnt);
+        Integer hvo = hsv.getHeartYN(bno, bvo.getId());
+        if(hvo==null) {
+            hvo=0;
+        }
+        log.info("heartYN hvo>>>>{}",hvo);
+        m.addAttribute("hvo",hvo);
         m.addAttribute("heartCnt",heartCnt);
         m.addAttribute("bvo", bvo);
     }
@@ -126,6 +132,7 @@ public class BoardController {
             return "0";
         } else {
             hsv.insertHeart(hvo);
+            bsv.updateHeartCount(bno);
             log.info("heartVO222>>>>>>{}", heartVO);
             return "1";
         }
@@ -133,22 +140,22 @@ public class BoardController {
 
     @GetMapping("/heart/{bno}/{id}")
     @ResponseBody
-    public String clickHeartUser(@PathVariable("bno") long bno, @PathVariable("id") String id) {
-
-        HeartVO heartVO = hsv.getBno(bno);
-        log.info("hvo click heart>>{}", heartVO);
+    public String getHeartBno(@PathVariable("bno") long bno,@PathVariable("id") String id) {
+        HeartVO heartVO = hsv.getUserBno(bno, id);
+        log.info("getHeart heartVO click heart>>{}", heartVO);
         if (heartVO == null) {
-            bsv.updateHeartCount(bno);
             return "0";
-        } else {
-            HeartVO hvo = hsv.getHeartInfo(heartVO,id);
-            if(hvo == null) {
-                bsv.updateHeartCount(bno);
-                return "0";
-            }
-        }
-        return "1";
+        } return "1";
+    }
 
+    @DeleteMapping("/heart/delete/{bno}/{id}")
+    @ResponseBody
+    public String deleteHeart(@PathVariable("bno") long bno, @PathVariable("id")String id){
+        bsv.deleteHeartCnt(bno);
+
+        int isOk = hsv.deleteHeart(bno, id);
+        log.info("delete Heart>>>>{}",isOk);
+        return isOk>0?"1":"0";
     }
 
 

@@ -7,10 +7,15 @@ let hasHeart = false;
 
 document.querySelector('.hrtBtn').addEventListener('click',()=>{
     console.log("하트버튼 누름");
-    getUserId(bnoVal,id).then(result=>{
+    getUserBno(bnoVal,id).then(result=>{
         if(result==='1'){
             console.log("이미 누른 사람")
-            alert("이미 좋아요를 눌렀습니다.");
+            // alert("이미 좋아요를 눌렀습니다.");
+            deleteHeart(bnoVal, id).then(result=>{
+                console.log("좋아요 취소함");
+                heartBtn.innerHTML='';
+                heartBtn.innerHTML=`<img src="/image/heart_white.png" class="whiteHeart">`
+            })
         } else {
             console.log("하트 가능")
             let data={
@@ -20,8 +25,8 @@ document.querySelector('.hrtBtn').addEventListener('click',()=>{
             };
 
             clickHeart(data).then(result=>{
-                document.querySelector('.whiteHeartA').innerHTML='';
-                document.querySelector('.hrtBtn').innerHTML=`<div><img src="/image/heart.png" class="redHeart"></div>`
+                heartBtn.innerHTML='';
+                heartBtn.innerHTML=`<img src="/image/heart.png" class="redHeart">`
                 console.log(result)
             })
         }
@@ -48,10 +53,26 @@ async function clickHeart(data){
     }
 }
 
-// 아이디 떼오는 함수
-async function getUserId(bno,id){
+async function deleteHeart(bnoVal,id){
     try{
-        const url = "/board/heart/"+bno+"/"+id;
+        const url="/board/heart/delete/"+bnoVal+"/"+id;
+        const config = {
+            method:"delete"
+        }
+
+        const resp = await fetch(url, config)
+        const result = await resp.text();
+        console.log(result);
+        return result;
+    }catch(error){
+        console.log("delete error "+error);
+    }
+}
+
+//bno 떼오는 함수
+async function getUserBno(bnoVal,id){
+    try{
+        const url = "/board/heart/"+bnoVal+"/"+id;
         const config ={
             method:"GET",
             headers:{

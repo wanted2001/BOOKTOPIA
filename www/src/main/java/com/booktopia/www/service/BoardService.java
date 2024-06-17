@@ -35,4 +35,6 @@ public interface BoardService {
     void updateHeartCount(long bno);
 
     int getHeartCnt(long bno);
+
+    void deleteHeartCnt(long bno);
 }

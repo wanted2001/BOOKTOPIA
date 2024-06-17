@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/booktopiaTest/*")
@@ -24,14 +25,35 @@ public class BooktopiaTestController {
     public void getBooktopia(){}
 
     @PostMapping("/bookList")
-    public String btnResult(@RequestParam("btnResult") String btnResult, Model m, BooktopiaVO booktopiaVO){
+    public String btnResult(@RequestParam("btnResult") String btnResult, Model m, BooktopiaVO booktopiaVO) {
         log.info(">> btnResult >> {}", btnResult);
+
+        int randomNumber1;
+        do {
+            randomNumber1 = generateRandomNumber(10, 20);
+        } while (randomNumber1 == Integer.parseInt(btnResult));
+
+        int randomNumber2;
+        do {
+            randomNumber2 = generateRandomNumber(10, 20);
+        } while (randomNumber2 == Integer.parseInt(btnResult) || randomNumber2 == randomNumber1);
+
         List<BookVO> blist = bookTopiaService.getList(btnResult);
+        List<BookVO> popblist = bookTopiaService.getList(String.valueOf(randomNumber1));
+        List<BookVO> newblist = bookTopiaService.getList(String.valueOf(randomNumber2));
+
         log.info(">>> booktopiaVO >> {}", booktopiaVO);
         bookTopiaService.insert(booktopiaVO);
         m.addAttribute("blist", blist);
-        log.info(">>> blist >>> {}", blist);
+        m.addAttribute("popblist", popblist);
+        m.addAttribute("newblist", newblist);
+
         return "/booktopiaTest/bookList";
+    }
+
+    private int generateRandomNumber(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
     }
 
     @GetMapping("/detail")
