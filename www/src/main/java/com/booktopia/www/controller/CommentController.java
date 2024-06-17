@@ -53,9 +53,11 @@ public class CommentController {
     @GetMapping("/{bno}/{page}")
     @ResponseBody
     public ResponseEntity<PagingHandler> getComment(@PathVariable("bno") int bno,@PathVariable("page") int page){
+        log.info("bno {}",bno);
         PagingVO pgvo = new PagingVO(page,5);
         PagingHandler ph = comsv.getCommentList(bno,pgvo);
 
+        log.info("bno {}",bno);
         log.info("comment ph>>>{}",ph);
 
         return new ResponseEntity<PagingHandler>(ph, HttpStatus.OK);

@@ -3,9 +3,7 @@ package com.booktopia.www.handler;
 import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.CommentDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 class ListType<T> {
@@ -15,6 +13,8 @@ class ListType<T> {
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PagingHandler {
     private int startPage;
     private int endPage;
@@ -45,10 +45,7 @@ public class PagingHandler {
         this.prev=this.startPage>1;
         this.next=this.endPage<realEndPage;
     }
-//    public PagingHandler(PagingVO pgvo, int totalCount, List<UserVO> userList){
-//        this(pgvo,totalCount);
-//        this.userList=userList;
-//    }
+
 
     public PagingHandler(PagingVO pgvo, int totalCount, List<CommentDTO> cmtList){
         this(pgvo,totalCount);

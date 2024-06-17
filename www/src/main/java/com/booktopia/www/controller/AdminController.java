@@ -185,11 +185,12 @@ public class AdminController {
         return boardPh;
     }
 
-    @GetMapping("commentList/{pageNo}")
+    @GetMapping("admincommentList/{pageNo}")
     @ResponseBody
-    public String getCommentList(@PathVariable("pageNo") int pageNo){
+    public String adminGetcommentList(@PathVariable("pageNo") int pageNo){
         PagingVO commenPagingVO = new PagingVO(pageNo, 10);
         int commentCount = commentMapper.getCount();
+        log.info("commentCount >>> {}", commentCount);
         return "1";
     }
 

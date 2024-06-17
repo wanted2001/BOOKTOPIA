@@ -245,7 +245,7 @@ async function communBoardToServer(pageNo){
 
 // 댓글 관리
 async function commentBoardToServer(pageNo){
-    const resp = await fetch("/admin/commentList/"+pageNo);
+    const resp = await fetch("/admin/admincommentList/"+pageNo);
     const result = await resp.json();
     return result;
 }
