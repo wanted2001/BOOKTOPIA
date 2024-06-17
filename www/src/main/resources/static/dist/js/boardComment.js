@@ -139,18 +139,33 @@ document.addEventListener('click',(e)=>{
                 alert("댓글을 입력해주세요.")
                 document.getElementById('recommContent').focus();
             } else {
-                let reCmtData = {
-                    cno:cno,
-                    bno:bnoVal,
-                    rcWriter:commDeUserId,
-                    rcContent:document.getElementById('recommContent').value
-                }
-                postReCommentToServer(reCmtData).then(result=>{
-                    if(result==='1'){
-                        // console.log("대댓 등록완료");
-                        spreadCommentList(bnoVal)
+                if(commDeUserEmail==null||commDeUserEmail==''){
+                    let reCmtData = {
+                        cno:cno,
+                        bno:bnoVal,
+                        rcWriter:commDeUserId,
+                        rcContent:document.getElementById('recommContent').value
                     }
-                })
+                    postReCommentToServer(reCmtData).then(result=>{
+                        if(result==='1'){
+                            // console.log("대댓 등록완료");
+                            spreadCommentList(bnoVal)
+                        }
+                    })
+                } else {
+                    let reCmtData = {
+                        cno:cno,
+                        bno:bnoVal,
+                        rcWriter:commDeUserEmail,
+                        rcContent:document.getElementById('recommContent').value
+                    }
+                    postReCommentToServer(reCmtData).then(result=>{
+                        if(result==='1'){
+                            // console.log("대댓 등록완료");
+                            spreadCommentList(bnoVal)
+                        }
+                    })
+                }
             }
         })
     }
