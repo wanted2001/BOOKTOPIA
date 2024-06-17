@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.booktopia.www.repository.CouponMapper">
+
+    <select id="getCoupon" resultType="com.booktopia.www.domain.AdCouponVO">
+        select * from ad_coupon where cou_no=#{couNo}
+    </select>
+
+    <select id="getSaleAmount" resultType="float">
+        select ad_cou_sale from ad_coupon where cou_no=#{couNo}
+    </select>
+</mapper>
