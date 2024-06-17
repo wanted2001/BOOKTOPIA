@@ -31,9 +31,9 @@ function request_pay(){
         ordaddr.focus();
     } else {
         //쿠폰
-        let coupon = document.getElementById('coupon').value;
-        let couponValue = coupon.options[selectedIndex].value;
-        console.log(couponValue);
+        // let coupon = document.getElementById('coupon').value;
+        // let couponValue = coupon.options[selectedIndex].value;
+        // console.log(couponValue);
 
         const IMP = window.IMP;
         IMP.init("imp42245168")

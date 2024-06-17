@@ -36,6 +36,7 @@ public class AdminController {
     private final BoardMapper boardMapper;
     private final CommentMapper commentMapper;
     private final ReCommentMapper reCommentMapper;
+    private final HeartMapper heartMapper;
 
     private final BoardService boardService;
     private final CommentService commentService;
@@ -107,8 +108,12 @@ public class AdminController {
         log.info("tatalCount >>> {}", tatalCount);
 //        userMapper.getList();
         PagingHandler ph = new PagingHandler(pgvo, tatalCount);
-        ph.setUserList(userMapper.adminUserList(pgvo));
+        List<UserVO> ulist = userMapper.adminUserList(pgvo);
+        ph.setUserList(ulist);
+
         log.info("ph >>> {}", ph);
+        log.info("ulist >>> {}", ulist);
+//        model.addAttribute("ph", ph);
         return ph;
     }
 
@@ -209,6 +214,8 @@ public class AdminController {
         return commenPh;
     }
 
+    /* 버튼 클릭 시 */
+
     //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")
     @ResponseBody
@@ -232,13 +239,19 @@ public class AdminController {
     @ResponseBody
     public String boardDel(@PathVariable("bno") long bno) {
         log.info("board controller in >>>> ");
-//        commentMapper.deleteCommentFromBoard(bno);
-//        int isOk = boardMapper.bnoDel(bno);
 
-        int isOk = boardService.delete(bno);
-        reCommentService.deleteCommentFromBoard(bno);
-        return isOk > 0 ? "1" : "0";
+        // 댓글, 대댓글, 하트가 있을 경우
+        int recomCount = reCommentMapper.getadreComCount(bno);
+        int comCount = commentMapper.getadComCount(bno);
+        int heartCount = heartMapper.getcount(bno);
 
+        if(recomCount > 0 || comCount > 0 || heartCount > 0) {
+            reCommentMapper.adminDelRecomment(bno);
+            commentMapper.deleteCommentFromBoard(bno);
+            heartMapper.adminDelHeart(bno);
+        }
+        boardMapper.adminDelBoard(bno);
+        return "1";
     }
 
     // 댓글 삭제 구문
@@ -246,6 +259,11 @@ public class AdminController {
     @ResponseBody
     public String commentDel (@PathVariable("bno") long bno){
         log.info("comment controller in >>>> ");
+
+        int recomCount = reCommentMapper.getadreComCount(bno);
+        if(recomCount > 0){
+            reCommentMapper.adminDelRecomment(bno);
+        }
         commentMapper.deleteCommentFromBoard(bno);
         return "1";
     }

@@ -22,7 +22,7 @@ button {
     text-align: left;
     padding-left: 15px;
     border-radius: 3px;
-    border: 1px solid #ffb1b0;
+    border: 1px solid #005c87;
     cursor: pointer;
 }
 
@@ -53,7 +53,8 @@ td{
 .adminapproval{
     width: 105px;
     height: 31px;
-    background-color: #ffb1b0;
+    background-color: #005c87;
+    border: none;
     color: white;
     font-weight: 700;
     text-align: center;
@@ -103,7 +104,7 @@ td{
     height: 35px;
 }
 .boardDel:hover, .commentDel:hover{
-    background-color: #ffb1b0;
+    background-color: #005c87;
     color: white;
     font-weight: 700;
 }

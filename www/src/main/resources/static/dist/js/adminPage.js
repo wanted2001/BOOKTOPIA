@@ -3,8 +3,9 @@ document.addEventListener('click', (e) => {
     const target = e.target;
     console.log(e.target);
     if (target.classList.contains('admin-btn')) {
+        // admin cate 선택 부분
         e.preventDefault();
-        const btnId = target.id
+        const btnId = target.id;
         handleButtonClick(btnId);
     } else if(e.target.classList.contains('adminapproval')){
         // 배송현황 > 결제승인 버튼을 클릭 했을 때...
@@ -13,17 +14,17 @@ document.addEventListener('click', (e) => {
         let deliStatus = tr.querySelector('.deliStatus').innerText;
         console.log(deliUid);
         console.log(deliStatus);
-        if(deliStatus == '배송준비중'){
+        if(deliStatus === '배송준비중'){
             postStatus(deliUid).then(result =>{
                 console.log(result);
-                if (result == 1){
+                if (result === 1){
                     alert("배송처리 되었습니다.");
                 }
             })
         } else {
             postSecondStatus(deliUid).then(result =>{
                 console.log(result);
-                if(result == 1){
+                if(result === 1){
                     alert("배송완료처리");
                 }
             })
@@ -36,7 +37,7 @@ document.addEventListener('click', (e) => {
         console.log(bno);
         boardDelToServer(bno).then(result =>{
             console.log(result);
-            if(result == "1"){
+            if(result === "1"){
                 console.log(result);
                 alert('게시글 삭제 완료되었습니다.');
                 tr.parentNode.removeChild(tr);
@@ -76,7 +77,7 @@ function handleButtonClick(btnId) {
             const tr = document.getElementById('adminUserList');
             console.log(tr);
             if(result.userList.length > 0){
-                if(page == 1){
+                if(page === 1){
                     tr.innerHTML = '';
                 }
                 for(let uvo of result.userList){
@@ -92,13 +93,20 @@ function handleButtonClick(btnId) {
             } else {
                 tr.innerHTML = `<div> List Empty </div>`;
             }
+
+            const div = document.getElementById('adminPaging');
+            let paging = `<ul><li if="${ph.prev}">`
+                paging += `<a href="@{/admin/adminPage(pageNo=${ph.startPage-1}, qty=${ph.qty})}">`;
+                paging += `<span> 《 </span></a></li>`;
+
+                div.innerHTML += paging;
         })
     } else if(index === '.bookTopia-user'){ //취향검사 리스트
         bookTopiaToServer(page=1).then(result =>{
             console.log(result);
             const tbody = document.getElementById('adminTestList');
             if(result.booktopia.length > 0){
-                if(page == 1){
+                if(page === 1){
                     tbody.innerHTML = '';
                 }
                 for (let test of result.booktopia){
@@ -118,7 +126,7 @@ function handleButtonClick(btnId) {
             console.log(result);
             const tbody = document.getElementById('adminSubList');
             if(result.orderInfoDTOList.length > 0){
-                if(page == 1){
+                if(page === 1){
                     tbody.innerHTML = '';
                 }
                 for(let sub of result.orderInfoDTOList){
@@ -161,14 +169,14 @@ function handleButtonClick(btnId) {
             console.log(result);
             const tbody = document.getElementById('adminBoardList');
             if(result.boardlist.length > 0){
-                if(page == 1){
+                if(page === 1){
                     tbody.innerHTML = '';
                 }
                 for (let board of result.boardlist){
                     let td =  `<td style="text-align: center" class="adbbno">${board.bno}</td>`;
                         td += `<td>${board.bcate}</td>`;
                         td += `<td>${board.btitle}</td>`;
-                        if(board.bmainImg!= ''){
+                        if(board.bmainImg!== ''){
                             td += `<td><img src="/upload/${board.bmainImg}">`
                             // td += `<div class="adcontent">${board.bcontent}</div></td>`;
                         } else {
@@ -181,22 +189,47 @@ function handleButtonClick(btnId) {
                         tbody.innerHTML += td;
                 }
             } else {
-                tbody.innerHTML = `<div> list Empty </div>`;
+                tbody.innerHTML = `<div> List Empty </div>`;
             }
         })
-    }else if(index === '.commuComment') {
+    }else if(index === '.commuComment') { // 댓글 리스트
         commentBoardToServer(page=1).then(result=>{
             console.log(result);
+            const tbody = document.getElementById('adminComment');
+            if(result.cmtList.length > 0){
+                if (page === 1){
+                    tbody.innerHTML = '';
+                }
+                for (let adcomment of result.cmtList){
+                    let td = `<td class="adcbno" style="text-align: center">${adcomment.bno}</td>`;
+                        td += `<td style="text-align: center">${adcomment.cwriter}</td>`;
+                        td += `<td style="padding-left: 20px">${adcomment.ccontent}</td>`;
+                        td += `<td style="text-align: center">${adcomment.cregDate}</td>`;
+                        td += `<td><button type="button" class="commentDel">삭제</button></td>`;
+
+                        tbody.innerHTML += td;
+                }
+            } else {
+                tbody.innerHTML = `<div> List Empty </div>`
+            }
         })
     }
 
+    // 페이징 처리
+    const div = document.getElementById('adminPaging');
+    let paging = `<ul>`;
+        paging += `<li></li>`;
+
+
+    /* 카테 버튼 옵션 변경 구문 */
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
-        button.style.backgroundColor = button.id === btnId ? '#ffb1b0' : '';
+        button.style.backgroundColor = button.id === btnId ? '#005c87' : '';
         button.style.color = button.id === btnId ? '#ffffff' : '';
         button.style.fontWeight = button.id === btnId ? '700' : '';
     });
 }
+
 
 /*
    프론트 : N페이지 회원 리스트를 "/admin/getUserList/"+pageNo 주소로 서버한테 요청
@@ -251,6 +284,8 @@ async function commentBoardToServer(pageNo){
     const result = await resp.json();
     return result;
 }
+
+
 
 // 게시글 관리 > 삭제
 async function boardDelToServer(bno){

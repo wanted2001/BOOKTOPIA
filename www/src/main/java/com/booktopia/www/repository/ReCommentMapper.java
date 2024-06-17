@@ -23,4 +23,8 @@ public interface ReCommentMapper {
     int getreCommentCount();
 
     List<CommentDTO> adminreCommtneList();
+
+    void adminDelRecomment(long bno);
+
+    int getadreComCount(long bno);
 }

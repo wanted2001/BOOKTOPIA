@@ -112,6 +112,10 @@
         order by bno desc
         limit #{pageStart},#{qty}
     </select>
+
+    <delete id="adminDelBoard">
+        delete from board where bno=#{bno}
+    </delete>
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">

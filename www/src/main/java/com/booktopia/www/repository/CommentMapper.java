@@ -27,4 +27,6 @@ public interface CommentMapper {
     int getCount();
 
     List<CommentDTO> admingetCommentList(PagingVO commenPagingVO);
+
+    int getadComCount(long bno);
 }

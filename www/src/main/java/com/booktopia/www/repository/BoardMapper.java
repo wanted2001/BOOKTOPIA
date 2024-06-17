@@ -52,4 +52,6 @@ public interface BoardMapper {
     int getCount();
 
     List<BoardVO> adminBoardList(PagingVO boardPgvo);
+
+    int adminDelBoard(long bno);
 }

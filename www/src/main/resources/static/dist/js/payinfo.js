@@ -23,7 +23,7 @@ callPayInfo(idVal).then(result => {
                              <div id="payInfoapprovedAt">${item.approvedAt}</div>
                          </div>
                          <div class="payInfoRight">
-                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>
+<!--                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>-->
                              <div id="payInfoAmount">${item.totalAmount}</div>
                              <button type="button" id="payInfoDelivery" onclick="deliSuccess()">${item.deliStatus}</button>
                          </div>

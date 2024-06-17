@@ -20,7 +20,7 @@
             </div>
             <div class="cate-detail">
                 <!--회원 리스트-->
-                <table class="admin-UserList" style="display: block">
+                <table class="admin-UserList" style="display: none">
                     <thead>
                         <tr class="adUserTr">
                             <th>ID</th>
@@ -32,6 +32,7 @@
                         </tr>
                     </thead>
                     <tbody id="adminUserList">
+
                     </tbody>
                 </table>
 
@@ -131,19 +132,34 @@
                             <th style="width: 80px">관리</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr th:each="commen:${commlist}">
-                            <td class="adcbno" style="text-align: center">[[${commen.bno}]]</td>
-                            <td style="text-align: center">[[${commen.cWriter}]]</td>
-                            <td style="padding-left: 20px">[[${commen.cContent}]]</td>
-                            <td style="text-align: center">[[${commen.cRegDate}]]</td>
-                            <td><button type="button" class="commentDel">삭제</button></td>
-                        </tr>
+                    <tbody id="adminComment">
+
                     </tbody>
                 </table>
 
                 <!--페이지네이션 라인-->
 
+                <div id="adminPaging">
+<!--                    <ul>-->
+<!--                        <li th:if="${ph.prev}">-->
+<!--                            <a th:href="@{/admin/adminPage(pageNo=${ph.startPage-1}, qty=${ph.pgvo.qty})}" aria-label="Previous">-->
+<!--                                <span> << </span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+
+<!--                        <th:block th:each="i : ${#numbers.sequence(ph.startPage,ph.endPage)}">-->
+<!--                            <li th:classappend="${ph.pgvo.pageNo == i ? 'active' : ''}">-->
+<!--                                <a th:href="@{/admin/adminPage(pageNo=${i}, qty=${ph.pgvo.qty})}"></a>-->
+<!--                            </li>-->
+<!--                        </th:block>-->
+
+<!--                        <li th:if="${ph.next}">-->
+<!--                            <a th:href="@{/admin/adminPage(pageNo=${ph.startPage+1}, qty=${ph.pgvo.qty})}">-->
+<!--                                <span> >> </span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+                </div>
             </div>
         </nav>
         </form>

@@ -41,4 +41,9 @@
     <select id="admingetCommentList" resultType="com.booktopia.www.domain.CommentVO">
         select * from comment
     </select>
+
+    <select id="getadComCount" resultType="int">
+        select count(bno) from comment where bno=#{bno}
+    </select>
+
 </mapper>
