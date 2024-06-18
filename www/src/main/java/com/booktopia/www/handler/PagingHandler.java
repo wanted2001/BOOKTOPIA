@@ -16,6 +16,7 @@ class ListType<T> {
 public class PagingHandler {
     private int startPage;
     private int endPage;
+    private int realEndPage;
     private boolean prev,next;
     private int totalCount;
     private PagingVO pgvo;
@@ -34,7 +35,7 @@ public class PagingHandler {
         this.endPage= (int) (Math.ceil(pgvo.getPageNo()/(double)10)*10);
         this.startPage = endPage-9;
 
-        int realEndPage = (int) Math.ceil(totalCount/(double)pgvo.getQty());
+        this.realEndPage = (int) Math.ceil(totalCount/(double)pgvo.getQty());
 
         if(realEndPage<endPage) {
             this.endPage=realEndPage;

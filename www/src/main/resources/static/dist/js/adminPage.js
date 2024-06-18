@@ -43,13 +43,13 @@ document.addEventListener('click', (e) => {
                 tr.parentNode.removeChild(tr);
             }
         })
-    } else if(e.target.classList.contains('commentDel')){
+    } else if(e.target.classList.contains('commentDel')) {
         // 댓글관리 페이지에서 삭제 버튼 눌렀을 때...
         const tr = e.target.closest('tr');
         let bno = tr.querySelector(".adcbno").innerText;
         console.log(bno);
-        CommentDelToServer(bno).then(result =>{
-            if(result === "1"){
+        CommentDelToServer(bno).then(result => {
+            if (result === "1") {
                 console.log(result);
                 alert('댓글 삭제 되었습니다.');
                 tr.parentNode.removeChild(tr);
@@ -60,10 +60,8 @@ document.addEventListener('click', (e) => {
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
-        console.log(btnId);
     const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
         let index = sections[btnId.slice(-1)-1];
-        console.log(index);
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
         console.log(section);
@@ -74,11 +72,13 @@ function handleButtonClick(btnId) {
     if(index === '.admin-UserList'){ //회원리스트
         userListToServer(page=1).then(result=>{
             console.log(result)
-            const tr = document.getElementById('adminUserList');
-            console.log(tr);
+            console.log(result.totalCount);
+            console.log(result.pgvo);
+            const tbody = document.getElementById('adminUserList');
+            console.log(tbody);
             if(result.userList.length > 0){
                 if(page === 1){
-                    tr.innerHTML = '';
+                    tbody.innerHTML = '';
                 }
                 for(let uvo of result.userList){
                     let td = `<td>${uvo.id}</td>`;
@@ -88,18 +88,11 @@ function handleButtonClick(btnId) {
                     td += `<td>${uvo.userType}</td>`;
                     td += `<td>${uvo.userReg}</td></tr>`;
 
-                    tr.innerHTML += td;
+                    tbody.innerHTML += td;
                 }
             } else {
-                tr.innerHTML = `<div> List Empty </div>`;
+                tbody.innerHTML = `<div> List Empty </div>`;
             }
-
-            const div = document.getElementById('adminPaging');
-            let paging = `<ul><li if="${ph.prev}">`
-                paging += `<a href="@{/admin/adminPage(pageNo=${ph.startPage-1}, qty=${ph.qty})}">`;
-                paging += `<span> 《 </span></a></li>`;
-
-                div.innerHTML += paging;
         })
     } else if(index === '.bookTopia-user'){ //취향검사 리스트
         bookTopiaToServer(page=1).then(result =>{
@@ -114,6 +107,7 @@ function handleButtonClick(btnId) {
                         td += `<td>${test.birth}</td>`;
                         td += `<td>${test.gender}</td>`;
                         td += `<td>${test.testAt}</td>`;
+                        td += `<td>${test.btnResult}</td>`;
 
                         tbody.innerHTML += td;
                 }
@@ -188,6 +182,17 @@ function handleButtonClick(btnId) {
 
                         tbody.innerHTML += td;
                 }
+                let moreBtn = document.getElementById('adminmoreBtn');
+                console.log(moreBtn);
+                console.log(result.pgvo.pageNo);
+                console.log(result.realEndPage);
+
+                if(result.pgvo.pageNo < result.endPage){
+                    moreBtn.style.visibility = 'visible';
+                    moreBtn.dataset.page = page+1;
+                } else {
+                    moreBtn.style.visibility = 'hidden';
+                }
             } else {
                 tbody.innerHTML = `<div> List Empty </div>`;
             }
@@ -215,12 +220,6 @@ function handleButtonClick(btnId) {
         })
     }
 
-    // 페이징 처리
-    const div = document.getElementById('adminPaging');
-    let paging = `<ul>`;
-        paging += `<li></li>`;
-
-
     /* 카테 버튼 옵션 변경 구문 */
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
@@ -229,6 +228,34 @@ function handleButtonClick(btnId) {
         button.style.fontWeight = button.id === btnId ? '700' : '';
     });
 }
+
+// function getUserlist (pageNo){
+//     userListToServer(pageNo).then(result=>{
+//         console.log(result)
+//         console.log(result.totalCount);
+//         console.log(result.pgvo);
+//         const tbody = document.getElementById('adminUserList');
+//         console.log(tbody);
+//         if(result.userList.length > 0){
+//             if(page === 1){
+//                 tbody.innerHTML = '';
+//             }
+//             for(let uvo of result.userList){
+//                 let td = `<td>${uvo.id}</td>`;
+//                 td += `<td style="text-align: center">${uvo.name}</td>`;
+//                 td += `<td>${uvo.email}</td>`;
+//                 td += `<td>${uvo.phone}</td>`;
+//                 td += `<td>${uvo.userType}</td>`;
+//                 td += `<td>${uvo.userReg}</td></tr>`;
+//
+//                 tbody.innerHTML += td;
+//             }
+//
+//         } else {
+//             tbody.innerHTML = `<div> List Empty </div>`;
+//         }
+//     })
+// }
 
 
 /*
@@ -284,7 +311,6 @@ async function commentBoardToServer(pageNo){
     const result = await resp.json();
     return result;
 }
-
 
 
 // 게시글 관리 > 삭제

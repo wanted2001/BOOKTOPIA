@@ -24,16 +24,22 @@
                     <thead>
                         <tr class="adUserTr">
                             <th>ID</th>
-                            <th style="width: 80px">이름</th>
+                            <th style="width: 80px">Name</th>
                             <th>E-mail</th>
                             <th>Phone</th>
-                            <th>가입경로</th>
-                            <th>가입일자</th>
+                            <th>SignUp</th>
+                            <th>RegAt</th>
                         </tr>
                     </thead>
                     <tbody id="adminUserList">
-
                     </tbody>
+
+                    <!--spreadline-->
+
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adUser" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
                 <!--취향검사 진행자 리스트-->
@@ -44,126 +50,110 @@
                             <th style="width: 165px">BIRTH</th>
                             <th style="width: 100px;">GENDER</th>
                             <th style="width: 200px;">TEST_AT</th>
+                            <th>Result</th>
                         </tr>
                     </thead>
                     <tbody id="adminTestList">
                     </tbody>
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adTest" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
                 <!--구독자 리스트-->
                 <table class="subUser" style="display: none">
                     <thead>
                         <tr>
-                            <th>주문번호</th>
-                            <th>구독상품</th>
-                            <th style="width: 70px;">이름</th>
-                            <th>전화번호</th>
-                            <th style="width: 320px">배송지</th>
-                            <th>결제비용</th>
+                            <th>MerchantUid</th>
+                            <th>ItemName</th>
+                            <th style="width: 70px;">UserName</th>
+                            <th>Phone</th>
+                            <th style="width: 320px">Address</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody id="adminSubList">
                     </tbody>
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adsubUser" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
                 <!-- 배송현황 -->
                 <table class="delivery" style="display: none">
                     <thead>
                         <tr>
-                            <th style="width: 220px">주문번호</th>
-                            <th style="width: 180px">결제상품</th>
-                            <th style="width: 180px">결제/승인날짜</th>
-                            <th>상태</th>
-                            <th style="width: 100px">배송처리</th>
+                            <th style="width: 220px">MerchantUid</th>
+                            <th style="width: 180px">ItemName</th>
+                            <th style="width: 180px">Pay_RegAt</th>
+                            <th>Status</th>
+                            <th style="width: 100px">Delivery</th>
                         </tr>
                     </thead>
+
                     <tbody id="adminDeliList">
-                        <tr th:each="deli:${delilist}">
-                            <td>[[${deli.deliNo}]]</td>
-                            <td class="deliUid">[[${deli.merchantUid}]]</td>
-                            <td>[[${deli.itemName}]]</td>
-                            <td>[[${deli.deliDate}]]</td>
-                            <td class="deliStatus">[[${deli.deliStatus}]]</td>
-                            <td><button type="button" class="adminapproval">[[${deli.deliStatus}]]</button></td>
-                        </tr>
                     </tbody>
+
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="addeli" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
                 <!--게시글 관리-->
                 <table class="commuBoard" style="display: none">
                     <thead>
                     <tr>
-                        <th style="width: 45px"> 게시글 No</th>
-                        <th>분류</th>
-                        <th>제목</th>
-                        <th style="width: 230px;">내용</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>관리</th>
+                        <th style="width: 45px"> Board_No</th>
+                        <th>Cate</th>
+                        <th>Title</th>
+                        <th style="width: 230px;">Content</th>
+                        <th>Writer</th>
+                        <th>RegAt</th>
+                        <th>Manage</th>
                     </tr>
                     </thead>
                     <tbody id="adminBoardList">
-                        <tr th:each="board:${boadlist}">
-                            <td style="text-align: center" class="adbbno">[[${board.bno}]]</td>
-                            <td>[[${board.bCate}]]</td>
-                            <td>[[${board.bTitle}]]</td>
-                            <td class="adcontentArea" th:if="${board.bMainImg!=''}">
-                                <img th:src="@{|/upload/${board.bMainImg}|}">
-                                <div class="adcontent">[[${board.bContent}]]</div>
-                            </td>
-                            <td class="adcontentNoImg" th:unless="${board.bMainImg!=''}">
-                                <div class="adcontent">[[${board.bContent}]]</div>
-                            </td>
-                            <td>[[${board.bWriter}]]</td>
-                            <td>[[${board.bRegDate}]]</td>
-                            <td><button type="button" class="boardDel">삭제</button></td>
-                        </tr>
                     </tbody>
+
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="addboard" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
                 <!--댓글관리-->
                 <table class="commuComment" style="display: none">
                     <thead>
                         <tr>
-                            <th>게시글 No</th>
-                            <th style="width: 200px">작성자</th>
-                            <th style="width: 350px">내용</th>
-                            <th style="width: 180px">작성일</th>
-                            <th style="width: 80px">관리</th>
+                            <th>Board_No</th>
+                            <th style="width: 200px">Writer</th>
+                            <th style="width: 350px">Content</th>
+                            <th style="width: 180px">RegAt</th>
+                            <th style="width: 80px">Manage</th>
                         </tr>
                     </thead>
                     <tbody id="adminComment">
-
                     </tbody>
+
+<!--                    <div>-->
+<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adCommen" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
+<!--                    </div>-->
+
                 </table>
 
-                <!--페이지네이션 라인-->
+                <!--더보기-->
 
-                <div id="adminPaging">
-<!--                    <ul>-->
-<!--                        <li th:if="${ph.prev}">-->
-<!--                            <a th:href="@{/admin/adminPage(pageNo=${ph.startPage-1}, qty=${ph.pgvo.qty})}" aria-label="Previous">-->
-<!--                                <span> << </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
 
-<!--                        <th:block th:each="i : ${#numbers.sequence(ph.startPage,ph.endPage)}">-->
-<!--                            <li th:classappend="${ph.pgvo.pageNo == i ? 'active' : ''}">-->
-<!--                                <a th:href="@{/admin/adminPage(pageNo=${i}, qty=${ph.pgvo.qty})}"></a>-->
-<!--                            </li>-->
-<!--                        </th:block>-->
-
-<!--                        <li th:if="${ph.next}">-->
-<!--                            <a th:href="@{/admin/adminPage(pageNo=${ph.startPage+1}, qty=${ph.pgvo.qty})}">-->
-<!--                                <span> >> </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-                </div>
             </div>
         </nav>
         </form>
 
         <script th:src="@{/dist/js/adminPage.js}"></script>
+        <script>
+            boardDelToServer(page);
+        </script>
     </th:block>
 </th:block>

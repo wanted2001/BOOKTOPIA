@@ -103,7 +103,7 @@ public class AdminController {
     @GetMapping("/getUserList/{pageNo}")
     @ResponseBody
     public PagingHandler getUserList(@PathVariable("pageNo") int pageNo) {
-        PagingVO pgvo = new PagingVO(pageNo, 10);
+        PagingVO pgvo = new PagingVO(pageNo,10);
         int tatalCount = userMapper.getTotal();
         log.info("tatalCount >>> {}", tatalCount);
 //        userMapper.getList();
@@ -215,6 +215,7 @@ public class AdminController {
     }
 
     /* 버튼 클릭 시 */
+
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")

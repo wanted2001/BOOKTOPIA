@@ -21,7 +21,7 @@
     </select>
 
     <select id="adminPayList" resultType="com.booktopia.www.domain.PagingVO">
-        select * from
+        select * from pay
         limit #{pageStart}, #{qty}
     </select>
 
