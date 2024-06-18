@@ -49,6 +49,16 @@
             </div>
         </div>
 
+<!--         m.addAttribute("msg", "가입이 완료되었습니다. 로그인해주세요.");-->
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            const msg = /*[[${msg != null ?  msg  : '""'}]]*/ '';
+            console.log('Message:', msg); // msg 값 확인을 위해 콘솔에 출력
+            if (msg && msg.includes('가입')) {
+                alert(msg);
+            }
+            /*]]>*/
+        </script>
         <script th:inline="javascript">
             window.onload = function () {
                 const urlParams = new URLSearchParams(window.location.search);

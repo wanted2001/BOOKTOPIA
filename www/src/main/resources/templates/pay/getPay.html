@@ -60,40 +60,50 @@
                             <p>선택 상품 정보</p>
                         </div>
                         <div class="payInnerDiv1">
-                            <div class="subTicketimg">
+                            <div class="subTicketimg" th:if="${ssivo.subInMonth==1}" th:style="'background-color:#f1f4b9'">
                                 <p class="fText">북토피아 [[${ssivo.subInMonth}]]개월 구독권</p>
                                 <p class="sText">[[${ssivo.subInPrice}]]원</p>
+<!--                                <p class="mText">북토피아는 사용자의 만족도를 위해 항상 노력하고 있습니다.</p>-->
+                            </div>
+                            <div class="subTicketimg" th:if="${ssivo.subInMonth!=1}" th:style="${ssivo.subInMonth==3? 'background-color:#baddbc' : 'background-color:#f6bfac'}">
+                                <p class="fText">북토피아 [[${ssivo.subInMonth}]]개월 구독권</p>
+                                <p class="sText">[[${ssivo.subInPrice}]]원</p>
+<!--                            <p class="mText">북토피아는 사용자의 만족도를 위해 항상 노력하고 있습니다.</p>-->
                             </div>
                         </div>
                         <div>
                             <select id="coupon">
                                 <option value="choiceCoupon" name="coupon">쿠폰 선택하기</option>
-                                <option value="welcomeCoupon" name="coupon">웰컴 쿠폰</option>
-                                <option value="discountCoupon" name="coupon">50% 할인</option>
+                                <option value="welcomeCoupon" name="coupon">신규가입 축하 - 10% 할인 쿠폰</option>
+                                <option value="discountCoupon" name="coupon">구독권 1년 이용 감사 - 50% 할인 쿠폰</option>
                             </select>
                         </div>
-                        <div>
-                            사용 가능한 쿠폰 ()장
-                        </div>
+                        <div class="payInfo">결제 정보</div>
                         <hr>
-    <!--                    <th:block th:with="month=${ssivo}">-->
                         <div class="payInnerDiv3">
                             <div>
                                 <div>상품 금액</div>
+                                <input type="hidden" th:value="${ssivo.subInPrice}" class="priceDiv">
                                 <div>[[${ssivo.subInPrice}]]원</div>
                             </div>
                             <div>
                                 <div>쿠폰 할인</div>
-                                <div>- -----원</div>
+                                <div class="discountAmount">0원</div>
                             </div>
                             <div>
-                                <div>결제 금액</div>
-                                <div>[[${ssivo.subInPrice}]]원</div>
+                                <div class="payPrice">결제 금액</div>
+                                <input type="hidden" class="amountInput" th:value="${ssivo.subInPrice}">
+                                <div class="amountDiv">[[${ssivo.subInPrice}]]원</div>
                             </div>
                         </div>
                         <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                        <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
-                        <button type="hidden" id="hiddenBtn"></button>
+                        <button type="button" class="payBtn payBtn1" onclick="request_pay()" th:if="${ssivo.shipNo==1}">결제하기</button>
+                        <button type="button" class="payBtn payBtn2" onclick="request_pay()" th:if="${ssivo.shipNo==2}">결제하기</button>
+                        <button type="button" class="payBtn payBtn3" onclick="request_pay()" th:if="${ssivo.shipNo==3}">결제하기</button>
+                        <div class="arrText">
+                            <p>회원 본인은 주문내용을 확인했으며,</p>
+                            <p>구매 조건 및 개인정보처리방침과 결제에 동의합니다.</p>
+                        </div>
                     </div>
                     <!-- payOutBox div -->
                 </div>
@@ -123,7 +133,7 @@
             const ordId = document.getElementById('payID').value;
             const ordEmail = document.getElementById('payEmail').value;
             const payName = [[${ssivo.subInMonth}]];
-            const amount = [[${ssivo.subInPrice}]];
+            let amount = [[${ssivo.subInPrice}]];
         </script>
         <script th:src="@{/dist/js/imp_payment.js}"></script>
     </th:block>
