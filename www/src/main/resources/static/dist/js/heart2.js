@@ -3,6 +3,7 @@ console.log("heart js in");
 const heartBtn = document.querySelector('.hrtBtn');
 const userId = document.querySelector('.commDeUserId').value;
 console.log(userId);
+console.log(bnoVal);
 let hasHeart = false;
 
 document.querySelector('.hrtBtn').addEventListener('click',()=>{
@@ -53,9 +54,9 @@ async function clickHeart(data){
     }
 }
 
-async function deleteHeart(bnoVal,id){
+async function deleteHeart(bno,id){
     try{
-        const url="/board/heart/delete/"+bnoVal+"/"+id;
+        const url="/board/heart/delete/"+bno+"/"+id;
         const config = {
             method:"delete"
         }
@@ -70,9 +71,9 @@ async function deleteHeart(bnoVal,id){
 }
 
 //bno 떼오는 함수
-async function getUserBno(bnoVal,id){
+async function getUserBno(bno,id){
     try{
-        const url = "/board/heart/"+bnoVal+"/"+id;
+        const url = "/board/heart/"+bno+"/"+id;
         const config ={
             method:"GET",
             headers:{

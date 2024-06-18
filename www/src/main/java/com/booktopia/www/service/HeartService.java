@@ -17,4 +17,8 @@ public interface HeartService {
     Integer getHeartYN(long bno,String id);
 
     int deleteHeart(long bno, String id);
+
+    HeartVO heart1User(String id, long bno);
+
+    void updateHeart(String id, long bno);
 }

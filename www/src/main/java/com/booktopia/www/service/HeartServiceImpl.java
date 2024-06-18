@@ -47,5 +47,15 @@ public class HeartServiceImpl implements HeartService{
         return heartMapper.deleteHeart(bno,id);
     }
 
+    @Override
+    public HeartVO heart1User(String id, long bno) {
+        return heartMapper.heart1User(id, bno);
+    }
+
+    @Override
+    public void updateHeart(String id, long bno) {
+        heartMapper.updateHeart(id,bno);
+    }
+
 
 }

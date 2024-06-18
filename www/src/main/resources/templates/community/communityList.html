@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <title>안녕하세요</title>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="stylesheet" th:href="@{/dist/css/communityList.css}">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!--마크다운 라이브러리-->
@@ -8,12 +9,19 @@
 <script th:src="@{/dist/js/markdown.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+        <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
         <!--공지-->
         <div class="wrap">
-            <div class="sticker">
-                <img th:src="@{/image/p_sticker.png}" class="pSticker">
-            </div>
+<!--            <div class="sticker">-->
+<!--                <img th:src="@{/image/p_sticker.png}" class="pSticker">-->
+<!--            </div>-->
             <!--검색창-->
+            <select id="sortCommListId" th:name="sortCommList" class="commSortList">
+                <option value="choice" name="sortCommListId">선택</option>
+                <option value="commentCnt" name="sortCommListId">댓글순</option>
+                <option value="heartCnt" name="sortCommListId">좋아요순</option>
+                <option value="viewCnt" name="sortCommListId">조회수순</option>
+            </select>
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>
                     <select th:name="type" class="commSelect commSearchArea">
@@ -90,7 +98,7 @@
                 <div class="commListContent">
                     <div class="commTitle">
                         <th:block th:switch="${bvo.bCate}">
-                            <a th:href="@{/board/detail(bno=${bvo.getBno()})}">
+                            <a th:href="@{/board/detail(bno=${bvo.getBno()},id=${auth.getId()})}">
                                 <span th:case="novel" th:text="'[소설]'"></span>
                                 <span th:case="finance" th:text="'[경제/경영]'"></span>
                                 <span th:case="human" th:text="'[인문]'"></span>
@@ -105,7 +113,7 @@
                         [[${bvo.bWriter}]]•<span th:text="${#strings.substring(bvo.bRegDate,0,10)}"></span>
                     </div>
                     <div class="commContent">
-                        <a th:href="@{/board/detail(bno=${bvo.getBno()})}">[[${bvo.bContent}]]</a>
+                        <a th:href="@{/board/detail(bno=${bvo.getBno()},id=${auth.getId()})}">[[${bvo.bContent}]]</a>
                     </div>
                     <div class="commImg" th:if="${bvo.bMainImg!=''}">
                         <img th:src="@{|/upload/${bvo.bMainImg}|}">
@@ -178,9 +186,15 @@
                         </a>
                     </li>
                 </ul>
-                </th:block>
             </div>
         </div>
+        <script>
+            document.getElementById('sortCommListId').addEventListener('change',()=>{
+                const sort = $('select#sortCommListId').val();
+                console.log(sort);
+            })
 
+        </script>
+        </th:block>
     </th:block>
 </th:block>

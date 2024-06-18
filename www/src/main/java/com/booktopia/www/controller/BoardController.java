@@ -65,19 +65,28 @@ public class BoardController {
 
     }
 
-    @GetMapping({"/detail", "/modify"})
-    public void detail(Model m, @RequestParam("bno") long bno) {
+    @GetMapping("/detail")
+    public void detailWithId(Model m, @RequestParam("bno") long bno, @RequestParam("id") String id){
+        log.info("parameter detail id>>>>>",id);
         BoardVO bvo = bsv.getDetail(bno);
         log.info("detail bvo >>>>{}", bvo);
         int heartCnt = bsv.getHeartCnt(bno);
         log.info("heartCnt>>>>>{}",heartCnt);
-        Integer hvo = hsv.getHeartYN(bno, bvo.getId());
+        Integer hvo = hsv.getHeartYN(bno,id);
         if(hvo==null) {
             hvo=0;
         }
         log.info("heartYN hvo>>>>{}",hvo);
         m.addAttribute("hvo",hvo);
         m.addAttribute("heartCnt",heartCnt);
+        m.addAttribute("bvo", bvo);
+
+    }
+
+    @GetMapping("/modify")
+    public void detail(Model m, @RequestParam("bno") long bno) {
+        BoardVO bvo = bsv.getDetail(bno);
+//        log.info("detail bvo >>>>{}", bvo);
         m.addAttribute("bvo", bvo);
     }
 
@@ -119,9 +128,12 @@ public class BoardController {
         String id = hvo.getId();
         log.info("id>>>{}",id);
 
-        HeartVO heartVO = hsv.getUser(id,hvo.getBno());
+        HeartVO heartVO = hsv.heart1User(id,hvo.getBno());
+        log.info("heartvo 0인거 찾아야함>>{}", heartVO);
         if (heartVO != null) {
             log.info("heartVO>>>>>>{}", heartVO);
+            hsv.updateHeart(id,hvo.getBno());
+            bsv.updateHeartCount(bno);
             return "0";
         } else {
             hsv.insertHeart(hvo);
@@ -134,7 +146,9 @@ public class BoardController {
     @GetMapping("/heart/{bno}/{id}")
     @ResponseBody
     public String getHeartBno(@PathVariable("bno") long bno, @PathVariable("id") String id) {
-        HeartVO heartVO = hsv.getUserBno(bno, id);
+        log.info("heart bno>>>>>{}",bno);
+        log.info("heart id>>>>>>{}",id);
+        HeartVO heartVO = hsv.getUser(id, bno);
         log.info("getHeart heartVO click heart>>{}", heartVO);
         if (heartVO == null) {
             return "0";

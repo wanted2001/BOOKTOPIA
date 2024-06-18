@@ -24,4 +24,8 @@ public interface HeartMapper {
     int getcount(long bno);
 
     void adminDelHeart(long bno);
+
+    HeartVO heart1User(@Param("id") String id, @Param("bno") long bno);
+
+    void updateHeart(@Param("id") String id,@Param("bno") long bno);
 }
