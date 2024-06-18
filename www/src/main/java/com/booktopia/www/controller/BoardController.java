@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -132,12 +133,13 @@ public class BoardController {
 
     @GetMapping("/heart/{bno}/{id}")
     @ResponseBody
-    public String getHeartBno(@PathVariable("bno") long bno,@PathVariable("id") String id) {
+    public String getHeartBno(@PathVariable("bno") long bno, @PathVariable("id") String id) {
         HeartVO heartVO = hsv.getUserBno(bno, id);
         log.info("getHeart heartVO click heart>>{}", heartVO);
         if (heartVO == null) {
             return "0";
         } return "1";
+
     }
 
     @DeleteMapping("/heart/delete/{bno}/{id}")

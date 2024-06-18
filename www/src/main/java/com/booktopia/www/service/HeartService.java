@@ -2,6 +2,8 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.HeartVO;
 
+import java.util.List;
+
 public interface HeartService {
 
     HeartVO getUser(String id, long bno);
@@ -12,7 +14,7 @@ public interface HeartService {
 
     HeartVO getUserBno(long bno, String id);
 
-    Integer getHeartYN(long bno, String id);
+    Integer getHeartYN(long bno,String id);
 
     int deleteHeart(long bno, String id);
 }
