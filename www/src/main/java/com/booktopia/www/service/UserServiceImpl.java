@@ -4,6 +4,7 @@ import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.CouponMapper;
+import com.booktopia.www.repository.CouponUseMapper;
 import com.booktopia.www.repository.OrderInfoMapper;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,17 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final OrderInfoMapper orderInfoMapper;
     private final CouponMapper couponMapper;
+    private final CouponUseMapper couponUseMapper;
 
     // 회원가입
     @Override
     public int joinInsert(UserVO uvo) {
         int isOk = userMapper.joinInsert(uvo);
-        return (isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0);
+        int isOk2 = isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0;
+        if(isOk>0||isOk2 > 0) {
+            couponUseMapper.insertUserCoupon(uvo.getId());
+        }
+        return isOk2;
     }
 
     @Override

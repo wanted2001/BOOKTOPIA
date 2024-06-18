@@ -11,6 +11,12 @@
     font-weight: normal;
 }
 @font-face {
+    font-family: SCDream5;
+    src: url(../font/S-Core_Dream_OTF/SCDream5.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
     font-family: SCDream8;
     src: url(../font/S-Core_Dream_OTF/SCDream8.otf) format("opentype");
     font-style: normal;
@@ -152,4 +158,9 @@
    background-position: center;
    background-size: contain;
 
+}
+.copyRight{
+    font-family: SCDream5;
+    width: 1400px;
+    text-align: center;
 }

@@ -20,4 +20,13 @@
         select * from booktopia
     </select>
 
+    <select id="getTotal" resultType="int">
+        select count(btp_no) from booktopia
+    </select>
+
+    <select id="adminTestList" resultType="com.booktopia.www.domain.BooktopiaVO">
+        select * from booktopia
+        order by test_at desc
+        limit #{pageStart}, #{qty}
+    </select>
 </mapper>

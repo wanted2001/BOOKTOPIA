@@ -7,4 +7,5 @@
     <select id="getBookList" resultType="com.booktopia.www.domain.BookVO">
         select * from book where book_code=#{book}
     </select>
+
 </mapper>

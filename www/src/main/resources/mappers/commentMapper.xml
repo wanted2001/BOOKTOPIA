@@ -34,7 +34,16 @@
         delete from comment where bno=#{bno}
     </delete>
 
-    <select id="getComList" resultType="com.booktopia.www.domain.CommentVO">
+    <select id="getCount" resultType="int">
+        select count(cno) from comment
+    </select>
+
+    <select id="admingetCommentList" resultType="com.booktopia.www.domain.CommentVO">
         select * from comment
     </select>
+
+    <select id="getadComCount" resultType="int">
+        select count(bno) from comment where bno=#{bno}
+    </select>
+
 </mapper>

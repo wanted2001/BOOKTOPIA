@@ -35,5 +35,9 @@
         LIMIT 1;
     </select>
 
+    <select id="adminOrderList" resultType="com.booktopia.www.domain.OrderInfoVO">
+        select * from order_info
+        limit #{pageStart}, #{qty}
+    </select>
 
 </mapper>
