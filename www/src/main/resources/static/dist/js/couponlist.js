@@ -13,7 +13,7 @@ callCouponInfo(idVal).then(result => {
     ul.innerHTML = ""; // ul 내용 초기화
 
     // 결과가 없거나 null인 경우 처리
-    if(result.length == 0 || result == null) {
+    if(result.length == 0) {
         ul.innerHTML = `<div class="nocouponinfo">쿠폰 내역이 없습니다.</div>`;
     } else {
         // 결과가 있는 경우 각 항목을 ul에 추가

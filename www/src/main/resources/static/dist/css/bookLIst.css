@@ -12,33 +12,30 @@
 .bestbooklistwrap{
     display: flex;
     width: 1100px;
-    height: 410px;
+    height: 500px;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 
 .book-list-contain{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     width: 1200px;
-    height: 1300px;
+    height: 1700px;
     margin: 0 auto;
     align-items: center;
 }
 
 .book-taste, .book-popul, .book-recom{
     width: 1200px;
-    height: 320px;
+    height: 360px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-image: url
 }
-
-
 
 .book-taste{
 
@@ -49,6 +46,7 @@
 .book-recom{
 
 }
+
 .booktopiabigtitle{
   width: 400px;
   height: 50px;
@@ -74,12 +72,12 @@
 
 .taste>a>.rankNumdiv{
     position: absolute;
-    color: #3eb737;
+    color: #b1e5ff;
     font-size: 150px;
     top: 155px;
     left: -30px;
     background-color: transparent;
-    text-shadow: 7px -1px 0px #918585;
+    text-shadow: 7px 1px 0px #3e528d;
 }
 
 .rankNumdiv>em{
@@ -157,7 +155,7 @@
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(146, 148, 248, 0.4),
+    rgb(177 229 255),
     transparent
   );
   transition: all 650ms;
