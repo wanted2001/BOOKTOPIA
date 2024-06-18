@@ -233,7 +233,7 @@ function removeAllScriptsExcept(dynamicSrc) {
         for (let j = 0; j < srcToKeep.length; j++) { // script 태그를 달고있는 필수요소의 개수만큼
             if (scripts[i].src.includes(srcToKeep[j])) { // json 형식에 있는 js 링크들
                 keepScript = true;
-                if(srcToKeep[j]== '/dist/js/payinfo.js'){
+                if(srcToKeep[j]== '/dist/js/payinfo.js' || '/dist/js/couponlist.js'){
                     keepScript = false;
                 }
                 break;

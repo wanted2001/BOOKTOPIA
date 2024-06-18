@@ -11,4 +11,8 @@
     <select id="getSaleAmount" resultType="float">
         select ad_cou_sale from ad_coupon where cou_no=#{couNo}
     </select>
+    <select id="getcoulist" resultType="com.booktopia.www.domain.DTO.CouponInfoDTO">
+        select * from coupon_use as cu join ad_coupon as ac on cu.cou_no = ac.cou_no where id=#{id}
+    </select>
+
 </mapper>
