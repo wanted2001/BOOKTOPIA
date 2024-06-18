@@ -8,10 +8,19 @@
 <script th:src="@{/dist/js/markdown.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
-        <!--공지-->
         <div class="wrap">
             <div class="sticker">
-                <img th:src="@{/image/p_sticker.png}" class="pSticker">
+<!--                <img th:src="@{/image/b_sticker.png}" class="bSticker">-->
+<!--                <img th:src="@{/image/bc_sticker.png}" class="bcSticker">-->
+<!--                <img th:src="@{/image/book_sticker.png}" class="bookSticker">-->
+<!--                <img th:src="@{/image/c_sticker.png}" class="cSticker">-->
+<!--                <img th:src="@{/image/cat_sticker.png}" class="catSticker">-->
+<!--                <img th:src="@{/image/d_sticker.png}" class="dSticker">-->
+<!--                <img th:src="@{/image/n_sticker.png}" class="nSticker">-->
+<!--                <img th:src="@{/image/p_sticker.png}" class="pSticker">-->
+<!--                <img th:src="@{/image/pen_sticker.png}" class="penSticker">-->
+<!--                <img th:src="@{/image/t_sticker.png}" class="tSticker">-->
+<!--                <img th:src="@{/image/tu_sticker.png}" class="tuSticker">-->
             </div>
             <!--검색창-->
             <form th:action="@{/community/communityListAll}" method="get">
@@ -36,6 +45,7 @@
                     <span class="commListAllText">전체보기 ></span>
                 </a>
             </div>
+            <!--공지-->
             <div class="commNoticeLine">
                 <span class="NoticeBlock">공지</span>
                 <a th:href="@{/community/communityNotice}">
@@ -76,7 +86,7 @@
                     </a>
                 </div>
             </div>
-            <div class="commLine2"><img th:src="@{/image/commLine.png}"></div>
+<!--            <div class="commLine2"><img th:src="@{/image/commLine.png}"></div>-->
             <!--글쓰기 버튼-->
             <div class="commRegBtn">
                 <a th:href="@{/board/register}">

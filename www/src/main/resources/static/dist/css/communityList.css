@@ -271,6 +271,22 @@
     font-size: 18px;
 }
 
+/*스티커*/
 .sticker{
     z-index: -1000;
+    position: absolute;
+}
+/*커피*/
+.cSticker{
+    position: absolute;
+    width: 120px;
+    top: 508px;
+    left: 22px;
+}
+/*토스트*/
+.tSticker{
+    position: absolute;
+    top: 611px;
+    left: -170px;
+    width: 300px;
 }
