@@ -27,7 +27,9 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         payMapper.insertPayRegister(oidto);
         deliMapeer.insertDeli(oidto);
         userMapper.updateaddr(oidto);
-        couponUseMapper.insertCouponUse(oidto);
+        if(isOk>0){
+            couponUseMapper.insertCouponUse(oidto);
+        }
 
         return isOk;
     }
