@@ -120,7 +120,7 @@
 .article.show .letter {
     display: inline-block;
     opacity: 1;
-    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }
 
 @keyframes reveal {
