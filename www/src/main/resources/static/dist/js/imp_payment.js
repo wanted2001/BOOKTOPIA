@@ -100,7 +100,7 @@ function request_pay(){
                                 console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
-                                 window.location.href = "/pay/done/"+result.merchantUid;
+                                    window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -172,5 +172,68 @@ async function getToken(){
         return result;
     }catch (error){
         console.log(error);
+    }
+}
+
+let salePercent=0;
+let couNo=0;
+function discountAmount(amount){
+    const coupon = $('select#coupon').val();
+    console.log(coupon)
+    if(coupon==='welcomeCoupon'){
+        amount = amount-(amount*0.1);
+        console.log(amount)
+        couNo=2;
+        discountCoupon(couNo).then(result=>{
+            salePercent = result;
+            console.log(salePercent);
+        })
+
+        return amount;
+    } else if(coupon==='discountCoupon') {
+        return amount;
+    }
+}
+
+document.getElementById('coupon').addEventListener('change',()=>{
+    const couponName = $('select#coupon').val();
+    console.log(couponName);
+    const payAmount = document.querySelector('.priceDiv').value;
+    const discountDiv = document.querySelector('.discountAmount');
+    const amountDiv = document.querySelector('.amountDiv');
+    let totalAmount = discountAmount(payAmount);
+
+    if(couponName==='welcomeCoupon'){
+        console.log("웰컴 쿠폰 선택함.")
+        discountDiv.innerHTML='';
+        discountDiv.innerHTML+=payAmount*0.1+"원";
+        amountDiv.innerHTML='';
+        amountDiv.innerHTML+=totalAmount+"원";
+    } else if(couponName==='discountCoupon'){
+        alert('현재 사용할 수 없는 쿠폰입니다.');
+        $('#coupon').val('choiceCoupon').prop('selected',true);
+        discountDiv.innerHTML='';
+        discountDiv.innerHTML+="0원";
+        amountDiv.innerHTML='';
+        amountDiv.innerHTML+=payAmount+"원";
+    }
+})
+
+async function discountCoupon(couNo){
+    try{
+        const url = "/coupon/sale/"+couNo
+        const config = {
+            method:"POST",
+            headers:{
+                'content-type':'application/json; charset=UFT-8'
+            }
+        }
+
+        const resp = await fetch(url,config);
+        const result = await resp.text();
+        console.log(result);
+        return result;
+    } catch(error) {
+        console.log("discount error"+error);
     }
 }

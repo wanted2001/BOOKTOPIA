@@ -5,7 +5,7 @@
 <mapper namespace="com.booktopia.www.repository.CouponUseMapper">
 
     <update id="insertCouponUse">
-        update coupon_use set merchant_uid=#{merchant_uid}, cou_use='Y' where id=#{id} and cou_no=#{couNo}
+        update coupon_use set merchant_uid=#{merchantUid}, cou_use='Y' where id=#{id} and cou_no=#{couNo}
     </update>
 
     <insert id="insertUserCoupon">
