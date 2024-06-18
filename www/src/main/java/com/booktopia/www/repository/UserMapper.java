@@ -43,7 +43,8 @@ public interface UserMapper {
 
     List<UserVO> getList();
 
-    void updateaddr(OrderInfoDTO oivo);
+    void
+    updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
 
