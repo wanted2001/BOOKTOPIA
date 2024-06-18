@@ -121,8 +121,8 @@
 }
 
 
-a{ color: gray }
-a:hover{
+.aladin,.yes24,.kyobo{ color: gray }
+ .aladin:hover, .yes24:hover, .kyobo:hover{
 color: black;
 font-weight: bold;
 }

@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CouponUseMapper {
     void insertCouponUse(OrderInfoDTO oidto);
+
+    void insertUserCoupon(String id);
 }

@@ -151,7 +151,7 @@
     padding-top: 25px;
     /*padding: 25px 0 0 0 ;*/
 }
-.commListArea:nth-of-type(1),.commNon{
+.commListArea:nth-child(1),.commNon{
     /*background-color: pink;*/
     margin-top: 41px;
 }
@@ -164,7 +164,7 @@
     border-bottom: 1px solid #b1b1b1;
 }
 .commListContent:nth-child(1){
-    /*background-color: pink;*/
+    /*background-color: yellow;*/
     padding: 0 30px;
 }
 .commNon p{
@@ -178,7 +178,7 @@
     height: 20px;
     line-height: 20px;
 }
-.commTitle span, .commTitle a{
+.commTitle span, .commTitle{
     font-family: SCDream5;
     font-size: 18px;
     /*padding-left: 15px;*/
@@ -271,6 +271,22 @@
     font-size: 18px;
 }
 
+/*스티커*/
 .sticker{
     z-index: -1000;
+    position: absolute;
+}
+/*커피*/
+.cSticker{
+    position: absolute;
+    width: 120px;
+    top: 508px;
+    left: 22px;
+}
+/*토스트*/
+.tSticker{
+    position: absolute;
+    top: 611px;
+    left: -170px;
+    width: 300px;
 }

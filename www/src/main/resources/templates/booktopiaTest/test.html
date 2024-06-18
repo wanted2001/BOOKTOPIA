@@ -9,10 +9,11 @@
 
         <form action="/booktopiaTest/test" method="post" id="bookTest">
             <div class="wrap">
-<!--                <img  style="background-image: url(/image/testBack.png)">-->
+<!--                <img th:src="@{/image/testBack.png}" class="testBack">-->
+                <img  style="background-image: url(/image/testBack_white.png)">
                 <div class="test-contain">
                     <div class="test-title">
-                        <img class="icon" th:src="@{|/image/testIcon.png|}">
+<!--                        <img class="icon" th:src="@{|/image/testIcon.png|}">-->
                         <div class="title">
                             <h1>정보를 입력하고,</h1>
                             <h1>나만의 도서 취향 찾기!</h1>
