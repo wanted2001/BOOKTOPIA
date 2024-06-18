@@ -55,6 +55,22 @@ document.addEventListener('click', (e) => {
                 tr.parentNode.removeChild(tr);
             }
         })
+    } else if(e.target.classList.contains('adminmoreBtn')){
+        let page = parseInt(e.target.dataset.page);
+        let cate = e.target.dataset.cate;
+        console.log(cate);
+        spreadList(cate, page);
+
+        // let moreBtn = document.getElementById('adminUserBtn');
+        // console.log(moreBtn);
+        // if(result.pgvo.pageNo < result.realEndPage){
+        //     moreBtn.style.visibility = 'visible';
+        //     console.log(moreBtn.dataset.page);
+        //     moreBtn.dataset.page = page+1;
+        //     // console.log(moreBtn.dataset.page+1);
+        // } else {
+        //     moreBtn.style.visibility = 'hidden';
+        // }
     }
 });
 
@@ -70,61 +86,114 @@ function handleButtonClick(btnId) {
     });
 
     if(index === '.admin-UserList'){ //회원리스트
-        userListToServer(page=1).then(result=>{
-            console.log(result)
-            console.log(result.totalCount);
-            console.log(result.pgvo);
-            const tbody = document.getElementById('adminUserList');
-            console.log(tbody);
-            if(result.userList.length > 0){
-                if(page === 1){
-                    tbody.innerHTML = '';
-                }
-                for(let uvo of result.userList){
-                    let td = `<td>${uvo.id}</td>`;
-                    td += `<td style="text-align: center">${uvo.name}</td>`;
-                    td += `<td>${uvo.email}</td>`;
-                    td += `<td>${uvo.phone}</td>`;
-                    td += `<td>${uvo.userType}</td>`;
-                    td += `<td>${uvo.userReg}</td></tr>`;
-
-                    tbody.innerHTML += td;
-                }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`;
-            }
-        })
+        let cate = 'adUser';
+        spreadList(cate);
     } else if(index === '.bookTopia-user'){ //취향검사 리스트
-        bookTopiaToServer(page=1).then(result =>{
-            console.log(result);
-            const tbody = document.getElementById('adminTestList');
-            if(result.booktopia.length > 0){
-                if(page === 1){
-                    tbody.innerHTML = '';
+        let cate = 'adTest';
+        spreadList(cate);
+    } else if(index === '.subUser'){ // 구독자 리스트
+        let cate = 'adsubUser'
+        spreadList(cate);
+    } else if(index === '.delivery'){ //배송 리스트
+        let cate = 'addeli'
+        spreadList(cate);
+    } else if(index === '.commuBoard'){ // 게시글 리스트
+        let cate = "addboard";
+        spreadList(cate);
+    }else if(index === '.commuComment') { // 댓글 리스트
+        let cate = 'adCommen';
+        spreadList(cate);
+    }
+
+    /* 카테 버튼 옵션 변경 구문 */
+    const buttons = document.querySelectorAll('.admin-btn');
+    buttons.forEach(button => {
+        button.style.backgroundColor = button.id === btnId ? '#005c87' : '';
+        button.style.color = button.id === btnId ? '#ffffff' : '';
+        button.style.fontWeight = button.id === btnId ? '700' : '';
+    });
+}
+
+function spreadList(cate, page=1){
+    switch (cate){
+        case "adUser" : // 회원 리스트 뿌리기
+            userListToServer(page).then(result=>{
+                console.log(result)
+                console.log(result.totalCount);
+                console.log(result.pgvo);
+                const tbody = document.getElementById('adminUserList');
+                console.log(tbody);
+                if(result.userList.length > 0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for(let uvo of result.userList){
+                        let td = `<td>${uvo.id}</td>`;
+                        td += `<td style="text-align: center">${uvo.name}</td>`;
+                        td += `<td>${uvo.email}</td>`;
+                        td += `<td>${uvo.phone}</td>`;
+                        td += `<td>${uvo.userType}</td>`;
+                        td += `<td>${uvo.userReg}</td></tr>`;
+
+                        tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminUserBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                        // console.log(moreBtn.dataset.page+1);
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
-                for (let test of result.booktopia){
-                    let td = `<td>${test.id}</td>`;
+            })
+            break;
+        case "adTest" : // 취향검사 리스트 뿌리기
+            bookTopiaToServer(page).then(result =>{
+                console.log(result);
+                const tbody = document.getElementById('adminTestList');
+                if(result.booktopia.length > 0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let test of result.booktopia){
+                        let td = `<td>${test.id}</td>`;
                         td += `<td>${test.birth}</td>`;
                         td += `<td>${test.gender}</td>`;
                         td += `<td>${test.testAt}</td>`;
                         td += `<td>${test.btnResult}</td>`;
 
                         tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminTestBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                        // console.log(moreBtn.dataset.page+1);
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`;
-            }
-        })
-    } else if(index === '.subUser'){ // 구독자 리스트
-        subUserToServer(page=1).then(result => {
-            console.log(result);
-            const tbody = document.getElementById('adminSubList');
-            if(result.orderInfoDTOList.length > 0){
-                if(page === 1){
-                    tbody.innerHTML = '';
-                }
-                for(let sub of result.orderInfoDTOList){
-                    let td = `<td>${sub.merchantUid}</td>`
+            })
+            break;
+        case "adsubUser" :
+            subUserToServer(page=1).then(result => {
+                console.log(result);
+                const tbody = document.getElementById('adminSubList');
+                if(result.orderInfoDTOList.length > 0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for(let sub of result.orderInfoDTOList){
+                        let td = `<td>${sub.merchantUid}</td>`
                         td += `<td>${sub.itemName}</td>`;
                         td += `<td style="text-align: center">${sub.ordName}</td>`;
                         td += `<td>${sub.ordPhone}</td>`;
@@ -132,42 +201,63 @@ function handleButtonClick(btnId) {
                         td += `<td style="text-align: center">${sub.totalAmount}</td>`;
 
                         tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminSubBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                        // console.log(moreBtn.dataset.page+1);
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`;
-            }
-        })
-    } else if(index === '.delivery'){ //배송 리스트
-        deliToServer(page=1).then(result => { //배송 리스트
-            console.log(result);
-            const tbody = document.getElementById('adminDeliList');
-            if(result.deliveries.length > 0){
-                if(page === 1){
-                    tbody.innerHTML = '';
-                }
-                for (let deli of result.deliveries){
-                    let td = `<td class="deliUid">${deli.merchantUid}</td>`;
+            })
+            break;
+        case "addeli" :
+            deliToServer(page=1).then(result => { //배송 리스트
+                console.log(result);
+                const tbody = document.getElementById('adminDeliList');
+                if(result.deliveries.length > 0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let deli of result.deliveries){
+                        let td = `<td class="deliUid">${deli.merchantUid}</td>`;
                         td += `<td>${deli.itemName}</td>`;
                         td += `<td>${deli.deliDate}</td>`;
                         td += `<td class="deliStatus">${deli.deliStatus}</td>`;
                         td += `<td><button type="button" class="adminapproval">${deli.deliStatus}</button></td>`;
 
                         tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminDeliBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`;
-            }
-        })
-    } else if(index === '.commuBoard'){ // 게시글 리스트
-        communBoardToServer(page=1).then(result =>{
-            console.log(result);
-            const tbody = document.getElementById('adminBoardList');
-            if(result.boardlist.length > 0){
-                if(page === 1){
-                    tbody.innerHTML = '';
-                }
-                for (let board of result.boardlist){
-                    let td =  `<td style="text-align: center" class="adbbno">${board.bno}</td>`;
+            })
+            break;
+        case "addboard" :
+            communBoardToServer(page).then(result =>{
+                console.log(result);
+                const tbody = document.getElementById('adminBoardList');
+                if(result.boardlist.length > 0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let board of result.boardlist){
+                        let td =  `<td style="text-align: center" class="adbbno">${board.bno}</td>`;
                         td += `<td>${board.bcate}</td>`;
                         td += `<td>${board.btitle}</td>`;
                         if(board.bmainImg!== ''){
@@ -181,54 +271,55 @@ function handleButtonClick(btnId) {
                         td += `<td><button type="button" class="boardDel">삭제</button></td>`;
 
                         tbody.innerHTML += td;
-                }
-                let moreBtn = document.getElementById('adminmoreBtn');
-                console.log(moreBtn);
-                console.log(result.pgvo.pageNo);
-                console.log(result.realEndPage);
-
-                if(result.pgvo.pageNo < result.endPage){
-                    moreBtn.style.visibility = 'visible';
-                    moreBtn.dataset.page = page+1;
+                    }
+                    let moreBtn = document.getElementById('adminBoardBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
                 } else {
-                    moreBtn.style.visibility = 'hidden';
+                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`;
-            }
-        })
-    }else if(index === '.commuComment') { // 댓글 리스트
-        commentBoardToServer(page=1).then(result=>{
-            console.log(result);
-            const tbody = document.getElementById('adminComment');
-            if(result.cmtList.length > 0){
-                if (page === 1){
-                    tbody.innerHTML = '';
-                }
-                for (let adcomment of result.cmtList){
-                    let td = `<td class="adcbno" style="text-align: center">${adcomment.bno}</td>`;
+            })
+            break;
+        case "adCommen" :
+            commentBoardToServer(page=1).then(result=>{
+                console.log(result);
+                const tbody = document.getElementById('adminComment');
+                if(result.cmtList.length > 0){
+                    if (page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let adcomment of result.cmtList){
+                        let td = `<td class="adcbno" style="text-align: center">${adcomment.bno}</td>`;
                         td += `<td style="text-align: center">${adcomment.cwriter}</td>`;
                         td += `<td style="padding-left: 20px">${adcomment.ccontent}</td>`;
                         td += `<td style="text-align: center">${adcomment.cregDate}</td>`;
                         td += `<td><button type="button" class="commentDel">삭제</button></td>`;
 
                         tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminCommBtn');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`
                 }
-            } else {
-                tbody.innerHTML = `<div> List Empty </div>`
-            }
-        })
+            })
+            break;
+
     }
-
-    /* 카테 버튼 옵션 변경 구문 */
-    const buttons = document.querySelectorAll('.admin-btn');
-    buttons.forEach(button => {
-        button.style.backgroundColor = button.id === btnId ? '#005c87' : '';
-        button.style.color = button.id === btnId ? '#ffffff' : '';
-        button.style.fontWeight = button.id === btnId ? '700' : '';
-    });
 }
-
 // function getUserlist (pageNo){
 //     userListToServer(pageNo).then(result=>{
 //         console.log(result)

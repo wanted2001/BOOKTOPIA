@@ -20,31 +20,33 @@
             </div>
             <div class="cate-detail">
                 <!--회원 리스트-->
-                <table class="admin-UserList" style="display: none">
-                    <thead>
-                        <tr class="adUserTr">
-                            <th>ID</th>
-                            <th style="width: 80px">Name</th>
-                            <th>E-mail</th>
-                            <th>Phone</th>
-                            <th>SignUp</th>
-                            <th>RegAt</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminUserList">
-                    </tbody>
+                <div class="admin-UserList" style="display: none">
+                    <table>
+                        <thead>
+                            <tr class="adUserTr">
+                                <th>ID</th>
+                                <th style="width: 80px">Name</th>
+                                <th>E-mail</th>
+                                <th>Phone</th>
+                                <th>SignUp</th>
+                                <th>RegAt</th>
+                            </tr>
 
-                    <!--spreadline-->
+                        </thead>
+                        <tbody id="adminUserList">
+                        </tbody>
 
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adUser" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
-
-                </table>
+                        <!--spreadline-->
+                    </table>
+                    <div>
+                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--취향검사 진행자 리스트-->
-                <table class="bookTopia-user" style="display: none">
-                    <thead>
+                <div class="bookTopia-user" style="display: none">
+                    <table>
+                        <thead>
                         <tr>
                             <th style="width: 210px">ID</th>
                             <th style="width: 165px">BIRTH</th>
@@ -52,97 +54,100 @@
                             <th style="width: 200px;">TEST_AT</th>
                             <th>Result</th>
                         </tr>
-                    </thead>
-                    <tbody id="adminTestList">
-                    </tbody>
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adTest" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
+                        </thead>
+                        <tbody id="adminTestList">
+                        </tbody>
 
-                </table>
+                    </table>
+                    <div>
+                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--구독자 리스트-->
-                <table class="subUser" style="display: none">
-                    <thead>
-                        <tr>
-                            <th>MerchantUid</th>
-                            <th>ItemName</th>
-                            <th style="width: 70px;">UserName</th>
-                            <th>Phone</th>
-                            <th style="width: 320px">Address</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminSubList">
-                    </tbody>
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adsubUser" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
+                <div class="subUser" style="display: none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MerchantUid</th>
+                                <th>ItemName</th>
+                                <th style="width: 70px;">UserName</th>
+                                <th>Phone</th>
+                                <th style="width: 320px">Address</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminSubList">
+                        </tbody>
 
-                </table>
+                    </table>
+                    <div>
+                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!-- 배송현황 -->
-                <table class="delivery" style="display: none">
-                    <thead>
-                        <tr>
-                            <th style="width: 220px">MerchantUid</th>
-                            <th style="width: 180px">ItemName</th>
-                            <th style="width: 180px">Pay_RegAt</th>
-                            <th>Status</th>
-                            <th style="width: 100px">Delivery</th>
-                        </tr>
-                    </thead>
+                <div class="delivery" style="display: none">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th style="width: 220px">MerchantUid</th>
+                                <th style="width: 180px">ItemName</th>
+                                <th style="width: 180px">Pay_RegAt</th>
+                                <th>Status</th>
+                                <th style="width: 100px">Delivery</th>
+                            </tr>
+                        </thead>
 
-                    <tbody id="adminDeliList">
-                    </tbody>
-
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="addeli" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
-
-                </table>
+                        <tbody id="adminDeliList">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--게시글 관리-->
-                <table class="commuBoard" style="display: none">
-                    <thead>
-                    <tr>
-                        <th style="width: 45px"> Board_No</th>
-                        <th>Cate</th>
-                        <th>Title</th>
-                        <th style="width: 230px;">Content</th>
-                        <th>Writer</th>
-                        <th>RegAt</th>
-                        <th>Manage</th>
-                    </tr>
-                    </thead>
-                    <tbody id="adminBoardList">
-                    </tbody>
-
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="addboard" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
-
-                </table>
+                <div class="commuBoard" style="display: none">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th style="width: 45px"> Board_No</th>
+                                <th>Cate</th>
+                                <th>Title</th>
+                                <th style="width: 230px;">Content</th>
+                                <th>Writer</th>
+                                <th>RegAt</th>
+                                <th>Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminBoardList">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--댓글관리-->
-                <table class="commuComment" style="display: none">
-                    <thead>
-                        <tr>
-                            <th>Board_No</th>
-                            <th style="width: 200px">Writer</th>
-                            <th style="width: 350px">Content</th>
-                            <th style="width: 180px">RegAt</th>
-                            <th style="width: 80px">Manage</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminComment">
-                    </tbody>
-
-<!--                    <div>-->
-<!--                        <button type="button" class="adminmoreBtn" data-page="1" data-cate="adCommen" class="btn btn-dark" style="visibility:hidden">더보기+</button>-->
-<!--                    </div>-->
-
-                </table>
+                <div class="commuComment" style="display: none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Board_No</th>
+                                <th style="width: 200px">Writer</th>
+                                <th style="width: 350px">Content</th>
+                                <th style="width: 180px">RegAt</th>
+                                <th style="width: 80px">Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminComment">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--더보기-->
 
