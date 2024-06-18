@@ -11,4 +11,30 @@
     <select id="getList" resultType="com.booktopia.www.domain.DeliveryVO">
         select * from delivery
     </select>
+
+    <update id="updateStaus">
+        update delivery set deli_status = '배송중' where merchant_uid=${merchantUid}
+    </update>
+
+    <select id="getStatus" resultType="String">
+        select deli_status from delivery where merchant_uid=#{merchantUid}
+    </select>
+
+    <update id="updateScondStaus">
+        update delivery set deli_status = '배송완료' where merchant_uid=${merchantUid}
+    </update>
+
+    <update id="updatefinal">
+        update delivery set deli_status = '구매확정' where merchant_uid=${merchantUid}
+    </update>
+
+    <select id="getTotal" resultType="int">
+        select count(deli_no) from delivery
+    </select>
+
+    <select id="adminDelList" resultType="com.booktopia.www.domain.DeliveryVO">
+        select * from delivery
+        order by deli_date desc
+        limit #{pageStart}, #{qty}
+    </select>
 </mapper>

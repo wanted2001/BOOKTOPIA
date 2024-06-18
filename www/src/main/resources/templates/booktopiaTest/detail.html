@@ -6,7 +6,7 @@
         <div class="wrap">
             <div class="bookDe" th:each="book:${blist}">
                 <div class="bkimg">
-                    <img th:with="img=${book.bookImg2}" th:src="@{|/image/book2/${img}|}">
+                    <img th:with="img=${book.bookImg}" th:src="@{|/image/book2/${img}|}">
                 </div>
                 <div class="bkRight bkr1" th:if="${book.bookCode==1}">
                     <div class="bkCate bkc1">소설</div>

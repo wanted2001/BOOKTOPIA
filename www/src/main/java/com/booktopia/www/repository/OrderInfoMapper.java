@@ -3,6 +3,7 @@ package com.booktopia.www.repository;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 //import com.booktopia.www.domain.DTO.myPagePayInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
+import com.booktopia.www.domain.PagingVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
@@ -22,4 +23,5 @@ public interface OrderInfoMapper {
 
     OrderInfoDTO selectsublist(String id);
 
+    List<OrderInfoVO> adminOrderList(PagingVO subPgvo);
 }

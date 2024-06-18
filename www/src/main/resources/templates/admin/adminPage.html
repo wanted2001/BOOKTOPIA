@@ -20,159 +20,145 @@
             </div>
             <div class="cate-detail">
                 <!--회원 리스트-->
-                <table class="admin-UserList" style="display: block">
-                    <thead>
-                        <tr class="adUserTr">
-                            <th>ID</th>
-                            <th style="width: 80px">이름</th>
-                            <th>E-mail</th>
-                            <th>Phone</th>
-                            <th>가입경로</th>
-                            <th>가입일자</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="uvo:${ulist}">
-                            <td>[[${uvo.id}]]</td>
-                            <td style="text-align: center">[[${uvo.name}]]</td>
-                            <td>[[${uvo.email}]]</td>
-                            <td>[[${uvo.phone}]]</td>
-                            <td>[[${uvo.userType}]]</td>
-                            <td>[[${uvo.userReg}]]</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="admin-UserList" style="display: none">
+                    <table>
+                        <thead>
+                            <tr class="adUserTr">
+                                <th>ID</th>
+                                <th style="width: 80px">Name</th>
+                                <th>E-mail</th>
+                                <th>Phone</th>
+                                <th>SignUp</th>
+                                <th>RegAt</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="adminUserList">
+                        </tbody>
+
+                        <!--spreadline-->
+                    </table>
+                    <div>
+                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--취향검사 진행자 리스트-->
-                <table class="bookTopia-user" style="display: none">
-                    <thead>
+                <div class="bookTopia-user" style="display: none">
+                    <table>
+                        <thead>
                         <tr>
-                            <th style="width: 45px">No</th>
                             <th style="width: 210px">ID</th>
                             <th style="width: 165px">BIRTH</th>
                             <th style="width: 100px;">GENDER</th>
                             <th style="width: 200px;">TEST_AT</th>
+                            <th>Result</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="test:${testlist}">
-                            <td>[[${test.btpNO}]]</td>
-                            <td>[[${test.id}]]</td>
-                            <td>[[${test.birth}]]</td>
-                            <td>[[${test.gender}]]</td>
-                            <td>[[${test.testAt}]]</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="adminTestList">
+                        </tbody>
+
+                    </table>
+                    <div>
+                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--구독자 리스트-->
-                <table class="subUser" style="display: none">
-                    <thead>
-                        <tr>
-                            <th>주문번호</th>
-                            <th>구독상품</th>
-                            <th style="width: 70px;">이름</th>
-                            <th>전화번호</th>
-                            <th style="width: 320px">배송지</th>
-                            <th>결제비용</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="odtolist:${odtolist}">
-                            <td>[[${odtolist.merchantUid}]]</td>
-                            <td>[[${odtolist.itemName}]]</td>
-                            <td style="text-align: center">[[${odtolist.ordName}]]</td>
-                            <td>[[${odtolist.ordPhone}]]</td>
-                            <td style="text-align: center">[[${odtolist.ordAddr}]]</td>
-                            <td style="text-align: center">[[${odtolist.totalAmount}]]</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="subUser" style="display: none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MerchantUid</th>
+                                <th>ItemName</th>
+                                <th style="width: 70px;">UserName</th>
+                                <th>Phone</th>
+                                <th style="width: 320px">Address</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminSubList">
+                        </tbody>
+
+                    </table>
+                    <div>
+                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!-- 배송현황 -->
-                <table class="delivery" style="display: none">
-                    <thead>
-                        <tr>
-                            <th style="width: 45px">No</th>
-                            <th style="width: 220px">주문번호</th>
-                            <th style="width: 180px">결제상품</th>
-                            <th style="width: 180px">결제/승인날짜</th>
-                            <th>상태</th>
-                            <th>배송처리</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="deli:${delilist}">
-                            <td>[[${deli.deliNo}]]</td>
-                            <td>[[${deli.merchantUid}]]</td>
-                            <td>[[${deli.itemName}]]</td>
-                            <td>[[${deli.deliDate}]]</td>
-                            <td>[[${deli.deliStatus}]]</td>
-                            <td><button type="button" id="adminapproval">결제승인</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="delivery" style="display: none">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th style="width: 220px">MerchantUid</th>
+                                <th style="width: 180px">ItemName</th>
+                                <th style="width: 180px">Pay_RegAt</th>
+                                <th>Status</th>
+                                <th style="width: 100px">Delivery</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="adminDeliList">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--게시글 관리-->
-                <table class="commuBoard" style="display: none">
-                    <thead>
-                    <tr>
-                        <th style="width: 45px">No</th>
-                        <th>Cate</th>
-                        <th>Title</th>
-                        <th style="width: 230px;">Content</th>
-                        <th>Writer</th>
-                        <th>RegDate</th>
-                        <th>관리</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="board:${boadlist}">
-                            <td style="text-align: center" class="adbbno">[[${board.bno}]]</td>
-                            <td>[[${board.bCate}]]</td>
-                            <td>[[${board.bTitle}]]</td>
-                            <td class="adcontentArea" th:if="${board.bMainImg!=''}">
-                                <img th:src="@{|/upload/${board.bMainImg}|}">
-                                <div class="adcontent">[[${board.bContent}]]</div>
-                            </td>
-                            <td class="adcontentNoImg" th:unless="${board.bMainImg!=''}">
-                                <div class="adcontent">[[${board.bContent}]]</div>
-                            </td>
-                            <td>[[${board.bWriter}]]</td>
-                            <td>[[${board.bRegDate}]]</td>
-                            <td><button type="button" class="boardDel">삭제</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="commuBoard" style="display: none">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th style="width: 45px"> Board_No</th>
+                                <th>Cate</th>
+                                <th>Title</th>
+                                <th style="width: 230px;">Content</th>
+                                <th>Writer</th>
+                                <th>RegAt</th>
+                                <th>Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminBoardList">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
                 <!--댓글관리-->
-                <table class="commuComment" style="display: none">
-                    <thead>
-                        <tr>
-                            <th>게시글 No</th>
-                            <th style="width: 200px">작성자</th>
-                            <th style="width: 350px">내용</th>
-                            <th style="width: 180px">작성일</th>
-                            <th style="width: 80px">관리</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="commen:${commlist}">
-                            <td class="adcbno" style="text-align: center">[[${commen.bno}]]</td>
-                            <td style="text-align: center">[[${commen.cWriter}]]</td>
-                            <td style="padding-left: 20px">[[${commen.cContent}]]</td>
-                            <td style="text-align: center">[[${commen.cRegDate}]]</td>
-                            <td><button type="button" class="commentDel">삭제</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="commuComment" style="display: none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Board_No</th>
+                                <th style="width: 200px">Writer</th>
+                                <th style="width: 350px">Content</th>
+                                <th style="width: 180px">RegAt</th>
+                                <th style="width: 80px">Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminComment">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden">더보기+</button>
+                    </div>
+                </div>
 
-                <!--페이지네이션 라인-->
+                <!--더보기-->
+
 
             </div>
         </nav>
         </form>
 
         <script th:src="@{/dist/js/adminPage.js}"></script>
+        <script>
+            boardDelToServer(page);
+        </script>
     </th:block>
 </th:block>

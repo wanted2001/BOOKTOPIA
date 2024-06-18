@@ -101,6 +101,21 @@
         update board set b_heart_cnt=b_heart_cnt-1 where bno=#{bno}
     </update>
 
+    <select id="getCount" resultType="int">
+        select count(bno) from board
+        where b_is_del='N'
+    </select>
+
+    <select id="adminBoardList" resultType="com.booktopia.www.domain.BoardVO">
+        select * from board
+        where b_is_del='N'
+        order by bno desc
+        limit #{pageStart},#{qty}
+    </select>
+
+    <delete id="adminDelBoard">
+        delete from board where bno=#{bno}
+    </delete>
     <sql id="search">
         <if test="type!=null">
             <trim prefix="and (" suffix=")" suffixOverrides="or">

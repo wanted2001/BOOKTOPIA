@@ -22,7 +22,7 @@ button {
     text-align: left;
     padding-left: 15px;
     border-radius: 3px;
-    border: 1px solid #ffb1b0;
+    border: 1px solid #005c87;
     cursor: pointer;
 }
 
@@ -50,7 +50,19 @@ td{
     display: inline;
 }
 
-#boardDel, #boardModiy, #adminapproval{
+.adminapproval{
+    width: 105px;
+    height: 31px;
+    background-color: #005c87;
+    border: none;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    display: inline;
+    padding: 0;
+}
+
+#boardDel, #boardModiy{
     width: 70px;
     text-align: center;
     display: inline;
@@ -59,10 +71,6 @@ td{
 
 .bookTopia-user, .delivery{
     text-align: center;
-}
-
-#adminapproval{
-    height: 31px;
 }
 
 .commuBoard > thead > tr > th:nth-of-type(2) {
@@ -95,8 +103,8 @@ td{
     width: 60px;
     height: 35px;
 }
-.boardDel:hover, .commentDel:hover, #adminapproval:hover{
-    background-color: #ffb1b0;
+.boardDel:hover, .commentDel:hover{
+    background-color: #005c87;
     color: white;
     font-weight: 700;
 }

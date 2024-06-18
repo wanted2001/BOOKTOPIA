@@ -54,7 +54,7 @@ const testListaArry =[
     },
     {
         question : '책에서 집중해서 읽게 되는 부분은?',
-        answer1 : '인문의 감정과 서사',
+        answer1 : '인물의 감정과 서사',
         answer2 : '사건의 전개와 흐름'
     },
     {
@@ -75,7 +75,7 @@ const testListaArry =[
     {
         question : '독서모임 전날 나의 모습은?',
         answer1 : '함께 나눌 이야기에 대해 검토한다',
-        answer2 : '그저 설레뿐, 아무런 생각이 없다'
+        answer2 : '그저 설렐뿐, 아무런 생각이 없다'
     }
 ];
 
