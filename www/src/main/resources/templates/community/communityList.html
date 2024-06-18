@@ -16,12 +16,6 @@
 <!--                <img th:src="@{/image/p_sticker.png}" class="pSticker">-->
 <!--            </div>-->
             <!--검색창-->
-            <select id="sortCommListId" th:name="sortCommList" class="commSortList">
-                <option value="choice" name="sortCommListId">선택</option>
-                <option value="commentCnt" name="sortCommListId">댓글순</option>
-                <option value="heartCnt" name="sortCommListId">좋아요순</option>
-                <option value="viewCnt" name="sortCommListId">조회수순</option>
-            </select>
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>
                     <select th:name="type" class="commSelect commSearchArea">
@@ -188,13 +182,6 @@
                 </ul>
             </div>
         </div>
-        <script>
-            document.getElementById('sortCommListId').addEventListener('change',()=>{
-                const sort = $('select#sortCommListId').val();
-                console.log(sort);
-            })
-
-        </script>
         </th:block>
     </th:block>
 </th:block>

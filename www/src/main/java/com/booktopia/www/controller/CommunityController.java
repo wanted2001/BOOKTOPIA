@@ -109,8 +109,10 @@ public class CommunityController {
         m.addAttribute("ph",ph);
     }
 
+
     @GetMapping("/communityNotice")
     public void commNotice(){}
+
 
 
 }
