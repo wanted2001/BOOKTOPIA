@@ -29,6 +29,9 @@
 .headertwoul{
     display:flex;
 }
+.headertwoul li:nth-of-type(1){
+    /*background-color: yellow;*/
+}
 
 .cate, .register, .login {
     line-height: 104px;
@@ -48,7 +51,7 @@
 }*/
 .userName{
     width: 240px;
-    margin-left: 175px;
+    margin-left: 95px;
     text-align: right
 }
 /*.login{*/

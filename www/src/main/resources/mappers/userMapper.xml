@@ -74,7 +74,7 @@
     </select>
 
     <update id="updateaddr">
-        update user set address = #{ordAddr} where id = #{id}
+        update user set address = #{ordAddr}, phone= #{ordPhone} where id = #{id}
     </update>
 
     <select id="countAuth" resultType="int">
