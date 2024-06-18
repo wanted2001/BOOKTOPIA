@@ -1,14 +1,14 @@
 package com.booktopia.www.handler;
 
-import com.booktopia.www.domain.CommentVO;
+import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.CommentDTO;
-import com.booktopia.www.domain.PagingVO;
-import com.booktopia.www.domain.RecommentVO;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import lombok.*;
 
 import java.util.List;
+class ListType<T> {
+
+}
 
 @Getter
 @Setter
@@ -16,9 +16,16 @@ import java.util.List;
 public class PagingHandler {
     private int startPage;
     private int endPage;
+    private int realEndPage;
     private boolean prev,next;
     private int totalCount;
     private PagingVO pgvo;
+
+    private List<BoardVO> boardlist;
+    private List<DeliveryVO> deliveries;
+    private List<OrderInfoDTO> orderInfoDTOList;
+    private List<BooktopiaVO> booktopia;
+    private List<UserVO> userList;
     private List<CommentDTO> cmtList;
 
     public PagingHandler(PagingVO pgvo, int totalCount) {
@@ -28,7 +35,7 @@ public class PagingHandler {
         this.endPage= (int) (Math.ceil(pgvo.getPageNo()/(double)10)*10);
         this.startPage = endPage-9;
 
-        int realEndPage = (int) Math.ceil(totalCount/(double)pgvo.getQty());
+        this.realEndPage = (int) Math.ceil(totalCount/(double)pgvo.getQty());
 
         if(realEndPage<endPage) {
             this.endPage=realEndPage;
@@ -38,9 +45,9 @@ public class PagingHandler {
         this.next=this.endPage<realEndPage;
     }
 
+
     public PagingHandler(PagingVO pgvo, int totalCount, List<CommentDTO> cmtList){
         this(pgvo,totalCount);
         this.cmtList=cmtList;
-
     }
 }

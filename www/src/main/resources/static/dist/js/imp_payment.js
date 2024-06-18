@@ -100,7 +100,7 @@ function request_pay(){
                                 console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
-                                 // window.location.href = "/pay/done/"+result.merchantUid;
+                                 window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -181,21 +181,12 @@ function discountAmount(amount){
     const coupon = $('select#coupon').val();
     console.log(coupon)
     if(coupon==='welcomeCoupon'){
+        amount = amount-(amount*0.1);
+        console.log(amount)
         couNo=2;
-        discountCoupon(couNo,ordId).then(result=>{
-            result.forEach(item=>{
-                    if(item.couUse==='N'){
-                        amount = amount-(amount*0.1);
-                        console.log(amount)
-                    } else {
-                        alert("이미 사용한 쿠폰입니다.")
-                        console.log("이미 사용한 쿠폰");
-                        $('#coupon').val('choiceCoupon').prop('selected',true);
-                        document.querySelector('.discountAmount').innerHTML='';
-                        document.querySelector('.discountAmount').innerHTML='0원';
-                    }
-                }
-            )
+        discountCoupon(couNo).then(result=>{
+            salePercent = result;
+            console.log(salePercent);
         })
 
         return amount;
@@ -228,18 +219,18 @@ document.getElementById('coupon').addEventListener('change',()=>{
     }
 })
 
-async function discountCoupon(couNo,id){
+async function discountCoupon(couNo){
     try{
-        const url = "/coupon/sale/"+couNo+"/"+id
+        const url = "/coupon/sale/"+couNo
         const config = {
             method:"POST",
             headers:{
                 'content-type':'application/json; charset=UFT-8'
-            },
+            }
         }
 
         const resp = await fetch(url,config);
-        const result = await resp.json();
+        const result = await resp.text();
         console.log(result);
         return result;
     } catch(error) {

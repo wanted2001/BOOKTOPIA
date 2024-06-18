@@ -16,4 +16,13 @@
         select* from pay
     </select>
 
+    <select id="getTotal" resultType="int">
+        select count(merchant_uid) from pay
+    </select>
+
+    <select id="adminPayList" resultType="com.booktopia.www.domain.PagingVO">
+        select * from pay
+        limit #{pageStart}, #{qty}
+    </select>
+
 </mapper>

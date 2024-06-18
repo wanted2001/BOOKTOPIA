@@ -102,6 +102,7 @@ public class CommunityController {
         PagingHandler ph = new PagingHandler(pgvo,totalCount);
         List<BoardVO> blist = bsv.getCateList(pgvo);
         int cateCtn = bsv.getCategoryCount(bCate);
+        log.info("bCate >> {}", cateCtn);
 
         m.addAttribute("cateCtn",cateCtn);
         m.addAttribute("blist",blist);

@@ -1,8 +1,10 @@
 package com.booktopia.www.repository;
 
 import com.booktopia.www.domain.CommentVO;
+import com.booktopia.www.domain.DTO.CommentDTO;
 import com.booktopia.www.domain.PagingVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,9 +20,13 @@ public interface CommentMapper {
 
     long getCommentBno(long cno);
 
-    List<CommentVO> getCommentList(int bno, PagingVO pgvo);
+    List<CommentVO> getCommentList(@Param("bno") int bno, @Param("pgvo") PagingVO pgvo);
 
     void deleteCommentFromBoard(long bno);
 
-    List<CommentVO> getComList();
+    int getCount();
+
+    List<CommentDTO> admingetCommentList(PagingVO commenPagingVO);
+
+    int getadComCount(long bno);
 }

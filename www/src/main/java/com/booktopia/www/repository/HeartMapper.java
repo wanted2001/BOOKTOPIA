@@ -18,4 +18,8 @@ public interface HeartMapper {
     Integer getHeartYN(@Param("bno") long bno, @Param("id") String id);
 
     int deleteHeart(@Param("bno") long bno,@Param("id") String id);
+
+    int getcount(long bno);
+
+    void adminDelHeart(long bno);
 }
