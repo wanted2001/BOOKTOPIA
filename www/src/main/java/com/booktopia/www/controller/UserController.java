@@ -1,10 +1,12 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
+import jdk.swing.interop.LightweightContentWrapper;
 import kotlin.collections.IntIterator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -131,11 +133,10 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/myPagePayInfo/{id}")
-    public List<OrderInfoDTO> myPagePayInfo(@PathVariable("id") String id, Model m) {
+    public List<OrderInfoDTO> myPagePayInfo(@PathVariable("id") String id) {
         log.info("id >> {}", id);
         List<OrderInfoDTO> plist = usv.getPlist(id);
         log.info("plist >> {}", plist);
-        m.addAttribute("plist", plist);
         return plist;
     }
 
@@ -154,6 +155,17 @@ public class UserController {
         int isOk = usv.modifyaddrandphone(uvo);
         return isOk;
     }
+
+    @ResponseBody
+    @GetMapping("/myPageCouponInfo/{id}")
+    public List<CouponInfoDTO> usingCou (@PathVariable("id")String id){
+        log.info("id >> {}",id);
+        List<CouponInfoDTO> coulist = usv.getcouList(id);
+        log.info("coulist >> {}",coulist);
+        return  coulist;
+    }
+
+
 }
     
 

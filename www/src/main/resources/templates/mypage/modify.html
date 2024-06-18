@@ -7,7 +7,7 @@
                         <div class="myPageModInputFormWrap" >
                             <div class="myPageModInputFormText">아이디</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="id" placeholder="id...."
+                                <input type="text" name="id"
                                        th:value="${#authentication.getName()}" readonly="readonly">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
@@ -15,7 +15,7 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">이메일</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="email" placeholder="email...."
+                                <input type="text" name="email"
                                        th:value="${#authentication.getPrincipal().userVO.getEmail()}" readonly="readonly">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
@@ -23,7 +23,7 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">새 비밀번호</div>
                             <div class="mypageModInputFormData">
-                                <input type="password" name="pwd" placeholder="newPwd..." id="changePwd">
+                                <input type="password" name="pwd" id="changePwd">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
 
@@ -31,7 +31,7 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">새 비밀번호 확인</div>
                             <div class="mypageModInputFormData">
-                                <input type="password" name="newPwd" placeholder="checkPwd..." id="changeNewPwd">
+                                <input type="password" name="newPwd" id="changeNewPwd">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>
@@ -44,15 +44,15 @@
                             </div>
                         </div>
                         <div class="myPageModInputFormWrap">
-                            <div class="myPageModInputFormText">휴대전화</div>
+                            <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="phone" placeholder="phone..."
+                                <input type="text" name="phone"
                                        th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
                                        #authentication.getPrincipal().userVO.getPhone()}" id="modifyPhone">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>
-                        <div class="myPageModInputFormWrapBtn">
+                        <div class="myPageModInputFormWrapBtn" style="background-image: url(../image/modifybtnline.png">
                             <button type="button" id="submitButton" class="myPageModBtn" onclick="button_event();">회원정보 수정</button>
                         </div>
                     </form>
