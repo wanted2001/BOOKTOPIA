@@ -10,6 +10,7 @@ let uid = '';
 let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
+const amountInput = document.querySelector('.amountInput').value;
 
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
@@ -30,11 +31,12 @@ function request_pay(){
         alert("주소를 입력해주세요.");
         ordaddr.focus();
     } else {
-        //쿠폰
-        // let coupon = document.getElementById('coupon').value;
-        // let couponValue = coupon.options[selectedIndex].value;
-        // console.log(couponValue);
-
+        const coupon = $('select#coupon').val();
+        if(coupon!=='choiceCoupon'){
+            amount = discountAmount(amount);
+        }
+        console.log(amount);
+        console.log(amountInput);
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
@@ -66,6 +68,8 @@ function request_pay(){
                         ordAddr:ordaddr+"/"+ordaddrdetail,
                         itemName:item_name,
                         totalAmount: amount,
+                        saleAmount:amountInput*salePercent,
+                        couNo:couNo,
                         pg_tid:rsp.pg_tid,
                     };
 
@@ -97,7 +101,6 @@ function request_pay(){
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
                                  window.location.href = "/pay/done/"+result.merchantUid;
-
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")

@@ -1,5 +1,6 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.DeliveryVO;
@@ -7,6 +8,7 @@ import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.DeliMapeer;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
+import jdk.swing.interop.LightweightContentWrapper;
 import kotlin.collections.IntIterator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,10 +51,11 @@ public class UserController {
     }
     
     @PostMapping("/join")
-    public String joinInsert(UserVO uvo){
+    public String joinInsert(UserVO uvo, Model m){
         uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
         log.info("uvo >> {}",uvo);
         int isOk = usv.joinInsert(uvo);
+        m.addAttribute("msg", "가입이 완료되었습니다. 로그인해주세요.");
         return "/user/login";
     }
 
@@ -168,6 +171,17 @@ public class UserController {
         int isOk = usv.modifyaddrandphone(uvo);
         return isOk;
     }
+
+    @ResponseBody
+    @GetMapping("/myPageCouponInfo/{id}")
+    public List<CouponInfoDTO> usingCou (@PathVariable("id")String id){
+        log.info("id >> {}",id);
+        List<CouponInfoDTO> coulist = usv.getcouList(id);
+        log.info("coulist >> {}",coulist);
+        return  coulist;
+    }
+
+
 }
     
 

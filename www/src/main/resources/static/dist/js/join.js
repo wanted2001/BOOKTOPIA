@@ -56,16 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleSubmitButton() {
     const { termsOfService, privacyPolicy } = agreements;
     const isFormValid = termsOfService
-      && privacyPolicy
-      && isIdOk(inputId.value)
-      && isMatch(pwd.value, conPwd.value)
-      && strongPassword(pwd.value)
-      && email.value.trim() !== ''
-      && userName.value.trim() !== ''
-      && helloNum.value === '1';
+        && privacyPolicy
+        && isIdOk(inputId.value)
+        && isMatch(pwd.value, conPwd.value)
+        && strongPassword(pwd.value)
+        && email.value.trim() !== ''
+        && userName.value.trim() !== ''
+        && helloNum.value === '1';
 
     joinCheckIdBtn.disabled = !isIdOk(inputId.value);
     submitButton.disabled = !isFormValid;
+
+    if (isFormValid) {
+      submitButton.type = 'submit'; // 유효성 검사를 통과하면 submitButton의 type을 'submit'으로 변경
+    } else {
+      submitButton.type = 'button'; // 유효성 검사를 통과하지 못하면 type을 'button'으로 유지
+    }
   }
 
   toggleSubmitButton();
@@ -210,4 +216,5 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.disabled = true;
     }
   }
+
 });

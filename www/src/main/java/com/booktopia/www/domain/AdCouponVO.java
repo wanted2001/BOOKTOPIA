@@ -14,5 +14,5 @@ public class AdCouponVO {
     private String adCouName; //쿠폰 이름
     private String adCouPeriod; //쿠폰 유효기간
     private String adCouDate; //쿠폰 발급날짜
-    private int adCouSale; //할인율
+    private float adCouSale; //할인율
 }

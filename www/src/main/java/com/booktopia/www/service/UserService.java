@@ -1,5 +1,6 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
 
@@ -31,4 +32,6 @@ public interface UserService {
     OrderInfoDTO getsublist(String id);
 
     int modifyaddrandphone(UserVO uvo);
+
+    List<CouponInfoDTO> getcouList(String id);
 }

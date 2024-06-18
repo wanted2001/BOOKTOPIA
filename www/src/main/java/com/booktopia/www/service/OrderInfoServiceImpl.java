@@ -2,10 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
-import com.booktopia.www.repository.DeliMapeer;
-import com.booktopia.www.repository.OrderInfoMapper;
-import com.booktopia.www.repository.PayMapper;
-import com.booktopia.www.repository.UserMapper;
+import com.booktopia.www.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +17,7 @@ public class OrderInfoServiceImpl implements OrderInfoService{
     private final PayMapper payMapper;
     private final UserMapper userMapper;
     private final DeliMapeer deliMapeer;
+    private final CouponUseMapper couponUseMapper;
 
 
     @Override
@@ -29,6 +27,7 @@ public class OrderInfoServiceImpl implements OrderInfoService{
         payMapper.insertPayRegister(oidto);
         deliMapeer.insertDeli(oidto);
         userMapper.updateaddr(oidto);
+        couponUseMapper.insertCouponUse(oidto);
 
         return isOk;
     }

@@ -8,7 +8,6 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">현재 배송지</div>
                             <div class="mypageModInputFormData">
-                                <p>주소</p>
                                 <input type="text" name="ordAddr" class="addrInput" id="changeAddr" placeholder="주소를 입력해주세요."
                                        th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
@@ -21,13 +20,13 @@
                         <div class="myPageModInputFormWrap addrphoneNum">
                             <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="phone" placeholder="phone..." id="changePhone"
+                                <input type="text" name="phone" id="changePhone"
                                        th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
                                        #authentication.getPrincipal().userVO.getPhone()}">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>
-                        <div class="myPageModInputFormWrapBtn">
+                        <div class="myPageModInputFormWrapBtn" style="background-image: url(../image/modifybtnline.png">
                             <button type="button" id="submitAddrButton" class="myPageModBtn">배송지 수정</button>
                         </div>
                     </form>

@@ -140,31 +140,3 @@ public class PayController {
 }
 
 
-
-
-//    @PostMapping("/done")
-//    @ResponseBody
-//    public int paymentComplete(HttpSession session, String imp_uid, String merchant_uid, String totalAmount, @RequestBody OrderInfoDTO orderinfoDTO) throws Exception {
-//        log.info(">>> 들어옴 >>> ");
-//
-//        log.info(">>> session in >>>,{}", session);
-//        log.info("orderinfoDTO >>>>>>>>>>>>{}", orderinfoDTO);
-//        String token = psv.getToken();
-//        log.info("token >>>>>>>>>>>>>>>>{}", token);
-//
-//        String amount = psv.paymentInfo(orderinfoDTO.getImpUid(), token);
-//        log.info("amount >>>>>>>>>>>>>>>>>{}", amount);
-//
-//        int res = 1;
-//
-//        if (orderinfoDTO.getTotalAmount() != Long.parseLong(amount)) {
-//            //결제취소
-//            log.info("orderinfoDTO.getTotalAmount()>>>>>>>>>>>{}", orderinfoDTO.getTotalAmount());
-//            res = 0;
-//            String reason = "결제금액오류";
-//            psv.payMentCancel(token, orderinfoDTO.getImpUid(), amount, reason);
-//            return res;
-//        }
-//        osv.insertPayInfo(orderinfoDTO);
-//        return res;
-//    }
