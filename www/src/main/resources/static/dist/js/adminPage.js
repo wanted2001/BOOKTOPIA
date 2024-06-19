@@ -1,4 +1,5 @@
 
+
 document.addEventListener('click', (e) => {
     const target = e.target;
     console.log(e.target);
@@ -17,19 +18,18 @@ document.addEventListener('click', (e) => {
         if(deliStatus === '배송준비중'){
             postStatus(deliUid).then(result =>{
                 console.log(result);
-                if (result === 1){
+                if (result == 1){
                     alert("배송처리 되었습니다.");
                 }
             })
         } else {
             postSecondStatus(deliUid).then(result =>{
                 console.log(result);
-                if(result === 1){
+                if(result == 1){
                     alert("배송완료처리");
                 }
             })
         }
-
     } else if (e.target.classList.contains('boardDel')){
         // 게시글 삭제 버튼을 눌렀을 때...
         const tr = e.target.closest('tr');
@@ -55,22 +55,46 @@ document.addEventListener('click', (e) => {
                 tr.parentNode.removeChild(tr);
             }
         })
-    } else if(e.target.classList.contains('adminmoreBtn')){
+    } else if(e.target.classList.contains('adminmoreBtn')){ // cate 페이지 별 더보기
         let page = parseInt(e.target.dataset.page);
         let cate = e.target.dataset.cate;
         console.log(cate);
         spreadList(cate, page);
+    } else if (e.target.id ==='postCoupon'){ // 쿠폰 등록 버튼을 눌렀을 때...
+        const couName = document.getElementById('couName');
+        const couPeriod = document.getElementById('couPeriod');
+        const couSale = document.getElementById('couSale');
+        const couInfo = document.getElementById('couInfo');
+
+        let couponDate ={
+            adCouName:couName.value,
+            adCouPeriod:couPeriod.value,
+            adCouSale:couSale.value,
+            adCouInfo:couInfo.value
+        };
+
+        console.log(couponDate);
+
+        postCoupon(couponDate).then(result =>{
+            console.log(result);
+            if(result == 1){
+                alert("쿠폰생성 완료");
+                couName.value = '';
+                couPeriod.value = '';
+                couSale.value = '';
+                couInfo.value = '';
+                spreadList(cate, page);
+            }
+        })
     }
 });
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
-    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
+    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment', '.adminCouponAdd'];
     let index = sections[btnId.slice(-1)-1];
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
-        console.log(section);
-        console.log(displayStyle);
         document.querySelector(section).style.display = displayStyle;
     });
 
@@ -92,9 +116,12 @@ function handleButtonClick(btnId) {
     }else if(index === '.commuComment') { // 댓글 리스트
         let cate = 'adCommen';
         spreadList(cate);
+    } else if(index === '.adminCouponAdd'){
+        let cate = 'adCoupon';
+        spreadList(cate);
     }
 
-    /* 카테 버튼 옵션 변경 구문 */
+    /* cate 버튼 옵션 변경 구문 */
     const buttons = document.querySelectorAll('.admin-btn');
     buttons.forEach(button => {
         button.style.backgroundColor = button.id === btnId ? '#005c87' : '';
@@ -126,7 +153,7 @@ function spreadList(cate, page=1){
 
                         tbody.innerHTML += td;
                     }
-                    let moreBtn = document.getElementById('adminUserBtn');
+                    let moreBtn = document.querySelector('.adminmoreBtn');
                     console.log(moreBtn);
                     if(result.pgvo.pageNo < result.realEndPage){
                         moreBtn.style.visibility = 'visible';
@@ -173,8 +200,8 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "adsubUser" :
-            subUserToServer(page=1).then(result => {
+        case "adsubUser" : // 구독리스트 뿌리기
+            subUserToServer(page).then(result => {
                 console.log(result);
                 const tbody = document.getElementById('adminSubList');
                 if(result.orderInfoDTOList.length > 0){
@@ -206,8 +233,8 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "addeli" :
-            deliToServer(page=1).then(result => { //배송 리스트
+        case "addeli" : // 배송현황 리스트 뿌리기
+            deliToServer(page).then(result => { //배송 리스트
                 console.log(result);
                 const tbody = document.getElementById('adminDeliList');
                 if(result.deliveries.length > 0){
@@ -237,7 +264,7 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "addboard" :
+        case "addboard" : // 게시글 리스트 뿌리기
             communBoardToServer(page).then(result =>{
                 console.log(result);
                 const tbody = document.getElementById('adminBoardList');
@@ -250,7 +277,7 @@ function spreadList(cate, page=1){
                         td += `<td>${board.bcate}</td>`;
                         td += `<td>${board.btitle}</td>`;
                         if(board.bmainImg!== ''){
-                            td += `<td><img src="/upload/${board.bmainImg}">`
+                            td += `<td><img src="/upload/${board.bmainImg}" style="height: 200px">`
                             // td += `<div class="adcontent">${board.bcontent}</div></td>`;
                         } else {
                             td += `<td><div class="adcontent">${board.bcontent}</div></td>`;
@@ -275,8 +302,8 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "adCommen" :
-            commentBoardToServer(page=1).then(result=>{
+        case "adCommen" : // 댓글 리스트 뿌리기
+            commentBoardToServer(page).then(result=>{
                 console.log(result);
                 const tbody = document.getElementById('adminComment');
                 if(result.cmtList.length > 0){
@@ -306,37 +333,40 @@ function spreadList(cate, page=1){
                 }
             })
             break;
+        case "adCoupon" : // 쿠폰 리스트 뿌리기
+            couponToServer(page).then(result =>{
+                console.log(result);
+                const tbody = document.getElementById('addCoupon');
+                if(result.adCouponList.length>0){
+                    if(page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let coupon of result.adCouponList){
+                        let td = `<td>${coupon.couNo}</td>`;
+                            td += `<td>${coupon.adCouName}</td>`;
+                            td += `<td>${coupon.adCouPeriod}</td>`;
+                            td += `<td>${coupon.adCouSale}</td>`;
+                            td += `<td>${coupon.adCouDate}</td>`;
+                            td += `<td>${coupon.adCouInfo}</td>`;
 
+                            tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminCoupon');
+                    console.log(moreBtn);
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`
+                }
+            })
+            break;
     }
 }
-// function getUserlist (pageNo){
-//     userListToServer(pageNo).then(result=>{
-//         console.log(result)
-//         console.log(result.totalCount);
-//         console.log(result.pgvo);
-//         const tbody = document.getElementById('adminUserList');
-//         console.log(tbody);
-//         if(result.userList.length > 0){
-//             if(page === 1){
-//                 tbody.innerHTML = '';
-//             }
-//             for(let uvo of result.userList){
-//                 let td = `<td>${uvo.id}</td>`;
-//                 td += `<td style="text-align: center">${uvo.name}</td>`;
-//                 td += `<td>${uvo.email}</td>`;
-//                 td += `<td>${uvo.phone}</td>`;
-//                 td += `<td>${uvo.userType}</td>`;
-//                 td += `<td>${uvo.userReg}</td></tr>`;
-//
-//                 tbody.innerHTML += td;
-//             }
-//
-//         } else {
-//             tbody.innerHTML = `<div> List Empty </div>`;
-//         }
-//     })
-// }
-
 
 /*
    프론트 : N페이지 회원 리스트를 "/admin/getUserList/"+pageNo 주소로 서버한테 요청
@@ -392,6 +422,32 @@ async function commentBoardToServer(pageNo){
     return result;
 }
 
+// 쿠폰관리 리스트 뿌리기
+async function couponToServer(pageNo){
+    const resp = await fetch("/admin/adminCoupon/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 쿠폰생성
+async function postCoupon(couponDate){
+    try {
+        const url = "/admin/addCoupon";
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(couponDate)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+    }catch (error){
+        console.log(error);
+    }
+}
 
 // 게시글 관리 > 삭제
 async function boardDelToServer(bno){
