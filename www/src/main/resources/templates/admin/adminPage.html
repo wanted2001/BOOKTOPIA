@@ -41,7 +41,7 @@
                         <!--spreadline-->
                     </table>
                     <div>
-                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
 
                     </table>
                     <div>
-                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@
 
                     </table>
                     <div>
-                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden"> +</button>
+                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden; margin-top: 11px"> +</button>
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 
@@ -147,7 +147,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 
@@ -155,25 +155,29 @@
                 <div class="adminCouponAdd" style="display: none">
                     <!--생성라인-->
                     <p> 쿠폰 생성 </p>
-                    <table>
-                        <tr>
-                            <th>CouponName</th>
-                            <th>Period</th>
-                            <th>SalePer</th>
-                            <th>Info</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="couName" id="couName"></td>
-                            <td><input type="text" name="couPeriod" id="couPeriod"></td>
-                            <td><input type="text" name="couSale" id="couSale"></td>
-                            <td><input type="text" name="couInfo" id="couInfo"></td>
-                            <td><button type="submit" id="postCoupon"> 등록 </button></td>
-                        </tr>
-                    </table>
+                    <div class="couponaddTable">
+                        <div class="coupondiv">
+                            <span>CouponName</span>
+                            <input type="text" name="couName" id="couName">
+                        </div>
+                        <div class="coupondiv">
+                            <span>Period</span>
+                            <input type="text" name="couPeriod" id="couPeriod">
+                        </div>
+                        <div class="coupondiv">
+                            <span>SalePer</span>
+                            <input type="text" name="couSale" id="couSale">
+                        </div>
+                        <div class="coupondiv">
+                            <span>Info</span>
+                            <input type="text" name="couInfo" id="couInfo">
+                            <button type="submit" id="postCoupon"> 쿠폰등록 </button>
+                        </div>
+                    </div>
+
 
                     <!--리스트 뿌리기 라인-->
-                    <p> 쿠폰 List </p>
+                    <p class="couponList"> 쿠폰 List </p>
                     <table>
                         <thead>
                             <tr>
@@ -189,7 +193,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminCoupon" class="adminmoreBtn" data-page="1" data-cate="adCoupon" style="visibility:hidden">더보기 +</button>
+                        <button type="button" id="adminCoupon" class="adminmoreBtn" data-page="1" data-cate="adCoupon" style="visibility:hidden; margin-top: 11px">더보기 +</button>
                     </div>
                 </div>
 

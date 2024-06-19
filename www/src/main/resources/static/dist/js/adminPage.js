@@ -18,14 +18,14 @@ document.addEventListener('click', (e) => {
         if(deliStatus === '배송준비중'){
             postStatus(deliUid).then(result =>{
                 console.log(result);
-                if (result === 1){
+                if (result == 1){
                     alert("배송처리 되었습니다.");
                 }
             })
         } else {
             postSecondStatus(deliUid).then(result =>{
                 console.log(result);
-                if(result === 1){
+                if(result == 1){
                     alert("배송완료처리");
                 }
             })
@@ -153,7 +153,7 @@ function spreadList(cate, page=1){
 
                         tbody.innerHTML += td;
                     }
-                    let moreBtn = document.getElementById('adminUserBtn');
+                    let moreBtn = document.querySelector('.adminmoreBtn');
                     console.log(moreBtn);
                     if(result.pgvo.pageNo < result.realEndPage){
                         moreBtn.style.visibility = 'visible';
