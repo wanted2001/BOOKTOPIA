@@ -12,6 +12,47 @@ let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
 const amountInput = document.querySelector('.amountInput').value;
 
+const kakaoPayBtn = document.getElementById('kakaoPayBtn');
+const tossBtn = document.getElementById('tossBtn');
+const paycoBtn = document.getElementById('paycoBtn');
+const kgBtn = document.getElementById('kgBtn');
+
+const tossCss = document.querySelector('.tossM');
+const kakaoCss = document.querySelector('.kakaoPayM');
+const paycoCss = document.querySelector('.paycoM');
+const kgCss = document.querySelector('.kgM');
+/*css 변경하는 이벤트*/
+tossBtn.addEventListener('click',()=>{
+    changeCss(tossCss);
+    changeNonCss(kakaoCss,paycoCss,kgCss);
+})
+kakaoPayBtn.addEventListener('click',()=>{
+    changeCss(kakaoCss);
+    changeNonCss(tossCss,paycoCss,kgCss);
+})
+paycoBtn.addEventListener('click',()=>{
+    changeCss(paycoCss);
+    changeNonCss(kakaoCss,tossCss,kgCss);
+})
+kgBtn.addEventListener('click',()=>{
+    changeCss(kgCss);
+    changeNonCss(kakaoCss,paycoCss,tossCss);
+})
+
+function changeCss(payM){
+    payM.style.border="2px solid #a7cdff";
+    payM.style.boxShadow="0px 0px 12px gainsboro";
+}
+
+function changeNonCss(payM1,payM2,payM3){
+    payM1.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+    payM2.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+    payM3.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+}
+
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
@@ -38,12 +79,24 @@ function request_pay(){
 
         console.log(amount);
         console.log(amountInput);
+
+        let pg = '';
+        $(document).ready(function (){
+            console.log("들어오긴함")
+            $('.payMethodBtn').click(()=>{
+                console.log("버튼누름")
+                let btnValue = $(this).attr('value');
+                console.log(btnValue);
+            });
+        })
+
+
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
             {
                 // pg:'kakaopay.TC0ONETIME',
-                pg:pg,
+                pg:'kakaopay.TC0ONETIME',
                 pay_method:'card',
                 merchant_uid : merchant_uid , //주문번호
                 name: item_name,
@@ -186,7 +239,7 @@ function discountAmount(amount){
         amount = amount-(amount*0.1);
         console.log(amount)
         couNo=2;
-        discountCoupon(couNo).then(result=>{
+        discountCoupon(couNo,ordId).then(result=>{
             salePercent = result;
             console.log(salePercent);
         })
@@ -221,9 +274,9 @@ document.getElementById('coupon').addEventListener('change',()=>{
     }
 })
 
-async function discountCoupon(couNo){
+async function discountCoupon(couNo,id){
     try{
-        const url = "/coupon/sale/"+couNo
+        const url = "/coupon/sale/"+couNo+"/"+id;
         const config = {
             method:"POST",
             headers:{
