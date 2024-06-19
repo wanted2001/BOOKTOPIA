@@ -31,8 +31,8 @@
                                         <li class="logout"><a class="cate" th:href="@{/user/logout}" id="logoutuser">로그아웃</a></li>
                                     </th:block>
                                 </th:block>
-                                <li class="cate cate1" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                                    <a class="nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>
+                                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                    <a class="cate nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>
                                 </li>
                             </ul>
                         </div>
