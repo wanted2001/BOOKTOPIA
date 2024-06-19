@@ -11,4 +11,8 @@
     <insert id="insertUserCoupon">
         insert into coupon_use (id, cou_no) values (#{id},1),(#{id},2);
     </insert>
+
+    <select id="getCoupon" resultType="com.booktopia.www.domain.DTO.CouponInfoDTO">
+        select * from coupon_use where id=#{id} and cou_no=#{couNo}
+    </select>
 </mapper>

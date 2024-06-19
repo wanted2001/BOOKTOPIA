@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <title>안녕하세요</title>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="stylesheet" th:href="@{/dist/css/communityList.css}">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!--마크다운 라이브러리-->
@@ -8,20 +9,12 @@
 <script th:src="@{/dist/js/markdown.js}"></script>
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
+        <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
+        <!--공지-->
         <div class="wrap">
-            <div class="sticker">
-<!--                <img th:src="@{/image/b_sticker.png}" class="bSticker">-->
-<!--                <img th:src="@{/image/bc_sticker.png}" class="bcSticker">-->
-<!--                <img th:src="@{/image/book_sticker.png}" class="bookSticker">-->
-<!--                <img th:src="@{/image/c_sticker.png}" class="cSticker">-->
-<!--                <img th:src="@{/image/cat_sticker.png}" class="catSticker">-->
-<!--                <img th:src="@{/image/d_sticker.png}" class="dSticker">-->
-<!--                <img th:src="@{/image/n_sticker.png}" class="nSticker">-->
+<!--            <div class="sticker">-->
 <!--                <img th:src="@{/image/p_sticker.png}" class="pSticker">-->
-<!--                <img th:src="@{/image/pen_sticker.png}" class="penSticker">-->
-<!--                <img th:src="@{/image/t_sticker.png}" class="tSticker">-->
-<!--                <img th:src="@{/image/tu_sticker.png}" class="tuSticker">-->
-            </div>
+<!--            </div>-->
             <!--검색창-->
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>
@@ -45,7 +38,6 @@
                     <span class="commListAllText">전체보기 ></span>
                 </a>
             </div>
-            <!--공지-->
             <div class="commNoticeLine">
                 <span class="NoticeBlock">공지</span>
                 <a th:href="@{/community/communityNotice}">
@@ -86,7 +78,7 @@
                     </a>
                 </div>
             </div>
-<!--            <div class="commLine2"><img th:src="@{/image/commLine.png}"></div>-->
+            <div class="commLine2"><img th:src="@{/image/commLine.png}"></div>
             <!--글쓰기 버튼-->
             <div class="commRegBtn">
                 <a th:href="@{/board/register}">
@@ -97,24 +89,25 @@
             <!--게시판 리스트-->
             <div class="commAllList">
             <div class="commListArea" th:each="bvo:${blist}">
-                <a th:href="@{/board/detail(bno=${bvo.getBno()})}">
                 <div class="commListContent">
                     <div class="commTitle">
                         <th:block th:switch="${bvo.bCate}">
-                            <span th:case="novel" th:text="'[소설]'"></span>
-                            <span th:case="finance" th:text="'[경제/경영]'"></span>
-                            <span th:case="human" th:text="'[인문]'"></span>
-                            <span th:case="history" th:text="'[역사/문화]'"></span>
-                            <span th:case="poem" th:text="'[시/에세이]'"></span>
-                            <span th:case="development" th:text="'[자기개발]'"></span>
-                            [[${bvo.bTitle}]]
+                            <a th:href="@{/board/detail(bno=${bvo.getBno()},id=${auth.getId()})}">
+                                <span th:case="novel" th:text="'[소설]'"></span>
+                                <span th:case="finance" th:text="'[경제/경영]'"></span>
+                                <span th:case="human" th:text="'[인문]'"></span>
+                                <span th:case="history" th:text="'[역사/문화]'"></span>
+                                <span th:case="poem" th:text="'[시/에세이]'"></span>
+                                <span th:case="development" th:text="'[자기개발]'"></span>
+                                [[${bvo.bTitle}]]
+                            </a>
                         </th:block>
                     </div>
                     <div class="commWriter">
                         [[${bvo.bWriter}]]•<span th:text="${#strings.substring(bvo.bRegDate,0,10)}"></span>
                     </div>
                     <div class="commContent">
-                        [[${bvo.bContent}]]
+                        <a th:href="@{/board/detail(bno=${bvo.getBno()},id=${auth.getId()})}">[[${bvo.bContent}]]</a>
                     </div>
                     <div class="commImg" th:if="${bvo.bMainImg!=''}">
                         <img th:src="@{|/upload/${bvo.bMainImg}|}">
@@ -125,7 +118,6 @@
                         <div class="commReadCnt commCnt">조회수 [[${bvo.bReadCnt}]]</div>
                     </div>
                 </div>
-                </a>
             </div>
             </div>
             <!--검색결과 없을때 출력-->
@@ -188,9 +180,8 @@
                         </a>
                     </li>
                 </ul>
-                </th:block>
             </div>
         </div>
-
+        </th:block>
     </th:block>
 </th:block>

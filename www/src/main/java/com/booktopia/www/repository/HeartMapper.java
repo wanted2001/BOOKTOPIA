@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.parameters.P;
 
+import java.util.List;
+
 @Mapper
 public interface HeartMapper {
     HeartVO getUser(@Param("id")String id, @Param("bno")long bno);
@@ -22,4 +24,8 @@ public interface HeartMapper {
     int getcount(long bno);
 
     void adminDelHeart(long bno);
+
+    HeartVO heart1User(@Param("id") String id, @Param("bno") long bno);
+
+    void updateHeart(@Param("id") String id,@Param("bno") long bno);
 }

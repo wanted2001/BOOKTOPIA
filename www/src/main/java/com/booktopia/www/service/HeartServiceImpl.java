@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -43,6 +45,16 @@ public class HeartServiceImpl implements HeartService{
     @Override
     public int deleteHeart(long bno, String id) {
         return heartMapper.deleteHeart(bno,id);
+    }
+
+    @Override
+    public HeartVO heart1User(String id, long bno) {
+        return heartMapper.heart1User(id, bno);
+    }
+
+    @Override
+    public void updateHeart(String id, long bno) {
+        heartMapper.updateHeart(id,bno);
     }
 
 
