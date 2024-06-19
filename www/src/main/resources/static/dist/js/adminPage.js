@@ -60,24 +60,13 @@ document.addEventListener('click', (e) => {
         let cate = e.target.dataset.cate;
         console.log(cate);
         spreadList(cate, page);
-
-        // let moreBtn = document.getElementById('adminUserBtn');
-        // console.log(moreBtn);
-        // if(result.pgvo.pageNo < result.realEndPage){
-        //     moreBtn.style.visibility = 'visible';
-        //     console.log(moreBtn.dataset.page);
-        //     moreBtn.dataset.page = page+1;
-        //     // console.log(moreBtn.dataset.page+1);
-        // } else {
-        //     moreBtn.style.visibility = 'hidden';
-        // }
     }
 });
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
     const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
-        let index = sections[btnId.slice(-1)-1];
+    let index = sections[btnId.slice(-1)-1];
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
         console.log(section);

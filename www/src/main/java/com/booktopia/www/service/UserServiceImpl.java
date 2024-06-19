@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
     public int joinInsert(UserVO uvo) {
         int isOk = userMapper.joinInsert(uvo);
         int isOk2 = isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0;
-        if(isOk>0||isOk2 > 0) {
+        log.info("joinInsert isOk is {}", isOk);
+        if(isOk>0) {
             couponUseMapper.insertUserCoupon(uvo.getId());
         }
         return isOk2;

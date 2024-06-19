@@ -27,8 +27,14 @@
                     <div id="commForm">
                         <!--아이디-->
                         <div class="WriterArea">
-                            <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
-                            <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
+                            <th:block th:if="${auth.getUserType() == '일반'}">
+                                <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
+                                <input type="hidden" value="" class="commDeUserEmail">
+                            </th:block>
+                            <th:block th:if="${auth.getUserType()!='일반'}">
+                                <input type="hidden" th:value="${auth.getId()}" class="commDeUserId">
+                                <input type="hidden" th:value="${auth.getEmail()}" class="commDeUserEmail">
+                            </th:block>
                         </div>
                         <!-- 게시판 선택 select 효과 -->
                         <div class="commRegiCate">
