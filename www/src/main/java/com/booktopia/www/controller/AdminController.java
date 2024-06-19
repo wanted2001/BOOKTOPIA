@@ -39,10 +39,6 @@ public class AdminController {
     private final HeartMapper heartMapper;
     private final AdCouponMapper adCouponMapper;
 
-    private final BoardService boardService;
-    private final CommentService commentService;
-    private final ReCommentService reCommentService;
-
     // 해당 리스트에 총 갯수
     // 전체 리스트
     @GetMapping("/adminPage")
@@ -106,15 +102,11 @@ public class AdminController {
     public PagingHandler getUserList(@PathVariable("pageNo") int pageNo) {
         PagingVO pgvo = new PagingVO(pageNo,10);
         int tatalCount = userMapper.getTotal();
-        log.info("tatalCount >>> {}", tatalCount);
-//        userMapper.getList();
+
         PagingHandler ph = new PagingHandler(pgvo, tatalCount);
         List<UserVO> ulist = userMapper.adminUserList(pgvo);
         ph.setUserList(ulist);
 
-        log.info("ph >>> {}", ph);
-        log.info("ulist >>> {}", ulist);
-//        model.addAttribute("ph", ph);
         return ph;
     }
 
@@ -124,11 +116,9 @@ public class AdminController {
     public PagingHandler getTestList(@PathVariable("pageNo") int pageNo) {
         PagingVO pgvo = new PagingVO(pageNo, 10);
         int testTotal = bookTopiaMapper.getTotal();
-        log.info("testTotal >>> {}", testTotal);
 
         PagingHandler booktestph = new PagingHandler(pgvo, testTotal);
         booktestph.setBooktopia(bookTopiaMapper.adminTestList(pgvo));
-        log.info("booktestph >>> {}", booktestph);
         return booktestph;
     }
 
@@ -138,7 +128,6 @@ public class AdminController {
     public PagingHandler getSubUser(@PathVariable("pageNo") int pageNo) {
         PagingVO subPgvo = new PagingVO(pageNo, 10);
         int subTotal = payMapper.getTotal();
-        log.info("subTotal >>> {}", subTotal);
 
         List<OrderInfoVO> ordlist = orderInfoMapper.orderList();
         List<PayVO> paylist = payMapper.payList();
@@ -160,7 +149,6 @@ public class AdminController {
         }
         PagingHandler subPh = new PagingHandler(subPgvo, subTotal);
         subPh.setOrderInfoDTOList(odtolist);
-        log.info("subPh >>> {}", subPh);
         return subPh;
     }
 
@@ -170,11 +158,9 @@ public class AdminController {
     public PagingHandler getDelivery(@PathVariable("pageNo") int pageNo) {
         PagingVO deliPgvo = new PagingVO(pageNo, 10);
         int deliTotal = deliMapeer.getTotal();
-        log.info("deliTotal >>> {}", deliTotal);
 
         PagingHandler deliPh = new PagingHandler(deliPgvo, deliTotal);
         deliPh.setDeliveries(deliMapeer.adminDelList(deliPgvo));
-        log.info("deliPh >>> {}", deliPh);
         return deliPh;
     }
 
@@ -184,11 +170,9 @@ public class AdminController {
     public PagingHandler getBoardList(@PathVariable("pageNo") int pageNo){
         PagingVO boardPgvo = new PagingVO(pageNo, 10);
         int boardCount = boardMapper.getCount();
-        log.info("boadCount >>> {}", boardCount);
 
         PagingHandler boardPh = new PagingHandler(boardPgvo, boardCount);
         boardPh.setBoardlist(boardMapper.adminBoardList(boardPgvo));
-        log.info("boardPh >>> {}", boardPh);
 
         return boardPh;
     }
@@ -201,16 +185,11 @@ public class AdminController {
         int commentCount = commentMapper.getCount();
         int recommentCoount = reCommentMapper.getreCommentCount();
         int tatolCount = commentCount+recommentCoount;
-        log.info("tatolCount >>> {}", tatolCount);
 
         List<CommentDTO> recmolist = reCommentMapper.adminreCommtneList();
-        log.info("recmolist >>> {}", recmolist);
 
         PagingHandler commenPh = new PagingHandler(commenPagingVO, tatolCount, recmolist);
-        log.info("commenPh >>> {}", commenPh);
         commenPh.setCmtList(commentMapper.admingetCommentList(commenPagingVO));
-//        commenPh.setCmtList(reCommentMapper.adminreCommtneList(commenPagingVO));
-        log.info("commenPh >>> {}", commenPh);
 
         return commenPh;
     }
@@ -221,15 +200,20 @@ public class AdminController {
     public PagingHandler adminCouponList(@PathVariable("pageNo") int pageNo){
         PagingVO couponPvo = new PagingVO(pageNo, 10);
         int couponCount = adCouponMapper.getCount();
-        log.info("couponCount >>> {}", couponCount);
 
         PagingHandler couponPh = new PagingHandler(couponPvo, couponCount);
         couponPh.setAdCouponList(adCouponMapper.getList(couponPvo));
-        log.info("couponPh >>> {}", couponPh);
 
         return couponPh;
     }
 
+    // 쿠폰 생성 구문
+    @PostMapping("/addCoupon")
+    @ResponseBody
+    public String addCoupon(@RequestBody AdCouponVO adcoupon){
+        int isOk = adCouponMapper.insert(adcoupon);
+        return isOk > 0 ? "1":"0";
+    }
 
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)

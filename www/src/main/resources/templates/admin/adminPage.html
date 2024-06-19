@@ -6,10 +6,9 @@
         <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
         <script th:src="@{/dist/js/markdown.js}"></script>
         <link rel="stylesheet" th:href="@{/dist/css/adminPage.css}">
-        <form action="/admin/adminPage">
         <nav class="admin-contain">
             <p class="admin"> 관리자 페이지</p>
-
+            <!--cate 버튼 -->
             <div class="admin-cate">
                 <button type="button" class="admin-btn" id="aBtn1">회원리스트</button>
                 <button type="button" class="admin-btn" id="aBtn2">취향검사 리스트</button>
@@ -19,6 +18,8 @@
                 <button type="button" class="admin-btn" id="aBtn6">댓글관리</button>
                 <button type="button" class="admin-btn" id="aBtn7">쿠폰관리</button>
             </div>
+
+            <!--cate 별 내용-->
             <div class="cate-detail">
                 <!--회원 리스트-->
                 <div class="admin-UserList" style="display: none">
@@ -40,7 +41,7 @@
                         <!--spreadline-->
                     </table>
                     <div>
-                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminUserBtn" class="adminmoreBtn" data-page="1" data-cate="adUser" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
 
@@ -61,7 +62,7 @@
 
                     </table>
                     <div>
-                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminTestBtn" class="adminmoreBtn" data-page="1" data-cate="adTest" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
 
@@ -83,7 +84,7 @@
 
                     </table>
                     <div>
-                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminSubBtn" class="adminmoreBtn" data-page="1" data-cate="adsubUser" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
 
@@ -104,7 +105,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminDeliBtn" class="adminmoreBtn" data-page="1" data-cate="addeli" style="visibility:hidden"> +</button>
                     </div>
                 </div>
 
@@ -126,7 +127,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminBoardBtn" class="adminmoreBtn" data-page="1" data-cate="addboard" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
 
@@ -146,20 +147,41 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminCommBtn" class="adminmoreBtn" data-page="1" data-cate="adCommen" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
 
-                <!--쿠폰 만들기 -->
+                <!--쿠폰관리 -->
                 <div class="adminCouponAdd" style="display: none">
+                    <!--생성라인-->
+                    <p> 쿠폰 생성 </p>
+                    <table>
+                        <tr>
+                            <th>CouponName</th>
+                            <th>Period</th>
+                            <th>SalePer</th>
+                            <th>Info</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="couName" id="couName"></td>
+                            <td><input type="text" name="couPeriod" id="couPeriod"></td>
+                            <td><input type="text" name="couSale" id="couSale"></td>
+                            <td><input type="text" name="couInfo" id="couInfo"></td>
+                            <td><button type="submit" id="postCoupon"> 등록 </button></td>
+                        </tr>
+                    </table>
+
+                    <!--리스트 뿌리기 라인-->
+                    <p> 쿠폰 List </p>
                     <table>
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>CouponName</th>
                                 <th>Period</th>
-                                <th>addAt</th>
                                 <th>Sale</th>
+                                <th>addAt</th>
                                 <th>Info</th>
                             </tr>
                         </thead>
@@ -167,16 +189,13 @@
                         </tbody>
                     </table>
                     <div>
-                        <button type="button" id="adminCoupon" class="adminmoreBtn" data-page="1" data-cate="adCoupon" style="visibility:hidden">더보기+</button>
+                        <button type="button" id="adminCoupon" class="adminmoreBtn" data-page="1" data-cate="adCoupon" style="visibility:hidden">더보기 +</button>
                     </div>
                 </div>
+
             </div>
         </nav>
-        </form>
 
         <script th:src="@{/dist/js/adminPage.js}"></script>
-        <script>
-            boardDelToServer(page);
-        </script>
     </th:block>
 </th:block>
