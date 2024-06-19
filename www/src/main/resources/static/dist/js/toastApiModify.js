@@ -146,7 +146,7 @@ async function handleEditor(event) {
             try{
                 await submitPostData(postData);
                 alert("게시물이 수정되었습니다.");
-                window.location.href = "/board/detail?bno="+bno;
+                window.location.href = "/board/detail?bno="+bno+"&id="+commDeUserId;
             } catch (error) {
                 console.log("isValid error : ", error);
             }
