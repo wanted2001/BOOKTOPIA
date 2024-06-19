@@ -18,8 +18,8 @@
 
             <form action="/pay/payInfo" method="post">
                 <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
-                    <input type="hidden" id="payID" value="3503320191">
-                    <input type="hidden" id="payEmail" value="qansd5@hanmail.net">
+                    <input type="hidden" id="payID" th:value="${auth.getId()}">
+                    <input type="hidden" id="payEmail" th:value="${auth.getEmail()}">
                     <div class="paySubBox">
                         <div class="paySubDiv">구독정보</div>
                         <div class="paySubInner">
@@ -85,7 +85,7 @@
                     <div class="payCouponBox">
                         <div class="payCouponDiv">쿠폰 선택하기</div>
                         <select id="coupon">
-                            <option value="choiceCoupon" name="coupon">현재 보유중인 쿠폰</option>
+                            <option value="choiceCoupon" name="coupon">보유중인 쿠폰 확인하기</option>
                             <option value="welcomeCoupon" name="coupon">신규가입 축하 - 10% 할인 쿠폰</option>
                             <option value="discountCoupon" name="coupon">구독권 1년 이용 감사 - 50% 할인 쿠폰</option>
                         </select>
@@ -94,10 +94,10 @@
                         <div class="payInfoDiv">결제정보</div>
                         <div class="payInfoInner">
                             <input type="hidden" class="priceDiv" th:value="${ssivo.subInPrice}">
-                            <div><span>상품 금액</span><span class="won">32700원</span></div>
+                            <div><span>상품 금액</span><span class="won">[[${ssivo.subInPice}]]원</span></div>
                             <div><span>할인 금액</span><span class="discountAmount won">0원</span></div>
                             <input type="hidden" class="amountInput" th:value="${ssivo.subInPrice}"><hr>
-                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">32700원</span></div>
+                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">[[${ssivo.subInPice}]]원</span></div>
                         </div>
                     </div>
                     <div class="paymentBtn">

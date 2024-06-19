@@ -131,14 +131,18 @@
     border: 1px solid;
 }
 #coupon{
-    width: 390px;
-    height: 40px;
-    padding: 5px;
-    font-size: 0.8em;
-    border-radius: 5px;
-    outline: 0;
+    width: 930px;
+    height: 50px;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 8px;
     font-family: 'SCDream4';
-    margin: 28px 0 10px;
+    margin: 15px 0 0px;
+    outline: none;
+    border-color: gainsboro;
+    appearance: none;
+    background: url("/image/arrow3.png") no-repeat 891px  /2%;
+
 }
 .payBtn1:hover{
     background-color: #f1f4b9;

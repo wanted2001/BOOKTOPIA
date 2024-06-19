@@ -3,7 +3,7 @@ console.log(ordId);
 console.log(ordEmail);
 console.log(ordMemo);
 console.log(payName)
-console.log(amount)
+// console.log(amount)
 
 let i=1;
 let uid = '';
@@ -58,24 +58,29 @@ function request_pay(){
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
 
-    console.log("테스트으으으으으"+ ordaddr);
-    console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
-    console.log(ordName);
+    // console.log("테스트으으으으으"+ ordaddr);
+    // console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
+    // console.log(ordName);
+    console.log(amount)
     if(ordPhone==null||ordPhone===''){
         alert("전화번호를 입력해주세요.");
-        ordPhone.focus();
     } else if(!regPhone.test(ordPhone)){
         ordPhone='';
-        // ordPhone.focus();
         alert("숫자만 입력해주세요.");
     } else if(ordaddr==null||ordaddr===''||ordaddrdetail==null||ordaddrdetail===''){
         alert("주소를 입력해주세요.");
-        ordaddr.focus();
     } else {
         const coupon = $('select#coupon').val();
         if(coupon!=='choiceCoupon'){
-            amount = discountAmount(amount);
-    }
+            console.log("쿠폰 할인받음")
+            console.log(amount)
+            discountAmount(amount);
+            console.log(discountAmount(amount))
+            console.log(discountAmount(amount))
+        } else {
+            amount = amountInput;
+            console.log("할인안받은 amount"+amount)
+        }
 
         console.log(amount);
         console.log(amountInput);
@@ -155,7 +160,7 @@ function request_pay(){
                                 console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
-                                    window.location.href = "/pay/done/"+result.merchantUid;
+                                    // window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -233,21 +238,45 @@ async function getToken(){
 let salePercent=0;
 let couNo=0;
 function discountAmount(amount){
+    console.log(amount);
+
     const coupon = $('select#coupon').val();
     console.log(coupon)
+    const discountDiv = document.querySelector('.discountAmount');
+    const amountDiv = document.querySelector('.amountDiv');
     if(coupon==='welcomeCoupon'){
-        amount = amount-(amount*0.1);
-        console.log(amount)
+        amount = amount-(amount*0.1)
+
         couNo=2;
         discountCoupon(couNo,ordId).then(result=>{
-            salePercent = result;
-            console.log(salePercent);
-        })
+            result.forEach(item=>{
+                    if(item.couUse==='N'){
+                        console.log(item)
+                        amount = amount-(amount*0.1);
+                        // console.log(price)
+                        discountDiv.innerHTML='';
+                        discountDiv.innerHTML+=amount*0.1+"원";
+                        amountDiv.innerHTML='';
+                        amountDiv.innerHTML+=amount+"원";
+                        // return price;
+                    } else {
+                        alert("이미 사용한 쿠폰입니다.")
+                        console.log("이미 사용한 쿠폰");
+                        $('#coupon').val('choiceCoupon').prop('selected',true);
+                        document.querySelector('.discountAmount').innerHTML='';
+                        document.querySelector('.discountAmount').innerHTML='0원';
+                    }
+                }
+            )
 
+
+        })
         return amount;
+
     } else if(coupon==='discountCoupon') {
         return amount;
     }
+
 }
 
 document.getElementById('coupon').addEventListener('change',()=>{
@@ -258,12 +287,10 @@ document.getElementById('coupon').addEventListener('change',()=>{
     const amountDiv = document.querySelector('.amountDiv');
     let totalAmount = discountAmount(payAmount);
 
+
     if(couponName==='welcomeCoupon'){
-        console.log("웰컴 쿠폰 선택함.")
-        discountDiv.innerHTML='';
-        discountDiv.innerHTML+=payAmount*0.1+"원";
-        amountDiv.innerHTML='';
-        amountDiv.innerHTML+=totalAmount+"원";
+        // console.log("웰컴 쿠폰 선택함.")
+
     } else if(couponName==='discountCoupon'){
         alert('현재 사용할 수 없는 쿠폰입니다.');
         $('#coupon').val('choiceCoupon').prop('selected',true);
@@ -285,7 +312,7 @@ async function discountCoupon(couNo,id){
         }
 
         const resp = await fetch(url,config);
-        const result = await resp.text();
+        const result = await resp.json();
         console.log(result);
         return result;
     } catch(error) {
