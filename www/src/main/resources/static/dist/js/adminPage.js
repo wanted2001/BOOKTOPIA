@@ -92,7 +92,7 @@ document.addEventListener('click', (e) => {
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
     const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment', '.adminCouponAdd'];
-        let index = sections[btnId.slice(-1)-1];
+    let index = sections[btnId.slice(-1)-1];
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
         document.querySelector(section).style.display = displayStyle;

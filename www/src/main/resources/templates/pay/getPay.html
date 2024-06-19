@@ -6,7 +6,6 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
 
@@ -19,96 +18,83 @@
 
             <form action="/pay/payInfo" method="post">
                 <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
-                <input type="hidden" id="payID" th:value="${auth.getId()}">
-                <input type="hidden" id="payEmail" th:value="${auth.getEmail()}">
-                <div class="payOutBox">
-                    <div class="payInBox1">
-                        <div class="payInnerDiv1">
-                            <p>배송정보</p>
-                        </div>
-                        <hr>
-                        <div class="payInnerDiv2">
-                            <p>이름</p>
-                            <input type="text" th:value="${auth.getName()}" id="ordName" name="ordName">
-                        </div>
-                        <div class="payInnerDiv2">
-                            <p>전화번호</p>
-                            <input type="text" th:value="${auth.getPhone()== null ? '' : auth.getPhone()}" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
-                        </div>
-                        <div class="payInnerDiv2">
-                            <p>주소</p>
-                            <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
-                                   th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
-                            <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                            <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
-                                   th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
-                        </div>
-                        <div class="payInnerDiv2">
-                            <p>배송 메모</p>
-                            <input type="text" name="ordMemo" id="ordMemo" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
-                        </div>
-                        <div class="payInnerDiv2">
-                            <p>결제 방식</p>
-                        </div>
-                        <hr>
-                            <select name="pay" class="selectBox">
-                                <option value="kakaopay">카카오페이</option>
-                            </select>
-                    </div>
-                    <div class="payInBox2">
-                        <div class="payInnerDiv1">
-                            <p>선택 상품 정보</p>
-                        </div>
-                        <div class="payInnerDiv1">
-                            <div class="subTicketimg" th:if="${ssivo.subInMonth==1}" th:style="'background-color:#f1f4b9'">
-                                <p class="fText">북토피아 [[${ssivo.subInMonth}]]개월 구독권</p>
-                                <p class="sText">[[${ssivo.subInPrice}]]원</p>
-<!--                                <p class="mText">북토피아는 사용자의 만족도를 위해 항상 노력하고 있습니다.</p>-->
-                            </div>
-                            <div class="subTicketimg" th:if="${ssivo.subInMonth!=1}" th:style="${ssivo.subInMonth==3? 'background-color:#baddbc' : 'background-color:#f6bfac'}">
-                                <p class="fText">북토피아 [[${ssivo.subInMonth}]]개월 구독권</p>
-                                <p class="sText">[[${ssivo.subInPrice}]]원</p>
-<!--                            <p class="mText">북토피아는 사용자의 만족도를 위해 항상 노력하고 있습니다.</p>-->
-                            </div>
-                        </div>
-                        <div>
-                            <select id="coupon">
-                                <option value="choiceCoupon" name="coupon">쿠폰 선택하기</option>
-                                <option value="welcomeCoupon" name="coupon">신규가입 축하 - 10% 할인 쿠폰</option>
-                                <option value="discountCoupon" name="coupon">구독권 1년 이용 감사 - 50% 할인 쿠폰</option>
-                            </select>
-                        </div>
-                        <div class="payInfo">결제 정보</div>
-                        <hr>
-                        <div class="payInnerDiv3">
-                            <div>
-                                <div>상품 금액</div>
-                                <input type="hidden" th:value="${ssivo.subInPrice}" class="priceDiv">
-                                <div>[[${ssivo.subInPrice}]]원</div>
-                            </div>
-                            <div>
-                                <div>쿠폰 할인</div>
-                                <div class="discountAmount">0원</div>
-                            </div>
-                            <div>
-                                <div class="payPrice">결제 금액</div>
-                                <input type="hidden" class="amountInput" th:value="${ssivo.subInPrice}">
-                                <div class="amountDiv">[[${ssivo.subInPrice}]]원</div>
-                            </div>
-                        </div>
-                        <input type="hidden" th:value="${ssivo.shipNo}" name="shipNo">
-                        <button type="button" class="payBtn payBtn1" onclick="request_pay()" th:if="${ssivo.shipNo==1}">결제하기</button>
-                        <button type="button" class="payBtn payBtn2" onclick="request_pay()" th:if="${ssivo.shipNo==2}">결제하기</button>
-                        <button type="button" class="payBtn payBtn3" onclick="request_pay()" th:if="${ssivo.shipNo==3}">결제하기</button>
-                        <div class="arrText">
-                            <p>회원 본인은 주문내용을 확인했으며,</p>
-                            <p>구매 조건 및 개인정보처리방침과 결제에 동의합니다.</p>
+                    <input type="hidden" id="payID" value="3503320191">
+                    <input type="hidden" id="payEmail" value="qansd5@hanmail.net">
+                    <div class="paySubBox">
+                        <div class="paySubDiv">구독정보</div>
+                        <div class="paySubInner">
+                            <div><span class="paySubRight">구독상품</span><span>북토피아 구독 3개월권</span></div>
+                            <div><span class="paySubRight">구독기간</span><span class="payStartDate">2024.06.19</span> ~ <span class="payEndDate">2024.09.19</span></div>
+                            <div class="paySubInfoText">* 구독 시작 이후 배송을 받은 경우 취소가 어렵습니다. 유의하여 결제 바랍니다.</div>
                         </div>
                     </div>
-                    <!-- payOutBox div -->
-                </div>
+                    <div class="payUserBox">
+                        <div class="payUserDiv">배송 정보</div>
+                        <div class="payUserInner">
+                            <div class="payUserInner1">
+                                <div class="payUserName">이름 </div>
+                                <input type="text" value="김정온" id="ordName" name="ordName">
+                            </div>
+                            <div class="payUserInner2">
+                                <p>전화번호</p>
+                                <input type="text" value="" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
+                            </div>
+                            <div class="payUserInner3">
+                                <p>주소</p>
+                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요." value="">
+                                <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
+                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요." value="">
+                            </div>
+                            <div class="payUserInner4">
+                                <p>배송 메모</p>
+                                <input type="text" name="ordMemo" id="ordMemo" placeholder="(예시: 부재 시 경비실에 맡겨 주세요.)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payMethodBox">
+                        <div class="payMethodDiv">결제수단</div>
+                        <div class="payMethodInner">
+                            <button type="button" class="payMethodBtn">
+                                <div class="kakaoPayM payM">
+                                        <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
+                                        <div class="kakaoPayText payMText">카카오페이</div>
+                                </div>
+                            </button>
+                            <button type="button" class="payMethodBtn">
+                                <div class="tossM payM">
+                                        <img th:src="@{/image/toss.png}">
+                                        <span>토스</span>
+                                </div>
+                            </button>
+                            <button type="button" class="payMethodBtn">
+                                <div class="paycoM payM">
+                                    <img th:src="@{/image/payco.png}">
+                                    <span>페이코</span>
+                                </div>
+                            </button>
+                            <button type="button" class="payMethodBtn">
+                                <div class="kgM payM">
+                                    <img th:src="@{/image/kg-t.png}">
+                                    <span>신용카드</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payInfoBox">
+                        <div class="payInfoDiv">결제정보</div>
+                        <div class="payInfoInner">
+                            <div><span>상품 금액</span><span class="won">32700원</span></div>
+                            <div><span>할인 금액</span><span class="discountAmount won">0원</span></div>
+                            <input type="hidden" class="amountInput" value="32700"><hr>
+                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">32700원</span></div>
+                        </div>
+                    </div>
+                    <div class="paymentBtn">
+                        <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
+                    </div>
                 </th:block>
             </form>
+        </div>
 
             <!-- daum 주소검색 api 사용 구문 -->
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -125,8 +111,6 @@
                 })
             </script>
 
-            <!-- wrap div -->
-        </div>
         <script th:inline="javascript">
             const ordName = document.getElementById('ordName').value;
             const ordMemo = document.getElementById('ordMemo').value;
@@ -142,5 +126,29 @@
 <script th:inline="javascript">
     const monthVal = [[${ssivo.subInMonth}]];
     console.log(monthVal);
+
+    const date = new Date();
+    const today = date.toISOString().substring(0,10).replaceAll("-",".");
+    console.log(today);
+
+    let plus1 = parseInt(date.getMonth()+2);
+    let plus3 = parseInt(date.getMonth()+4);
+    let plus6 = parseInt(date.getMonth()+7);
+
+    let month1 = plus1<10? date.getFullYear()+".0"+(parseInt(date.getMonth())+2)+"."+date.getDate() : date.getFullYear()+"."+(parseInt(date.getMonth())+2)+"."+date.getDate();
+    let month3 = plus3<10? date.getFullYear()+".0"+(parseInt(date.getMonth())+4)+"."+date.getDate() : date.getFullYear()+"."+(parseInt(date.getMonth())+4)+"."+date.getDate();
+    let month6 = plus6<10? date.getFullYear()+".0"+(parseInt(date.getMonth())+7)+"."+date.getDate() : date.getFullYear()+"."+(parseInt(date.getMonth())+7)+"."+date.getDate();
+
+    document.querySelector('.payStartDate').innerText+=today;
+    if(monthVal==1) {
+        document.querySelector('.payEndDate').innerText+=month1;
+        document.querySelector('.nextPayDate').innerText+=month1;
+    } else if(monthVal==3) {
+        document.querySelector('.payEndDate').innerText+=month3;
+        document.querySelector('.nextPayDate').innerText+=month3;
+    } else{
+        document.querySelector('.payEndDate').innerText+=month6;
+        document.querySelector('.nextPayDate').innerText+=month6;
+    }
 </script>
 </html>

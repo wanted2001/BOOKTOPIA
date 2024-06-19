@@ -4,6 +4,7 @@ package com.booktopia.www.oauth2.service;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.booktopia.www.oauth2.user.*;
+import com.booktopia.www.repository.CouponUseMapper;
 import com.booktopia.www.repository.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private CouponUseMapper couponUseMapper;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -72,6 +76,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             uvo.setUserType(type);
             uvo.setAccessToken(accessToken);
             userMapper.joinInsertOauth(uvo);
+            couponUseMapper.insertUserCoupon(uvo.getId());
             int isOk = userMapper.countAuth(providerId);
             if(isOk < 0){
                 userMapper.insertAuth(providerId);

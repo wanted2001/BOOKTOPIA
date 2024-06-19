@@ -14,13 +14,13 @@
     flex-wrap: wrap;
     font-family: SCDream4;
 }
-.payTitle{
-    width: 100%;
-    text-align: center;
-    /* line-height: 267px; */
-    font-size: 3em;
-    margin: 45px 0 75px;
-}
+/*.payTitle{*/
+/*    width: 1400px;*/
+/*    text-align: center;*/
+/*    !* line-height: 267px; *!*/
+/*    font-size: 2em;*/
+/*    margin: 45px 0 75px;*/
+/*}*/
 .payOutBox{
     width: 1300px;
     margin: 0 auto 100px;
@@ -71,13 +71,13 @@
     font-family: SCDream4;
 }
 
-.payGetAddrBtn{
-    width: 153px;
-    height: 50px;
-    font-family: SCDream4;
-    border-radius: 8px;
-    cursor: pointer;
-}
+/*.payGetAddrBtn{*/
+/*    width: 153px;*/
+/*    height: 50px;*/
+/*    font-family: SCDream4;*/
+/*    border-radius: 8px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .payInnerDiv3{
     margin-top: 10px;
@@ -192,4 +192,139 @@
 }
 .arrText p:nth-of-type(2){
     text-decoration: underline;
+}
+
+
+
+
+
+/*정온작업*/
+.payTitle {
+    width: 930px;
+    text-align: center;
+    /* line-height: 267px; */
+    font-size: 2em;
+    margin: 45px auto 75px;
+}
+
+
+.paySubBox {
+    width: 930px;
+    margin: 0 auto;
+}
+
+.paySubDiv, .payUserDiv, .payInfoDiv, .payMethodDiv {
+    font-family: 'SCDream5';
+    font-weight: bold;
+    font-size: 18px;
+}
+.paySubRight {
+    width: 76px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+.paySubInfoText {
+    font-size: 11px;
+    color: gray;
+    margin: 3px 1px;
+}
+
+.paySubInner, .payUserInner {
+    border: 1px solid gainsboro;
+    padding: 14px 14px 7px;
+    line-height: 1.6;
+    margin-top: 12px;
+    border-radius: 13px;
+    font-size: 15px;
+}
+
+.payUserBox, .payInfoBox, .payMethodBox {
+    width: 930px;
+    margin: 49px auto;
+}
+
+
+input#ordName, #ordPhone, #addrDetailInput, #ordMemo {
+    background: #fbfbfbbd;
+    width: 98%;
+    padding: 8px 11px 8px;
+    border-radius: 10px;
+    margin: 1px 0 14px;
+    outline: none;
+}
+
+input#addrInput {
+    background: #fbfbfbbd;
+    width: 39%;
+    padding: 6px 9px 6px;
+    border-radius: 10px;
+    margin: 5px 0 6px;
+}
+
+.payGetAddrBtn {
+    width: 153px;
+    /* height: 30px; */
+    padding: 6px;
+    font-family: SCDream4;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #232323;
+    background: #e9e9e9;
+}
+
+.payInfoBox {
+    width: 930px;
+    margin: 48px auto;
+}
+
+.payInfoInner {
+    border: 1px solid gainsboro;
+    padding: 20px;
+    line-height: 2.5;
+    margin-top: 12px;
+    border-radius: 13px;
+    font-size: 16px;
+}
+.won {
+    float: right;
+}
+.totalAmountDiv {
+    font-size: 19px;
+    font-weight: bold;
+}
+.payMethodInner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.payM {
+    width: 437px;
+    border: 1px solid gainsboro;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 14px;
+    text-align: center;
+    line-height: 23px;
+}
+.kakaopaydiv {
+    /* width: 100px; */
+    display: inline-block;
+    /* margin-top: 21px; */
+    padding-top: 5px;
+    margin-left: -138px;
+}
+.kakaoPayText.payMText {
+    width: 171px;
+    margin-top: -25px;
+}
+img{
+    width: 45px;
+}
+.paycoM img {
+    margin-left: -46px;
+}
+.payMethodBtn{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
 }

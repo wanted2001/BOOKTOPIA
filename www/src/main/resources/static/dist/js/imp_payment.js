@@ -34,14 +34,16 @@ function request_pay(){
         const coupon = $('select#coupon').val();
         if(coupon!=='choiceCoupon'){
             amount = discountAmount(amount);
-        }
+    }
+
         console.log(amount);
         console.log(amountInput);
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
             {
-                pg:'kakaopay.TC0ONETIME',
+                // pg:'kakaopay.TC0ONETIME',
+                pg:pg,
                 pay_method:'card',
                 merchant_uid : merchant_uid , //주문번호
                 name: item_name,
