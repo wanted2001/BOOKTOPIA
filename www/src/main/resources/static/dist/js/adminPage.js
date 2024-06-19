@@ -60,28 +60,15 @@ document.addEventListener('click', (e) => {
         let cate = e.target.dataset.cate;
         console.log(cate);
         spreadList(cate, page);
-
-        // let moreBtn = document.getElementById('adminUserBtn');
-        // console.log(moreBtn);
-        // if(result.pgvo.pageNo < result.realEndPage){
-        //     moreBtn.style.visibility = 'visible';
-        //     console.log(moreBtn.dataset.page);
-        //     moreBtn.dataset.page = page+1;
-        //     // console.log(moreBtn.dataset.page+1);
-        // } else {
-        //     moreBtn.style.visibility = 'hidden';
-        // }
     }
 });
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
-    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment'];
+    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment', '.adminCouponAdd'];
         let index = sections[btnId.slice(-1)-1];
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
-        console.log(section);
-        console.log(displayStyle);
         document.querySelector(section).style.display = displayStyle;
     });
 
@@ -102,6 +89,9 @@ function handleButtonClick(btnId) {
         spreadList(cate);
     }else if(index === '.commuComment') { // 댓글 리스트
         let cate = 'adCommen';
+        spreadList(cate);
+    } else if(index === '.adminCouponAdd'){
+        let cate = 'adCoupon';
         spreadList(cate);
     }
 
@@ -184,7 +174,7 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "adsubUser" :
+        case "adsubUser" : // 구독리스트 뿌리기
             subUserToServer(page=1).then(result => {
                 console.log(result);
                 const tbody = document.getElementById('adminSubList');
@@ -217,7 +207,7 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "addeli" :
+        case "addeli" : // 배송현황 리스트 뿌리기
             deliToServer(page=1).then(result => { //배송 리스트
                 console.log(result);
                 const tbody = document.getElementById('adminDeliList');
@@ -248,7 +238,7 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "addboard" :
+        case "addboard" : // 게시글 리스트 뿌리기
             communBoardToServer(page).then(result =>{
                 console.log(result);
                 const tbody = document.getElementById('adminBoardList');
@@ -286,7 +276,7 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-        case "adCommen" :
+        case "adCommen" : // 댓글 리스트 뿌리기
             commentBoardToServer(page=1).then(result=>{
                 console.log(result);
                 const tbody = document.getElementById('adminComment');
@@ -317,37 +307,9 @@ function spreadList(cate, page=1){
                 }
             })
             break;
-
+        case "adCoupon" : break;
     }
 }
-// function getUserlist (pageNo){
-//     userListToServer(pageNo).then(result=>{
-//         console.log(result)
-//         console.log(result.totalCount);
-//         console.log(result.pgvo);
-//         const tbody = document.getElementById('adminUserList');
-//         console.log(tbody);
-//         if(result.userList.length > 0){
-//             if(page === 1){
-//                 tbody.innerHTML = '';
-//             }
-//             for(let uvo of result.userList){
-//                 let td = `<td>${uvo.id}</td>`;
-//                 td += `<td style="text-align: center">${uvo.name}</td>`;
-//                 td += `<td>${uvo.email}</td>`;
-//                 td += `<td>${uvo.phone}</td>`;
-//                 td += `<td>${uvo.userType}</td>`;
-//                 td += `<td>${uvo.userReg}</td></tr>`;
-//
-//                 tbody.innerHTML += td;
-//             }
-//
-//         } else {
-//             tbody.innerHTML = `<div> List Empty </div>`;
-//         }
-//     })
-// }
-
 
 /*
    프론트 : N페이지 회원 리스트를 "/admin/getUserList/"+pageNo 주소로 서버한테 요청
@@ -399,6 +361,13 @@ async function communBoardToServer(pageNo){
 // 댓글 관리
 async function commentBoardToServer(pageNo){
     const resp = await fetch("/admin/admincommentList/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
+
+// 쿠폰관리
+async function couponToServer(pageNo){
+    const resp = await fetch("/admin/adminCoupon/"+pageNo);
     const result = await resp.json();
     return result;
 }

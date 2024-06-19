@@ -26,6 +26,7 @@ public class PagingHandler {
     private List<OrderInfoDTO> orderInfoDTOList;
     private List<BooktopiaVO> booktopia;
     private List<UserVO> userList;
+    private List<AdCouponVO> adCouponList;
     private List<CommentDTO> cmtList;
 
     public PagingHandler(PagingVO pgvo, int totalCount) {

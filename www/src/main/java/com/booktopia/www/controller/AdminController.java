@@ -37,6 +37,7 @@ public class AdminController {
     private final CommentMapper commentMapper;
     private final ReCommentMapper reCommentMapper;
     private final HeartMapper heartMapper;
+    private final AdCouponMapper adCouponMapper;
 
     private final BoardService boardService;
     private final CommentService commentService;
@@ -193,7 +194,7 @@ public class AdminController {
     }
 
     // 댓글 리스트 요청
-    @GetMapping("admincommentList/{pageNo}")
+    @GetMapping("/admincommentList/{pageNo}")
     @ResponseBody
     public PagingHandler adminGetcommentList(@PathVariable("pageNo") int pageNo){
         PagingVO commenPagingVO = new PagingVO(pageNo, 10);
@@ -214,7 +215,21 @@ public class AdminController {
         return commenPh;
     }
 
-    /* 버튼 클릭 시 */
+    // 쿠론 리스트 요청
+    @GetMapping("/adminCoupon/{pageNo}")
+    @ResponseBody
+    public PagingHandler adminCouponList(@PathVariable("pageNo") int pageNo){
+        PagingVO couponPvo = new PagingVO(pageNo, 10);
+        int couponCount = adCouponMapper.getCount();
+        log.info("couponCount >>> {}", couponCount);
+
+        PagingHandler couponPh = new PagingHandler(couponPvo, couponCount);
+        couponPh.setAdCouponList(adCouponMapper.getList(couponPvo));
+        log.info("couponPh >>> {}", couponPh);
+
+        return couponPh;
+    }
+
 
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)
