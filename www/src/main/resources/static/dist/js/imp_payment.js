@@ -10,13 +10,68 @@ let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
 const amountInput = document.querySelector('.amountInput').value;
+
+const kakaoPayBtn = document.getElementById('kakaoPayBtn');
+const tossBtn = document.getElementById('tossBtn');
+const paycoBtn = document.getElementById('paycoBtn');
+const kgBtn = document.getElementById('kgBtn');
+const tossCss = document.querySelector('.tossM');
+const kakaoCss = document.querySelector('.kakaoPayM');
+const paycoCss = document.querySelector('.paycoM');
+const kgCss = document.querySelector('.kgM');
+let btn;
+/*css 변경하는 이벤트*/
+document.addEventListener('click',(e)=>{
+    if(e.target.id==='kakaoPayBtn'){
+        changeCss(kakaoCss);
+        changeNonCss(tossCss,paycoCss,kgCss);
+        e.target.closest('.payM').setAttribute("data-btn","kakao");
+    } else if(e.target.id==='tossBtn'){
+        changeCss(tossCss);
+        changeNonCss(kakaoCss,paycoCss,kgCss);
+        e.target.closest('.payM').setAttribute("data-btn","toss");
+    } else if(e.target.id==='paycoBtn') {
+        changeCss(paycoCss);
+        changeNonCss(kakaoCss,tossCss,kgCss);
+        e.target.closest('.payM').setAttribute("data-btn","kg");
+    } else if(e.target.id==='kgBtn'){
+        changeCss(kgCss);
+        changeNonCss(kakaoCss,paycoCss,tossCss);
+        e.target.closest('.payM').setAttribute("data-btn","kg");
+    }
+})
+
+
+function changeCss(payM){
+    payM.style.cssText="border:2px solid #a7cdff; box-shadow:0px 0px 12px gainsboro; font-weight:bold;";
+}
+function changeNonCss(payM1,payM2,payM3){
+    payM1.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px; font-weight:none;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+    payM2.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px; font-weight:none;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+    payM3.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px; font-weight:none;" +
+        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
+}
+
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
+    const coupon = $('select#coupon').val();
+    console.log(coupon)
     console.log("테스트으으으으으"+ ordaddr);
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
     console.log(ordName);
+
+    $(function (){
+        let i = $('.payM').length;
+        console.log(i)
+
+    })
+
+
+
     if(ordPhone==null||ordPhone===''){
         alert("전화번호를 입력해주세요.");
         ordPhone.focus();
@@ -28,7 +83,6 @@ function request_pay(){
         alert("주소를 입력해주세요.");
         ordaddr.focus();
     } else {
-        const coupon = $('select#coupon').val();
         if(coupon!=='choiceCoupon'){
             amount = discountAmount(amount);
         }
@@ -55,20 +109,88 @@ function request_pay(){
                 if(rsp.success){
                     console.log('결제성공 boot!');
                     console.log(rsp);
-                    let registerData ={
-                        id:ordId,
-                        impUid: rsp.imp_uid,
-                        merchantUid: merchant_uid,
-                        ordEmail:ordEmail,
-                        ordName:ordName,
-                        ordPhone: ordPhone,
-                        ordAddr:ordaddr+"/"+ordaddrdetail,
-                        itemName:item_name,
-                        totalAmount: amount,
-                        saleAmount:amountInput*0.1,
-                        couNo:couNo,
-                        pg_tid:rsp.pg_tid,
-                    };
+                    let registerData;
+                    if(coupon==='신규가입 구독권 10% 할인') {
+                        console.log("신규가입 쿠폰 결제 생성")
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:amountInput*0.1,
+                            couNo:couNo,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    } else if(coupon==='신규회원 1개월 구독권 100% 할인'){
+                        console.log("신규가입 쿠폰 결제 생성")
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: 0,
+                            saleAmount:amountInput,
+                            couNo:couNo,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    } else if(coupon==='6월 내 구독권 결제 시, 10% 할인'){
+                        console.log("신규가입 쿠폰 결제 생성")
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:amountInput*0.1,
+                            couNo:couNo,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    } else if(coupon==='북토피아 창립기념 30% 할인'){
+                        console.log("신규가입 쿠폰 결제 생성")
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:amountInput*0.3,
+                            couNo:couNo,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    }
+                    else {
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:0,
+                            couNo:0,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    }
                     console.log(registerData);
                     postRegisterSuccess(registerData).then(result=>{
                         console.log("result >> "+ result)
@@ -95,7 +217,6 @@ function request_pay(){
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
                                     // window.location.href = "/pay/done/"+result.merchantUid;
-                                    window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -168,12 +289,25 @@ function discountAmount(amount){
     const coupon = $('select#coupon').val();
     console.log(coupon)
 
-    if(coupon==='welcomeCoupon'){
+    if(coupon==='신규가입 구독권 10% 할인'){
         amount=amount-(amount*0.1);
         console.log(amount);
         couNo=2;
         return amount;
-    } else if(coupon==='discountCoupon'){
+    } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
+        couNo=1;
+        return amount;
+    } else if(coupon==='신규회원 1개월 구독권 100% 할인') {
+        amount=amount-(amount*1);
+        couNo=3;
+        return amount;
+    } else if(coupon==='6월 내 구독권 결제 시, 10% 할인'){
+        amount = amount-(amount*0.1);
+        couNo=4;
+        return amount;
+    } else if(coupon==='북토피아 창립기념 30% 할인'){
+        amount = amount-(amount*0.3);
+        couNo=5;
         return amount;
     }
 }
@@ -185,9 +319,9 @@ document.getElementById('coupon').addEventListener('change',()=>{
     const discountDiv = document.querySelector('.discountAmount');
     const amountDiv = document.querySelector('.amountDiv');
     // let totalAmount = discountAmount(payAmount);
-    if(couponName==='welcomeCoupon'){
+    if(couponName==='신규가입 구독권 10% 할인'){
         console.log("웰컴 쿠폰 선택함.")
-        couNo=2;
+        couNo=1;
         discountCoupon(couNo,ordId).then(result=>{
             result.forEach(item=>{
                 if(item.couUse==='N'){
@@ -208,7 +342,74 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
 
-    } else if(couponName==='discountCoupon'){
+    } else if(couponName==='신규회원 1개월 구독권 100% 할인'){
+        console.log("0원 쿠폰 선택함.")
+        couNo=3;
+        discountCoupon(couNo,ordId).then(result=>{
+            result.forEach(item=>{
+                if(item.couUse==='N'){
+                    console.log(amount)
+                    discountDiv.innerHTML='';
+                    discountDiv.innerHTML+=payAmount+"원";
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML+="0원";
+                } else {
+                    alert("이미 사용한 쿠폰입니다.");
+                    console.log("이미 사용한 쿠폰");
+                    $('#coupon').val('choiceCoupon').prop('selected', true);
+                    discountDiv.innerHTML = '';
+                    discountDiv.innerHTML = '0원';
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML=payAmount+"원";
+                }
+            })
+        })
+
+    } else if(couponName==='6월 내 구독권 결제 시, 10% 할인'){
+        console.log("6월쿠폰 선택함.")
+        couNo=4;
+        discountCoupon(couNo,ordId).then(result=>{
+            result.forEach(item=>{
+                if(item.couUse==='N'){
+                    console.log(amount)
+                    discountDiv.innerHTML='';
+                    discountDiv.innerHTML+=payAmount*0.1+"원";
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
+                } else {
+                    alert("이미 사용한 쿠폰입니다.");
+                    console.log("이미 사용한 쿠폰");
+                    $('#coupon').val('choiceCoupon').prop('selected', true);
+                    discountDiv.innerHTML = '';
+                    discountDiv.innerHTML = '0원';
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML=payAmount+"원";
+                }
+            })
+        })
+    } else if(couponName==='북토피아 창립기념 30% 할인'){
+        console.log("창립기념 쿠폰 선택함.")
+        couNo=5;
+        discountCoupon(couNo,ordId).then(result=>{
+            result.forEach(item=>{
+                if(item.couUse==='N'){
+                    console.log(amount)
+                    discountDiv.innerHTML='';
+                    discountDiv.innerHTML+=payAmount*0.3+"원";
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.3)+"원";
+                } else {
+                    alert("이미 사용한 쿠폰입니다.");
+                    console.log("이미 사용한 쿠폰");
+                    $('#coupon').val('choiceCoupon').prop('selected', true);
+                    discountDiv.innerHTML = '';
+                    discountDiv.innerHTML = '0원';
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML=payAmount+"원";
+                }
+            })
+        })
+    } else if(couponName==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
         alert('현재 사용할 수 없는 쿠폰입니다.');
         $('#coupon').val('choiceCoupon').prop('selected',true);
         discountDiv.innerHTML='';

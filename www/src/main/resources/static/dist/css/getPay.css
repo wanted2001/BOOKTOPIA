@@ -324,7 +324,7 @@ input#addrInput {
 .kakaoPayText.payMText {
     width: 171px;
     margin: -26px 0 0 135px;
-    font-family: SCDream5;
+    /*font-weight: bold;*/
 }
 img{
     width: 45px;

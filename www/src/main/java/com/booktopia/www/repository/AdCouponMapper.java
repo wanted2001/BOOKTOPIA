@@ -14,4 +14,6 @@ public interface AdCouponMapper {
     List<AdCouponVO> getList(PagingVO couponPvo);
 
     int insert(AdCouponVO adcoupon);
+
+    List<AdCouponVO> getCouponList();
 }
