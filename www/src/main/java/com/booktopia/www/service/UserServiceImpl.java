@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
     // 회원가입
     @Override
     public int joinInsert(UserVO uvo) {
-
         int isOk = userMapper.joinInsert(uvo);
         int isOk2 = isOk > 0 ? userMapper.insertAuth(uvo.getId()) : 0;
         log.info("joinInsert isOk is {}", isOk);

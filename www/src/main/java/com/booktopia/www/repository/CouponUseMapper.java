@@ -3,6 +3,7 @@ package com.booktopia.www.repository;
 import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +20,5 @@ public interface CouponUseMapper {
 
     List<CouponInfoDTO> getCoupon(@Param("id") String id, @Param("couNo") int couNo);
 
-//    void insertUserCoupon(@Param("id") String id, @Param("couNo") List<AdCouponVO> couponList);
+    void newCouponUpdate(UserVO id , int couNo);
 }

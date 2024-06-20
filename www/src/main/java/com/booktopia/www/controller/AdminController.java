@@ -5,10 +5,7 @@ import com.booktopia.www.domain.DTO.CommentDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.handler.PagingHandler;
 import com.booktopia.www.repository.*;
-import com.booktopia.www.service.BoardService;
-import com.booktopia.www.service.BoardServiceImpl;
-import com.booktopia.www.service.CommentService;
-import com.booktopia.www.service.ReCommentService;
+import com.booktopia.www.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -38,6 +35,8 @@ public class AdminController {
     private final ReCommentMapper reCommentMapper;
     private final HeartMapper heartMapper;
     private final AdCouponMapper adCouponMapper;
+
+    private final AdCouponService adCouponService;
 
     // 해당 리스트에 총 갯수
     // 전체 리스트
@@ -211,7 +210,8 @@ public class AdminController {
     @PostMapping("/addCoupon")
     @ResponseBody
     public String addCoupon(@RequestBody AdCouponVO adcoupon){
-        int isOk = adCouponMapper.insert(adcoupon);
+        int isOk = adCouponService.insert(adcoupon);
+
         return isOk > 0 ? "1":"0";
     }
 

@@ -11,7 +11,6 @@ public interface UserService {
 
     // 회원가입
     int joinInsert(UserVO uvo);
-//    int joinInsert(UserVO uvo, List<AdCouponVO> couponList);
 
     int checkId(String id);
 

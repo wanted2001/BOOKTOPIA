@@ -103,4 +103,7 @@
         limit #{pageStart}, #{qty}
     </select>
 
+    <select id="getUserId" resultType="String">
+        select id from user
+    </select>
 </mapper>

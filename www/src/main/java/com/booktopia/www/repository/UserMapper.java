@@ -57,4 +57,6 @@ public interface UserMapper {
     int getTotal();
 
     List<UserVO> adminUserList(PagingVO pgvo);
+
+    List<UserVO> getUserId();
 }
