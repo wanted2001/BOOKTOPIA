@@ -8,7 +8,7 @@
             <div class="booklistwrap">
                 <div class="book-list-contain">
                     <div class="bestbooklistwrap">
-                        <input type="hidden" name="id" th:with="auth=${#authentication.getName()}" id="commuUser" th:value="${auth}">
+                        <input type="hidden" name="id" th:with="auth=${#authentication.getPrincipal().userVO.getId()}" id="commuUser" th:value="${auth}">
                     </div>
                     <div id="testResult">
                     </div>
