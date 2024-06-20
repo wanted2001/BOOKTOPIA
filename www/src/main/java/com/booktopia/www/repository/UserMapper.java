@@ -41,8 +41,7 @@ public interface UserMapper {
 
     List<UserVO> getList();
 
-    void
-    updateaddr(OrderInfoDTO oivo);
+    void updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
 
@@ -55,6 +54,8 @@ public interface UserMapper {
     int getTotal();
 
     List<UserVO> adminUserList(PagingVO pgvo);
+
+    List<UserVO> getUserId();
 
 
 }

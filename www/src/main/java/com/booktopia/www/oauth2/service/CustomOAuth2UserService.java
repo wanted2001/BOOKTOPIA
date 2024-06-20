@@ -2,7 +2,6 @@ package com.booktopia.www.oauth2.service;
 
 
 import com.booktopia.www.domain.UserVO;
-import com.booktopia.www.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.booktopia.www.oauth2.user.*;
 import com.booktopia.www.repository.CouponUseMapper;
 import com.booktopia.www.repository.UserMapper;

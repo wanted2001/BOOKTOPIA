@@ -19,17 +19,22 @@ const tossCss = document.querySelector('.tossM');
 const kakaoCss = document.querySelector('.kakaoPayM');
 const paycoCss = document.querySelector('.paycoM');
 const kgCss = document.querySelector('.kgM');
-let btn;
+
+let pg;
 /*css 변경하는 이벤트*/
 document.addEventListener('click',(e)=>{
     if(e.target.id==='kakaoPayBtn'){
         changeCss(kakaoCss);
         changeNonCss(tossCss,paycoCss,kgCss);
-        e.target.closest('.payM').setAttribute("data-btn","kakao");
+        // e.target.closest('.payM').className+='kakao';
+        pg='kakaopay.TC0ONETIME';
+        request_pay(pg);
     } else if(e.target.id==='tossBtn'){
         changeCss(tossCss);
         changeNonCss(kakaoCss,paycoCss,kgCss);
-        e.target.closest('.payM').setAttribute("data-btn","toss");
+        // e.target.closest('.payM').setAttribute("data-btn","toss");
+        pg='tosspayments.iamporttest_3';
+        request_pay(pg);
     } else if(e.target.id==='paycoBtn') {
         changeCss(paycoCss);
         changeNonCss(kakaoCss,tossCss,kgCss);
@@ -38,6 +43,8 @@ document.addEventListener('click',(e)=>{
         changeCss(kgCss);
         changeNonCss(kakaoCss,paycoCss,tossCss);
         e.target.closest('.payM').setAttribute("data-btn","kg");
+        pg='html5_inicis.INIpayTest';
+        request_pay(pg);
     }
 })
 
@@ -64,41 +71,33 @@ function request_pay(){
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
     console.log(ordName);
 
-    $(function (){
-        let i = $('.payM').length;
-        console.log(i)
-
-    })
-
-
 
     if(ordPhone==null||ordPhone===''){
         alert("전화번호를 입력해주세요.");
-        ordPhone.focus();
+        document.getElementById('ordPhone').focus();
     } else if(!regPhone.test(ordPhone)){
-        ordPhone='';
-        // ordPhone.focus();
+        document.getElementById('ordPhone').value='';
+        document.getElementById('ordPhone').focus();
         alert("숫자만 입력해주세요.");
     } else if(ordaddr==null||ordaddr===''||ordaddrdetail==null||ordaddrdetail===''){
         alert("주소를 입력해주세요.");
-        ordaddr.focus();
+        document.getElementById('ordaddr').focus();
     } else {
         if(coupon!=='choiceCoupon'){
             amount = discountAmount(amount);
         }
-        console.log(amount);
-        console.log(amountInput);
+        console.log(coupon)
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
             {
-                pg:'kakaopay.TC0ONETIME',
+                pg:pg,
                 pay_method:'card',
                 merchant_uid : merchant_uid , //주문번호
                 name: item_name,
                 amount:amount,
                 buyer_name:ordName,
-                buyer_email:ordName,
+                buyer_email:ordEmail,
                 buyer_tel:ordPhone,
                 buyer_addr:ordaddr+"/"+ordaddrdetail,
                 buyer_addrDetail : ordaddrdetail,
@@ -137,7 +136,7 @@ function request_pay(){
                             ordPhone: ordPhone,
                             ordAddr:ordaddr+"/"+ordaddrdetail,
                             itemName:item_name,
-                            totalAmount: 0,
+                            totalAmount:amountInput*0.99,
                             saleAmount:amountInput,
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
@@ -174,8 +173,7 @@ function request_pay(){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    }
-                    else {
+                    } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인') {
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -298,7 +296,7 @@ function discountAmount(amount){
         couNo=1;
         return amount;
     } else if(coupon==='신규회원 1개월 구독권 100% 할인') {
-        amount=amount-(amount*1);
+        amount=amount-amount;
         couNo=3;
         return amount;
     } else if(coupon==='6월 내 구독권 결제 시, 10% 할인'){
@@ -318,11 +316,11 @@ document.getElementById('coupon').addEventListener('change',()=>{
     const payAmount = document.querySelector('.priceDiv').value;
     const discountDiv = document.querySelector('.discountAmount');
     const amountDiv = document.querySelector('.amountDiv');
-    // let totalAmount = discountAmount(payAmount);
     if(couponName==='신규가입 구독권 10% 할인'){
-        console.log("웰컴 쿠폰 선택함.")
+        console.log("웰컴쿠폰 선택함");
         couNo=1;
         discountCoupon(couNo,ordId).then(result=>{
+            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
                     console.log(amount)
@@ -330,7 +328,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
                     discountDiv.innerHTML+=payAmount*0.1+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
-                } else {
+                } else if(item.couUse==='Y'){
                     alert("이미 사용한 쿠폰입니다.");
                     console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);
@@ -341,18 +339,18 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-
     } else if(couponName==='신규회원 1개월 구독권 100% 할인'){
-        console.log("0원 쿠폰 선택함.")
+        console.log('0원쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{
+            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
                     console.log(amount)
                     discountDiv.innerHTML='';
-                    discountDiv.innerHTML+=payAmount+"원";
+                    discountDiv.innerHTML+=payAmount*0.99+"원";
                     amountDiv.innerHTML='';
-                    amountDiv.innerHTML+="0원";
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.99)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
                     console.log("이미 사용한 쿠폰");
@@ -364,11 +362,11 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-
     } else if(couponName==='6월 내 구독권 결제 시, 10% 할인'){
-        console.log("6월쿠폰 선택함.")
+        console.log('6월 쿠폰 선택함.');
         couNo=4;
         discountCoupon(couNo,ordId).then(result=>{
+            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
                     console.log(amount)
@@ -388,9 +386,10 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='북토피아 창립기념 30% 할인'){
-        console.log("창립기념 쿠폰 선택함.")
+        console.log('창립기념 쿠폰 선택함');
         couNo=5;
         discountCoupon(couNo,ordId).then(result=>{
+            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
                     console.log(amount)
@@ -409,8 +408,8 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-    } else if(couponName==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
-        alert('현재 사용할 수 없는 쿠폰입니다.');
+    } else if(couponName==='1년 이상 누적 구독시, 구독권 50% 할인'){
+        alert('현재 사용할 수 없는 쿠폰입니다.')
         $('#coupon').val('choiceCoupon').prop('selected',true);
         discountDiv.innerHTML='';
         discountDiv.innerHTML+="0원";
