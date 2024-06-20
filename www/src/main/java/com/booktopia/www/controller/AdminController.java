@@ -35,6 +35,7 @@ public class AdminController {
     private final ReCommentMapper reCommentMapper;
     private final HeartMapper heartMapper;
     private final AdCouponMapper adCouponMapper;
+    private final QnaMapper qnaMapper;
 
     private final AdCouponService adCouponService;
 
@@ -215,6 +216,21 @@ public class AdminController {
         return isOk > 0 ? "1":"0";
     }
 
+    // 문의글 리스트 요청
+    @GetMapping("/adminQnaList/{pageNo}")
+    @ResponseBody
+    public String adminQnaList(@PathVariable("pageNo") int pageNo){
+        log.info("controller in >>> ");
+        PagingVO qnaPgvo = new PagingVO(pageNo, 10);
+        int qnaCount = qnaMapper.qnaCount();
+        log.info("qnaCount >>>> {}", qnaCount);
+
+        PagingHandler qnaPh = new PagingHandler(qnaPgvo, qnaCount);
+        qnaPh.setQnlList(qnaMapper.getList(qnaPgvo));
+
+        log.info("qnaPh >>> {}", qnaPh);
+        return "1";
+    }
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")

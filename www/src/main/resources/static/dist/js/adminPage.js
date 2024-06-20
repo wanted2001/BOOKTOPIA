@@ -116,7 +116,10 @@ function handleButtonClick(btnId) {
     } else if(index === '.adminCouponAdd'){
         let cate = 'adCoupon';
         spreadList(cate);
-    } // 문의글 관리 추가 ++
+    } else if(index === '.adminqna'){
+        let cate = 'adqna';
+        spreadList(cate);
+    }
 
     /* cate 버튼 옵션 변경 구문 */
     const buttons = document.querySelectorAll('.admin-btn');
@@ -364,6 +367,11 @@ function spreadList(cate, page=1){
             })
             break;
         case "adqna" : // 문의글 뿌리기
+            getQnaList(page).then(result =>{
+                console.log(result);
+                const tbody= document.getElementById('adminqnaList');
+
+            })
             break;
     }
 }
@@ -450,6 +458,11 @@ async function postCoupon(couponDate){
 }
 
 // 문의글 리스트 가져오기
+async function getQnaList(pageNo){
+    const resp = await fetch("/admin/adminQnaList/"+pageNo);
+    const result = await resp.json();
+    return result;
+}
 
 // 문의글 답변 전달하기
 

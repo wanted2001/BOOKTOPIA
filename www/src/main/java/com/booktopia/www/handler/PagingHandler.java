@@ -25,6 +25,7 @@ public class PagingHandler {
     private List<UserVO> userList;
     private List<AdCouponVO> adCouponList;
     private List<CommentDTO> cmtList;
+    private List<QnaVO> qnlList;
 
     public PagingHandler(PagingVO pgvo, int totalCount) {
         this.pgvo=pgvo;
