@@ -56,39 +56,32 @@
                     <div class="payMethodBox">
                         <div class="payMethodDiv">결제수단</div>
                         <div class="payMethodInner">
-                            <button type="button" class="payMethodBtn" id="kakaoPayBtn" value="kakaoBtn">
-                                <div class="kakaoPayM payM">
+                                <div class="kakaoPayM payM" id="kakaoPayBtn" data-btn="">
                                     <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
-                                    <div class="kakaoPayText payMText">카카오페이</div>
+                                    <div class="kakaoPayText payMText btnVal">카카오페이</div>
                                 </div>
-                            </button>
-                            <button type="button" class="payMethodBtn" id="tossBtn" value="tossBtn">
-                                <div class="tossM payM">
+                                <div class="tossM payM" id="tossBtn" data-btn="">
                                     <img th:src="@{/image/toss.png}">
-                                    <span>토스</span>
+                                    <span class="btnVal">토스</span>
                                 </div>
-                            </button>
-                            <button type="button" class="payMethodBtn" id="paycoBtn" value="paycoBtn">
-                                <div class="paycoM payM">
+                                <div class="paycoM payM" id="paycoBtn" data-btn="">
                                     <img th:src="@{/image/payco.png}">
-                                    <span>페이코</span>
+                                    <span class="btnVal">페이코</span>
                                 </div>
-                            </button>
-                            <button type="button" class="payMethodBtn" id="kgBtn" value="kgBtn">
-                                <div class="kgM payM">
+                                <div class="kgM payM" id="kgBtn" data-btn="">
                                     <img th:src="@{/image/kg-t.png}">
-                                    <span>신용카드</span>
+                                    <span class="btnVal">신용카드</span>
                                 </div>
-                            </button>
                         </div>
                     </div>
                     <div class="payCouponBox">
                         <div class="payCouponDiv">쿠폰 선택하기</div>
-                        <select id="coupon">
-                            <option value="choiceCoupon" name="coupon">보유중인 쿠폰 확인하기</option>
-                            <option value="welcomeCoupon" name="coupon">신규가입 축하 - 10% 할인 쿠폰</option>
-                            <option value="discountCoupon" name="coupon">구독권 1년 이용 감사 - 50% 할인 쿠폰</option>
-                        </select>
+                            <select id="coupon">
+                                    <option value="choiceCoupon" name="coupon">보유중인 쿠폰 확인하기</option>
+                                <th:block th:each="advo:${advo}">
+                                    <option>[[${advo.adCouInfo}]]</option>
+                                </th:block>
+                            </select>
                     </div>
                     <div class="payInfoBox">
                         <div class="payInfoDiv">결제정보</div>
