@@ -82,7 +82,7 @@
     </select>
 
     <update id="modifyaddrandphone">
-        update user set address=#{address} , phone=#{phone} where id =#{id}
+        update user set address=#{address} , phone=#{phone} , user_up=now() where id =#{id}
     </update>
 
     <update id="updateAccessToken">

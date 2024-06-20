@@ -415,3 +415,11 @@ display: flex;
     font-size: 25px;
 }
 
+#oneanswerdiv{
+    text-align: center;
+    margin-top: 10px;
+}
+#oneanswer{
+    text-decoration: underline;
+}
+
