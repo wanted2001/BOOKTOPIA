@@ -13,7 +13,7 @@ callCouponInfo(idVal).then(result => {
     ul.innerHTML = ""; // ul 내용 초기화
 
     // 결과가 없거나 null인 경우 처리
-    if (result.length == 0) {
+    if(result.length == 0) {
         ul.innerHTML = `<div class="nocouponinfo">쿠폰 내역이 없습니다.</div>`;
     } else {
         // 결과가 있는 경우 각 항목을 ul에 추가
@@ -30,8 +30,8 @@ callCouponInfo(idVal).then(result => {
                     </div>
                     <div class="couponInfoRight">
                         ${item.couUse === "Y"
-                ? '<div id="couponInfoAt">사용한 쿠폰입니다.</div>'
-                : `<div id="couponInfoAt">유효기간 : ${item.adCouPeriod}</div>`}
+                            ? '<div id="couponInfoAt">사용한 쿠폰입니다.</div>'
+                            : `<div id="couponInfoAt">유효기간 : ${item.adCouPeriod}</div>`}
                     </div>
                 </div>`;
             // ul에 리스트 아이템 추가

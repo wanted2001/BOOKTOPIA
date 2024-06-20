@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" th:href="@{/dist/css/oneInquiry.css}">
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css}">
+<head>
+    <script type="text/javascript" th:src="@{/dist/js/oneInquiry.js}"></script>
+</head>
+<body>
+<th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
+    <th:block sec:authorize="isAuthenticated()">
+            <th:block th:fragment="content">
+                <div class="wrap">
+                    <span th:text="${#authentication.getPrincipal().userVO.getId()}" class="IDspan" id="inquiryId" th:style="'display:none'"></span>
+                    <form action="/qna/addQna" method="post">
+                        <input type="hidden" name="id" th:value="${#authentication.getPrincipal().userVO.getId()}">
+                        <input type="text" th:value="${#authentication.getName()}" readonly="readonly">
+                        <input type="text" id="qnaTitle" name="qnaTitle" placeholder="문의 할 제목">
+                        <textarea type="text" id="qnaContent" name="qnaContent" placeholder="문의 할 내용"></textarea>
+                        <button type="submit" class="QnaBtn">문의하기</button>
+                    </form>
+
+                    <ul id="QnaResult">
+
+
+                    </ul>
+                </div>
+        </th:block>
+    </th:block>
+</th:block>
+</body>
+</html>

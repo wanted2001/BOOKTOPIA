@@ -1,10 +1,7 @@
 package com.booktopia.www.repository;
 
-import com.booktopia.www.domain.AuthVO;
+import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.PagingVO;
-import com.booktopia.www.domain.PayVO;
-import com.booktopia.www.domain.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -44,7 +41,8 @@ public interface UserMapper {
 
     List<UserVO> getList();
 
-    void updateaddr(OrderInfoDTO oivo);
+    void
+    updateaddr(OrderInfoDTO oivo);
 
     int countAuth(String providerId);
 
@@ -57,4 +55,6 @@ public interface UserMapper {
     int getTotal();
 
     List<UserVO> adminUserList(PagingVO pgvo);
+
+
 }

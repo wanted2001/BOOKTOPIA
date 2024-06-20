@@ -2,6 +2,7 @@ package com.booktopia.www.service;
 
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
+import com.booktopia.www.domain.QnaVO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.CouponMapper;
 import com.booktopia.www.repository.CouponUseMapper;
@@ -62,11 +63,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateAddr(UserVO uvo) {
-        userMapper.updateAddr(uvo);
-    }
-
-    @Override
     public int deleteMyPageUser(String id) {
         return userMapper.deleteMyPageUser(id);
     }
@@ -97,6 +93,7 @@ public class UserServiceImpl implements UserService {
     public List<CouponInfoDTO> getcouList(String id) {
         return couponMapper.getcoulist(id);
     }
+
 
     @Override
     public int findPwCheck(UserVO uvo) {
