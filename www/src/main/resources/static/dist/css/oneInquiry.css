@@ -4,14 +4,14 @@
     justify-content: center;
     align-items: flex-start;
     width: 1400px;
-    height: 800px;
+    height: 600px;
     margin: 60px auto; /* Center and add margin */
 }
 
 /* Left form container */
 .qnaleftform {
-    width: 800px; /* Width adjusted for better alignment */
-    height: 800px;
+    width: 1000px; /* Width adjusted for better alignment */
+    height: 600px;
     background-color: #ffffff;
     padding: 30px;
     box-sizing: border-box;
@@ -20,21 +20,10 @@
     margin-right: 40px; /* Increased spacing between forms */
 }
 
-/* Right form container */
-.qnarightform {
-    width: 600px; /* Width adjusted for better alignment */
-    height: 800px;
-    background-color: #ffffff;
-    padding: 30px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-left: 40px; /* Increased spacing between forms */
-}
 
 /* Form styling */
 .qnaformwrap {
-    width: 500px; /* Fixed width for the form container */
+    width: 750px; /* Fixed width for the form container */
     margin: 0 auto; /* Center the form horizontally */
 }
 
@@ -65,7 +54,7 @@
 }
 
 .qnainput > textarea {
-    height: 600px; /* Fixed height for textarea */
+    height: 300px; /* Fixed height for textarea */
 }
 
 /* Button styling */

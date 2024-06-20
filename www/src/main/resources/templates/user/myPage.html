@@ -24,12 +24,13 @@
                                     <div class="myPageUserInfoWrap">
                                         <div class="myPageLeftUpInfo">
                                             <div class="myPageLeftUpInfoImg">
-                                               <img th:src="@{/image/mypage_earth.png}" alt="#">
+                                                <img th:src="@{/image/mypage_earth.png}" alt="#">
                                             </div>
                                             <div class="myPageLeftUpInfoName">
                                                 <a sec:authentication="name" id="myPageUserName"></a>
                                             </div>
-                                            <span th:text="${#authentication.getPrincipal().userVO.getId()}" class="IDspan" id="realId" th:style="'display:none'"></span>
+                                            <span th:text="${#authentication.getPrincipal().userVO.getId()}"
+                                                  class="IDspan" id="realId" th:style="'display:none'"></span>
                                         </div>
                                     </div>
                                     <div id="myPageSubWrap">
@@ -63,7 +64,7 @@
                                                 </div>
                                                 <div class="myPageLeftDownWrap4">
                                                     <div class="myPageLeftDownWrap4Img">
-                                                     <img th:src="@{/image/mypage_addrmod.png}" alt="#">
+                                                        <img th:src="@{/image/mypage_addrmod.png}" alt="#">
                                                     </div>
                                                     <div class="myPageLeftDownWrap4Status">
                                                         <a id="myPageAddress">배송지 수정</a>
@@ -79,7 +80,7 @@
                                                 </div>
                                                 <div class="myPageLeftDownWrap4">
                                                     <div class="myPageLeftDownWrap4Img">
-                                                        <img th:src="@{/image/mypage_coupon.png}" alt="#">
+                                                        <img th:src="@{/image/mypage_qna.png}" alt="#">
                                                     </div>
                                                     <div class="myPageLeftDownWrap4Status">
                                                         <a id="myPageQna">내 문의내역</a>
@@ -88,15 +89,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="oneanswerdiv">
+                                        <a id="oneanswer" href="/qna/oneInquiry">1 : 1 문의하기</a>
+                                    </div>
                                     <div class="delmembertype" id="deleteMemberType">
                                         <div id="comUser" class="myPageSubMoveLink">
                                             <a id="comUserDelete">회원탈퇴</a>
                                         </div>
                                     </div>
-                                    <div id="oneanswerdiv">
-                                        <a id="oneanswer" href="/qna/oneInquiry">1 : 1 문의하기</a>
-                                    </div>
-
                                 </div>
                             </div>
                             <div class="myPageInfoRightWrap" id="myPageInfoRightWrapId">
@@ -115,6 +115,12 @@
                         </div>
                     </div>
                 </div>
+                <script th:inline="javascript">
+                    var addqnamsg = [[${addqnamsg}]];
+                    if (addqnamsg == 1) {
+                        alert('문의를 성공적으로 완료하였습니다.!');
+                    }
+                </script>
             </th:block>
         </th:block>
     </th:block>
