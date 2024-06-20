@@ -122,7 +122,7 @@ function request_pay(pg){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='신규회원 1개월 구독권 100% 할인'){
+                    } else if(coupon==='신규회원 1개월 구독권 99% 할인'){
                         console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
@@ -292,7 +292,7 @@ function discountAmount(amount){
     } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
         couNo=1;
         return amount;
-    } else if(coupon==='신규회원 1개월 구독권 100% 할인') {
+    } else if(coupon==='신규회원 1개월 구독권 99% 할인') {
         amount=amount-amount;
         couNo=3;
         return amount;
@@ -336,7 +336,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-    } else if(couponName==='신규회원 1개월 구독권 100% 할인'){
+    } else if(couponName==='신규회원 1개월 구독권 99% 할인'){
         console.log('0원쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{
