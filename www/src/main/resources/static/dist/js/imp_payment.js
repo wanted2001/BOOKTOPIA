@@ -58,7 +58,7 @@ function changeNonCss(payM1,payM2,payM3){
         "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
 }
 
-function request_pay(){
+function request_pay(pg){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;

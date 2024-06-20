@@ -35,8 +35,10 @@ public class AdminController {
     private final ReCommentMapper reCommentMapper;
     private final HeartMapper heartMapper;
     private final AdCouponMapper adCouponMapper;
+    private final QnaMapper qnaMapper;
 
     private final AdCouponService adCouponService;
+    private final QnaService qnaService;
 
     // 해당 리스트에 총 갯수
     // 전체 리스트
@@ -213,6 +215,42 @@ public class AdminController {
         int isOk = adCouponService.insert(adcoupon);
         log.info("isOk >>> {}", isOk);
         return isOk > 0 ? "1":"0";
+    }
+
+    // 문의글 리스트 요청
+    @GetMapping("/adminQnaList/{pageNo}")
+    @ResponseBody
+    public PagingHandler adminQnaList(@PathVariable("pageNo") int pageNo){
+        log.info("controller in >>> ");
+        PagingVO qnaPgvo = new PagingVO(pageNo, 10);
+        int qnaCount = qnaMapper.qnaCount();
+        log.info("qnaCount >>>> {}", qnaCount);
+
+        PagingHandler qnaPh = new PagingHandler(qnaPgvo, qnaCount);
+        qnaPh.setQnaList(qnaMapper.getList(qnaPgvo));
+
+        log.info("qnaPh >>> {}", qnaPh);
+        return qnaPh;
+    }
+
+    // 문의글 하나의 리스트만 가져오기
+    @PostMapping("/adminOneUser/{id}")
+    @ResponseBody
+    public String oneUser(@PathVariable("id") String id){
+        log.info("controller in >>> ");
+        log.info("id >>> {}", id);
+        qnaMapper.oneUserList(id);
+        return "1";
+    }
+
+    @PostMapping("/qnaAnswer/{qnaAnswer}/{id}")
+    @ResponseBody
+    public String updateAnswer(@PathVariable("qnaAnswer") String qnaAnswer, @PathVariable("id")String id){
+        log.info("qnaAnswer >>> {}", qnaAnswer);
+        log.info("id >>> {}", id);
+
+        qnaMapper.updateAnswer(qnaAnswer, id);
+        return "1";
     }
 
 
