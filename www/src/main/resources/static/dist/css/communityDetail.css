@@ -108,12 +108,12 @@
     background-color: white;
 }
 .commModBtn:hover{
-    background-color: #b4b4b4;
-    border: none;
+    border: 1px solid darkgray;
+    color: darkgray;
 }
 .commDelBtn:hover{
-    background-color: #ff1d1d;
-    border: none;
+    border: 1px solid #db1f1f;
+    color: #db1f1f;
 }
 .commDelBtn{
     margin-left: 10px;
@@ -219,6 +219,7 @@
     margin-left: 850px;
     width: 68px;
     height: 40px;
+    cursor: pointer;
 }
 .commDe-Writer, .commDe-Writer span{
     font-size: 15px;
@@ -271,13 +272,14 @@
     background-color: rgba(145, 145, 145, 0);
 }
 .commDe-ReComment:hover{
-    background-color: #fdeded;
+    background-color: #ebebeb;
 }
 #recommContent{
     font-size: 14px;
-    margin: 5px 0 0 35px;
+    margin: 5px 0 0 31px;
     padding: 10px;
-    width: 770px;
+    width: 800px;
+    border-radius: 3px;
     height: 50px;
 }
 /*대댓글 등록버튼*/
@@ -290,4 +292,35 @@ button#recommBtn {
     padding: 5px;
     font-size: 13px;
     cursor: pointer;
+}
+
+.sticker{
+    position: absolute;
+    z-index: -1000;
+    opacity: 0.3;
+}
+img.stickerBC {
+    top: 173px;
+    position: absolute;
+    left: -100px;
+    /* opacity: 0.3; */
+    width: 340px;
+}
+img.stickerP1 {
+    position: absolute;
+    top: 440px;
+    left: 1220px;
+    width: 300px;
+}
+img.stickerS3 {
+    top: 428px;
+    position: absolute;
+    left: 1213px;
+    width: 79px;
+}
+img.stickerS5 {
+    position: absolute;
+    left: 0;
+    top: 670px;
+    width: 151px;
 }

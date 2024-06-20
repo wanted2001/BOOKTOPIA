@@ -272,5 +272,115 @@
 }
 
 .sticker{
+    position: absolute;
     z-index: -1000;
+    opacity: 0.3;
+}
+img.stickerBC {
+    top: 173px;
+    position: absolute;
+    left: -100px;
+    /* opacity: 0.3; */
+    width: 340px;
+}
+img.stickerBook {
+    position: absolute;
+    top: 2100px;
+    left: 531px;
+    width: 150px;
+}
+img.stickerCat {
+    position: absolute;
+    width: 350px;
+    top: 916px;
+    left: 600px;
+}
+img.stickerD {
+    position: absolute;
+    /* bottom: 0px; */
+    top: 1709px;
+    transform: rotate(9deg);
+    width: 180px;
+    left: 738px;
+}
+img.stickerL1 {
+    position: absolute;
+    top: 1463px;
+    left: 85px;
+    width: 110px;
+    transform: rotate(382deg);
+}
+img.stickerL2 {
+    position: absolute;
+    top: 1876px;
+    width: 140px;
+    left: 1188px;
+    transform: rotate(167deg);
+}
+img.stickerN {
+    position: absolute;
+    top: 1315px;
+    left: -124px;
+    width: 224px;
+}
+img.stickerOC {
+    position: absolute;
+    width: 280px;
+    top: 1166px;
+    left: 1225px;
+}
+img.stickerPEN {
+    position: absolute;
+    width: 85px;
+    top: 1311px;
+    left: 90px;
+}
+img.stickerP1 {
+    position: absolute;
+    top: 440px;
+    left: 1220px;
+    width: 300px;
+}
+img.stickerP2 {
+    position: absolute;
+    width: 300px;
+    top: 2312px;
+    left: 953px;
+}
+img.stickerS1 {
+    position: absolute;
+    top: 1410px;
+    left: 1016px;
+    width: 99px;
+}
+img.stickerS1-2 {
+    position: absolute;
+    top: 1423px;
+    left: 977px;
+    width: 75px;
+    transform: rotate(-33deg);
+}
+img.stickerS3 {
+    top: 428px;
+    position: absolute;
+    left: 1213px;
+    width: 79px;
+}
+img.stickerS4 {
+    position: absolute;
+    top: 2445px;
+    width: 86px;
+    left: 920px;
+}
+img.stickerS5 {
+    position: absolute;
+    left: 0;
+    top: 670px;
+    width: 151px;
+}
+img.stickerT {
+    position: absolute;
+    top: 1786px;
+    left: 64px;
+    width: 207px;
 }
