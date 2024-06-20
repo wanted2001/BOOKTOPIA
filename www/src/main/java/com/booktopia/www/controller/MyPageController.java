@@ -33,6 +33,9 @@ public class MyPageController {
     @GetMapping("/subinfo")
     public void subinfo() {}
 
+    @GetMapping("/qnaresult")
+    public void qnaresult(){}
+
     @GetMapping("/payinfo")
     public void payinfo(Model model) {
         List<DeliveryVO> deliveryList = deliMapeer.getList();

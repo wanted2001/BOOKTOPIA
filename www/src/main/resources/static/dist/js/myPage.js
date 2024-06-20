@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPageAddress = "/mypage/changeaddr";
     const myPagePayment = "/mypage/payinfo";
     const isSocial = "/user/deleteUser";
+    const myPageinquiry = "/mypage/qnaresult";
 
     // 유저 타입 확인 후 페이지 호출
     isSocialUser(idVal).then(result => {
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 버튼 클릭 이벤트 설정
-    document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageSub').forEach(button => {
+    document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageQna').forEach(button => {
         button.addEventListener('click', (e) => {
             const myPageMoveBtn = e.target.id;
             console.log(myPageMoveBtn);
@@ -112,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'myPagePayment':
                     pageCall(myPagePayment, moveContainer);
                     break;
+                case 'myPageQna' :
+                    pageCall(myPageinquiry, moveContainer);
             }
         });
     });
@@ -177,6 +180,8 @@ function pageCall(link, callBox) {
                         case '/mypage/payinfo':
                             loadScript('/dist/js/payinfo.js');
                             break;
+                        case '/mypage/qnaresult':
+                            loadScript('/dist/js/oneInquiry.js')
                     }
                 }
             } else {
@@ -233,7 +238,7 @@ function removeAllScriptsExcept(dynamicSrc) {
         for (let j = 0; j < srcToKeep.length; j++) { // script 태그를 달고있는 필수요소의 개수만큼
             if (scripts[i].src.includes(srcToKeep[j])) { // json 형식에 있는 js 링크들
                 keepScript = true;
-                if(srcToKeep[j]== '/dist/js/payinfo.js' || '/dist/js/couponlist.js'){
+                if(srcToKeep[j]== '/dist/js/payinfo.js' || '/dist/js/couponlist.js' || "/dist/js/oneInquiry.js" ){
                     keepScript = false;
                 }
                 break;
