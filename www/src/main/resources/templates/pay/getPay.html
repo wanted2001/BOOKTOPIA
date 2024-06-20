@@ -94,10 +94,10 @@
                         <div class="payInfoDiv">결제정보</div>
                         <div class="payInfoInner">
                             <input type="hidden" class="priceDiv" th:value="${ssivo.subInPrice}">
-                            <div><span>상품 금액</span><span class="won">[[${ssivo.subInPice}]]원</span></div>
+                            <div><span>상품 금액</span><span class="won">[[${ssivo.subInPrice}]]원</span></div>
                             <div><span>할인 금액</span><span class="discountAmount won">0원</span></div>
                             <input type="hidden" class="amountInput" th:value="${ssivo.subInPrice}"><hr>
-                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">[[${ssivo.subInPice}]]원</span></div>
+                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">[[${ssivo.subInPrice}]]원</span></div>
                         </div>
                     </div>
                     <div class="paymentBtn">

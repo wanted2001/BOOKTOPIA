@@ -3,104 +3,41 @@ console.log(ordId);
 console.log(ordEmail);
 console.log(ordMemo);
 console.log(payName)
-// console.log(amount)
-
+console.log(amount)
 let i=1;
 let uid = '';
 let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
 const amountInput = document.querySelector('.amountInput').value;
-
-const kakaoPayBtn = document.getElementById('kakaoPayBtn');
-const tossBtn = document.getElementById('tossBtn');
-const paycoBtn = document.getElementById('paycoBtn');
-const kgBtn = document.getElementById('kgBtn');
-
-const tossCss = document.querySelector('.tossM');
-const kakaoCss = document.querySelector('.kakaoPayM');
-const paycoCss = document.querySelector('.paycoM');
-const kgCss = document.querySelector('.kgM');
-/*css 변경하는 이벤트*/
-tossBtn.addEventListener('click',()=>{
-    changeCss(tossCss);
-    changeNonCss(kakaoCss,paycoCss,kgCss);
-})
-kakaoPayBtn.addEventListener('click',()=>{
-    changeCss(kakaoCss);
-    changeNonCss(tossCss,paycoCss,kgCss);
-})
-paycoBtn.addEventListener('click',()=>{
-    changeCss(paycoCss);
-    changeNonCss(kakaoCss,tossCss,kgCss);
-})
-kgBtn.addEventListener('click',()=>{
-    changeCss(kgCss);
-    changeNonCss(kakaoCss,paycoCss,tossCss);
-})
-
-function changeCss(payM){
-    payM.style.border="2px solid #a7cdff";
-    payM.style.boxShadow="0px 0px 12px gainsboro";
-}
-
-function changeNonCss(payM1,payM2,payM3){
-    payM1.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
-        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
-    payM2.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
-        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
-    payM3.style.cssText="border:1px solid gainsboro; padding10px; border-radius:10px;" +
-        "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
-}
-
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
-
-    // console.log("테스트으으으으으"+ ordaddr);
-    // console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
-    // console.log(ordName);
-    console.log(amount)
+    console.log("테스트으으으으으"+ ordaddr);
+    console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
+    console.log(ordName);
     if(ordPhone==null||ordPhone===''){
         alert("전화번호를 입력해주세요.");
+        ordPhone.focus();
     } else if(!regPhone.test(ordPhone)){
         ordPhone='';
+        // ordPhone.focus();
         alert("숫자만 입력해주세요.");
     } else if(ordaddr==null||ordaddr===''||ordaddrdetail==null||ordaddrdetail===''){
         alert("주소를 입력해주세요.");
+        ordaddr.focus();
     } else {
         const coupon = $('select#coupon').val();
         if(coupon!=='choiceCoupon'){
-            console.log("쿠폰 할인받음")
-            console.log(amount)
-            discountAmount(amount);
-            console.log(discountAmount(amount))
-            console.log(discountAmount(amount))
-        } else {
-            amount = amountInput;
-            console.log("할인안받은 amount"+amount)
+            amount = discountAmount(amount);
         }
-
         console.log(amount);
         console.log(amountInput);
-
-        let pg = '';
-        $(document).ready(function (){
-            console.log("들어오긴함")
-            $('.payMethodBtn').click(()=>{
-                console.log("버튼누름")
-                let btnValue = $(this).attr('value');
-                console.log(btnValue);
-            });
-        })
-
-
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
             {
-                // pg:'kakaopay.TC0ONETIME',
                 pg:'kakaopay.TC0ONETIME',
                 pay_method:'card',
                 merchant_uid : merchant_uid , //주문번호
@@ -128,15 +65,13 @@ function request_pay(){
                         ordAddr:ordaddr+"/"+ordaddrdetail,
                         itemName:item_name,
                         totalAmount: amount,
-                        saleAmount:amountInput*salePercent,
+                        saleAmount:amountInput*0.1,
                         couNo:couNo,
                         pg_tid:rsp.pg_tid,
                     };
-
                     console.log(registerData);
                     postRegisterSuccess(registerData).then(result=>{
                         console.log("result >> "+ result)
-
                         if(result === '1'){
                             let data ={
                                 id:ordId,
@@ -154,13 +89,13 @@ function request_pay(){
                             getToken();
                             console.log(registerData.totalAmount);
                             console.log(data.paidAmount);
-
                             // 결제금액 검증
                             if (registerData.totalAmount == data.paidAmount){
                                 console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
                                     // window.location.href = "/pay/done/"+result.merchantUid;
+                                    window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -178,7 +113,6 @@ function request_pay(){
         i++;
     }
 }
-
 async function postRegisterSuccess(registerData){
     try {
         const url = "/pay/savePayinfo";
@@ -189,18 +123,15 @@ async function postRegisterSuccess(registerData){
             },
             body :JSON.stringify(registerData)
         };
-
         const resp = await fetch(url, config);
         const result = await resp.text();
         console.log("result >>> "+ result);
         return result;
         console.log("registerData >>> " + registerData);
-
     } catch (error){
         console.log(error);
     }
 }
-
 async function postStorePaySuccess(data){
     try {
         const url = "/pay/done";
@@ -214,14 +145,11 @@ async function postStorePaySuccess(data){
         const resp = await fetch(url, config);
         const result = await resp.json();
         return result;
-
-
         console.log("결제 완료 정보 >>> ");
     }catch (error){
         console.log("error" + error);
     }
 }
-
 // token 가져오는...
 async function getToken(){
     try{
@@ -234,49 +162,20 @@ async function getToken(){
         console.log(error);
     }
 }
-
 let salePercent=0;
 let couNo=0;
 function discountAmount(amount){
-    console.log(amount);
-
     const coupon = $('select#coupon').val();
     console.log(coupon)
-    const discountDiv = document.querySelector('.discountAmount');
-    const amountDiv = document.querySelector('.amountDiv');
+
     if(coupon==='welcomeCoupon'){
-        amount = amount-(amount*0.1)
-
+        amount=amount-(amount*0.1);
+        console.log(amount);
         couNo=2;
-        discountCoupon(couNo,ordId).then(result=>{
-            result.forEach(item=>{
-                    if(item.couUse==='N'){
-                        console.log(item)
-                        amount = amount-(amount*0.1);
-                        // console.log(price)
-                        discountDiv.innerHTML='';
-                        discountDiv.innerHTML+=amount*0.1+"원";
-                        amountDiv.innerHTML='';
-                        amountDiv.innerHTML+=amount+"원";
-                        // return price;
-                    } else {
-                        alert("이미 사용한 쿠폰입니다.")
-                        console.log("이미 사용한 쿠폰");
-                        $('#coupon').val('choiceCoupon').prop('selected',true);
-                        document.querySelector('.discountAmount').innerHTML='';
-                        document.querySelector('.discountAmount').innerHTML='0원';
-                    }
-                }
-            )
-
-
-        })
         return amount;
-
-    } else if(coupon==='discountCoupon') {
+    } else if(coupon==='discountCoupon'){
         return amount;
     }
-
 }
 
 document.getElementById('coupon').addEventListener('change',()=>{
@@ -285,14 +184,38 @@ document.getElementById('coupon').addEventListener('change',()=>{
     const payAmount = document.querySelector('.priceDiv').value;
     const discountDiv = document.querySelector('.discountAmount');
     const amountDiv = document.querySelector('.amountDiv');
-    let totalAmount = discountAmount(payAmount);
-
-
+    // let totalAmount = discountAmount(payAmount);
     if(couponName==='welcomeCoupon'){
-        // console.log("웰컴 쿠폰 선택함.")
+        console.log("웰컴 쿠폰 선택함.")
+        couNo=2;
+        discountCoupon(couNo,ordId).then(result=>{
+            result.forEach(item=>{
+                if(item.couUse==='N'){
+                    console.log(amount)
+                    discountDiv.innerHTML='';
+                    discountDiv.innerHTML+=payAmount*0.1+"원";
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
+                } else {
+                    alert("이미 사용한 쿠폰입니다.");
+                    console.log("이미 사용한 쿠폰");
+                    $('#coupon').val('choiceCoupon').prop('selected', true);
+                    discountDiv.innerHTML = '';
+                    discountDiv.innerHTML = '0원';
+                    amountDiv.innerHTML='';
+                    amountDiv.innerHTML=payAmount+"원";
+                }
+            })
+        })
 
     } else if(couponName==='discountCoupon'){
         alert('현재 사용할 수 없는 쿠폰입니다.');
+        $('#coupon').val('choiceCoupon').prop('selected',true);
+        discountDiv.innerHTML='';
+        discountDiv.innerHTML+="0원";
+        amountDiv.innerHTML='';
+        amountDiv.innerHTML+=payAmount+"원";
+    } else if(couponName==='choiceCoupon'){
         $('#coupon').val('choiceCoupon').prop('selected',true);
         discountDiv.innerHTML='';
         discountDiv.innerHTML+="0원";
@@ -307,15 +230,13 @@ async function discountCoupon(couNo,id){
         const config = {
             method:"POST",
             headers:{
-                'content-type':'application/json; charset=UFT-8'
+                'content-type':'application/json; charset=UTF-8'
             }
         }
-
         const resp = await fetch(url,config);
         const result = await resp.json();
-        console.log(result);
         return result;
-    } catch(error) {
+    } catch (error) {
         console.log("discount error"+error);
     }
 }
