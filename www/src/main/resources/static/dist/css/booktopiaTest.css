@@ -37,15 +37,16 @@
 
 .test-title{
     margin: 0 auto;
-    font-family: SCDream3;
+    font-family: jalnan;
     display: block;
     height: 190px;
     text-align: center;
 }
 .test-title>.title{
-    padding: 138px 30px 30px;
+    padding: 117px 30px 30px;
     color: black;
-    line-height: 30px
+    line-height: 12px;
+    font-size: 2em;
 }
 .title>h1:nth-last-of-type(0){
     font-size: 25px;
@@ -53,8 +54,9 @@
     padding-bottom: 20px;
 }
 .title>h1:nth-last-of-type(1){
-    font-size: 30px;
+    font-size: 1.3em;
     font-family: SCDream6;
+    line-height: 77px;
 }
 .test{
     margin: 0 auto;
@@ -92,6 +94,7 @@
 
 
 .test-content{
+    box-shadow: 0 0 10px gray;
     background-color: #ecf9ff38;
     width: 500px;
     height: 433px;
@@ -139,15 +142,17 @@
     cursor: pointer;
     font-family: 'jalnan';
     font-size: 23px;
+    box-shadow: 0 0 4px gray;
 }
-.testBtn{
+.testBtn:hover {
+    border: 5px solid #87fff33b;
+    background-color: #e1e8ff;
+}
+.testBtn {
     width: 300px;
     font-size: 15px;
     margin-bottom: 20px;
-}
-.testBtn:hover{
-    border: none;
-    background-color: #7f009f;
+    border: 1px solid;
 }
 
 .question10{
@@ -181,7 +186,7 @@
     height: 43px;
     padding-left: 10px;
     border-radius: 5px;
-    box-shadow: 2px 1px 3px #757575;
+    box-shadow: 0 0 4px gray;
 }
 #questionInfo>.innerText> input:nth-of-type(4){
     margin-left: 30px;

@@ -1,11 +1,10 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.AdCouponVO;
+import com.booktopia.www.domain.*;
+import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.OrderInfoVO;
-import com.booktopia.www.domain.PayVO;
-import com.booktopia.www.domain.SubscribeInfoVO;
 import com.booktopia.www.repository.AdCouponMapper;
+import com.booktopia.www.repository.CouponMapper;
 import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -40,7 +39,7 @@ public class PayController {
     @Autowired
     private OrderInfoService osv;
     @Autowired
-    private AdCouponMapper adCouponMapper;
+    private CouponMapper couponMapper;
 
     @Value("2171128503337876")
     private String api;
@@ -78,12 +77,12 @@ public class PayController {
     }
 
     @GetMapping("/getPay")
-    public void getPay(Model m, @RequestParam("month") int month) {
+    public void getPay(Model m, @RequestParam("month") int month,@RequestParam("id")String id) {
         log.info("month값>>{}", month);
         SubscribeInfoVO ssivo = ssv.getPayInfo(month);
         log.info("ssivo>>{}", ssivo);
         m.addAttribute("ssivo", ssivo);
-        List<AdCouponVO> advo = adCouponMapper.getCouponList();
+        List<CouponInfoDTO> advo = couponMapper.getcoulist(id);
         log.info("advo>>{}", advo);
         m.addAttribute("advo", advo);
     }

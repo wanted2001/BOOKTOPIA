@@ -26,23 +26,20 @@ document.addEventListener('click',(e)=>{
     if(e.target.id==='kakaoPayBtn'){
         changeCss(kakaoCss);
         changeNonCss(tossCss,paycoCss,kgCss);
-        // e.target.closest('.payM').className+='kakao';
         pg='kakaopay.TC0ONETIME';
         request_pay(pg);
     } else if(e.target.id==='tossBtn'){
         changeCss(tossCss);
         changeNonCss(kakaoCss,paycoCss,kgCss);
-        // e.target.closest('.payM').setAttribute("data-btn","toss");
         pg='tosspayments.iamporttest_3';
         request_pay(pg);
     } else if(e.target.id==='paycoBtn') {
         changeCss(paycoCss);
         changeNonCss(kakaoCss,tossCss,kgCss);
-        e.target.closest('.payM').setAttribute("data-btn","kg");
+        alert('현재 사용할 수 없는 결제 수단입니다.');
     } else if(e.target.id==='kgBtn'){
         changeCss(kgCss);
         changeNonCss(kakaoCss,paycoCss,tossCss);
-        e.target.closest('.payM').setAttribute("data-btn","kg");
         pg='html5_inicis.INIpayTest';
         request_pay(pg);
     }

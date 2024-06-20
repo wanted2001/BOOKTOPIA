@@ -12,9 +12,25 @@
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
         <!--공지-->
         <div class="wrap">
-<!--            <div class="sticker">-->
-<!--                <img th:src="@{/image/p_sticker.png}" class="pSticker">-->
-<!--            </div>-->
+            <div class="sticker">
+                <img th:src="@{/image/sticker_bc.png}" class="stickerBC">
+                <img th:src="@{/image/sticker_book.png}" class="stickerBook">
+                <img th:src="@{/image/sticker_cat.png}" class="stickerCat">
+                <img th:src="@{/image/sticker_d.png}" class="stickerD">
+                <img th:src="@{/image/sticker_line-removebg-preview.png}" class="stickerL1">
+                <img th:src="@{/image/sticker_line2-removebg-preview.png}" class="stickerL2">
+                <img th:src="@{/image/sticker_n.png}" class="stickerN">
+                <img th:src="@{/image/sticker_oc-removebg-preview.png}" class="stickerOC">
+                <img th:src="@{/image/sticker_pen.png}" class="stickerPEN">
+                <img th:src="@{/image/sticker_pla1-removebg-preview.png}" class="stickerP1">
+                <img th:src="@{/image/sticker_pla2-removebg-preview.png}" class="stickerP2">
+                <img th:src="@{/image/sticker_star-removebg-preview.png}" class="stickerS1">
+                <img th:src="@{/image/sticker_star-removebg-preview.png}" class="stickerS1-2">
+                <img th:src="@{/image/sticker_star3-removebg-preview.png}" class="stickerS3">
+                <img th:src="@{/image/sticker_star4-removebg-preview.png}" class="stickerS4">
+                <img th:src="@{/image/sticker_star5-removebg-preview.png}" class="stickerS5">
+                <img th:src="@{/image/sticker_tu.png}" class="stickerT">
+            </div>
             <!--검색창-->
             <form th:action="@{/community/communityListAll}" method="get">
                 <div>

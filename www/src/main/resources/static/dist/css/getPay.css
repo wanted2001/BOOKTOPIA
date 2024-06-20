@@ -244,10 +244,16 @@
     border-radius: 13px;
     font-size: 15px;
 }
-
 .payUserBox, .payInfoBox, .payMethodBox, .payCouponBox {
     width: 930px;
     margin: 49px auto;
+}
+.payMethodDiv {
+    text-align: center;
+    font-size: 21px;
+    margin: 34px 0 25px;
+    font-family: 'SCDREAM5';
+    font-weight: bold;
 }
 
 
@@ -304,6 +310,7 @@ input#addrInput {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: 150px;
 }
 .payM {
     width: 437px;
@@ -330,17 +337,19 @@ img{
     width: 45px;
 }
 .paycoM img {
-    margin-left: -46px;
+    margin-left: -29px;
 }
 .payMethodBtn{
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0);
 }
-.kakaoPayM.payM {
-    border: 2px solid #a7cdff;
-    box-shadow: 0px 0px 12px gainsboro;
+.payM {
+    border: 1px solid gainsboro;
 }
 .paymentBtn {
     width: 930px;
     margin: 0 auto 30px;
+}
+.hr{
+    border-color: rgba(220, 220, 220, 0.22);
 }

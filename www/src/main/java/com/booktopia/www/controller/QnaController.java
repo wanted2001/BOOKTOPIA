@@ -29,7 +29,9 @@ public class QnaController {
     public String addqna(@ModelAttribute QnaVO qnaVO,Model m){
         log.info("qnaVO >> {}",qnaVO);
         int isOk = qsv.insertqna(qnaVO);
-        return "redirect:/qna/oneInquiry";
+        log.info("isOk >>{}",isOk);
+        m.addAttribute("addqnamsg",isOk);
+        return "/user/myPage";
     }
 
     @GetMapping("/oneInquirylist/{id}")

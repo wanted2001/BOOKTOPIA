@@ -417,7 +417,8 @@ display: flex;
 
 #oneanswerdiv{
     text-align: center;
-    margin-top: 10px;
+    margin-top: -30px;
+    margin-bottom: 30px;
 }
 #oneanswer{
     text-decoration: underline;
@@ -464,6 +465,10 @@ display: flex;
 .QnaResultListDiv{
     font-size:25px;
     text-align:center;
+}
+
+.delmembertype{
+    margin-bottom : 30px;
 }
 
 
