@@ -19,18 +19,22 @@ const tossCss = document.querySelector('.tossM');
 const kakaoCss = document.querySelector('.kakaoPayM');
 const paycoCss = document.querySelector('.paycoM');
 const kgCss = document.querySelector('.kgM');
-let btn;
+
+let pg;
 /*css 변경하는 이벤트*/
 document.addEventListener('click',(e)=>{
     if(e.target.id==='kakaoPayBtn'){
         changeCss(kakaoCss);
         changeNonCss(tossCss,paycoCss,kgCss);
         // e.target.closest('.payM').className+='kakao';
-        e.target.closest('.payM').setAttribute("data-btn","kakao");
+        pg='kakaopay.TC0ONETIME';
+        request_pay(pg);
     } else if(e.target.id==='tossBtn'){
         changeCss(tossCss);
         changeNonCss(kakaoCss,paycoCss,kgCss);
-        e.target.closest('.payM').setAttribute("data-btn","toss");
+        // e.target.closest('.payM').setAttribute("data-btn","toss");
+        pg='tosspayments.iamporttest_3';
+        request_pay(pg);
     } else if(e.target.id==='paycoBtn') {
         changeCss(paycoCss);
         changeNonCss(kakaoCss,tossCss,kgCss);
@@ -39,6 +43,8 @@ document.addEventListener('click',(e)=>{
         changeCss(kgCss);
         changeNonCss(kakaoCss,paycoCss,tossCss);
         e.target.closest('.payM').setAttribute("data-btn","kg");
+        pg='html5_inicis.INIpayTest';
+        request_pay(pg);
     }
 })
 
@@ -65,14 +71,6 @@ function request_pay(){
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
     console.log(ordName);
 
-    // $(function (){
-    //     let i = document.querySelectorAll('.payM').length;
-    //     for(j=0; j=i; j++){
-    //         $('payMethodInner').children();
-    //     }
-    //
-    // })
-
 
     if(ordPhone==null||ordPhone===''){
         alert("전화번호를 입력해주세요.");
@@ -93,13 +91,13 @@ function request_pay(){
         IMP.init("imp42245168")
         IMP.request_pay(
             {
-                pg:'kakaopay.TC0ONETIME',
+                pg:pg,
                 pay_method:'card',
                 merchant_uid : merchant_uid , //주문번호
                 name: item_name,
                 amount:amount,
                 buyer_name:ordName,
-                buyer_email:ordName,
+                buyer_email:ordEmail,
                 buyer_tel:ordPhone,
                 buyer_addr:ordaddr+"/"+ordaddrdetail,
                 buyer_addrDetail : ordaddrdetail,
@@ -138,7 +136,7 @@ function request_pay(){
                             ordPhone: ordPhone,
                             ordAddr:ordaddr+"/"+ordaddrdetail,
                             itemName:item_name,
-                            totalAmount: 0,
+                            totalAmount:amountInput*0.99,
                             saleAmount:amountInput,
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
@@ -350,9 +348,9 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 if(item.couUse==='N'){
                     console.log(amount)
                     discountDiv.innerHTML='';
-                    discountDiv.innerHTML+=payAmount+"원";
+                    discountDiv.innerHTML+=payAmount*0.99+"원";
                     amountDiv.innerHTML='';
-                    amountDiv.innerHTML+="0원";
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.99)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
                     console.log("이미 사용한 쿠폰");
