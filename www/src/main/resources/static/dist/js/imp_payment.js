@@ -25,6 +25,7 @@ document.addEventListener('click',(e)=>{
     if(e.target.id==='kakaoPayBtn'){
         changeCss(kakaoCss);
         changeNonCss(tossCss,paycoCss,kgCss);
+        // e.target.closest('.payM').className+='kakao';
         e.target.closest('.payM').setAttribute("data-btn","kakao");
     } else if(e.target.id==='tossBtn'){
         changeCss(tossCss);
@@ -64,12 +65,13 @@ function request_pay(){
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
     console.log(ordName);
 
-    $(function (){
-        let i = $('.payM').length;
-        console.log(i)
-
-    })
-
+    // $(function (){
+    //     let i = document.querySelectorAll('.payM').length;
+    //     for(j=0; j=i; j++){
+    //         $('payMethodInner').children();
+    //     }
+    //
+    // })
 
 
     if(ordPhone==null||ordPhone===''){
