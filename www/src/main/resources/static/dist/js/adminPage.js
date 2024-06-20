@@ -83,6 +83,30 @@ document.addEventListener('click', (e) => {
                 spreadList(cate, page);
             }
         })
+    } else if (e.target.classList.contains('qnaStatus')){
+        const id = e.target.dataset.id; // 버튼라인의 id
+        const title = e.target.dataset.title; // 버튼라인의 문의제목
+        const content = e.target.dataset.content; // 버튼라인의 문의내용
+        const buttonStatus = e.target.innerText; // 버튼의 상태
+
+        qnaOneUserToServer(id).then(result =>{
+            console.log(result);
+            if(result === "1"){
+                document.getElementById('adminQnA').style.display = 'block';
+                const div = document.getElementById('adminQnA');
+                let p = `<p>1:1 문의글</p>`;
+                    p += `<p>id : ${id}</p>`
+                    p += `<p>Title : ${title}</p>`;
+                    p += `<p>Content : ${content}</p>`;
+                    p += `<p>Answer : <textarea></textarea> </p>`;
+                    p += `<button type="button">문의답변</button>`;
+
+                    div.innerHTML += p;
+            }
+        })
+
+
+
     }
 });
 
@@ -370,7 +394,30 @@ function spreadList(cate, page=1){
             getQnaList(page).then(result =>{
                 console.log(result);
                 const tbody= document.getElementById('adminqnaList');
+                if(result.qnaList.length > 0){
+                    if (page === 1){
+                        tbody.innerHTML = '';
+                    }
+                    for (let qna of result.qnaList){
+                        let td = `<td class="qnaId" style="text-align: center" >${qna.id}</td>`;
+                            td += `<td>${qna.qnaTitle}</td>`;
+                            td += `<td>${qna.qnaContent}</td>`;
+                            td += `<td>${qna.qnaRegAt}</td>`;
+                            td += `<td style="text-align: center"><button type="button" class="qnaStatus" data-id="${qna.id}" data-title="${qna.qnaTitle}" data-content="${qna.qnaContent}">답변대기중</button></td>`;
 
+                            tbody.innerHTML += td;
+                    }
+                    let moreBtn = document.getElementById('adminQnABtn');
+                    if(result.pgvo.pageNo < result.realEndPage){
+                        moreBtn.style.visibility = 'visible';
+                        console.log(moreBtn.dataset.page);
+                        moreBtn.dataset.page = page+1;
+                    } else {
+                        moreBtn.style.visibility = 'hidden';
+                    }
+                } else {
+                    tbody.innerHTML = `<div> List Empty </div>`
+                }
             })
             break;
     }
@@ -462,6 +509,27 @@ async function getQnaList(pageNo){
     const resp = await fetch("/admin/adminQnaList/"+pageNo);
     const result = await resp.json();
     return result;
+}
+
+// 하나의 데이터만 불러오기
+async function qnaOneUserToServer(id){
+    try{
+        const url = "/admin/adminOneUser/"+id;
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(id)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+
+    }catch (erorr){
+        console.log(error);
+    }
 }
 
 // 문의글 답변 전달하기

@@ -219,16 +219,26 @@ public class AdminController {
     // 문의글 리스트 요청
     @GetMapping("/adminQnaList/{pageNo}")
     @ResponseBody
-    public String adminQnaList(@PathVariable("pageNo") int pageNo){
+    public PagingHandler adminQnaList(@PathVariable("pageNo") int pageNo){
         log.info("controller in >>> ");
         PagingVO qnaPgvo = new PagingVO(pageNo, 10);
         int qnaCount = qnaMapper.qnaCount();
         log.info("qnaCount >>>> {}", qnaCount);
 
         PagingHandler qnaPh = new PagingHandler(qnaPgvo, qnaCount);
-        qnaPh.setQnlList(qnaMapper.getList(qnaPgvo));
+        qnaPh.setQnaList(qnaMapper.getList(qnaPgvo));
 
         log.info("qnaPh >>> {}", qnaPh);
+        return qnaPh;
+    }
+
+    @PostMapping("/adminOneUser/{id}")
+    @ResponseBody
+    public String oneUser(@PathVariable("id") String id, Model model){
+        log.info("controller in >>> ");
+        log.info("id >>> {}", id);
+        qnaMapper.oneUserList(id);
+//        model.addAttribute("qnaOne", qnaVO);
         return "1";
     }
 

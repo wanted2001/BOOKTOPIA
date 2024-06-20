@@ -21,4 +21,8 @@
             order by qna_reg_at desc
         </select>
 
+        <select id="oneUserList" resultType="com.booktopia.www.domain.QnaVO">
+            select * from qna where id=#{id}
+        </select>
+
 </mapper>

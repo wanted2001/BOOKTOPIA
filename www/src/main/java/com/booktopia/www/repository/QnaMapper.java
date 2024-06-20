@@ -16,4 +16,6 @@ public interface QnaMapper {
     int qnaCount();
 
     List<QnaVO> getList(PagingVO qnaPgvo);
+
+    void oneUserList(String id);
 }
