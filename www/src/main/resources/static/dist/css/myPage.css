@@ -230,6 +230,7 @@ display: flex;
     text-align: right;
     padding-top: 10px;
     font-size: 22px;
+    margin: -10px 0 10px;
 }
 #payInfoDelivery{
     font-size: 15px;

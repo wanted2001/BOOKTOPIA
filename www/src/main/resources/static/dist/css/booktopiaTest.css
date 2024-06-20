@@ -83,6 +83,7 @@
     margin: 23px auto;
     position: relative;
     display: flex;
+    box-shadow: 0 0 6px gainsboro;
 }
 .bar-progress>.bar>.percent{
     width: 0;
