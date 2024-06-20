@@ -92,13 +92,16 @@
 }
 
 .payBtn{
-    width: 386px;
-    height: 50px;
-    margin: 21px auto 10px;
+    width: 930px;
+    height: 60px;
+    /* margin: 0 auto; */
     border: none;
-    font-family: SCDream4;
+    font-family: 'SCDream5';
     border-radius: 10px;
     cursor: pointer;
+    background: #c4ddff;
+    color: white;
+    font-size: 22px;
 }
 
 
@@ -128,14 +131,18 @@
     border: 1px solid;
 }
 #coupon{
-    width: 390px;
-    height: 40px;
-    padding: 5px;
-    font-size: 0.8em;
-    border-radius: 5px;
-    outline: 0;
+    width: 930px;
+    height: 50px;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 8px;
     font-family: 'SCDream4';
-    margin: 28px 0 10px;
+    margin: 15px 0 0px;
+    outline: none;
+    border-color: gainsboro;
+    appearance: none;
+    background: url("/image/arrow3.png") no-repeat 891px  /2%;
+
 }
 .payBtn1:hover{
     background-color: #f1f4b9;
@@ -213,7 +220,7 @@
     margin: 0 auto;
 }
 
-.paySubDiv, .payUserDiv, .payInfoDiv, .payMethodDiv {
+.paySubDiv, .payUserDiv, .payInfoDiv, .payMethodDiv, .payCouponDiv {
     font-family: 'SCDream5';
     font-weight: bold;
     font-size: 18px;
@@ -238,7 +245,7 @@
     font-size: 15px;
 }
 
-.payUserBox, .payInfoBox, .payMethodBox {
+.payUserBox, .payInfoBox, .payMethodBox, .payCouponBox {
     width: 930px;
     margin: 49px auto;
 }
@@ -316,7 +323,8 @@ input#addrInput {
 }
 .kakaoPayText.payMText {
     width: 171px;
-    margin-top: -25px;
+    margin: -26px 0 0 135px;
+    font-family: SCDream5;
 }
 img{
     width: 45px;
@@ -327,4 +335,12 @@ img{
 .payMethodBtn{
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0);
+}
+.kakaoPayM.payM {
+    border: 2px solid #a7cdff;
+    box-shadow: 0px 0px 12px gainsboro;
+}
+.paymentBtn {
+    width: 930px;
+    margin: 0 auto 30px;
 }

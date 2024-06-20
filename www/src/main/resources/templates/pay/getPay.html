@@ -18,13 +18,13 @@
 
             <form action="/pay/payInfo" method="post">
                 <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
-                    <input type="hidden" id="payID" value="3503320191">
-                    <input type="hidden" id="payEmail" value="qansd5@hanmail.net">
+                    <input type="hidden" id="payID" th:value="${auth.getId()}">
+                    <input type="hidden" id="payEmail" th:value="${auth.getEmail()}">
                     <div class="paySubBox">
                         <div class="paySubDiv">구독정보</div>
                         <div class="paySubInner">
-                            <div><span class="paySubRight">구독상품</span><span>북토피아 구독 3개월권</span></div>
-                            <div><span class="paySubRight">구독기간</span><span class="payStartDate">2024.06.19</span> ~ <span class="payEndDate">2024.09.19</span></div>
+                            <div><span class="paySubRight">구독상품</span><span>북토피아 구독 [[${ssivo.subInMonth}]]개월권</span></div>
+                            <div><span class="paySubRight">구독기간</span><span class="payStartDate"></span> ~ <span class="payEndDate"></span></div>
                             <div class="paySubInfoText">* 구독 시작 이후 배송을 받은 경우 취소가 어렵습니다. 유의하여 결제 바랍니다.</div>
                         </div>
                     </div>
@@ -33,17 +33,19 @@
                         <div class="payUserInner">
                             <div class="payUserInner1">
                                 <div class="payUserName">이름 </div>
-                                <input type="text" value="김정온" id="ordName" name="ordName">
+                                <input type="text" th:value="${auth.getName()}" id="ordName" name="ordName">
                             </div>
                             <div class="payUserInner2">
                                 <p>전화번호</p>
-                                <input type="text" value="" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
+                                <input type="text" th:value="${auth.getPhone()==null?'':auth.getPhone()}" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
                             </div>
                             <div class="payUserInner3">
                                 <p>주소</p>
-                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요." value="">
+                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
+                                       th:value="${auth.getAddress()==null?'':#strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요." value="">
+                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
+                                       th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
                             </div>
                             <div class="payUserInner4">
                                 <p>배송 메모</p>
@@ -54,25 +56,25 @@
                     <div class="payMethodBox">
                         <div class="payMethodDiv">결제수단</div>
                         <div class="payMethodInner">
-                            <button type="button" class="payMethodBtn">
+                            <button type="button" class="payMethodBtn" id="kakaoPayBtn" value="kakaoBtn">
                                 <div class="kakaoPayM payM">
-                                        <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
-                                        <div class="kakaoPayText payMText">카카오페이</div>
+                                    <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
+                                    <div class="kakaoPayText payMText">카카오페이</div>
                                 </div>
                             </button>
-                            <button type="button" class="payMethodBtn">
+                            <button type="button" class="payMethodBtn" id="tossBtn" value="tossBtn">
                                 <div class="tossM payM">
-                                        <img th:src="@{/image/toss.png}">
-                                        <span>토스</span>
+                                    <img th:src="@{/image/toss.png}">
+                                    <span>토스</span>
                                 </div>
                             </button>
-                            <button type="button" class="payMethodBtn">
+                            <button type="button" class="payMethodBtn" id="paycoBtn" value="paycoBtn">
                                 <div class="paycoM payM">
                                     <img th:src="@{/image/payco.png}">
                                     <span>페이코</span>
                                 </div>
                             </button>
-                            <button type="button" class="payMethodBtn">
+                            <button type="button" class="payMethodBtn" id="kgBtn" value="kgBtn">
                                 <div class="kgM payM">
                                     <img th:src="@{/image/kg-t.png}">
                                     <span>신용카드</span>
@@ -80,13 +82,22 @@
                             </button>
                         </div>
                     </div>
+                    <div class="payCouponBox">
+                        <div class="payCouponDiv">쿠폰 선택하기</div>
+                        <select id="coupon">
+                            <option value="choiceCoupon" name="coupon">보유중인 쿠폰 확인하기</option>
+                            <option value="welcomeCoupon" name="coupon">신규가입 축하 - 10% 할인 쿠폰</option>
+                            <option value="discountCoupon" name="coupon">구독권 1년 이용 감사 - 50% 할인 쿠폰</option>
+                        </select>
+                    </div>
                     <div class="payInfoBox">
                         <div class="payInfoDiv">결제정보</div>
                         <div class="payInfoInner">
-                            <div><span>상품 금액</span><span class="won">32700원</span></div>
+                            <input type="hidden" class="priceDiv" th:value="${ssivo.subInPrice}">
+                            <div><span>상품 금액</span><span class="won">[[${ssivo.subInPrice}]]원</span></div>
                             <div><span>할인 금액</span><span class="discountAmount won">0원</span></div>
-                            <input type="hidden" class="amountInput" value="32700"><hr>
-                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">32700원</span></div>
+                            <input type="hidden" class="amountInput" th:value="${ssivo.subInPrice}"><hr>
+                            <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">[[${ssivo.subInPrice}]]원</span></div>
                         </div>
                     </div>
                     <div class="paymentBtn">
