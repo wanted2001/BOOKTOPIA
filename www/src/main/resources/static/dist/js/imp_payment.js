@@ -133,7 +133,7 @@ function request_pay(pg){
                             ordPhone: ordPhone,
                             ordAddr:ordaddr+"/"+ordaddrdetail,
                             itemName:item_name,
-                            totalAmount:amountInput*9.9,
+                            totalAmount:amountInput*0.99,
                             saleAmount:amountInput,
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
@@ -345,9 +345,9 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 if(item.couUse==='N'){
                     console.log(amount)
                     discountDiv.innerHTML='';
-                    discountDiv.innerHTML+=payAmount*9.9+"원";
+                    discountDiv.innerHTML+=payAmount*0.99+"원";
                     amountDiv.innerHTML='';
-                    amountDiv.innerHTML+=payAmount-(payAmount*9.9)+"원";
+                    amountDiv.innerHTML+=payAmount-(payAmount*0.99)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
                     console.log("이미 사용한 쿠폰");
