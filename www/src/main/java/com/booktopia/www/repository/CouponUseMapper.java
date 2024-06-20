@@ -20,5 +20,5 @@ public interface CouponUseMapper {
 
     List<CouponInfoDTO> getCoupon(@Param("id") String id, @Param("couNo") int couNo);
 
-    void newCouponUpdate(UserVO id , int couNo);
+    void newCouponUpdate(@Param("id") UserVO id , @Param("couNo") int couNo);
 }

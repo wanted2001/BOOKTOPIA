@@ -211,7 +211,7 @@ public class AdminController {
     @ResponseBody
     public String addCoupon(@RequestBody AdCouponVO adcoupon){
         int isOk = adCouponService.insert(adcoupon);
-
+        log.info("isOk >>> {}", isOk);
         return isOk > 0 ? "1":"0";
     }
 
