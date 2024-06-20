@@ -29,7 +29,7 @@
 <!--                            <img th:src="@{/image/testBox.png}">-->
                             <div id="questionInfo" style="display:block;">
                                 <div class="innerText">
-                                    <input type="hidden" name="id" th:with="auth=${#authentication.getName()}" id="commuUser" th:value="${auth}">
+                                    <input type="hidden" name="id" th:with="auth=${#authentication.getPrincipal.userVO.getId()}" id="commuUser" th:value="${auth}">
                                     <p>생년월일 </p>
                                     <input type="text" name="birth" id="brith" class="placeholder" placeholder="ex) 19900101">
                                     <p>성별</p>
