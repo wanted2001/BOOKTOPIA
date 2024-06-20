@@ -1,8 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-const inquiryId= document.getElementById("inquiryId");
+var inquiryId= document.getElementById("realId");
 console.log("js in~~!");
 
-const inquiryIdVal = inquiryId.innerText;
+var inquiryIdVal = inquiryId.innerText;
 console.log(inquiryIdVal);
 
 getAnsList(inquiryIdVal).then(result=>{
@@ -10,12 +9,15 @@ getAnsList(inquiryIdVal).then(result=>{
 
     const ul = document.getElementById("QnaResult");
     if(result.length == 0){
-        ul.innerHTML = `<div class="QnaResultListDiv">현재 문의하신 내역이 없습니다.`;
+        ul.innerHTML = `<div class="QnaResultListDiv">현재 문의하신 내역이 없습니다.</div>`;
     }else{
         result.forEach(item => {
             const li = document.createElement("li");
             li.innerHTML =
             `<div class="qnaWrap">
+                 <div class="qnaregatdiv">
+                    ${item.qnaRegAt}
+                 </div>
                 <div class="qnatitlediv">
                     ${item.qnaTitle}
                 </div>
@@ -23,25 +25,13 @@ getAnsList(inquiryIdVal).then(result=>{
                     ${item.qnaContent}
                 </div>
                 ${item.qnaAnswer == null ?
-                   '<div class="qnaanswerdiv">아직 답변을 받지 못했습니다.</div>'
-                   : `<div class="qnaanswerdiv">${item.qnaAnswer}</div>
-                    <div class="qnamodatdiv">${item.qnaMogAt}</div>`
+                   '<div class="qnanoanswerdiv">아직 답변을 받지 못했습니다.</div>'
+                   : `<div class="qnaanswerdiv">${item.qnaAnswer}</div>`
                    }
-
-                <div class="qnaregatdiv">
-                    ${item.qnaRegAt}
-                </div>
-
             </div>`;
         ul.appendChild(li);
         });
     }
-});
-
-
-
-
-
 });
 
 async function getAnsList(id){
