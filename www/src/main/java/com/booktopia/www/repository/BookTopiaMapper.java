@@ -21,4 +21,6 @@ public interface BookTopiaMapper {
     int getTotal();
 
     List<BooktopiaVO> adminTestList(PagingVO pgvo);
+
+    String findType(String user);
 }

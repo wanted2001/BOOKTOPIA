@@ -1,0 +1,45 @@
+#testResult {
+    box-sizing: border-box;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5em;
+    /* line-height: 40; */
+}
+
+.bookWrap{
+    background-color: #4cbefa;
+    width: 426px;
+    height: 550px;
+    text-align: center;
+    border: 1px solid;
+    margin: 100px;
+    padding-top: 40px;
+}
+
+.bookImg{
+    width: 300px;
+    height: 450px;
+    margin: 10px;
+}
+
+li{
+    float: left;
+}
+
+.msg{
+    width: 50%;
+    /* background-color: red; */
+    height: 120px;
+    padding-top: 50px;
+    margin: 300px auto;
+    border: 1px solid;
+    border-radius: 10px
+}
+
+.msg a{
+    border: 1px solid;
+    line-height: 71px;
+    padding: 5px;
+    border-radius: 11px;
+}
