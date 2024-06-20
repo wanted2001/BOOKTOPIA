@@ -10,10 +10,13 @@ let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
 const amountInput = document.querySelector('.amountInput').value;
+
+
 function request_pay(){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
+    const coupon = $('select#coupon').val();
     console.log("테스트으으으으으"+ ordaddr);
     console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
     console.log(ordName);
@@ -28,7 +31,6 @@ function request_pay(){
         alert("주소를 입력해주세요.");
         ordaddr.focus();
     } else {
-        const coupon = $('select#coupon').val();
         if(coupon!=='choiceCoupon'){
             amount = discountAmount(amount);
         }
@@ -55,20 +57,38 @@ function request_pay(){
                 if(rsp.success){
                     console.log('결제성공 boot!');
                     console.log(rsp);
-                    let registerData ={
-                        id:ordId,
-                        impUid: rsp.imp_uid,
-                        merchantUid: merchant_uid,
-                        ordEmail:ordEmail,
-                        ordName:ordName,
-                        ordPhone: ordPhone,
-                        ordAddr:ordaddr+"/"+ordaddrdetail,
-                        itemName:item_name,
-                        totalAmount: amount,
-                        saleAmount:amountInput*0.1,
-                        couNo:couNo,
-                        pg_tid:rsp.pg_tid,
-                    };
+                    let registerData;
+                    if(coupon==='welcomeCoupon') {
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:amountInput*0.1,
+                            couNo:couNo,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    } else {
+                        registerData ={
+                            id:ordId,
+                            impUid: rsp.imp_uid,
+                            merchantUid: merchant_uid,
+                            ordEmail:ordEmail,
+                            ordName:ordName,
+                            ordPhone: ordPhone,
+                            ordAddr:ordaddr+"/"+ordaddrdetail,
+                            itemName:item_name,
+                            totalAmount: amount,
+                            saleAmount:0,
+                            couNo:0,
+                            pg_tid:rsp.pg_tid,
+                        };
+                    }
                     console.log(registerData);
                     postRegisterSuccess(registerData).then(result=>{
                         console.log("result >> "+ result)
@@ -95,7 +115,6 @@ function request_pay(){
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
                                     // window.location.href = "/pay/done/"+result.merchantUid;
-                                    window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
