@@ -1,9 +1,11 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.OrderInfoVO;
 import com.booktopia.www.domain.PayVO;
 import com.booktopia.www.domain.SubscribeInfoVO;
+import com.booktopia.www.repository.AdCouponMapper;
 import com.booktopia.www.service.*;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -37,6 +39,8 @@ public class PayController {
     private PayService psv; //implements 없음
     @Autowired
     private OrderInfoService osv;
+    @Autowired
+    private AdCouponMapper adCouponMapper;
 
     @Value("2171128503337876")
     private String api;
@@ -79,6 +83,9 @@ public class PayController {
         SubscribeInfoVO ssivo = ssv.getPayInfo(month);
         log.info("ssivo>>{}", ssivo);
         m.addAttribute("ssivo", ssivo);
+        List<AdCouponVO> advo = adCouponMapper.getCouponList();
+        log.info("advo>>{}", advo);
+        m.addAttribute("advo", advo);
     }
 
     @PostMapping("/pay_ing/{imp_uid}")

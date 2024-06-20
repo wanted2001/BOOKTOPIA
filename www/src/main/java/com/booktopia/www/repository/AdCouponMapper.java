@@ -20,4 +20,6 @@ public interface AdCouponMapper {
     List<AdCouponVO> joingetList();
 
     int getNewCouponNum();
+
+    List<AdCouponVO> getCouponList();
 }
