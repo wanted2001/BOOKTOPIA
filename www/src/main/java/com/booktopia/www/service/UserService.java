@@ -1,5 +1,6 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.UserVO;
@@ -10,6 +11,7 @@ public interface UserService {
 
     // 회원가입
     int joinInsert(UserVO uvo);
+//    int joinInsert(UserVO uvo, List<AdCouponVO> couponList);
 
     int checkId(String id);
 
@@ -34,4 +36,6 @@ public interface UserService {
     int modifyaddrandphone(UserVO uvo);
 
     List<CouponInfoDTO> getcouList(String id);
+
+
 }

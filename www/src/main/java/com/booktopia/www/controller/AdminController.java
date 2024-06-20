@@ -221,7 +221,7 @@ public class AdminController {
     @ResponseBody
     public String delistatus(@RequestBody String deliUid) {
         log.info("status: {}", deliUid);
-//        deliMapeer.updateStaus(deliUid);
+        deliMapeer.updateStaus(deliUid);
         return "1";
     }
 

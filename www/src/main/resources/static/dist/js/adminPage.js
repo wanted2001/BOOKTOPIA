@@ -72,9 +72,6 @@ document.addEventListener('click', (e) => {
             adCouSale:couSale.value,
             adCouInfo:couInfo.value
         };
-
-        console.log(couponDate);
-
         postCoupon(couponDate).then(result =>{
             console.log(result);
             if(result == 1){
@@ -91,7 +88,7 @@ document.addEventListener('click', (e) => {
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
-    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment', '.adminCouponAdd'];
+    const sections = ['.admin-UserList', '.bookTopia-user', '.subUser', '.delivery', '.commuBoard','.commuComment', '.adminCouponAdd','.adminqna'];
     let index = sections[btnId.slice(-1)-1];
     sections.forEach(section => {
         const displayStyle = section.includes(index) ? 'block' : 'none';
@@ -119,7 +116,7 @@ function handleButtonClick(btnId) {
     } else if(index === '.adminCouponAdd'){
         let cate = 'adCoupon';
         spreadList(cate);
-    }
+    } // 문의글 관리 추가 ++
 
     /* cate 버튼 옵션 변경 구문 */
     const buttons = document.querySelectorAll('.admin-btn');
@@ -130,6 +127,7 @@ function handleButtonClick(btnId) {
     });
 }
 
+// 카테고리 별로 뿌리는...
 function spreadList(cate, page=1){
     switch (cate){
         case "adUser" : // 회원 리스트 뿌리기
@@ -153,7 +151,7 @@ function spreadList(cate, page=1){
 
                         tbody.innerHTML += td;
                     }
-                    let moreBtn = document.querySelector('.adminmoreBtn');
+                    let moreBtn = document.getElementById('adminUserBtn');
                     console.log(moreBtn);
                     if(result.pgvo.pageNo < result.realEndPage){
                         moreBtn.style.visibility = 'visible';
@@ -365,6 +363,8 @@ function spreadList(cate, page=1){
                 }
             })
             break;
+        case "adqna" : // 문의글 뿌리기
+            break;
     }
 }
 
@@ -448,6 +448,10 @@ async function postCoupon(couponDate){
         console.log(error);
     }
 }
+
+// 문의글 리스트 가져오기
+
+// 문의글 답변 전달하기
 
 // 게시글 관리 > 삭제
 async function boardDelToServer(bno){
