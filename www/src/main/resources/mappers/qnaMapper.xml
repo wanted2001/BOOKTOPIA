@@ -9,7 +9,7 @@
         </insert>
 
         <select id="getqnalist" resultType="com.booktopia.www.domain.QnaVO">
-            select * from qna where id=#{id}
+            select * from qna where id=#{id} order by qna_reg_at desc
         </select>
 
 </mapper>

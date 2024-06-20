@@ -7,6 +7,7 @@ import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,10 @@ public class QnaController {
     public void goInquiry(){}
 
     @PostMapping("/addQna")
-    public String addqna(@ModelAttribute QnaVO qnaVO){
+    public String addqna(@ModelAttribute QnaVO qnaVO,Model m){
         log.info("qnaVO >> {}",qnaVO);
         int isOk = qsv.insertqna(qnaVO);
-        return "redirect:/user/myPage";
+        return "redirect:/qna/oneInquiry";
     }
 
     @GetMapping("/oneInquirylist/{id}")

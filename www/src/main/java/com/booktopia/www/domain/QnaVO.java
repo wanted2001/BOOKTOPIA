@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QnaVO {
+    private int qnaNum; // 문의 번호 (이걸로 답글 달때 필요할듯함)
     private String id; // 유저아이디
     private String qnaTitle; // 유저가 쓴 문의 제목
     private String qnaContent; //유저가 쓴 본문
