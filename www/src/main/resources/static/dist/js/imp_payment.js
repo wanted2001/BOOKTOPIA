@@ -133,8 +133,8 @@ function request_pay(pg){
                             ordPhone: ordPhone,
                             ordAddr:ordaddr+"/"+ordaddrdetail,
                             itemName:item_name,
-                            totalAmount:amountInput*0.99,
-                            saleAmount:amountInput,
+                            totalAmount:amount,
+                            saleAmount:amountInput*0.99,
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
