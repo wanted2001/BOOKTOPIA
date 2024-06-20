@@ -1,6 +1,7 @@
 package com.booktopia.www.service;
 
 import com.booktopia.www.domain.AdCouponVO;
+import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.AdCouponMapper;
 import com.booktopia.www.repository.CouponUseMapper;
@@ -27,18 +28,18 @@ public class AdCouponServiceImpl implements AdCouponService {
 
         // 가장 최근에 등록한 쿠폰 번호 추출
         int CouNo = adCouponMapper.getNewCouponNum();
-        log.info("newCouponNum:{}", CouNo);
 
         // user 리스트에서 id만 추출
         List<UserVO> userId = userMapper.getUserId();
 
         // 아이디별로 새로 생성된 쿠폰 no 입력
         for(int i=0;i<userId.size();i++){
-            UserVO id = userId.get(i);
-            couponUseMapper.newCouponUpdate(id, CouNo);
+            CouponInfoDTO couponInfoDTO = new CouponInfoDTO();
+            couponInfoDTO.setId(userId.get(i).getId());
+            couponInfoDTO.setCouNo(CouNo);
+            log.info("couponInfoDTO:{}", couponInfoDTO);
+            couponUseMapper.newCouponUpdate(couponInfoDTO);
         }
-        log.info("userId:{}", userId);
-
-        return 0;
+        return 1;
     }
 }
