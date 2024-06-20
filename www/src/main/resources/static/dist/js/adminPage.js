@@ -98,15 +98,21 @@ document.addEventListener('click', (e) => {
                     p += `<p>id : ${id}</p>`
                     p += `<p>Title : ${title}</p>`;
                     p += `<p>Content : ${content}</p>`;
-                    p += `<p>Answer : <textarea></textarea> </p>`;
-                    p += `<button type="button">문의답변</button>`;
+                    p += `<p>Answer : <textarea class="adminsAnswer"></textarea> </p>`;
+                    p += `<button type="button" class="answeBtn">답변 회신</button>`;
 
                     div.innerHTML += p;
             }
         })
+    } else if (e.target.classList.contains('answeBtn')){
+        const id = document.querySelector('.qnaStatus').dataset.id;
+        const qnaAnswer = document.querySelector('.adminsAnswer').value;
+        console.log(qnaAnswer);
+        console.log(id);
+        qnaAnserToServer(qnaAnswer, id).then(result =>{
+            console.log(result);
 
-
-
+        })
     }
 });
 
@@ -399,7 +405,8 @@ function spreadList(cate, page=1){
                         tbody.innerHTML = '';
                     }
                     for (let qna of result.qnaList){
-                        let td = `<td class="qnaId" style="text-align: center" >${qna.id}</td>`;
+                        let td = `<td style="text-align: center">${qna.qnaNum}</td>`;
+                            td += `<td class="qnaId" style="text-align: center">${qna.id}</td>`;
                             td += `<td>${qna.qnaTitle}</td>`;
                             td += `<td>${qna.qnaContent}</td>`;
                             td += `<td>${qna.qnaRegAt}</td>`;
@@ -533,6 +540,24 @@ async function qnaOneUserToServer(id){
 }
 
 // 문의글 답변 전달하기
+async function qnaAnserToServer(qnaAnswer, id){
+    try{
+        const url = "/admin/qnaAnswer/"+qnaAnswer+"/"+id;
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(qnaAnswer)
+        };
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+    }catch (error){
+        console.log(error);
+    }
+}
 
 // 게시글 관리 > 삭제
 async function boardDelToServer(bno){

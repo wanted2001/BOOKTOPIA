@@ -25,4 +25,7 @@
             select * from qna where id=#{id}
         </select>
 
+        <update id="updateAnswer">
+            update qna set qna_answer=#{qnaAnswer}, qna_mod_at = now() where id =#{id}
+        </update>
 </mapper>

@@ -3,6 +3,7 @@ package com.booktopia.www.repository;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.domain.QnaVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,7 @@ public interface QnaMapper {
     List<QnaVO> getList(PagingVO qnaPgvo);
 
     void oneUserList(String id);
+
+
+    void updateAnswer(@Param("qnaAnswer") String qnaAnswer, @Param("id") String id);
 }

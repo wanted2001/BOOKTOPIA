@@ -38,6 +38,7 @@ public class AdminController {
     private final QnaMapper qnaMapper;
 
     private final AdCouponService adCouponService;
+    private final QnaService qnaService;
 
     // 해당 리스트에 총 갯수
     // 전체 리스트
@@ -232,15 +233,26 @@ public class AdminController {
         return qnaPh;
     }
 
+    // 문의글 하나의 리스트만 가져오기
     @PostMapping("/adminOneUser/{id}")
     @ResponseBody
-    public String oneUser(@PathVariable("id") String id, Model model){
+    public String oneUser(@PathVariable("id") String id){
         log.info("controller in >>> ");
         log.info("id >>> {}", id);
         qnaMapper.oneUserList(id);
-//        model.addAttribute("qnaOne", qnaVO);
         return "1";
     }
+
+    @PostMapping("/qnaAnswer/{qnaAnswer}/{id}")
+    @ResponseBody
+    public String updateAnswer(@PathVariable("qnaAnswer") String qnaAnswer, @PathVariable("id")String id){
+        log.info("qnaAnswer >>> {}", qnaAnswer);
+        log.info("id >>> {}", id);
+
+        qnaMapper.updateAnswer(qnaAnswer, id);
+        return "1";
+    }
+
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")
