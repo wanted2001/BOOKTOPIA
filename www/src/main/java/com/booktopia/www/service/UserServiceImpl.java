@@ -1,13 +1,12 @@
 package com.booktopia.www.service;
 
+import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.QnaVO;
 import com.booktopia.www.domain.UserVO;
-import com.booktopia.www.repository.CouponMapper;
-import com.booktopia.www.repository.CouponUseMapper;
-import com.booktopia.www.repository.OrderInfoMapper;
-import com.booktopia.www.repository.UserMapper;
+import com.booktopia.www.repository.*;
+import com.mysql.cj.log.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final CouponMapper couponMapper;
     private final CouponUseMapper couponUseMapper;
 
+
     // 회원가입
     @Override
     public int joinInsert(UserVO uvo) {
@@ -35,6 +35,8 @@ public class UserServiceImpl implements UserService {
         }
         return isOk2;
     }
+
+
 
     @Override
     public int checkId(String id) {

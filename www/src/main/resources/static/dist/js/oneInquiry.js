@@ -24,15 +24,14 @@ getAnsList(inquiryIdVal).then(result=>{
                 </div>
                 ${item.qnaAnswer == null ?
                    '<div class="qnaanswerdiv">아직 답변을 받지 못했습니다.</div>'
-                   : `<div class="qnaanswerdiv">${item.qnaAnswer}</div>`
+                   : `<div class="qnaanswerdiv">${item.qnaAnswer}</div>
+                    <div class="qnamodatdiv">${item.qnaMogAt}</div>`
                    }
 
                 <div class="qnaregatdiv">
                     ${item.qnaRegAt}
                 </div>
-                <div class="qnamogatdiv">
-                     ${item.qnaMogAt}
-                </div>
+
             </div>`;
         ul.appendChild(li);
         });

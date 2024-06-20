@@ -18,6 +18,15 @@
         values (#{adCouName}, #{adCouPeriod}, #{adCouSale}, #{adCouInfo})
     </insert>
 
+    <select id="joingetList" resultType="com.booktopia.www.domain.AdCouponVO">
+        select * from ad_coupon
+        order by cou_no desc
+    </select>
+
+    <select id="getNewCouponNum" resultType="int">
+        select cou_no from ad_coupon where ad_cou_date = (select max(ad_cou_date) from ad_coupon)
+    </select>
+
     <select id="getCouponList" resultType="com.booktopia.www.domain.AdCouponVO">
         select * from ad_coupon
         order by cou_no desc

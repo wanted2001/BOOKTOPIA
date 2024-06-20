@@ -72,6 +72,7 @@ td{
     width: 300px;
     height: 35px;
     border-radius: 3px;
+    padding-left: 10px;
 }
 .adminCouponAdd > .couponaddTable > .coupondiv > #postCoupon{
     margin-left: 30px;

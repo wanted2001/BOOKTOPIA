@@ -1,11 +1,13 @@
 package com.booktopia.www.controller;
 
+import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.domain.DeliveryVO;
 import com.booktopia.www.domain.QnaVO;
 import com.booktopia.www.domain.UserVO;
+import com.booktopia.www.repository.AdCouponMapper;
 import com.booktopia.www.repository.DeliMapeer;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
@@ -36,6 +38,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final SendEmailService sendEmailService;
     private final DeliMapeer deliMapeer;
+    private final AdCouponMapper adCouponMapper;
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "error", required = false) String error, Model model) {

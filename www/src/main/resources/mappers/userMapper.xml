@@ -103,4 +103,7 @@
         limit #{pageStart}, #{qty}
     </select>
 
+    <select id="getUserId" resultType="com.booktopia.www.domain.UserVO">
+        select id from user
+    </select>
 </mapper>
