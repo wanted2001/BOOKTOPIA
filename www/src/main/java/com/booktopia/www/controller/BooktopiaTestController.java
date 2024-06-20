@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Random;
 
@@ -24,6 +25,21 @@ public class BooktopiaTestController {
     @GetMapping("/test")
     public void getBooktopia(){}
 
+    @GetMapping("/result")
+    public void getResult(){}
+
+
+    @GetMapping("/resultTest/{user}")
+    @ResponseBody
+    public List<BookVO> showResult(@PathVariable("user") String user, Model m){
+        log.info("user>>>>>>>>> {}", user);
+
+        List<BookVO> list = bookTopiaService.findType(user);
+        log.info("list >>>> {}", list);
+
+
+        return list;
+    }
     @PostMapping("/bookList")
     public String btnResult(@RequestParam("btnResult") String btnResult, Model m, BooktopiaVO booktopiaVO) {
         log.info(">> btnResult >> {}", btnResult);

@@ -12,4 +12,6 @@ public interface BookTopiaService {
     void insert(BooktopiaVO booktopiaVO);
 
     List<BookVO> getBookList(int book);
+
+    List<BookVO> findType(String user);
 }

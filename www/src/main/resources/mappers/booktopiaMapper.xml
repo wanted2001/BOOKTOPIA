@@ -29,4 +29,8 @@
         order by test_at desc
         limit #{pageStart}, #{qty}
     </select>
+
+    <select id="findType" resultType="String">
+        select btn_result from booktopia where id = #{id} order by test_at desc limit 1
+    </select>
 </mapper>
