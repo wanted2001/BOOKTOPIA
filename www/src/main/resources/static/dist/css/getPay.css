@@ -10,6 +10,18 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family: jalnan;
+    src: url(../font/Jalnan2.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: SCDream6;
+    src: url(../font/S-Core_Dream_OTF/SCDream6.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 .wrap{
     flex-wrap: wrap;
     font-family: SCDream4;
@@ -20,6 +32,10 @@
     /* line-height: 267px; */
     font-size: 2em;
     margin: 45px auto 75px;
+
+}
+.payTitle p{
+    font-family: SCDream6;
 }
 
 
