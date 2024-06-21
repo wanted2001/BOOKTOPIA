@@ -10,6 +10,19 @@ let merchant_uid = 'payment_'+new Date().getTime()+i;
 let item_name = '북토피아 '+payName+'개월 구독권';
 const regPhone = new RegExp(/[09]/);
 const amountInput = document.querySelector('.amountInput').value;
+var payId = document.getElementById("realId");
+var addrone = document.getElementById("addrInput");
+var addrtwo = document.getElementById("addrDetailInput");
+var phonecall = document.getElementById("ordPhone");
+
+
+console.log(payId);
+callinfo(payId.innerText).then(result => {
+            console.log(result);
+            phonecall.value = result.phone;
+            addrone.value = result.address.substring(0, result.address.indexOf("/"));
+            addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
+        });
 
 const kakaoPayBtn = document.getElementById('kakaoPayBtn');
 const tossBtn = document.getElementById('tossBtn');
@@ -170,7 +183,7 @@ function request_pay(pg){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인') {
+                    } else {
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -437,3 +450,9 @@ async function discountCoupon(couNo,id){
         console.log("discount error"+error);
     }
 }
+
+async function callinfo(id) {
+            const response = await fetch("/user/callinfo/" + id);
+            const result = await response.json();
+            return result;
+        }
