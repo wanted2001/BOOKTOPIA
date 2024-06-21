@@ -130,9 +130,13 @@ public class AdminController {
         PagingVO subPgvo = new PagingVO(pageNo, 10);
         int subTotal = payMapper.getTotal();
 
-        List<OrderInfoVO> ordlist = orderInfoMapper.orderList();
-        List<PayVO> paylist = payMapper.payList();
+        List<OrderInfoVO> ordlist = orderInfoMapper.adminOrderList(subPgvo);
+        List<PayVO> paylist = payMapper.adminPayList(subPgvo);
         List<OrderInfoDTO> odtolist = new ArrayList<>();
+
+        log.info(">>> ordlist >>> {}", ordlist);
+        log.info(">>> paylist >>> {}", paylist);
+
 
         for(int i=0;i<ordlist.size();i++){
             OrderInfoVO orderInfo = ordlist.get(i);
@@ -148,6 +152,8 @@ public class AdminController {
 
             odtolist.add(dto);
         }
+
+        log.info(">>> odtolist >>> {}", odtolist);
         PagingHandler subPh = new PagingHandler(subPgvo, subTotal);
         subPh.setOrderInfoDTOList(odtolist);
         return subPh;
