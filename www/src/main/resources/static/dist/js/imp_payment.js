@@ -211,7 +211,7 @@ function request_pay(pg){
                                 console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
                                     console.log(result);
-                                    // window.location.href = "/pay/done/"+result.merchantUid;
+                                    window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
                                 console.log("결제 실패!!!!!!!! ")
@@ -315,7 +315,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
     const amountDiv = document.querySelector('.amountDiv');
     if(couponName==='신규가입 구독권 10% 할인'){
         console.log("웰컴쿠폰 선택함");
-        couNo=1;
+        couNo=2;
         discountCoupon(couNo,ordId).then(result=>{
             console.log(result);
             result.forEach(item=>{
@@ -325,7 +325,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
                     discountDiv.innerHTML+=payAmount*0.1+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
-                } else if(item.couUse==='Y'){
+                } else{
                     alert("이미 사용한 쿠폰입니다.");
                     console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);

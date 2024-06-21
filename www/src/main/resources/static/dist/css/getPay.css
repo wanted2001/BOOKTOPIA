@@ -14,198 +14,6 @@
     flex-wrap: wrap;
     font-family: SCDream4;
 }
-/*.payTitle{*/
-/*    width: 1400px;*/
-/*    text-align: center;*/
-/*    !* line-height: 267px; *!*/
-/*    font-size: 2em;*/
-/*    margin: 45px 0 75px;*/
-/*}*/
-.payOutBox{
-    width: 1300px;
-    margin: 0 auto 100px;
-    height: 700px;
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 20px;
-    padding-bottom: 50px;
-}
-.payInBox1{
-    border: 1px solid gray;
-    border-radius: 10px;
-    width: 42%;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 780px;
-}
-.payInBox2{
-    border: 1px solid gray;
-    border-radius: 10px;
-    width: 30%;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 593px;
-}
-
-.payInnerDiv1{
-    margin-top: 20px;
-}
-
-.payInnerDiv2{
-    margin-top: 15px;
-}
-
-.payInBox1 input{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 514px;
-    height: 40px;
-    border: 1px solid;
-    border-radius: 21px;
-    font-family: SCDream4;
-    padding: 5px 13px;
-}
-
-.payInnerDiv2 > .addrInput{
-    width: 350px;
-    font-family: SCDream4;
-}
-
-/*.payGetAddrBtn{*/
-/*    width: 153px;*/
-/*    height: 50px;*/
-/*    font-family: SCDream4;*/
-/*    border-radius: 8px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-.payInnerDiv3{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-}
-.payInnerDiv3 div{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.payBtn{
-    width: 930px;
-    height: 60px;
-    /* margin: 0 auto; */
-    border: none;
-    font-family: 'SCDream5';
-    border-radius: 10px;
-    cursor: pointer;
-    background: #c4ddff;
-    color: white;
-    font-size: 22px;
-}
-
-
-.couponCodeInput{
-    width: 280px;
-    height: 40px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.addCouponBtn{
-    margin-top: 20px;
-    width: 120px;
-    height: 46px;
-    margin-bottom: 30px;
-    font-family: SCDream4;
-    border-radius: 5px;
-}
-
-.subTicketimg{
-    background-color: #ffec78;
-    width: 388px;
-    height: 125px;
-    border-radius: 10px;
-    margin: 0 auto;
-    box-shadow: 1px 2px 4px;
-    border: 1px solid;
-}
-#coupon{
-    width: 930px;
-    height: 50px;
-    padding: 14px;
-    font-size: 15px;
-    border-radius: 8px;
-    font-family: 'SCDream4';
-    margin: 15px 0 0px;
-    outline: none;
-    border-color: gainsboro;
-    appearance: none;
-    background: url("/image/arrow3.png") no-repeat 891px  /2%;
-
-}
-.payBtn1:hover{
-    background-color: #f1f4b9;
-}
-.payBtn2:hover{
-    background-color: #baddbc;
-}
-.payBtn3:hover{
-    background-color: #f6bfac;
-}
-
-.sText{
-    /* text-align: center; */
-    text-align: right;
-    padding-right: 20px;
-    font-size: 1.1em;
-}
-.fText {
-    padding-top: 20px;
-    font-size: 1.2em;
-    padding-left: 20px;
-    border-bottom: 2px solid;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-}
-.mText{
-    font-size: 13px;
-    color: #616161;
-    margin: 35px 24px;
-}
-
-.selectBox{
-    width: 200px;
-    height: 40px;
-    padding: 5px;
-    font-size: 1em;
-    border-radius: 5px;
-    outline: 0;
-    font-family: 'SCDream4';
-}
-.payInfo{
-    font-size: 16px;
-    margin: 16px 0 -2px 5px;
-}
-.payPrice,.amountDiv{
-    font-family: SCDream5;
-    font-size: 24px;
-}
-.arrText{
-    font-size: 12px;
-    color: gray;
-    line-height: 16.5px;
-    margin:9px 0 0 3px;
-}
-.arrText p:nth-of-type(2){
-    text-decoration: underline;
-}
-
-
-
-
-
-/*정온작업*/
 .payTitle {
     width: 930px;
     text-align: center;
@@ -350,6 +158,19 @@ img{
     width: 930px;
     margin: 0 auto 30px;
 }
-.hr{
+hr{
     border-color: rgba(220, 220, 220, 0.22);
+}
+#coupon{
+    width: 930px;
+    height: 50px;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    font-family: 'SCDream4';
+    margin: 15px 0 0px;
+    outline: none;
+    border-color: gainsboro;
+    appearance: none;
+    background: url("/image/arrow3.png") no-repeat 891px  /2%;
 }
