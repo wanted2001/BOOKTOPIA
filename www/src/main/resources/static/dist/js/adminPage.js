@@ -199,12 +199,12 @@ function spreadList(cate, page=1){
                         tbody.innerHTML = '';
                     }
                     for(let uvo of result.userList){
-                        let td = `<td>${uvo.id}</td>`;
+                        let td = `<td style="text-align: center">${uvo.id}</td>`;
                         td += `<td style="text-align: center">${uvo.name}</td>`;
-                        td += `<td>${uvo.email}</td>`;
-                        td += `<td>${uvo.phone}</td>`;
-                        td += `<td>${uvo.userType}</td>`;
-                        td += `<td>${uvo.userReg}</td></tr>`;
+                        td += `<td style="text-align: center">${uvo.email}</td>`;
+                        td += `<td style="text-align: center">${uvo.phone}</td>`;
+                        td += `<td style="text-align: center">${uvo.userType}</td>`;
+                        td += `<td style="text-align: center">${uvo.userReg}</td></tr>`;
 
                         tbody.innerHTML += td;
                     }
@@ -264,10 +264,10 @@ function spreadList(cate, page=1){
                         tbody.innerHTML = '';
                     }
                     for(let sub of result.orderInfoDTOList){
-                        let td = `<td>${sub.merchantUid}</td>`
-                        td += `<td>${sub.itemName}</td>`;
+                        let td = `<td style="text-align: center">${sub.merchantUid}</td>`
+                        td += `<td style="text-align: center">${sub.itemName}</td>`;
                         td += `<td style="text-align: center">${sub.ordName}</td>`;
-                        td += `<td>${sub.ordPhone}</td>`;
+                        td += `<td style="text-align: center">${sub.ordPhone}</td>`;
                         td += `<td style="text-align: center">${sub.ordAddr}</td>`;
                         td += `<td style="text-align: center">${sub.totalAmount}</td>`;
 
@@ -279,7 +279,6 @@ function spreadList(cate, page=1){
                         moreBtn.style.visibility = 'visible';
                         console.log(moreBtn.dataset.page);
                         moreBtn.dataset.page = page+1;
-                        // console.log(moreBtn.dataset.page+1);
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
@@ -431,7 +430,7 @@ function spreadList(cate, page=1){
                     for (let qna of result.qnaList){
                         let td = `<td style="text-align: center">${qna.qnaNum}</td>`;
                             td += `<td class="qnaId" style="text-align: center">${qna.id}</td>`;
-                            td += `<td>${qna.qnaTitle}</td>`;
+                            td += `<td style="text-wrap: wrap">${qna.qnaTitle}</td>`;
                             td += `<td style="text-wrap: wrap">${qna.qnaContent}</td>`;
                             td += `<td>${qna.qnaRegAt}</td>`;
                             td += `<td><button type="button" class="qnaStatus" data-num="${qna.qnaNum}" 
