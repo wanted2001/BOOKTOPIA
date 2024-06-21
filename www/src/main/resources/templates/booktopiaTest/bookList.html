@@ -11,7 +11,7 @@
                         <div class="book-taste"> <!--취향 도서 list-->
                             <div th:each="book, iterStat : ${blist}">
                                 <div class='taste book1'>
-                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
+                                    <a href="#">
                                         <div class="rankNumdiv"><em>[[${iterStat.index +1}]]</em></div>
                                             <img th:src="@{|/image/book2/${book.bookImg}|}"
                                                  th:class="'imgaction' + ${iterStat.index + 1}">
@@ -26,16 +26,14 @@
                             </div>
                         </div>
                     </div>
-                    <a class="testResult" th:href="@{/subscribe/info}">북토피아 구독하기</a>
+                    <a class="testResult" th:href="@{/booktopiaTest/result}">책 정보 보러가기</a>
                     <div class="bestbooklistwrap">
                         <div class="booktopiabigtitle">이달의 인기도서</div>
                         <div class="book-popul"> <!--인기 도서 list-->
                             <div th:each="book, iterStat : ${popblist}">
                                 <div class='taste book1'>
-
-                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
-                                        <img th:src="@{|/image/book2/${book.bookImg}|}"
-                                             th:class="'imgaction' + ${iterStat.index + 1}"></a>
+                                    <img th:src="@{|/image/book2/${book.bookImg}|}"
+                                         th:class="'imgaction' + ${iterStat.index + 1}">
                                     <div style="display:none;">
                                         <p>[[${book.bookTitle}]]</p>
                                         <p>[[${book.bookWriter}]]</p>
@@ -50,9 +48,8 @@
                         <div class="book-recom"> <!--추천 도서 list-->
                             <div th:each="book, iterStat : ${newblist}">
                                 <div class='taste book1'>
-                                    <a th:href="@{/booktopiaTest/detail(book=${book.bookCode})}">
-                                        <img th:src="@{|/image/book2/${book.bookImg}|}"
-                                             th:class="'imgaction' + ${iterStat.index + 1}"></a>
+                                    <img th:src="@{|/image/book2/${book.bookImg}|}"
+                                         th:class="'imgaction' + ${iterStat.index + 1}">
                                     <div style="display:none;">
                                         <p>[[${book.bookTitle}]]</p>
                                         <p>[[${book.bookWriter}]]</p>

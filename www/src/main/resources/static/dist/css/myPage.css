@@ -181,23 +181,28 @@ display: flex;
 }
 
 #payInfoWrap{
-    background-color: #ffec78;
+    background-color: #9cf7a391;
     height: 143px;
-    width: 420px;
+    width: 363px;
     padding-left: 15px;
     border-radius: 10px;
     box-shadow: 1px 2px 4px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
-
-
+.payInfoBooktopia {
+    font-size: 12px;
+    color: gray;
+    padding-left: 20px;
+    padding-top: 13px;
+    text-align: left;
+}
 .payInfoLeft{
     display: inline-block;
-    float: left;
     height: 100px;
-    width: 245px;
-    margin-top: 5px;
-    padding-left: 20px;
+    width: 363px;
+    margin-left: -15px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .payInfomerchantUid{
@@ -208,36 +213,53 @@ display: flex;
     padding-left: 20px;
 }
 .payInfoRight{
-    display: inline-block;
-    height: 100px;
-    width: 125px;
-    margin-top: 5px;
-    padding-left: 50px;
+    /*display: inline-block;*/
+    /*height: 100px;*/
+    /*width: 125px;*/
+    /*margin-top: 5px;*/
+    /*padding-left: 50px;*/
 }
 
-#payInfoTitle{
-    margin-bottom : 10px;
-    font-size: 22px;
+#payInfoTitle {
+    margin-bottom: 10px;
+    font-size: 38px;
     font-weight: 700;
-    color: #005c87;
+    color: #338760;
+    padding: 15px 0 0 11px;
+    /* padding-left: 33px; */
 }
 #payInfoapprovedAt{
-    font-size: 16px;
+    font-size: 12px;
     margin-top: 20px;
+    line-height: 21px;
+    text-align: left;
+    padding-left: 32px;
 }
 
 #payInfoAmount{
-    text-align: right;
+    width: 100%;
+    font-size: 13px;
     padding-top: 10px;
-    font-size: 22px;
+    margin: -10px 0 10px;
+    text-align: left;
+    padding-left: 32px;
 }
 #payInfoDelivery{
     font-size: 15px;
 }
 
-#payInfoAmount,#payInfoDelivery{
+#payInfoDelivery{
     width: 100px;
     height: 30px;
+    font-size: 15px;
+    float: right;
+    background-color: #60af8a;
+    padding: 8px;
+    position: absolute;
+    bottom: 8px;
+    right: 9px;
+    border-radius: 5px;
+    color: white;
 }
 
 .myPageRightWrapInfoModWrap{
@@ -268,7 +290,7 @@ display: flex;
 .myPageRightWrapForm::-webkit-scrollbar-thumb {
     border-radius: 18px;
     width: 5px;
-    background-color: rgb(199 172 11);
+    background-color: #4b85a9;
 }
 
 .myPageRightWrapForm::-webkit-scrollbar-track {
@@ -345,7 +367,7 @@ display: flex;
 }
 
 .myPageModBtn:hover:enabled{
-    color : #2bcb1a;
+    color : #068ec5;
 }
 
 
@@ -356,119 +378,210 @@ display: flex;
     background-size:contain;
     background-repeat: no-repeat;
 }
+li{
+    position: relative;
+}
 
 .couponWrap{
-    background-color: #ffec78;
-        height: 143px;
-        width: 420px;
-        padding-left: 15px;
-        border-radius: 10px;
-        box-shadow: 1px 2px 4px;
-        margin-bottom: 12px;
+    background-color: #c2e3f7;
+    height: 143px;
+    width: 363px;
+    padding-left: 15px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 4px;
+    margin-bottom: 16px;
+}
+.circle.circle2 {
+    left: 339px;
+}
+.circle {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    background: white;
+    z-index: 1;
+    border-radius: 100px;
+    top: 33px;
+    left: -57px;
 }
 
 .couponInfoLeft{
     display: inline-block;
     float: left;
     height: 100px;
-    width: 245px;
+    width: 282px;
     margin-top: 5px;
-    padding-left: 20px;
+    padding-left: 23px;
+    margin-left: -15px;
 }
 
 .couponInName{
-    width: 100%;
-    height: 50px;
-    line-height: 65px;
-    font-size: 13px;
-    padding-left: 20px;
+    width: 281px;
+    /* height: 50px; */
+    /* line-height: 40px; */
+    font-size: 12px;
+    padding-left: 16px;
+    text-align: center;
+    padding-top: 14px;
+    margin-left: -15px;
+    /* margin-top: 5px; */
+    font-weight: bold;
 }
 .couponInfoRight{
-    display: inline-block;
-    height: 100px;
-    width: 130px;
-    margin-top: 5px;
-    padding-left: 20px;
+    height: 100%;
+    width: 82px;
+    position: absolute;
+    /* margin-top: 5px; */
+    /* padding-left: 20px; */
+    float: right;
+    top: 0;
+    right: 0;
+    border-left: 4px dashed #068ec5;
 }
 
 #couponInfoTitle{
-    margin-bottom : 10px;
-    font-size: 22px;
+    font-size: 48px;
     font-weight: 700;
-    color: #005c87;
+    color: #068ec5;
+    text-align: center;
+    /* padding-left: 9px; */
+    padding-top: 14px;
 }
 
 #couponInfoGarrent{
-    width: 330px;
-    font-size: 16px;
-    margin-top: 25px;
+    /* width: 226px; */
+    font-size: 12px;
+    margin-top: 21px;
+    text-align: center;
 }
 
 #couponInfoAt{
     font-size: 15px;
-    width: 130px;
+    /* width: 130px; */
     height: 30px;
-    text-align: right;
+    /* text-align: right; */
+    /* padding-right: 16px; */
+    text-align: center;
+    font-weight: bold;
+    padding-top: 63px;
 }
 
 .nocouponinfo,.noPayinfo{
-    font-size: 25px;
+font-size: 25px;
 }
 
 #oneanswerdiv{
-    text-align: center;
-    margin-top: -30px;
-    margin-bottom: 30px;
+text-align: center;
+margin-top: -30px;
+margin-bottom: 30px;
 }
 #oneanswer{
-    text-decoration: underline;
+text-decoration: underline;
 }
 
 .qnarightform {
   width: 400px;
+  margin-top: 8px;
+}
+
+.qnaWrap{
+    border: 3px solid black;
+    margin-bottom: 15px;
+    border-radius : 10px;
 }
 
 .qnatitlediv{
-    width: 400px;
+    width: 390px;
     height: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 20px;
+    border-bottom: 3px dashed;
+}
+
+.qnatitlediv>p{
+    padding-left: 10px;
 }
 
 .qnacontentdiv{
-    width: 400px;
+    width: 390px;
     height: 200px;
     line-height: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 3px dashed ;
+}
 
+.qnacontentdiv>p{
+    width: 380px;
+    padding: 10px 10px 0 10px;
+    text-align: justify;
 }
 
 .qnanoanswerdiv{
     width: 400px;
-    height: 50px;
-    line-height: 20px;
-    color: #7171fd;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
 }
 
 .qnaanswerdiv{
     width: 400px;
-    height: 200px;
+    height: 150px;
     line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.qnanoanswerdiv>p{
+    width: 325px;
+    color: #068ec5;
+    height: 60px;
+    float: right;
+}
+
+.qnaanswerdiv>p{
+    width: 340px;
     color: #7171fd;
+    padding: 20px 20px 0 10px;
+    height: 200px;
+    float: right;
+    text-align: justify;
+
+
+
 }
 
 .qnaregatdiv{
-    border-top: 1px solid black;
+    text-align: right;
+    margin-top: 8px;
+    padding-right: 8px;
 }
 
 .QnaResultListDiv{
-    font-size:25px;
-    text-align:center;
+font-size:25px;
+text-align:center;
 }
 
 .delmembertype{
-    margin-bottom : 30px;
+margin-bottom : 30px;
+}
+
+.answerIcon{
+    height: 200px;
+    float: left;
+
+}
+
+.answernoIcon{
+    height: 60px;
+    float: left;
+
+}
+
+.answerIcon>img,.answernoIcon>img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+
 }
 
 
