@@ -216,5 +216,8 @@ td{
 .moreBtnBottom, .qnaCotain{
     padding-bottom: 31px;
 }
-
-
+.adcontent {
+    white-space: normal;
+    width: 300px;
+    line-height: 20px;
+}
