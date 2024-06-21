@@ -77,7 +77,7 @@
 }
 .commNoDeContent{
     /*background-color: lightseagreen;*/
-    width: 1000px;
+    width: 850px;
     /*height: 800px;*/
     margin: 0 auto;
     padding: 90px 0;
@@ -325,4 +325,7 @@ img.stickerS5 {
     left: 0;
     top: 670px;
     width: 151px;
+}
+.commNoDeContent p{
+    line-height: 25px;
 }
