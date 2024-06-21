@@ -17,7 +17,7 @@
                 <button type="button" class="admin-btn" id="aBtn5">게시글관리</button>
                 <button type="button" class="admin-btn" id="aBtn6">댓글관리</button>
                 <button type="button" class="admin-btn" id="aBtn7">쿠폰관리</button>
-                <button type="button" class="admin-btn" id="aBtn8">1:1문의 관리</button>
+                <button type="button" class="admin-btn" id="aBtn8">CS관리</button>
             </div>
 
             <!--cate 별 내용-->
@@ -203,7 +203,12 @@
                     <table >
                         <thead>
                         <tr>
-                            <th> Board_No</th>
+                            <th>No</th>
+                            <th>User_id</th>
+                            <th style="width: 250px;">Title</th>
+                            <th style="width: 300px;">Content</th>
+                            <th>RegAt</th>
+                            <th>Answer</th>
                         </tr>
                         </thead>
                         <tbody id="adminqnaList">
@@ -211,6 +216,28 @@
                     </table>
                     <div>
                         <button type="button" id="adminQnABtn" class="adminmoreBtn" data-page="1" data-cate="adqna" style="visibility:hidden; margin-top: 11px">더보기 +</button>
+                    </div>
+
+                    <!--문의 답변 작성 라인-->
+                    <div id="adminQnA" style="display: none">
+<!--                        <p>1:1 문의글</p>-->
+<!--                        <p>id : </p>-->
+<!--                        <p>Title : </p>-->
+<!--                        <p>QnA Content : </p>-->
+<!--                        <p>Answer-->
+<!--                            <textarea></textarea>-->
+<!--                        </p>-->
+<!--                        <button type="button">문의답변</button>-->
+                    </div>
+
+                    <!--문의 답변 확인 라인 -->
+                    <div id="adminQnA_answer" style="display: none">
+                        <p>1:1 문의글 - 회신완료</p>
+                        <p>id : </p>
+                        <p>Title : </p>
+                        <p>QnA Content : </p>
+                        <p>Answer : </p>
+                        <button type="button">확인</button>
                     </div>
                 </div>
             </div>

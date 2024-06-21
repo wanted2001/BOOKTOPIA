@@ -26,23 +26,20 @@ document.addEventListener('click',(e)=>{
     if(e.target.id==='kakaoPayBtn'){
         changeCss(kakaoCss);
         changeNonCss(tossCss,paycoCss,kgCss);
-        // e.target.closest('.payM').className+='kakao';
         pg='kakaopay.TC0ONETIME';
         request_pay(pg);
     } else if(e.target.id==='tossBtn'){
         changeCss(tossCss);
         changeNonCss(kakaoCss,paycoCss,kgCss);
-        // e.target.closest('.payM').setAttribute("data-btn","toss");
         pg='tosspayments.iamporttest_3';
         request_pay(pg);
     } else if(e.target.id==='paycoBtn') {
         changeCss(paycoCss);
         changeNonCss(kakaoCss,tossCss,kgCss);
-        e.target.closest('.payM').setAttribute("data-btn","kg");
+        alert('현재 사용할 수 없는 결제 수단입니다.');
     } else if(e.target.id==='kgBtn'){
         changeCss(kgCss);
         changeNonCss(kakaoCss,paycoCss,tossCss);
-        e.target.closest('.payM').setAttribute("data-btn","kg");
         pg='html5_inicis.INIpayTest';
         request_pay(pg);
     }
@@ -61,7 +58,7 @@ function changeNonCss(payM1,payM2,payM3){
         "margin-top:14px; text-align:center; line-height:23px; width:437px; box-shadow:none";
 }
 
-function request_pay(){
+function request_pay(pg){
     let ordaddr = document.getElementById('addrInput').value;
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
@@ -125,7 +122,7 @@ function request_pay(){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='신규회원 1개월 구독권 100% 할인'){
+                    } else if(coupon==='신규회원 1개월 구독권 99% 할인'){
                         console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
@@ -136,8 +133,8 @@ function request_pay(){
                             ordPhone: ordPhone,
                             ordAddr:ordaddr+"/"+ordaddrdetail,
                             itemName:item_name,
-                            totalAmount:amountInput*0.99,
-                            saleAmount:amountInput,
+                            totalAmount:amount,
+                            saleAmount:amountInput*0.99,
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
@@ -295,7 +292,7 @@ function discountAmount(amount){
     } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
         couNo=1;
         return amount;
-    } else if(coupon==='신규회원 1개월 구독권 100% 할인') {
+    } else if(coupon==='신규회원 1개월 구독권 99% 할인') {
         amount=amount-amount;
         couNo=3;
         return amount;
@@ -339,7 +336,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-    } else if(couponName==='신규회원 1개월 구독권 100% 할인'){
+    } else if(couponName==='신규회원 1개월 구독권 99% 할인'){
         console.log('0원쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{

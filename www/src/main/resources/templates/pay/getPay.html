@@ -53,27 +53,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="payMethodBox">
-                        <div class="payMethodDiv">결제수단</div>
-                        <div class="payMethodInner">
-                                <div class="kakaoPayM payM" id="kakaoPayBtn" data-btn="">
-                                    <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
-                                    <div class="kakaoPayText payMText btnVal">카카오페이</div>
-                                </div>
-                                <div class="tossM payM" id="tossBtn" data-btn="">
-                                    <img th:src="@{/image/toss.png}">
-                                    <span class="btnVal">토스</span>
-                                </div>
-                                <div class="paycoM payM" id="paycoBtn" data-btn="">
-                                    <img th:src="@{/image/payco.png}">
-                                    <span class="btnVal">페이코</span>
-                                </div>
-                                <div class="kgM payM" id="kgBtn" data-btn="">
-                                    <img th:src="@{/image/kg-t.png}">
-                                    <span class="btnVal">신용카드</span>
-                                </div>
-                        </div>
-                    </div>
                     <div class="payCouponBox">
                         <div class="payCouponDiv">쿠폰 선택하기</div>
                             <select id="coupon">
@@ -93,8 +72,27 @@
                             <div class="totalAmountDiv"><span>총 결제 금액</span><span class="amountDiv won">[[${ssivo.subInPrice}]]원</span></div>
                         </div>
                     </div>
-                    <div class="paymentBtn">
-                        <button type="button" class="payBtn" onclick="request_pay()">결제하기</button>
+                    <div class="payMethodBox">
+                        <hr class="hr">
+                        <div class="payMethodDiv">결제수단을 선택해주세요.</div>
+                        <div class="payMethodInner">
+                            <div class="kakaoPayM payM" id="kakaoPayBtn" data-btn="">
+                                <div class="kakaopaydiv"><img th:src="@{/image/kakaoPay.png}"></div>
+                                <div class="kakaoPayText payMText btnVal">카카오페이</div>
+                            </div>
+                            <div class="tossM payM" id="tossBtn" data-btn="">
+                                <img th:src="@{/image/toss.png}">
+                                <span class="btnVal">토스</span>
+                            </div>
+                            <div class="paycoM payM" id="paycoBtn" data-btn="">
+                                <img th:src="@{/image/payco.png}">
+                                <span class="btnVal">페이코</span>
+                            </div>
+                            <div class="kgM payM" id="kgBtn" data-btn="">
+                                <img th:src="@{/image/kg-t.png}">
+                                <span class="btnVal">신용카드</span>
+                            </div>
+                        </div>
                     </div>
                 </th:block>
             </form>

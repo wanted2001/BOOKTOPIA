@@ -10,6 +10,12 @@
     <th:block th:fragment="content">
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
         <div class="wrap">
+            <div class="sticker">
+                <img th:src="@{/image/sticker_bc.png}" class="stickerBC">
+                <img th:src="@{/image/sticker_pla1-removebg-preview.png}" class="stickerP1">
+                <img th:src="@{/image/sticker_star3-removebg-preview.png}" class="stickerS3">
+                <img th:src="@{/image/sticker_star5-removebg-preview.png}" class="stickerS5">
+            </div>
             <!--목록으로 돌아가기-->
             <div class="commListBtn"><a th:href="@{/community/communityListAll}">목록으로 돌아가기 <img th:src="@{/image/arrow_icon.png}" width="11px" height="11px"></a></div>
             <div class="commDeArea">

@@ -20,18 +20,21 @@ callCouponInfo(idVal).then(result => {
         result.forEach(item => {
             // 새로운 리스트 아이템 생성
             const li = document.createElement("li");
+            let couponInfo =`${item.adCouInfo}`;
+            let couponPercent = couponInfo.substring(couponInfo.indexOf("%")-2,couponInfo.indexOf("%")+1);
             // 각 필드 값을 리스트 아이템에 추가
             li.innerHTML = `
+                <div class="circle"></div>
                 <div class="couponWrap">
                     <div class="couponInName">${item.adCouName}</div>
                     <div class="couponInfoLeft">
-                        <div id="couponInfoTitle">${item.adCouName}</div>
+                        <div id="couponInfoTitle">${couponPercent}</div>
                         <div id="couponInfoGarrent">${item.adCouInfo}</div>
                     </div>
                     <div class="couponInfoRight">
                         ${item.couUse === "Y"
-                            ? '<div id="couponInfoAt">사용한 쿠폰입니다.</div>'
-                            : `<div id="couponInfoAt">유효기간 : ${item.adCouPeriod}</div>`}
+                            ? '<div id="couponInfoAt">사용완료</div>'
+                            : `<div id="couponInfoAt">${item.adCouPeriod}</div>`}
                     </div>
                 </div>`;
             // ul에 리스트 아이템 추가

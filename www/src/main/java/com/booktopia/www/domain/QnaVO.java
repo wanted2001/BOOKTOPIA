@@ -19,4 +19,5 @@ public class QnaVO {
     private String qnaRegAt; // 유저가 쓴 작성날짜
     private String qnaModAt; // 어드민이 쓴 날짜
 
+
 }
