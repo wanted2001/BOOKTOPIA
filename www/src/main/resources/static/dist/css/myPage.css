@@ -222,7 +222,7 @@ display: flex;
 
 #payInfoTitle {
     margin-bottom: 10px;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 700;
     color: #338760;
     padding: 15px 0 0 11px;
@@ -248,7 +248,7 @@ display: flex;
     font-size: 15px;
 }
 
-#payInfoAmount,#payInfoDelivery{
+#payInfoDelivery{
     width: 100px;
     height: 30px;
     font-size: 15px;
@@ -367,7 +367,7 @@ display: flex;
 }
 
 .myPageModBtn:hover:enabled{
-    color : #2bcb1a;
+    color : #068ec5;
 }
 
 
@@ -532,7 +532,7 @@ text-decoration: underline;
 
 .qnanoanswerdiv>p{
     width: 325px;
-    color: #7171fd;
+    color: #068ec5;
     height: 60px;
     float: right;
 }

@@ -207,6 +207,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    box-shadow: 4px 3px 13px -5px #dcdcdc42;
 }
 .commCntInfo{
     /*background-color: mintcream;*/
