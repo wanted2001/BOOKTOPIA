@@ -22,10 +22,18 @@
         </select>
 
         <select id="oneUserList" resultType="com.booktopia.www.domain.QnaVO">
-            select * from qna where id=#{id}
+            select * from qna where qna_num=#{qnaNum}
         </select>
 
         <update id="updateAnswer">
-            update qna set qna_answer=#{qnaAnswer}, qna_mod_at = now() where id =#{id}
+            update qna set qna_answer=#{qnaAnswer}, qna_mod_at = now() where qna_num = #{qnaNum}
         </update>
+
+        <update id="updateStatus">
+            update qna set qna_status = '답변완료' where qna_num = #{qnaNum}
+        </update>
+
+        <select id="getStatus" resultType="String">
+            select qna_status from qna where qna_num=#{qnaNum}
+        </select>
 </mapper>

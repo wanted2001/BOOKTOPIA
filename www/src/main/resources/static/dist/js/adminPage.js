@@ -3,12 +3,14 @@
 document.addEventListener('click', (e) => {
     const target = e.target;
     console.log(e.target);
+
     if (target.classList.contains('admin-btn')) {
         // admin cate 선택 부분
         e.preventDefault();
         const btnId = target.id;
         handleButtonClick(btnId);
-    } else if(e.target.classList.contains('adminapproval')){
+    }
+    else if(e.target.classList.contains('adminapproval')){
         // 배송현황 > 결제승인 버튼을 클릭 했을 때...
         const tr = e.target.closest('tr');
         let deliUid = tr.querySelector('.deliUid').innerText;
@@ -84,37 +86,59 @@ document.addEventListener('click', (e) => {
             }
         })
     } else if (e.target.classList.contains('qnaStatus')){
-        const id = e.target.dataset.id; // 버튼라인의 id
-        const title = e.target.dataset.title; // 버튼라인의 문의제목
-        const content = e.target.dataset.content; // 버튼라인의 문의내용
-        const buttonStatus = e.target.innerText; // 버튼의 상태
-
-        qnaOneUserToServer(id).then(result =>{
+        const num = e.target.dataset.num;
+        qnaOneUserToServer(num).then(result =>{
             console.log(result);
-            if(result === "1"){
+            console.log(result[0].qnaNum);
+            console.log(result[0].qnaStatus);
+            if(result[0].qnaStatus === '답변대기중'){
                 document.getElementById('adminQnA').style.display = 'block';
                 const div = document.getElementById('adminQnA');
                 let p = `<p>1:1 문의글</p>`;
-                    p += `<p>id : ${id}</p>`
-                    p += `<p>Title : ${title}</p>`;
-                    p += `<p>Content : ${content}</p>`;
-                    p += `<p>Answer : <textarea class="adminsAnswer"></textarea> </p>`;
-                    p += `<button type="button" class="answeBtn">답변 회신</button>`;
+                p += `<p class="adminqnaNum" data-qna="${result[0].qnaNum}"></p>`;
+                p += `<p>id : ${result[0].id}</p>`
+                p += `<p>Title : ${result[0].qnaTitle}</p>`;
+                p += `<p>Content : ${result[0].qnaContent}</p>`;
+                p += `<p>Answer : <textarea class="adminsAnswer"></textarea> </p>`;
+                p += `<button type="button" class="answerBtn">답변 회신</button>`;
 
-                    div.innerHTML += p;
+                div.innerHTML += p;
+            } else if(result[0].qnaStatus === '답변완료'){
+                document.getElementById('adminQnA_answer').style.display = 'block';
+                const div = document.getElementById('adminQnA_answer');
+                let p = `<p>1:1 문의글 - 회신완료</p>`;
+                p += `<p>id : ${result[0].id}</p>`
+                p += `<p>Title : ${result[0].qnaTitle}</p>`;
+                p += `<p>Content : ${result[0].qnaContent}</p>`;
+                p += `<p>Answer : ${result[0].qnaAnswer}</p>`;
+                p += `<button type="button" class="qnaClose">X</button>`
+                div.innerHTML += p;
             }
         })
-    } else if (e.target.classList.contains('answeBtn')){
-        const id = document.querySelector('.qnaStatus').dataset.id;
+    } else if (e.target.classList.contains('answerBtn')){
         const qnaAnswer = document.querySelector('.adminsAnswer').value;
-        console.log(qnaAnswer);
-        console.log(id);
-        qnaAnserToServer(qnaAnswer, id).then(result =>{
+        const qnaNum = document.querySelector('.adminqnaNum').dataset.qna;
+
+        qnaAnserToServer(qnaAnswer, qnaNum).then(result =>{
             console.log(result);
+            alert("문의 답변 완료");
+
+            updateQnaStatusToServer(qnaNum).then(result =>{
+                console.log(result);
+                document.getElementById('adminQnA').style.display = 'none';
+                document.getElementById('adminQnA').innerHTML = '';
+                document.querySelector('.qnaStatus').style.backgroundColor = "#005c87"
+                document.querySelector('.qnaStatus').style.color = "white";
+            })
 
         })
+    } else if(e.target.classList.contains('qnaClose')){
+        document.getElementById('adminQnA_answer').style.display = 'none';
+        document.getElementById('adminQnA_answer').innerHTML = '';
     }
 });
+
+
 
 // 관리자 페이지 내용 변경 부분
 function handleButtonClick(btnId) {
@@ -276,7 +300,7 @@ function spreadList(cate, page=1){
                         let td = `<td class="deliUid">${deli.merchantUid}</td>`;
                         td += `<td>${deli.itemName}</td>`;
                         td += `<td>${deli.deliDate}</td>`;
-                        td += `<td class="deliStatus">${deli.deliStatus}</td>`;
+                        td += `<td class="deliStatus" style="width: 110px;">${deli.deliStatus}</td>`;
                         td += `<td><button type="button" class="adminapproval">${deli.deliStatus}</button></td>`;
 
                         tbody.innerHTML += td;
@@ -410,8 +434,9 @@ function spreadList(cate, page=1){
                             td += `<td>${qna.qnaTitle}</td>`;
                             td += `<td>${qna.qnaContent}</td>`;
                             td += `<td>${qna.qnaRegAt}</td>`;
-                            td += `<td style="text-align: center"><button type="button" class="qnaStatus" data-id="${qna.id}" data-title="${qna.qnaTitle}" data-content="${qna.qnaContent}">답변대기중</button></td>`;
-
+                            td += `<td><button type="button" class="qnaStatus" data-num="${qna.qnaNum}" 
+                                    data-id="${qna.id}" data-title="${qna.qnaTitle}" data-content="${qna.qnaContent}"
+                                    data-status="${qna.qnaStatus}">${qna.qnaStatus}</button></td>`;
                             tbody.innerHTML += td;
                     }
                     let moreBtn = document.getElementById('adminQnABtn');
@@ -519,19 +544,19 @@ async function getQnaList(pageNo){
 }
 
 // 하나의 데이터만 불러오기
-async function qnaOneUserToServer(id){
+async function qnaOneUserToServer(num){
     try{
-        const url = "/admin/adminOneUser/"+id;
+        const url = "/admin/adminOneUser/"+num;
         const config = {
             method : "POST",
             headers : {
                 "Content-type":"application/json; charset=UTF-8"
             },
-            body : JSON.stringify(id)
+            body : JSON.stringify(num)
         };
 
         const resp = await fetch(url, config);
-        const result = await resp.text();
+        const result = await resp.json();
         return result;
 
     }catch (erorr){
@@ -540,9 +565,9 @@ async function qnaOneUserToServer(id){
 }
 
 // 문의글 답변 전달하기
-async function qnaAnserToServer(qnaAnswer, id){
+async function qnaAnserToServer(qnaAnswer, qnaNum){
     try{
-        const url = "/admin/qnaAnswer/"+qnaAnswer+"/"+id;
+        const url = "/admin/qnaAnswer/"+qnaAnswer+"/"+qnaNum;
         const config = {
             method : "POST",
             headers : {
@@ -557,6 +582,39 @@ async function qnaAnserToServer(qnaAnswer, id){
     }catch (error){
         console.log(error);
     }
+}
+
+async function updateQnaStatusToServer(qnaNum){
+    try {
+        const url = "/admin/qnaStatus/"+qnaNum;
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type":"application/json; charset=UTF-8"
+            },
+            body : JSON.stringify(qnaNum)
+            };
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+        }catch (error){
+            console.log(error);
+        }
+}
+
+async function getQnaStatusFromServer(qnaNum){
+    try {
+        const url = "/admin/qnaStatus/"+qnaNum;
+        const config = {
+            method : "GET",
+        };
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+    }catch (error){
+        console.log(error);
+    }
+
 }
 
 // 게시글 관리 > 삭제

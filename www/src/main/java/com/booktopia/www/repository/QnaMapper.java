@@ -18,8 +18,14 @@ public interface QnaMapper {
 
     List<QnaVO> getList(PagingVO qnaPgvo);
 
-    void oneUserList(String id);
+//    String oneUserList(int qnaNum);
 
 
-    void updateAnswer(@Param("qnaAnswer") String qnaAnswer, @Param("id") String id);
+    void updateAnswer(@Param("qnaAnswer") String qnaAnswer, @Param("qnaNum") int qnaNum);
+
+    void updateStatus(int qnaNum);
+
+    String getStatus(int qnaNum);
+
+    List<QnaVO> oneUserList(int qnaNum);
 }

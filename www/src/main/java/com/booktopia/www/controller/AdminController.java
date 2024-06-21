@@ -234,25 +234,46 @@ public class AdminController {
     }
 
     // 문의글 하나의 리스트만 가져오기
-    @PostMapping("/adminOneUser/{id}")
+    @PostMapping("/adminOneUser/{qnaNum}")
     @ResponseBody
-    public String oneUser(@PathVariable("id") String id){
+    public List<QnaVO> oneUser(@PathVariable("qnaNum") int qnaNum){
         log.info("controller in >>> ");
-        log.info("id >>> {}", id);
-        qnaMapper.oneUserList(id);
-        return "1";
+        log.info("num >>> {}", qnaNum);
+
+        List<QnaVO> qnaList = qnaMapper.oneUserList(qnaNum);
+        log.info("qnaList >>> {}", qnaList);
+        return qnaList;
+//        return qnaMapper.oneUserList(qnaNum);
     }
 
-    @PostMapping("/qnaAnswer/{qnaAnswer}/{id}")
+    // 문의글 답변 구문
+    @PostMapping("/qnaAnswer/{qnaAnswer}/{qnaNum}")
     @ResponseBody
-    public String updateAnswer(@PathVariable("qnaAnswer") String qnaAnswer, @PathVariable("id")String id){
+    public String updateAnswer(@PathVariable("qnaAnswer") String qnaAnswer, @PathVariable("qnaNum")int qnaNum){
         log.info("qnaAnswer >>> {}", qnaAnswer);
-        log.info("id >>> {}", id);
+        log.info("id >>> {}", qnaNum);
 
-        qnaMapper.updateAnswer(qnaAnswer, id);
+        qnaMapper.updateAnswer(qnaAnswer, qnaNum);
         return "1";
     }
 
+    // 문의글 상태 구문
+    @PostMapping("/qnaStatus/{qnaNum}")
+    @ResponseBody
+    public String updateStatus(@PathVariable("qnaNum") int qnaNum){
+        log.info("qnaNum >>> {}", qnaNum);
+
+        qnaMapper.updateStatus(qnaNum);
+        return "1";
+    }
+
+    // 문의글 상태 가져오기
+    @GetMapping("/qnaStatus/{qnaNum}")
+    @ResponseBody
+    public String getStatus(@PathVariable("qnaNum") int qnaNum){
+        log.info("qnaNum >>> {}", qnaNum);
+        return qnaMapper.getStatus(qnaNum);
+    }
 
     //배송현황 구문 (배송준비중 > 결제승인/배송)
     @PostMapping("/deliUid")

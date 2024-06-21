@@ -156,5 +156,11 @@ td{
 
 .qnaStatus{
     width: 100px;
+    height: 31px;
     font-weight: 700;
+    text-align: center;
+    padding: 0;
+    background-color: #005c87;
+    color: white;
 }
+
