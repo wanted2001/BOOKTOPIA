@@ -46,9 +46,7 @@
                         <div class="myPageModInputFormWrap">
                             <div class="myPageModInputFormText">전화번호</div>
                             <div class="mypageModInputFormData">
-                                <input type="text" name="phone"
-                                       th:value="${#authentication.getPrincipal().userVO.getPhone() == null ? '' :
-                                       #authentication.getPrincipal().userVO.getPhone()}" id="modifyPhone">
+                                <input type="text" name="phone" id="modifyPhone">
                                 <div class="pencil" style="background-image: url(../image/penLine.png"></div>
                             </div>
                         </div>

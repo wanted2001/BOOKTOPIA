@@ -36,6 +36,7 @@
                     <th:block th:with="auth=${#authentication.getPrincipal()}">
                         <li class="userName" sec:authorize="!hasAuthority('ROLE_ADMIN')">
                             <a class="cate" th:href="@{/user/myPage}" id="userId">마이페이지</a>
+
                         </li>
                         <li class="cate logout"><a th:href="@{/user/logout}" id="logoutuser">로그아웃</a></li>
 

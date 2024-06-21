@@ -96,6 +96,11 @@ public class UserServiceImpl implements UserService {
         return couponMapper.getcoulist(id);
     }
 
+    @Override
+    public UserVO getcallinfo(String id) {
+        return userMapper.getcallinfo(id);
+    }
+
 
     @Override
     public int findPwCheck(UserVO uvo) {
