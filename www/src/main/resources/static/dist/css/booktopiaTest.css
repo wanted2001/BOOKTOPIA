@@ -23,9 +23,7 @@
     width: 1000px;
     margin: 0 auto;
 }
-/*.testwrapContain{*/
-/*    linear-gradient()*/
-/*}*/
+
 .wrap{
     background-image: url("/image/testBack_white.png");
     background-size: contain;
@@ -61,7 +59,6 @@
 .test{
     margin: 0 auto;
     height: 630px;
-    /*background-color: antiquewhite;*/
     display: block;
     position: relative;
     
@@ -70,7 +67,6 @@
     width: 500px;
     height: 70px;
     margin-top: 5px;
-    /*background-color: rgb(7, 10, 183);*/
     position: absolute;
     transform: translate(250px, 30px);
 }
@@ -104,7 +100,6 @@
     transform: translate(250px, 117px);
 }
 .content-detail, #questionInfo, #resultDiv{
-    /*background-color: bisque;*/
     position: absolute;
     transform: translate(10px, 30px);
     width: 480px;
@@ -124,7 +119,6 @@
     width: 250px;
     height: 54px;
     border-radius: 35px;
-    /*box-shadow: 0px 1px 5px #5b5b53;*/
     background: none;
     color: black;
     border: 1px solid #ffffff6b;
@@ -165,7 +159,6 @@
     width: 350px;
     margin: 25px auto 25px;
     padding: 30px;
-    /*position: absolute;*/
 }
 #questionInfo>.innerText> p,
 #questionInfo>.innerText> input:nth-of-type(1)

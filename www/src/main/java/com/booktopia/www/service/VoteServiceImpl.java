@@ -20,7 +20,6 @@ public class VoteServiceImpl implements VoteService {
 
         voteMapper.insert(voteVO);
         log.info(">>> voteVO result 값 >>>>> {}", voteVO.getVoteResult());
-//        if(voteVO.getVoteResult().equals("찬성")){
         if("찬성".equals(voteVO.getVoteResult())){
             systemInfoMapper.agreeUp();
         } else {

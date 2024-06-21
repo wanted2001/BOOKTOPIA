@@ -4,7 +4,7 @@
 <th:block th:fragment="setFragment(content)">
     <head>
         <meta charset="UTF-8">
-        <title>Booktopia Test</title>
+        <title>북토피아에 오신것을 환영합니다.</title>
         <link rel="stylesheet" th:href="@{/dist/css/header.css}">
         <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
         <link rel="stylesheet" th:href="@{/dist/css/footer.css}">
@@ -50,19 +50,6 @@
     <div class="content-fluid">
         <th:block th:replace="${content}"></th:block>
     </div>
-
-<!--    <footer>-->
-<!--        <div class="flogo">로고</div>-->
-<!--        <div>-->
-<!--            <ul>-->
-<!--                <li class="fli"><a href="#">공지사항</a></li>-->
-<!--                <li class="fli"><a href="#">이용안내</a></li>-->
-<!--                <li class="fli"><a href="#">개인정보처리방침</a></li>-->
-<!--                <li class="fli"><a href="#">FAQ</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </footer>-->
-
     <script th:src="@{/dist/js/chatBot.js}"></script>
     <script th:src="@{/dist/js/header.js}"></script>
     </body>

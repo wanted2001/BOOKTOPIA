@@ -14,7 +14,6 @@
 footer{
     width: 1400px;
     height: 80px;
-   /* background-color: bisque;*/
     margin: 0 auto;
     display: flex;
     justify-content: space-around;

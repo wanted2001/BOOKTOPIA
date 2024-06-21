@@ -8,7 +8,6 @@
     font-weight: 700;
 }
 .admin-cate {
-    /*background-color: #7a7a7a;*/
     width: 200px;
     margin: 10px;
     float: left;
@@ -27,7 +26,6 @@ button {
 }
 
 .cate-detail{
-    /*background-color: #0086ff;*/
     width: 1050px;
     height: 1000px;
     margin: 10px;
@@ -64,9 +62,7 @@ td{
     margin-right: 30px;
     width: 105px;
 }
-.adminCouponAdd > .couponaddTable{
 
-}
 .adminCouponAdd > .couponaddTable > .coupondiv > input{
     background-color: #ededed;
     width: 300px;
@@ -176,7 +172,6 @@ td{
 
 .bottom{
     margin-bottom: 15px;
-    /*font-weight: 700;*/
 }
 #adminQnA, #adminQnA_answer{
     width: 965px;

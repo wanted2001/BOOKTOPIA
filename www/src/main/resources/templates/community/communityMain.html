@@ -5,7 +5,6 @@
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block ses:authorize = "isAuthenticated()">
     <th:block th:fragment="content">
-<!--        <form action="/community/push" method="post">-->
         <div class="wrap">
             <div class="yhidden">
             <div class="commVote">
@@ -17,7 +16,6 @@
                     <input type="hidden" th:with="auth=${#authentication.getName()}" th:value="${auth}" name="id" id="commuUser">
                     <!--찬성 버튼-->
                     <div class="commVoteUp vote" id="voteUp">
-<!--                        <input type="text" th:with="score=${score}" th:value="${score}">-->
                         <button type="submit" class="upBtn voteBtn" name="voteResult" th:value="찬성" >
                             <img th:src="@{/image/thumbs-3.png}" alt="투표이미지" id="upImg">
                         </button>
@@ -134,7 +132,6 @@
             }
         </script>
         <script th:src="@{/dist/js/voteButton.js}"></script>
-<!--        </form>-->
     </th:block>
     </th:block>
 </th:block>

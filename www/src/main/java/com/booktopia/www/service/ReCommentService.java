@@ -11,5 +11,4 @@ public interface ReCommentService {
 
     int deleteCommentFromBoard(long bno);
 
-//    PagingHandler getReCommentList(int cno, PagingVO pgvo);
 }

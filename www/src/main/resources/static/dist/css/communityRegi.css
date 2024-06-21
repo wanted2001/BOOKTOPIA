@@ -11,7 +11,6 @@
     font-weight: normal;
 }
 .commUl{
-    /* background-color: yellow; */
     margin-left: 30px;
     width: 120px;
 }
@@ -23,13 +22,12 @@
     padding: 12px 0;
     width: 100%;
     border-bottom: 1px solid rgb(169, 169, 169,0.3);
-     /*background-color: tan;*/
 }
 .commUl ul li a{
     color : #7a7a7a;
     font-size: 16px;
 }
-/* 셀렉트 제작 0602 */
+
 .commRegiCate{
     width: 130px;
     position: relative;
@@ -40,8 +38,6 @@
     padding: 12px 14px;
     font-size: 14px;
     line-height: 14px;
-    /* border-bottom: 1px solid #C4C4C4; */
-    /* border-radius: 10px; */
     box-sizing: border-box;
     cursor: pointer;
     text-align: left;
@@ -58,13 +54,11 @@
     display: none;
     position: absolute;
     width: 100%;
-    /* top: 49px; */
     z-index: 1000;
     left: 0;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     box-shadow: 4px 4px 14px rgba(0, 0, 0,0.15);
-    /* border-radius: 5px; */
     background-color: white;
     margin-left: 18px;
 }
@@ -88,33 +82,26 @@
 .commWrap{
     width: 100%;
     margin: 20px 0;
-    /* background-color: lightpink; */
 }
 .commToast{
     float: right;
     width: 1150px;
-    /* background-color: antiquewhite; */
     margin: -305px 40px 0 0;
 }
 .WriterArea{
-    /*background-color: hotpink;*/
     margin-bottom: 15px;
     margin-left: 3px;
     font-size: 14px;
     color: #4c4c4c;
 }
 .commWriterArea{
-    /*background-color: #0086ff;*/
     color: #4c4c4c;
 }
 .commSaveId{
-    /*background-color: lightblue;*/
     display: inline-block;
     color: #4c4c4c;
 }
 .commTitle{
-    /* width: 1100px;
-    margin: 0 auto 15px; */
     display: block;
     width: 1150px;
     margin: 0 auto 15px;

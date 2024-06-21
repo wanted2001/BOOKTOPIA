@@ -86,13 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
       });
 
-
-    // 수정 완료 메시지 처리
-    const msg = /*[[${msg}]]*/ '';
-    if (msg) {
-        alert("수정이 완료 되었습니다.");
-    }
-
     // 버튼 클릭 이벤트 설정
     document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageQna').forEach(button => {
         button.addEventListener('click', (e) => {

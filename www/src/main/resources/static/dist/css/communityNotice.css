@@ -60,20 +60,16 @@
     padding: 30px;
 }
 .commDeComment{
-    /*background-color: mediumvioletred;*/
     margin: 0 auto;
 }
 .comm-CommInputArea{
     background-color: white;
     width: 940px;
     margin: 20px auto;
-    /*height: 180px;*/
 }
 .comm-CommInput{
-    /*background-color: darkgray;*/
     width: 940px;
     height: 195px;
-    /*margin-left: -20px;*/
 }
 .comm-Comment{
     width: 889px;

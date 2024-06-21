@@ -6,14 +6,11 @@
     <th:block th:fragment="content">
         <!--booktopia Test css-->
         <link rel="stylesheet" th:href="@{/dist/css/booktopiaTest.css}">
-
         <form action="/booktopiaTest/test" method="post" id="bookTest">
             <div class="wrap">
-<!--                <img th:src="@{/image/testBack.png}" class="testBack">-->
                 <img  style="background-image: url(/image/testBack_white.png)">
                 <div class="test-contain">
                     <div class="test-title">
-<!--                        <img class="icon" th:src="@{|/image/testIcon.png|}">-->
                         <div class="title">
                             <h1>나의 책 취향을 알 수 있는</h1>
                             <h1>퍼스널북 테스트</h1>
@@ -26,7 +23,6 @@
                             </div>
                         </div>
                         <div class="test-content">
-<!--                            <img th:src="@{/image/testBox.png}">-->
                             <div id="questionInfo" style="display:block;">
                                 <div class="innerText">
                                     <input type="hidden" name="id" th:with="auth=${#authentication.getPrincipal.userVO.getId()}" id="commuUser" th:value="${auth}">

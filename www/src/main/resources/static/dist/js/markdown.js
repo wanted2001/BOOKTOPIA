@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.commContent').forEach(function(contentElement) {
         const markdownText = contentElement.textContent.trim();
         let htmlContent = converter.makeHtml(markdownText);
-        // console.log(markdownText)
-        // console.log(htmlContent);
 
         function removeMarkdownSyntax(text) {
             // 제목 제거 (예: ### Title)
@@ -28,15 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         htmlContent = removeMarkdownSyntax(htmlContent);
         contentElement.innerHTML = htmlContent;
-        // console.log(htmlContent);
 
     });
 
     document.querySelectorAll('.commDeContent').forEach(function(contentElement) {
         const markdownText = contentElement.textContent.trim();
         let htmlContent = converter.makeHtml(markdownText);
-        // console.log(markdownText)
-        // console.log(htmlContent);
 
         function removeMarkdownSyntax(text) {
             // 제목 제거 (예: ### Title)
@@ -57,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         htmlContent = removeMarkdownSyntax(htmlContent);
         contentElement.innerHTML = htmlContent;
-        // console.log(htmlContent);
 
     });
 

@@ -19,7 +19,6 @@
     cursor: pointer;
 }
 .chatBotText{
-    /*display: none;*/
     float: right;
     transform: translate(-439px, 39px);
     width: 398px;
@@ -71,7 +70,6 @@
 }
 .textBody{
     height: 60%;
-    /*line-height: 330px;*/
     border: 2px solid gray;
     background-repeat: no-repeat;
     background-position: center;
@@ -115,7 +113,6 @@
 
 .AnserText::-webkit-scrollbar {
     width: 5px;
-    /* background-color: aliceblue; */
 }
 .AnserText::-webkit-scrollbar-thumb {
     border-radius: 18px;

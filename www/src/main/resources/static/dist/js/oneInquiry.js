@@ -13,7 +13,6 @@ getAnsList(inquiryIdVal).then(result=>{
     }else{
         result.forEach(item => {
             const li = document.createElement("li");
-//            li.style.backgroundImage="url(/image/qnabackImage.jpg)";
             li.innerHTML =
             `<div class="qnaWrap">
                  <div class="qnaregatdiv">
