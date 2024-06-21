@@ -13,20 +13,22 @@ getAnsList(inquiryIdVal).then(result=>{
     }else{
         result.forEach(item => {
             const li = document.createElement("li");
+//            li.style.backgroundImage="url(/image/qnabackImage.jpg)";
             li.innerHTML =
             `<div class="qnaWrap">
                  <div class="qnaregatdiv">
-                    ${item.qnaRegAt}
+                    <p>${item.qnaRegAt.substring(0,10)}</p>
                  </div>
                 <div class="qnatitlediv">
-                    ${item.qnaTitle}
+                    <p>${item.qnaTitle}</p>
                 </div>
                 <div class="qnacontentdiv">
-                    ${item.qnaContent}
+                    <p>${item.qnaContent}</p>
                 </div>
                 ${item.qnaAnswer == null ?
-                   '<div class="qnanoanswerdiv">아직 답변을 받지 못했습니다.</div>'
-                   : `<div class="qnaanswerdiv">${item.qnaAnswer}</div>`
+                   '<div class="answernoIcon"><img src="/image/qnaanswerenter.png" alt="Answer Icon"></div><div class="qnanoanswerdiv"><p>아직 답변을 받지 못했습니다.</p></div>'
+                   : `<div class="answerIcon"><img src="/image/qnaanswerenter.png" alt="Answer Icon"></div>
+                   <div class="qnaanswerdiv"><p>${item.qnaAnswer}</p></div>`
                    }
             </div>`;
         ul.appendChild(li);
