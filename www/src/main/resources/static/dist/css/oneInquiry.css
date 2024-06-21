@@ -50,11 +50,14 @@
     border-radius: 3px;
     font-size: 14px; /* Adjust font size */
     box-sizing: border-box; /* Include padding and border in width */
-    resize: none; /* Disable resizing for textarea */
+    resize: none;
+    outline : none;
+    font-family: 'SCDream4'/* Disable resizing for textarea */
 }
 
 .qnainput > textarea {
-    height: 300px; /* Fixed height for textarea */
+    height: 300px;
+
 }
 
 /* Button styling */

@@ -15,7 +15,8 @@
             <div class="payTitle">
                 <p>주문서 작성</p>
             </div>
-
+            <span th:text="${#authentication.getPrincipal().userVO.getId()}"
+                  class="IDspan" id="realId" th:style="'display:none'"></span>
             <form action="/pay/payInfo" method="post">
                 <th:block th:with="auth=${#authentication.getPrincipal().userVO}">
                     <input type="hidden" id="payID" th:value="${auth.getId()}">
@@ -37,15 +38,13 @@
                             </div>
                             <div class="payUserInner2">
                                 <p>전화번호</p>
-                                <input type="text" th:value="${auth.getPhone()==null?'':auth.getPhone()}" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
+                                <input type="text" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
                             </div>
                             <div class="payUserInner3">
                                 <p>주소</p>
-                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요."
-                                       th:value="${auth.getAddress()==null?'':#strings.substring(#authentication.getPrincipal().userVO.getAddress(), 0, #authentication.getPrincipal().userVO.getAddress().indexOf('/'))}">
+                                <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
-                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요."
-                                       th:value="${#authentication.getPrincipal().userVO.getAddress() == null ? '' : #strings.substring(#authentication.getPrincipal().userVO.getAddress(), #authentication.getPrincipal().userVO.getAddress().indexOf('/') + 1)}">
+                                <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
                             </div>
                             <div class="payUserInner4">
                                 <p>배송 메모</p>
