@@ -18,6 +18,7 @@ callPayInfo(idVal).then(result => {
         li.innerHTML = `
          <div id="payInfoWrap">
          <div class="circle"></div>
+         <div class="payInfoBooktopia">booktopia</div>
              <div class="payInfoLeft">
                  <div id="payInfoTitle">${item.itemName.substring(4,13)}</div>
                  <div id="payInfoapprovedAt">${item.approvedAt.substring(0,16)}</div>
