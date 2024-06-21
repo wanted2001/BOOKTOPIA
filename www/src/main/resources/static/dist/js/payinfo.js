@@ -17,17 +17,17 @@ callPayInfo(idVal).then(result => {
         // 각 필드 값을 리스트 아이템에 추가
         li.innerHTML = `
          <div id="payInfoWrap">
-                         <div class="payInfomerchantUid">주문번호 : ${item.merchantUid}</div>
-                         <div class="payInfoLeft">
-                             <div id="payInfoTitle">${item.itemName}</div>
-                             <div id="payInfoapprovedAt">${item.approvedAt}</div>
-                         </div>
-                         <div class="payInfoRight">
+         <div class="circle"></div>
+             <div class="payInfoLeft">
+                 <div id="payInfoTitle">${item.itemName.substring(4,13)}</div>
+                 <div id="payInfoapprovedAt">${item.approvedAt.substring(0,16)}</div>
+                 <div id="payInfoAmount">결제금액 : ${item.totalAmount}</div>
+             </div>
+             <div class="payInfoRight">
 <!--                             <button type="button" id="payInfoDelivery" value="배송준비중" onclick="postStatus()">배송준비중</button>-->
-                             <div id="payInfoAmount">${item.totalAmount}</div>
-                             <button type="button" id="payInfoDelivery" onclick="deliSuccess()">${item.deliStatus}</button>
-                         </div>
-                     </div>`;
+                 <button type="button" id="payInfoDelivery" onclick="deliSuccess()">${item.deliStatus}</button>
+             </div>
+         </div>`;
         // ul에 리스트 아이템 추가
         ul.appendChild(li);
         // let deli = document.getElementById('payInfoDelivery');

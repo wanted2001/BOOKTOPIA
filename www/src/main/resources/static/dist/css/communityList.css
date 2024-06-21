@@ -87,7 +87,7 @@
     line-height: 50px;
     /* border: 1px solid crimson; */
     border-radius: 10px;
-    background-color: #ffeff2;
+    background-color: #c2e3f7;
 }
 .NoticeBlock{
     font-family: SCDream6;
@@ -114,7 +114,7 @@
     border-radius: 18px;
 }
 .commCateChoice:hover{
-    background-color: #fda4a3;
+    background-color: #c2e3f794;
     border: none;
 }
 .commCateChoice span{

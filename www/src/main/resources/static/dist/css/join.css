@@ -305,7 +305,7 @@ label.required::after {
      box-shadow: 0 0 13px lightskyblue;
  }
 .joinJoinBtn>button:hover{
-    box-shadow: 0 0 13px #fa87cc;
+    box-shadow: 0 0 13px #c6e7ad;
     cursor: pointer;
  }
 
