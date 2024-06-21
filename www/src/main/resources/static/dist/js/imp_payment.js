@@ -170,7 +170,7 @@ function request_pay(pg){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인') {
+                    } else {
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
