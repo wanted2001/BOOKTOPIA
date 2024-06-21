@@ -94,23 +94,23 @@ document.addEventListener('click', (e) => {
             if(result[0].qnaStatus === '답변대기중'){
                 document.getElementById('adminQnA').style.display = 'block';
                 const div = document.getElementById('adminQnA');
-                let p = `<p>1:1 문의글</p>`;
+                let p = `<p class="adminQnaTitle">1:1 문의글</p>`;
                 p += `<p class="adminqnaNum" data-qna="${result[0].qnaNum}"></p>`;
-                p += `<p>id : ${result[0].id}</p>`
-                p += `<p>Title : ${result[0].qnaTitle}</p>`;
-                p += `<p>Content : ${result[0].qnaContent}</p>`;
-                p += `<p>Answer : <textarea class="adminsAnswer"></textarea> </p>`;
+                p += `<p class="bottom"><span style="margin-right: 78px" class="bold">id  </span><span>${result[0].id}</span></p>`
+                p += `<p class="bottom"><span style="margin-right: 58px" class="bold">Title  </span><span>${result[0].qnaTitle}</span></p>`;
+                p += `<p class="bottom bold">Content</p><p class="bottom">${result[0].qnaContent}</p>`;
+                p += `<p class="bottom bold">Answer</p><p class="bottom"><textarea class="adminsAnswer"></textarea></p>`;
                 p += `<button type="button" class="answerBtn">답변 회신</button>`;
 
                 div.innerHTML += p;
             } else if(result[0].qnaStatus === '답변완료'){
                 document.getElementById('adminQnA_answer').style.display = 'block';
                 const div = document.getElementById('adminQnA_answer');
-                let p = `<p>1:1 문의글 - 회신완료</p>`;
-                p += `<p>id : ${result[0].id}</p>`
-                p += `<p>Title : ${result[0].qnaTitle}</p>`;
-                p += `<p>Content : ${result[0].qnaContent}</p>`;
-                p += `<p>Answer : ${result[0].qnaAnswer}</p>`;
+                let p = `<p class="adminQnaTitle">1:1 문의글 - 회신완료</p>`;
+                p += `<p class="bottom"><span style="margin-right: 78px" class="bold">id  </span><span>${result[0].id}</span></p>`
+                p += `<p class="bottom"><span style="margin-right: 58px" class="bold">Title  </span><span>${result[0].qnaTitle}</span></p>`;
+                p += `<p class="bottom bold">Content </p><p class="bottom">${result[0].qnaContent}</p>`;
+                p += `<p class="bottom bold">Answer </p><p class="bottom">${result[0].qnaAnswer}</p>`;
                 p += `<button type="button" class="qnaClose">X</button>`
                 div.innerHTML += p;
             }
@@ -432,7 +432,7 @@ function spreadList(cate, page=1){
                         let td = `<td style="text-align: center">${qna.qnaNum}</td>`;
                             td += `<td class="qnaId" style="text-align: center">${qna.id}</td>`;
                             td += `<td>${qna.qnaTitle}</td>`;
-                            td += `<td>${qna.qnaContent}</td>`;
+                            td += `<td style="text-wrap: wrap">${qna.qnaContent}</td>`;
                             td += `<td>${qna.qnaRegAt}</td>`;
                             td += `<td><button type="button" class="qnaStatus" data-num="${qna.qnaNum}" 
                                     data-id="${qna.id}" data-title="${qna.qnaTitle}" data-content="${qna.qnaContent}"
