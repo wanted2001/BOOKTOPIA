@@ -185,6 +185,14 @@ public class UserController {
         log.info("coulist >> {}",coulist);
         return  coulist;
     }
+
+    @ResponseBody
+    @GetMapping("/callinfo/{id}")
+    public UserVO callinfo(@PathVariable("id")String id){
+        UserVO uvo = usv.getcallinfo(id);
+        log.info("uvo >>> {}",uvo);
+        return uvo;
+    }
 }
     
 

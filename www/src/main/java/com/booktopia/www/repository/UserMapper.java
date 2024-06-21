@@ -57,5 +57,5 @@ public interface UserMapper {
 
     List<UserVO> getUserId();
 
-
+    UserVO getcallinfo(String id);
 }

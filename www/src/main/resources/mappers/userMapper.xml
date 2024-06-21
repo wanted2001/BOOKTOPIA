@@ -106,4 +106,8 @@
     <select id="getUserId" resultType="com.booktopia.www.domain.UserVO">
         select id from user
     </select>
+
+    <select id="getcallinfo" resultType="com.booktopia.www.domain.UserVO">
+        select * from user where id = #{id}
+    </select>
 </mapper>

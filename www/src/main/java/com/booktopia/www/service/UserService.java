@@ -36,4 +36,5 @@ public interface UserService {
     List<CouponInfoDTO> getcouList(String id);
 
 
+    UserVO getcallinfo(String id);
 }
