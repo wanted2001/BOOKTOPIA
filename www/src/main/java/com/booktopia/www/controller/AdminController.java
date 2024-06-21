@@ -44,58 +44,6 @@ public class AdminController {
     // 전체 리스트
     @GetMapping("/adminPage")
     public void adminPage() {}
-//    @GetMapping("/adminPage")
-//    public String adminPage(Model model) {
-//        // 회원가입 user > DB 에서 가져오기
-//        List<UserVO> ulist = userMapper.getList();
-//
-////        int totalCount = bsv.getTotalCount(pgvo);
-//
-//        // Booktopia test 진행한 user > DB에서 가져오기
-//        List<BooktopiaVO> btlist = bookTopiaMapper.bTestList();
-//
-//        // 구독자 리스트 pay, order_info >> DB에서 가져와 OrderInfoDTO에 담기
-//        List<OrderInfoVO> ordlist = orderInfoMapper.orderList();
-//        List<PayVO> paylist = payMapper.payList();
-//        List<OrderInfoDTO> odtolist = new ArrayList<>();
-//
-//        for(int i=0;i<ordlist.size();i++){
-//            OrderInfoVO orderInfo = ordlist.get(i);
-//            PayVO payInfo = paylist.get(i);
-//
-//            OrderInfoDTO dto = new OrderInfoDTO();
-//            dto.setMerchantUid(orderInfo.getMerchantUid());
-//            dto.setOrdName(orderInfo.getOrdName());
-//            dto.setOrdPhone(orderInfo.getOrdPhone());
-//            dto.setOrdAddr(orderInfo.getOrdAddr());
-//            dto.setItemName(payInfo.getItemName());
-//            dto.setTotalAmount(payInfo.getTotalAmount());
-//
-//            odtolist.add(dto);
-//        }
-//
-//        // 배송 현황 리스트 가져오기
-//        List<DeliveryVO> delilist = deliMapeer.getList();
-//        log.info(">>> delilist >>> {}", delilist);
-//
-//        // board 리스트 DB에서 가져오기
-//        List<BoardVO> boadlist = boardMapper.getboarList();
-//
-//        log.info(">>> boadlist >>> {}", boadlist);
-//
-//        // comment 리스트 DB에서 가져오기
-//        List<CommentVO> commlist = commentMapper.getComList();
-//        log.info(">>> commlist >>> {}", commlist);
-//
-//        model.addAttribute("ulist", ulist);
-//        model.addAttribute("testlist", btlist);
-//        model.addAttribute("odtolist", odtolist);
-//        model.addAttribute("delilist", delilist);
-//        model.addAttribute("boadlist", boadlist);
-//        model.addAttribute("commlist",commlist);
-//
-//        return "/admin/adminPage";
-//    }
 
     // 회원리스트 요청
     @GetMapping("/getUserList/{pageNo}")
@@ -130,8 +78,8 @@ public class AdminController {
         PagingVO subPgvo = new PagingVO(pageNo, 10);
         int subTotal = payMapper.getTotal();
 
-        List<OrderInfoVO> ordlist = orderInfoMapper.orderList();
-        List<PayVO> paylist = payMapper.payList();
+        List<OrderInfoVO> ordlist = orderInfoMapper.adminOrderList(subPgvo);
+        List<PayVO> paylist = payMapper.adminPayList(subPgvo);
         List<OrderInfoDTO> odtolist = new ArrayList<>();
 
         log.info(">>> ordlist >>> {}", ordlist);
