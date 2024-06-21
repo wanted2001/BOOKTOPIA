@@ -155,9 +155,6 @@
     /*background-color: pink;*/
     margin-top: 41px;
 }
-.commNon{
-    margin: -2204px auto 320px;
-}
 .commListArea:nth-of-type(10){
     /*background-color: pink;*/
     border-bottom: 1px solid #b1b1b1;
@@ -165,6 +162,9 @@
 .commListContent:nth-child(1){
     /*background-color: pink;*/
     padding: 0 30px;
+}
+.commNon{
+    margin-bottom: 356px;
 }
 .commNon p{
     font-size: 17px;
