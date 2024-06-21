@@ -24,5 +24,4 @@
         select * from pay
         limit #{pageStart}, #{qty}
     </select>
-
 </mapper>

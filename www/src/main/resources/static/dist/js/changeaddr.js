@@ -2,16 +2,23 @@ console.log("arr in js");
 
         var changeAddrid = document.getElementById("realId");
         var phone = document.getElementById('changePhone');
-        var phoneRegex = /^(010)?[0-9]{4}?[0-9]{4}$/; // 휴대폰 유효성 검사 정규식
+        var phoneRegex = /^010[0-9]{8}$/; // 휴대폰 유효성 검사 정규식
         var modid = document.getElementById("modaddrname");
         var addrone = document.getElementById("changeAddr");
         var addrtwo = document.getElementById("addrDetailInput");
+        var submitAddrButton = document.getElementById("submitAddrButton");
 
         callinfo(changeAddrid.innerText).then(result => {
             console.log(result);
             phone.value = result.phone;
             addrone.value = result.address.substring(0, result.address.indexOf("/"));
             addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
+        });
+
+        phone.addEventListener("keyup", () => {
+            console.log(phone.value);
+            submitAddrButton.disabled = !strongphone(phone.value);
+
         });
 
         document.getElementById('payGetAddrBtn').addEventListener('click', () => {
@@ -31,11 +38,6 @@ console.log("arr in js");
             let addall = addr + "/" + addrdetail;
             let modphone = document.getElementById("changePhone").value;
 
-            if (!phoneRegex.test(modphone)) {
-                alert("유효한 전화번호를 입력해주세요.");
-                return;
-            }
-
             const moddata = {
                 id: modidVal,
                 address: addall,
@@ -52,6 +54,10 @@ console.log("arr in js");
                 }
             });
         });
+
+        function strongphone(str) {
+            return phoneRegex.test(str) || str.length == 0;
+        }
 
         async function logout() {
             try {
