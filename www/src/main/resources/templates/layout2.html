@@ -26,15 +26,16 @@
                                 <li class="right" sec:authorize="isAnonymous()">
                                     <a class="cate register" th:href="@{/user/join}">회원가입</a></li>
                                 <li sec:authorize="isAnonymous()"><a class="cate login" th:href="@{/user/login}">로그인</a></li>
-                                <th:block sec:authorize="isAuthenticated()">
-                                    <th:block th:with="auth=${#authentication.getPrincipal()}">
-                                        <li class="userName"><a class="cate" th:href="@{/user/myPage}" sec:authentication="name" id="userId"></a></li>
-                                        <li class="logout"><a class="cate" th:href="@{/user/logout}" id="logoutuser">로그아웃</a></li>
-                                    </th:block>
-                                </th:block>
-                                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                                    <a class="cate nav-link" th:href="@{/admin/adminPage}">관리자페이지</a>
+                                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')" >
+                                    <a class="cate nav-link adminpagealink" th:href="@{/admin/adminPage}">관리자페이지</a>
                                 </li>
+                                <th:block sec:authorize="isAuthenticated()">
+                                        <li class="userName" sec:authorize="!hasAuthority('ROLE_ADMIN')">
+                                            <a class="cate" th:href="@{/user/myPage}" sec:authentication="name" id="userId"></a>
+                                        </li>
+                                        <li class="logout"><a class="cate" th:href="@{/user/logout}" id="logoutuser">로그아웃</a></li>
+                                </th:block>
+
                             </ul>
                         </div>
                     </div>

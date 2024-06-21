@@ -245,6 +245,10 @@ display: flex;
     padding-left: 32px;
 }
 #payInfoDelivery{
+    font-size: 15px;
+}
+
+#payInfoAmount,#payInfoDelivery{
     width: 100px;
     height: 30px;
     font-size: 15px;
@@ -257,6 +261,7 @@ display: flex;
     border-radius: 5px;
     color: white;
 }
+
 .myPageRightWrapInfoModWrap{
     width: 520px;
     height: 700px;
@@ -475,41 +480,79 @@ text-decoration: underline;
 }
 
 .qnarightform {
-width: 400px;
+  width: 400px;
+  margin-top: 8px;
+}
+
+.qnaWrap{
+    border: 3px solid black;
+    margin-bottom: 15px;
+    border-radius : 10px;
 }
 
 .qnatitlediv{
-width: 400px;
-height: 50px;
-padding-top: 10px;
-padding-bottom: 10px;
-line-height: 20px;
+    width: 390px;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    border-bottom: 3px dashed;
+}
+
+.qnatitlediv>p{
+    padding-left: 10px;
 }
 
 .qnacontentdiv{
-width: 400px;
-height: 200px;
-line-height: 20px;
-border-bottom: 1px solid black;
+    width: 390px;
+    height: 200px;
+    line-height: 20px;
+    border-bottom: 3px dashed ;
+}
 
+.qnacontentdiv>p{
+    width: 380px;
+    padding: 10px 10px 0 10px;
+    text-align: justify;
 }
 
 .qnanoanswerdiv{
-width: 400px;
-height: 50px;
-line-height: 20px;
-color: #7171fd;
+    width: 400px;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
 }
 
 .qnaanswerdiv{
-width: 400px;
-height: 200px;
-line-height: 20px;
-color: #7171fd;
+    width: 400px;
+    height: 150px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.qnanoanswerdiv>p{
+    width: 325px;
+    color: #7171fd;
+    height: 60px;
+    float: right;
+}
+
+.qnaanswerdiv>p{
+    width: 340px;
+    color: #7171fd;
+    padding: 20px 20px 0 10px;
+    height: 200px;
+    float: right;
+    text-align: justify;
+
+
+
 }
 
 .qnaregatdiv{
-border-top: 1px solid black;
+    text-align: right;
+    margin-top: 8px;
+    padding-right: 8px;
 }
 
 .QnaResultListDiv{
@@ -519,6 +562,26 @@ text-align:center;
 
 .delmembertype{
 margin-bottom : 30px;
+}
+
+.answerIcon{
+    height: 200px;
+    float: left;
+
+}
+
+.answernoIcon{
+    height: 60px;
+    float: left;
+
+}
+
+.answerIcon>img,.answernoIcon>img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+
 }
 
 
