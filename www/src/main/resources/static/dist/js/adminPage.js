@@ -218,8 +218,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
             })
             break;
@@ -227,11 +225,11 @@ function spreadList(cate, page=1){
             bookTopiaToServer(page).then(result =>{
                 console.log(result);
                 const tbody = document.getElementById('adminTestList');
-                if(result.booktopia.length > 0){
-                    if(page === 1){
+                if(result.booktopia.length > 0) {
+                    if (page === 1) {
                         tbody.innerHTML = '';
                     }
-                    for (let test of result.booktopia){
+                    for (let test of result.booktopia) {
                         let td = `<td>${test.id}</td>`;
                         td += `<td>${test.birth}</td>`;
                         td += `<td>${test.gender}</td>`;
@@ -242,16 +240,14 @@ function spreadList(cate, page=1){
                     }
                     let moreBtn = document.getElementById('adminTestBtn');
                     console.log(moreBtn);
-                    if(result.pgvo.pageNo < result.realEndPage){
+                    if (result.pgvo.pageNo < result.realEndPage) {
                         moreBtn.style.visibility = 'visible';
                         console.log(moreBtn.dataset.page);
-                        moreBtn.dataset.page = page+1;
+                        moreBtn.dataset.page = page + 1;
                         // console.log(moreBtn.dataset.page+1);
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
             })
             break;
@@ -282,8 +278,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
             })
             break;
@@ -334,7 +328,7 @@ function spreadList(cate, page=1){
                             td += `<td><img src="/upload/${board.bmainImg}" style="height: 200px">`
                             // td += `<div class="adcontent">${board.bcontent}</div></td>`;
                         } else {
-                            td += `<td><div class="adcontent">${board.bcontent}</div></td>`;
+                            td += `<td class="contentWrap"><div class="adcontent">${board.bcontent}</div></td>`;
                         }
                         td += `<td>${board.bwriter}</td>`;
                         td += `<td>${board.bregDate}</td>`;
@@ -351,8 +345,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`;
                 }
             })
             break;
@@ -382,8 +374,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`
                 }
             })
             break;
@@ -414,8 +404,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`
                 }
             })
             break;
@@ -430,8 +418,8 @@ function spreadList(cate, page=1){
                     for (let qna of result.qnaList){
                         let td = `<td style="text-align: center">${qna.qnaNum}</td>`;
                             td += `<td class="qnaId" style="text-align: center">${qna.id}</td>`;
-                            td += `<td style="text-wrap: wrap">${qna.qnaTitle}</td>`;
-                            td += `<td style="text-wrap: wrap">${qna.qnaContent}</td>`;
+                            td += `<td style="text-wrap: wrap; line-height: 20px">${qna.qnaTitle}</td>`;
+                            td += `<td style="text-wrap: wrap; line-height: 20px">${qna.qnaContent}</td>`;
                             td += `<td>${qna.qnaRegAt}</td>`;
                             td += `<td><button type="button" class="qnaStatus" data-num="${qna.qnaNum}" 
                                     data-id="${qna.id}" data-title="${qna.qnaTitle}" data-content="${qna.qnaContent}"
@@ -446,8 +434,6 @@ function spreadList(cate, page=1){
                     } else {
                         moreBtn.style.visibility = 'hidden';
                     }
-                } else {
-                    tbody.innerHTML = `<div> List Empty </div>`
                 }
             })
             break;
