@@ -45,6 +45,7 @@ public class AdminController {
     @GetMapping("/adminPage")
     public void adminPage() {}
 
+
     // 회원리스트 요청
     @GetMapping("/getUserList/{pageNo}")
     @ResponseBody
@@ -70,7 +71,6 @@ public class AdminController {
         booktestph.setBooktopia(bookTopiaMapper.adminTestList(pgvo));
         return booktestph;
     }
-
     // 구독자 리스트 요청(결제)
     @GetMapping("/subUser/{pageNo}")
     @ResponseBody
@@ -106,7 +106,6 @@ public class AdminController {
         subPh.setOrderInfoDTOList(odtolist);
         return subPh;
     }
-
     // delivery 리스트 요청
     @GetMapping("/delivery/{pageNo}")
     @ResponseBody

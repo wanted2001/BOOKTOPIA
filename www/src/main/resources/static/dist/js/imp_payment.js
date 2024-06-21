@@ -350,7 +350,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='신규회원 1개월 구독권 99% 할인'){
-        console.log('0원쿠폰 선택함')
+        console.log('99프로 쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{
             console.log(result);

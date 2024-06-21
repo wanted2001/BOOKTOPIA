@@ -4,7 +4,7 @@ var submitButton = document.getElementById("submitButton");
 var phone = document.getElementById("modifyPhone");
 
 var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
-var phoneRegex = /^(010)-?[0-9]{4}-?[0-9]{4}$/;
+var phoneRegex = /^010[0-9]{8}$/;
 var modifyid = document.getElementById("realId");
 console.log("modify script in");
 
