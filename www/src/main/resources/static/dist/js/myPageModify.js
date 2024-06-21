@@ -5,8 +5,17 @@ var phone = document.getElementById("modifyPhone");
 
 var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
 var phoneRegex = /^(010)-?[0-9]{4}-?[0-9]{4}$/;
-
+var modifyid = document.getElementById("realId");
 console.log("modify script in");
+
+
+
+
+ callinfo(modifyid.innerText).then(result => {
+            console.log(result);
+            phone.value = result.phone;
+        });
+
 
 // 비밀번호 유효성 검사 함수
 function validatePassword() {
@@ -48,6 +57,12 @@ function button_event(){
       return;
   }
 }
+
+async function callinfo(id) {
+            const response = await fetch("/user/callinfo/" + id);
+            const result = await response.json();
+            return result;
+        }
 
 // 입력 필드에 keyup 이벤트 리스너 추가
 changePwd.addEventListener("keyup", () => {

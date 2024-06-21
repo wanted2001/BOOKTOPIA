@@ -120,7 +120,13 @@
                         </th:block>
                     </div>
                     <div class="commWriter">
-                        [[${bvo.bWriter}]]•<span th:text="${#strings.substring(bvo.bRegDate,0,10)}"></span>
+                        [[${bvo.bWriter}]]•
+                        <th:block th:if="${bvo.getBUpDate() eq null}">
+                            <span th:text="${#strings.substring(bvo.bRegDate,0,16)}"></span>
+                        </th:block>
+                        <th:block th:if="${bvo.getBUpDate() ne null}">
+                            <span>[[${#strings.substring(bvo.bUpDate,0,16)}]](수정)</span>
+                        </th:block>
                     </div>
                     <div class="commContent">
                         <a th:href="@{/board/detail(bno=${bvo.getBno()},id=${auth.getId()})}">[[${bvo.bContent}]]</a>

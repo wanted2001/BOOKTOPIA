@@ -266,15 +266,19 @@ document.addEventListener('click',(e)=>{
     }
     //삭제
     else if(e.target.classList.contains('commComDelBtn')){
+        const delCom = confirm('댓글을 삭제하시겠습니까? \n댓글 삭제 시 대댓글도 함께 삭제됩니다.');
         let cnoVal = e.target.dataset.cno;
-        removeComment(cnoVal).then(result=>{
-            // console.log(result)
-            if(result==='1'){
-                // console.log("댓글삭제성공");
-                spreadCommentList(bnoVal);
-            } else {
-                // console.log("댓글삭제실패")
-            }
-        })
+        if(delCom===true) {
+            removeComment(cnoVal).then(result => {
+                // console.log(result)
+                if (result === '1') {
+                    // console.log("댓글삭제성공");
+                    alert('댓글을 삭제하였습니다.')
+                    spreadCommentList(bnoVal);
+                } else {
+                    // console.log("댓글삭제실패")
+                }
+            })
+        }
     }
 })

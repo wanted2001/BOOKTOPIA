@@ -42,7 +42,7 @@
     </select>
 
     <update id="modify">
-        update board set b_title=#{bTitle}, b_content=#{bContent}, b_cate=#{bCate}, b_mainImg=#{bMainImg}
+        update board set b_title=#{bTitle}, b_content=#{bContent}, b_cate=#{bCate}, b_mainImg=#{bMainImg}, b_up_date=now()
         where bno=#{bno}
     </update>
 

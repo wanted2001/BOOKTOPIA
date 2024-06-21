@@ -121,19 +121,19 @@
 
 /*좋아요*/
 .commHeartArea{
-    width: 50px;
+    width: 40px;
     margin: 130px 0 30px 434px;
     text-align: center;
-    height: 50px;
+    height: 40px;
     border: 1px solid;
     padding: 15px;
     border-radius: 50px;
 }
 .whiteHeart{
-    width: 123px;
-    height: 123px;
-    margin-top: -31px;
-    margin-left: -40px;
+    width: 115px;
+    height: 115px;
+    margin-top: -33px;
+    margin-left: -41px;
 }
 .hrtBtn{
     background-color: #ffffff00;
@@ -141,8 +141,8 @@
     outline: none;
 }
 .redHeart{
-    width: 51px;
-    margin-top: 2px;
+    width: 47px;
+    margin: -1px 0 0 -3px;
 }
 
 /*댓글*/
@@ -233,12 +233,14 @@
     width: 805px;
     height: 50px;
     margin-left: 5px;
+    padding: 8px 8px 0;
 }
 #comDelBtn, #cmtModBtn{
     border: 1px solid #919191;
     padding: 5px;
     border-radius: 2px;
     cursor: pointer;
+    outline: none;
 }
 #commModBtn{
     margin: 2px 0 0 741px;
