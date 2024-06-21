@@ -170,7 +170,7 @@ function request_pay(pg){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인') {
+                    } else {
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -337,7 +337,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='신규회원 1개월 구독권 99% 할인'){
-        console.log('0원쿠폰 선택함')
+        console.log('99프로 쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{
             console.log(result);
