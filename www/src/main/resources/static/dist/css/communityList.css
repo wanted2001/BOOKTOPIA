@@ -141,9 +141,6 @@
     margin-right: 7px;
     margin-top: -2px;
 }
-.commAllList{
-    height: 2270px;
-}
 /*게시글 한개 사이즈*/
 .commListArea, .commNon{
     /*background-color: lightcoral;*/
@@ -158,10 +155,6 @@
     /*background-color: pink;*/
     margin-top: 41px;
 }
-.commNon{
-    border-bottom: 1px solid #b1b1b1;
-    margin-bottom: 150px;
-}
 .commListArea:nth-of-type(10){
     /*background-color: pink;*/
     border-bottom: 1px solid #b1b1b1;
@@ -169,6 +162,9 @@
 .commListContent:nth-child(1){
     /*background-color: pink;*/
     padding: 0 30px;
+}
+.commNon{
+    margin-bottom: 356px;
 }
 .commNon p{
     font-size: 17px;

@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('전달 완료');
         console.log(result);
 
+
         const main = document.getElementById("testResult");
         main.innerHTML = ""; // ul 내용 초기화
 
         if (result == null) {
-            main.innerHTML = `
+            main.innerHTML = `     
                     <div class="msg">
                     <div class="noResInfo">검사를 먼저 시도해주세요. </div>
                     <a href="/booktopiaTest/test">검사하러가기</a>
