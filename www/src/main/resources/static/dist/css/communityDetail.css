@@ -16,7 +16,15 @@
     font-style: normal;
     font-weight: normal;
 }
-
+/*
+메인컬러
+네이비 #005c87
+핑크 #ffb1b0
+노랑 #fff44f
+*/
+.wrap{
+    /*background-color: antiquewhite;*/
+}
 .commListBtn{
     float: right;
     margin:-27px 204px;
@@ -68,15 +76,13 @@
     color: #4c4c4c;
 }
 .commNoDeContent{
-    /*background-color: lightseagreen;*/
-    width: 1000px;
-    /*height: 800px;*/
+    width: 820px;
     margin: 0 auto;
     padding: 90px 0;
     position: relative;
+    letter-spacing: 0.3px;
 }
 .commDeImgArea{
-    /*background-color: goldenrod;*/
     width: 1000px;
     margin: 0 auto;
 }
@@ -318,6 +324,6 @@ img.stickerS5 {
     top: 670px;
     width: 151px;
 }
-p{
-    line-height: 25px;
+.commNoDeContent p{
+    line-height: 28px;
 }

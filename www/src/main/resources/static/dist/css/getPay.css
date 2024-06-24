@@ -22,6 +22,7 @@
     font-style: normal;
     font-weight: normal;
 }
+
 .wrap{
     flex-wrap: wrap;
     font-family: SCDream4;
@@ -33,10 +34,11 @@
     margin: 45px auto 75px;
 
 }
-.payTitle p{
-    font-family: SCDream6;
-}
 
+
+.payTitle p{
+    font-family: "SCDream6", SCDream6;
+}
 
 .paySubBox {
     width: 930px;
@@ -81,7 +83,7 @@
 
 
 input#ordName, #ordPhone, #addrDetailInput, #ordMemo {
-    background: #fbfbfbbd;
+    background: #f1f1f1bd;
     width: 98%;
     padding: 8px 11px 8px;
     border-radius: 10px;
@@ -90,7 +92,7 @@ input#ordName, #ordPhone, #addrDetailInput, #ordMemo {
 }
 
 input#addrInput {
-    background: #fbfbfbbd;
+    background: #f1f1f1bd;
     width: 39%;
     padding: 6px 9px 6px;
     border-radius: 10px;
@@ -105,7 +107,7 @@ input#addrInput {
     cursor: pointer;
     font-size: 14px;
     color: #232323;
-    background: #e9e9e9;
+    background: #e2e2e2bd;
 }
 
 .payInfoBox {
@@ -184,4 +186,8 @@ hr{
     border-color: gainsboro;
     appearance: none;
     background: url("/image/arrow3.png") no-repeat 891px  /2%;
+}
+.payStar {
+    margin-left: 2px;
+    color: #db0000;
 }

@@ -71,7 +71,7 @@
     transform: translate(250px, 30px);
 }
 
-.bar-progress>.bar{
+.bar-progress>.bar {
     width: 480px;
     border-radius: 10px;
     height: 23px;
@@ -79,20 +79,21 @@
     margin: 23px auto;
     position: relative;
     display: flex;
-    box-shadow: 0 0 6px gainsboro;
+    box-shadow: 0 0 6px #b3b3b3;
 }
+
 .bar-progress>.bar>.percent{
     width: 0;
     height: 23px;
     border-radius: 10px;
-    background-color: #c2e3f7;
+    background-color: #c2e3f7c7;
     position: absolute;
 }
 
 
 .test-content{
-    box-shadow: 0 0 10px gray;
-    background-color: #ecf9ff38;
+    box-shadow: 0 0 10px #c5c5c5;
+    background-color: #ecf9ff7d;
     width: 500px;
     height: 433px;
     position: absolute;

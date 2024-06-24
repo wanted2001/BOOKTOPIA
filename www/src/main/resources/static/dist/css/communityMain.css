@@ -175,8 +175,8 @@
     float: right;
     width: 130px;
     position: absolute;
-    right: 410px;
-    top: 605px;
+    right: 315px;
+    top: 600px;
 }
 .commBoardAll{
     font-family: SCDream3;
@@ -189,7 +189,7 @@
     line-height: 5;
 }
 .commCatetext p:hover{
-    background-color: #ffffc8;
+    background-color: #ffffe3;
 }
 .commCategory-top{
     display: flex;

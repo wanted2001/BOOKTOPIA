@@ -1,3 +1,5 @@
+
+
 console.log(ordName);
 console.log(ordId);
 console.log(ordEmail);
@@ -18,11 +20,11 @@ var phonecall = document.getElementById("ordPhone");
 
 console.log(payId);
 callinfo(payId.innerText).then(result => {
-            console.log(result);
-            phonecall.value = result.phone;
-            addrone.value = result.address.substring(0, result.address.indexOf("/"));
-            addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
-        });
+    console.log(result);
+    phonecall.value = result.phone;
+    addrone.value = result.address.substring(0, result.address.indexOf("/"));
+    addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
+});
 
 const kakaoPayBtn = document.getElementById('kakaoPayBtn');
 const tossBtn = document.getElementById('tossBtn');
@@ -167,7 +169,7 @@ function request_pay(pg){
                             couNo:couNo,
                             pg_tid:rsp.pg_tid,
                         };
-                    } else if(coupon==='북토피아 창립기념 30% 할인'){
+                    } else if(coupon==='북토피아 창립기념 쿠폰 30% 할인'){
                         console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
@@ -306,14 +308,14 @@ function discountAmount(amount){
         couNo=1;
         return amount;
     } else if(coupon==='신규회원 1개월 구독권 99% 할인') {
-        amount=amount-amount;
+        amount=amount-(amount*0.99);
         couNo=3;
         return amount;
     } else if(coupon==='6월 내 구독권 결제 시, 10% 할인'){
         amount = amount-(amount*0.1);
         couNo=4;
         return amount;
-    } else if(coupon==='북토피아 창립기념 30% 할인'){
+    } else if(coupon==='북토피아 창립기념 쿠폰 30% 할인'){
         amount = amount-(amount*0.3);
         couNo=5;
         return amount;
@@ -395,7 +397,7 @@ document.getElementById('coupon').addEventListener('change',()=>{
                 }
             })
         })
-    } else if(couponName==='북토피아 창립기념 30% 할인'){
+    } else if(couponName==='북토피아 창립기념 쿠폰 30% 할인'){
         console.log('창립기념 쿠폰 선택함');
         couNo=5;
         discountCoupon(couNo,ordId).then(result=>{
@@ -452,7 +454,7 @@ async function discountCoupon(couNo,id){
 }
 
 async function callinfo(id) {
-            const response = await fetch("/user/callinfo/" + id);
-            const result = await response.json();
-            return result;
-        }
+    const response = await fetch("/user/callinfo/" + id);
+    const result = await response.json();
+    return result;
+}

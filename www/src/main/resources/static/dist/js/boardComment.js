@@ -3,6 +3,7 @@
 // console.log("bnoVal: ",bnoVal);
 const commDeUserId = document.querySelector('.commDeUserId').value;
 const commDeUserEmail = document.querySelector('.commDeUserEmail').value;
+const socialId = document.querySelector('.socialID').value;
 // console.log(commDeUserId);
 // console.log(commDeUserEmail);
 
@@ -14,10 +15,10 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
         document.getElementById('cmtContent').focus();
         return false;
     } else {
-        if(commDeUserEmail==null || commDeUserEmail===''){
+        if(socialId!='일반'){
             let cmtData = {
                 bno:bnoVal,
-                cWriter:commDeUserId,
+                cWriter:commDeUserEmail,
                 cContent:cContent
             }
             // console.log(cmtData);
@@ -33,7 +34,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
         } else {
             let cmtData = {
                 bno:bnoVal,
-                cWriter: commDeUserEmail,
+                cWriter: commDeUserId,
                 cContent:cContent
             }
             // console.log(cmtData);

@@ -3,6 +3,7 @@ package com.booktopia.www.repository;
 import com.booktopia.www.domain.*;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public interface UserMapper {
 
     String findUserByUserId(String email);
 
-    void updateUserPassword(String id, String pw);
+    void updateUserPassword(@Param("id") String id, @Param("pw") String pw);
 
     int deleteMyPageUser(String id);
 
