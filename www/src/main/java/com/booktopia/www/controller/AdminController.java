@@ -9,15 +9,10 @@ import com.booktopia.www.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Entity;
-import retrofit2.http.DELETE;
-import retrofit2.http.PATCH;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -82,9 +77,6 @@ public class AdminController {
         List<PayVO> paylist = payMapper.adminPayList(subPgvo);
         List<OrderInfoDTO> odtolist = new ArrayList<>();
 
-        log.info(">>> ordlist >>> {}", ordlist);
-        log.info(">>> paylist >>> {}", paylist);
-
 
         for(int i=0;i<ordlist.size();i++){
             OrderInfoVO orderInfo = ordlist.get(i);
@@ -101,7 +93,6 @@ public class AdminController {
             odtolist.add(dto);
         }
 
-        log.info(">>> odtolist >>> {}", odtolist);
         PagingHandler subPh = new PagingHandler(subPgvo, subTotal);
         subPh.setOrderInfoDTOList(odtolist);
         return subPh;
@@ -166,7 +157,6 @@ public class AdminController {
     @ResponseBody
     public String addCoupon(@RequestBody AdCouponVO adcoupon){
         int isOk = adCouponService.insert(adcoupon);
-        log.info("isOk >>> {}", isOk);
         return isOk > 0 ? "1":"0";
     }
 
@@ -174,15 +164,12 @@ public class AdminController {
     @GetMapping("/adminQnaList/{pageNo}")
     @ResponseBody
     public PagingHandler adminQnaList(@PathVariable("pageNo") int pageNo){
-        log.info("controller in >>> ");
         PagingVO qnaPgvo = new PagingVO(pageNo, 10);
         int qnaCount = qnaMapper.qnaCount();
-        log.info("qnaCount >>>> {}", qnaCount);
 
         PagingHandler qnaPh = new PagingHandler(qnaPgvo, qnaCount);
         qnaPh.setQnaList(qnaMapper.getList(qnaPgvo));
 
-        log.info("qnaPh >>> {}", qnaPh);
         return qnaPh;
     }
 
@@ -190,22 +177,14 @@ public class AdminController {
     @PostMapping("/adminOneUser/{qnaNum}")
     @ResponseBody
     public List<QnaVO> oneUser(@PathVariable("qnaNum") int qnaNum){
-        log.info("controller in >>> ");
-        log.info("num >>> {}", qnaNum);
-
         List<QnaVO> qnaList = qnaMapper.oneUserList(qnaNum);
-        log.info("qnaList >>> {}", qnaList);
         return qnaList;
-//        return qnaMapper.oneUserList(qnaNum);
     }
 
     // 문의글 답변 구문
     @PostMapping("/qnaAnswer/{qnaAnswer}/{qnaNum}")
     @ResponseBody
     public String updateAnswer(@PathVariable("qnaAnswer") String qnaAnswer, @PathVariable("qnaNum")int qnaNum){
-        log.info("qnaAnswer >>> {}", qnaAnswer);
-        log.info("id >>> {}", qnaNum);
-
         qnaMapper.updateAnswer(qnaAnswer, qnaNum);
         return "1";
     }
@@ -214,8 +193,6 @@ public class AdminController {
     @PostMapping("/qnaStatus/{qnaNum}")
     @ResponseBody
     public String updateStatus(@PathVariable("qnaNum") int qnaNum){
-        log.info("qnaNum >>> {}", qnaNum);
-
         qnaMapper.updateStatus(qnaNum);
         return "1";
     }
@@ -224,7 +201,6 @@ public class AdminController {
     @GetMapping("/qnaStatus/{qnaNum}")
     @ResponseBody
     public String getStatus(@PathVariable("qnaNum") int qnaNum){
-        log.info("qnaNum >>> {}", qnaNum);
         return qnaMapper.getStatus(qnaNum);
     }
 
@@ -232,7 +208,6 @@ public class AdminController {
     @PostMapping("/deliUid")
     @ResponseBody
     public String delistatus(@RequestBody String deliUid) {
-        log.info("status: {}", deliUid);
         deliMapeer.updateStaus(deliUid);
         return "1";
     }
@@ -241,7 +216,6 @@ public class AdminController {
     @PostMapping("/secondStatus")
     @ResponseBody
     public String secondStatus(@RequestBody String deliUid) {
-        log.info("status secont >> : {}", deliUid);
         deliMapeer.updateScondStaus(deliUid);
         return "1";
     }
@@ -250,7 +224,6 @@ public class AdminController {
     @DeleteMapping ("/boardDel/{bno}")
     @ResponseBody
     public String boardDel(@PathVariable("bno") long bno) {
-        log.info("board controller in >>>> ");
 
         // 댓글, 대댓글, 하트가 있을 경우
         int recomCount = reCommentMapper.getadreComCount(bno);
@@ -270,7 +243,6 @@ public class AdminController {
     @DeleteMapping ("/commentDel/{bno}")
     @ResponseBody
     public String commentDel (@PathVariable("bno") long bno){
-        log.info("comment controller in >>>> ");
 
         int recomCount = reCommentMapper.getadreComCount(bno);
         if(recomCount > 0){

@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     helloNum.value = '1';
     const inputIdVal = inputId.value;
     checkId(inputIdVal).then(result => {
-      console.log("result >>>>>", result);
       if (result === '0') {
         alert("사용 가능한 아이디입니다.");
         joinCheckIdBtn.disabled = true;
@@ -168,9 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function validatePassword() {
     if (pwd.value !== conPwd.value) {
       conPwd.style.color = "red";
-      console.log("비밀번호 틀림");
     } else {
-      console.log("비밀번호 맞음");
       conPwd.style.color = "green";
     }
   }

@@ -39,7 +39,6 @@ public class FileController {
 
         String originalFilename = image.getOriginalFilename();
         String onlyFilename = originalFilename.substring(originalFilename.lastIndexOf(File.separator)+1);
-        log.info(originalFilename);
 
         String uuid = UUID.randomUUID().toString();
         String extention = onlyFilename.substring(onlyFilename.lastIndexOf("_")+1);
@@ -54,7 +53,6 @@ public class FileController {
         fvo.setFileType(1);
 
 
-        log.info("fvo>>>>>>{}",fvo);
         fileMapper.insertFile(fvo);
 
         File dir = new File(UP_DIR);

@@ -99,7 +99,6 @@ document.addEventListener('click',(e)=>{
             } else if(e.target.id == 'btn2'){
                 btnResult += 2;
             }
-            console.log(btnResult);
         }
         else if(i == testListaArry.length){
             if(e.target.id == 'btn1'){
@@ -112,7 +111,6 @@ document.addEventListener('click',(e)=>{
         }
     }
     else if(e.target.classList.contains('result')){
-        console.log(e.target.classList);
         let user = document.getElementById('commuUser').value;
 
         let form = document.getElementById('bookTest');

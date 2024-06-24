@@ -103,7 +103,6 @@ label.required::after {
 
 .terms__list .terms__content::-webkit-scrollbar {
     width: 5px;
-    /* background-color: aliceblue; */
 }
 
 .terms__list .terms__content::-webkit-scrollbar-thumb {

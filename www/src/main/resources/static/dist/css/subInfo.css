@@ -111,7 +111,6 @@
        cursor: pointer;
        font-family: SCDream4;
        width: 70px;
-       /* padding: inherit; */
        height: 70px;
        border: none;
        border-radius: 36px;
@@ -142,10 +141,8 @@
 }
 
 .sixm{
-/* bottom: 140px;*/
-
-     color:gainsboro;
-     text-shadow: 1px 2px 5px black;
+    color:gainsboro;
+    text-shadow: 1px 2px 5px black;
     left: 1082px;
     top: 47px;
 }

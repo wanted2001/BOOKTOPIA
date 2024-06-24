@@ -39,7 +39,6 @@ public class MyPageController {
     @GetMapping("/payinfo")
     public void payinfo(Model model) {
         List<DeliveryVO> deliveryList = deliMapeer.getList();
-        log.info("dellist >>> {}", deliveryList);
 
         model.addAttribute("deliveryList", deliveryList);
     }
@@ -47,7 +46,6 @@ public class MyPageController {
     @PostMapping("/deliSuccess")
     @ResponseBody
     public String deliSuccess(@RequestBody String merchantUid){
-        log.info("merchantUid >>> {}", merchantUid);
         deliMapeer.updatefinal(merchantUid);
         return "1";
     }

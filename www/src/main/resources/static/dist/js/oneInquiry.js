@@ -1,11 +1,8 @@
 var inquiryId= document.getElementById("realId");
-console.log("js in~~!");
 
 var inquiryIdVal = inquiryId.innerText;
-console.log(inquiryIdVal);
 
 getAnsList(inquiryIdVal).then(result=>{
-    console.log(result);
 
     const ul = document.getElementById("QnaResult");
     if(result.length == 0){

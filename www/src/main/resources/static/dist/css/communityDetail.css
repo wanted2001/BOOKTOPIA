@@ -16,15 +16,6 @@
     font-style: normal;
     font-weight: normal;
 }
-/*
-메인컬러
-네이비 #005c87
-핑크 #ffb1b0
-노랑 #fff44f
-*/
-.wrap{
-    /*background-color: antiquewhite;*/
-}
 .commListBtn{
     float: right;
     margin:-27px 204px;
@@ -62,14 +53,12 @@
     font-family: SCDream5;
 }
 .commDeWriterInfo{
-    /*background-color: darkgray;*/
     width: 1000px;
     height: 20px;
     margin: 0 auto;
     display: flex;
 }
 .commDeWriter, .commDeRegdate{
-    /*background-color: mintcream;*/
     height: 20px;
     font-family: SCDream3;
     font-size: 15px;
@@ -91,7 +80,6 @@
 }
 /*수정 삭제 버튼*/
 .commBtnArea{
-    /*background-color: lightgoldenrodyellow;*/
     font-size: 15px;
     height: 40px;
     width: 170px;
@@ -170,11 +158,9 @@
     padding: 30px;
 }
 .commDeComment{
-    /*background-color: mediumvioletred;*/
     margin: 0 auto;
 }
 .commComInfo{
-    /*background-color: lightcoral;*/
     margin:-28px 0 0 35px;
 }
 .commComInfo span:nth-of-type(2),.commDeReInfo span:nth-of-type(2) {
@@ -189,13 +175,10 @@
     background-color: white;
     width: 940px;
     margin: 20px auto;
-    /*height: 180px;*/
 }
 .comm-CommInput{
-    /*background-color: darkgray;*/
     width: 940px;
     height: 195px;
-    /*margin-left: -20px;*/
 }
 .comm-Comment, #recommContent,#cmtModContent{
     font-family: SCDream4;
@@ -303,7 +286,6 @@ img.stickerBC {
     top: 173px;
     position: absolute;
     left: -100px;
-    /* opacity: 0.3; */
     width: 340px;
 }
 img.stickerP1 {

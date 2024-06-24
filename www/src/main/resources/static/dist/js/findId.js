@@ -1,8 +1,6 @@
-console.log("findId.js in!");
 window.addEventListener('load', function() {
     document.getElementById('findbtn').addEventListener('click', () => {
         let name = document.getElementById('fi_name').value;
-        console.log("아이디 찾는 user의 이름 >> ", name);
         let resArea = document.getElementById('resArea');
 
         resArea.style.display = '';

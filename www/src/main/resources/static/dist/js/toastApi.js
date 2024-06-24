@@ -1,8 +1,5 @@
-console.log("toastApi js in")
 const commDeUserId = document.querySelector('.commDeUserId').value;
 const commDeUserEmail = document.querySelector('.commDeUserEmail').value;
-console.log(commDeUserId);
-console.log(commDeUserEmail);
 
 let bMainImg='';
 
@@ -28,7 +25,6 @@ const editor = new toastui.Editor({
                     body:formData
                 });
                 const fileName = await response.text();
-                console.log("서버에 저장된 파일명 :"+ fileName);
                 if(bMainImg==='') {
                     bMainImg=fileName;
                 }
@@ -44,9 +40,7 @@ const editor = new toastui.Editor({
 
 document.addEventListener("DOMContentLoaded", function() {
     const ul = document.querySelector('.commul');
-    // console.log(ul)
     ul.addEventListener("click", (e)=> {
-        console.log(e)
         if (e.target.tagName === "LI") {
         }
     });
@@ -56,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let selectedText = document.getElementById('selectedText');
 
     cateBtn.addEventListener('click', function () {
-        // console.log('cateBtn clicked');
         commul.classList.toggle('show');
     });
 
@@ -64,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
     commliItems.forEach(li=>{
         li.addEventListener('click',function (event){
             let bCate = event.target.textContent;
-            console.log(bCate)
             selectedText.textContent = bCate;
             commul.classList.remove('show');
         });
@@ -75,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 async function handleEditor(event) {
-    console.log("handle 이벤트 들어옴!");
 
     try {
         const selectedText = document.getElementById('selectedText');
@@ -118,7 +109,6 @@ async function handleEditor(event) {
                     bMainImg: bMainImg
                 }
             }
-            console.log(postData);
         }
 
         let isValid = true;
@@ -140,7 +130,6 @@ async function handleEditor(event) {
             try{
                 await submitPostData(postData).then(result=>{
                 alert("게시물이 등록되었습니다.");
-                console.log(result);
                 window.location.href = "/community/communityListAll";
                 });
             } catch (error) {

@@ -39,11 +39,9 @@
 }
 
 .bookWrap{
-    /* background-color: #4cbefa; */
     width: 236px;
     height: 330px;
     text-align: center;
-    /* border: 1px solid; */
     margin: 10px auto;
     padding-top: 10px;
     display: contents;
@@ -69,7 +67,6 @@ li{
 
 .msg{
     width: 50%;
-    /* background-color: red; */
     height: 120px;
     padding-top: 50px;
     margin: 300px auto;

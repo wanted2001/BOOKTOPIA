@@ -6,13 +6,8 @@ var phone = document.getElementById("modifyPhone");
 var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
 var phoneRegex = /^010[0-9]{8}$/;
 var modifyid = document.getElementById("realId");
-console.log("modify script in");
-
-
-
 
  callinfo(modifyid.innerText).then(result => {
-            console.log(result);
             phone.value = result.phone;
         });
 
@@ -21,9 +16,7 @@ console.log("modify script in");
 function validatePassword() {
     if (changePwd.value !== changeNewPwd.value) {
         changeNewPwd.style.color = "red";
-        console.log("비밀번호 불일치");
     } else {
-        console.log("비밀번호 일치");
         changeNewPwd.style.color = "green";
     }
     toggleSubmitButton();
@@ -66,16 +59,13 @@ async function callinfo(id) {
 
 // 입력 필드에 keyup 이벤트 리스너 추가
 changePwd.addEventListener("keyup", () => {
-    console.log(changePwd.value);
     toggleSubmitButton();
 });
 
 changeNewPwd.addEventListener("keyup", () => {
-    console.log(changeNewPwd.value);
     validatePassword();
 });
 
 phone.addEventListener("keyup", () => {
-    console.log(phone.value);
     toggleSubmitButton();
 });

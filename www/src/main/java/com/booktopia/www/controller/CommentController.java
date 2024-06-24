@@ -1,6 +1,5 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.BoardVO;
 import com.booktopia.www.domain.CommentVO;
 import com.booktopia.www.domain.PagingVO;
 import com.booktopia.www.domain.RecommentVO;
@@ -18,8 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/comment/*")
 @RequiredArgsConstructor
 @Slf4j
@@ -33,7 +30,6 @@ public class CommentController {
     @PostMapping("/post")
     @ResponseBody
     public ResponseEntity<String> postComment(@RequestBody JSONObject cvo) throws ParseException {
-        log.info("commentVO cvo>>>>>{}",cvo);
 
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(String.valueOf(cvo));
@@ -42,7 +38,6 @@ public class CommentController {
         commentVO.setBno(Long.parseLong((String) obj.get("bno")));
         commentVO.setCWriter((String) obj.get("cWriter"));
         commentVO.setCContent((String) obj.get("cContent"));
-        log.info("parse commentVO >>>>{}", commentVO);
 
         int isOk = comsv.post(commentVO);
         bsv.updateCommentCnt(commentVO.getBno());
@@ -53,12 +48,8 @@ public class CommentController {
     @GetMapping("/{bno}/{page}")
     @ResponseBody
     public ResponseEntity<PagingHandler> getComment(@PathVariable("bno") int bno,@PathVariable("page") int page){
-        log.info("bno {}",bno);
         PagingVO pgvo = new PagingVO(page,5);
         PagingHandler ph = comsv.getCommentList(bno,pgvo);
-
-        log.info("bno {}",bno);
-        log.info("comment ph>>>{}",ph);
 
         return new ResponseEntity<PagingHandler>(ph, HttpStatus.OK);
     }
@@ -66,7 +57,6 @@ public class CommentController {
     @PutMapping("/modify")
     @ResponseBody
     public String modifyComment(@RequestBody JSONObject cvo) throws ParseException {
-        log.info("commentVO modify cvo>>>>{}",cvo);
 
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(String.valueOf(cvo));
@@ -74,7 +64,6 @@ public class CommentController {
         CommentVO commentVO = new CommentVO();
         commentVO.setCno(Long.parseLong((String)obj.get("cno")));
         commentVO.setCContent((String) obj.get("cContent"));
-        log.info("parse modi commentVO >>>>{}", commentVO);
 
         int isOk = comsv.modify(commentVO);
         return isOk>0 ? "1":"0";
@@ -85,19 +74,16 @@ public class CommentController {
     public String deleteComment(@PathVariable("cno")long cno) {
         // 댓글 수 삭제 먼저
         Long bvo = comsv.getCommentBno(cno);
-        log.info("delete bvo>>>>{}",bvo);
         bsv.deleteCommentCnt(bvo, cno);
 
         //댓글 삭제
         int isOk = comsv.deleteComment(cno);
-        log.info("delete comment isOk>>>>>{}",isOk);
         return isOk>0 ? "1":"0";
     }
 
     @PostMapping("/post/comment")
     @ResponseBody
     public ResponseEntity<String> postReComment(@RequestBody JSONObject rcvo) throws ParseException {
-        log.info("commentVO cvo>>>>>{}",rcvo);
 
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(String.valueOf(rcvo));
@@ -107,7 +93,6 @@ public class CommentController {
         rvo.setBno(Integer.parseInt((String)obj.get("bno")));
         rvo.setRcWriter((String) obj.get("rcWriter"));
         rvo.setRcContent((String) obj.get("rcContent"));
-        log.info("parse rccommentVO >>>>{}", rvo);
 
         int isOk = rcomsv.postromment(rvo);
         bsv.updateCommentCnt(rvo.getBno());

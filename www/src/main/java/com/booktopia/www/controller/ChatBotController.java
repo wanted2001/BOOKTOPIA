@@ -19,9 +19,7 @@ public class ChatBotController {
     @PostMapping("/get")
     @ResponseBody
     public String getChatBot(@RequestBody String btn, Model m){
-        log.info("controller in >>>> {}", btn);
         ChatBotVO chatBotVO = chatBotService.get(btn);
-        log.info(">>>isOk >> {}", chatBotVO);
         return "1";
     }
 }

@@ -1,9 +1,5 @@
-console.log("js in");
-console.log(user +">>>>>>>>>>>>> js in");
 let score = parseInt(document.querySelector('.socre').value);
-console.log(score);
 
-// let per = 50;
 let downPer = 0;
 const upBtn = document.querySelector('.upBtn').value;
 const downBtn = document.querySelector('.downBtn').value;
@@ -13,17 +9,13 @@ document.querySelector('.persent').style.width = `${score}%`;
 document.addEventListener('click',(e)=>{
     if(e.target.tagName === "IMG"){
         if (e.target.id === 'upImg'){
-            console.log("voteHas >>> ")
             getIdToServer(user).then(result=>{
-                console.log("결과값 >>> "+result);
                 if(result === '1'){
-                    console.log("123456");
                     alert('이미 참여한 이벤트입니다.')
                 } else if(user === 'anonymousUser'){
                     alert('로그인 후 참여가능합니다.');
                     // e.target.disabled = true;
                 } else {
-                    console.log(upBtn);
                     score +=3;
                     downPer = 100-score;
                     document.querySelector('.persent').style.width = `${score}%`;
@@ -63,8 +55,6 @@ document.addEventListener('click',(e)=>{
                     push(data).then(result=>{
                         console.log(result);
                     });
-                    console.log("score >> "+score)
-                    console.log("downper >> "+downPer);
                 }
 
             })

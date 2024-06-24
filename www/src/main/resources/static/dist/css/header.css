@@ -13,18 +13,6 @@
     margin-left: 30px;
 }
 
-/*
-.logo{
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
-    margin-left: 50px;
-    margin-right: 40px;
-    margin-top: 20px;
-
-}
-*/
-
 li{
     list-style: none;
     display: inline;
@@ -32,30 +20,8 @@ li{
 }
 
 .cate {
-    /*line-height: 80px;*/
     margin: 0 10px;
 }
-
-/*.right{*/
-/*    margin-left: 400px;*/
-/*    text-align: right;*/
-/*}*/
-/*.register{
-    margin-left: 515px;
-}*/
-/*.userName{*/
-/*    margin-left: 400px;*/
-/*}*/
-/*.login{*/
-/*    margin-left: 30px;*/
-/*    margin-right: 30px;*/
-/*    text-align: right;*/
-/*}*/
-/*.logout{*/
-/*    margin-right: 70px;*/
-/*    margin-left: 30px;*/
-/*}*/
-
 .logo{
         width: 200px;
         height: 50px;
@@ -90,15 +56,6 @@ li{
     height: 20px;
     margin-top: 20px;
 }
-
-/*.joinbtn{*/
-/*        position: absolute;*/
-/*        left:480px;*/
-/*}*/
-/*.loginbtn{*/
-/*     position: absolute;*/
-/*     left:600px;*/
-/*}*/
 
 .upHeader{
     width: 100%;

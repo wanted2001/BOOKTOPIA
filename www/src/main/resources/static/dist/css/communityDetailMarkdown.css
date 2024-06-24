@@ -62,7 +62,6 @@
     padding-left: 10px;
     line-height: 20px;
     color: grey;
-    /*색은 나중에 바꿔도 됩니다..*/
 }
 .commDeContent ul li::before, .commNoDeContent ul li::before{
     content:'';

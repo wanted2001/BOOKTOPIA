@@ -1,11 +1,6 @@
-// console.log("boardComment 들어옴!");
-// console.log("cmtWriter: ",cmtWriter);
-// console.log("bnoVal: ",bnoVal);
 const commDeUserId = document.querySelector('.commDeUserId').value;
 const commDeUserEmail = document.querySelector('.commDeUserEmail').value;
 const socialId = document.querySelector('.socialID').value;
-// console.log(commDeUserId);
-// console.log(commDeUserEmail);
 
 document.getElementById('cmtAddBtn').addEventListener('click',()=>{
     const cContent  = document.getElementById('cmtContent').value;
@@ -21,14 +16,10 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
                 cWriter:commDeUserEmail,
                 cContent:cContent
             }
-            // console.log(cmtData);
             postComment(cmtData).then(result=>{
-                // console.log(result);
                 if(result=="1") {
-                    // console.log("일반 유저 댓글 등록 성공");
                     document.getElementById('cmtContent').value='';
                     spreadCommentList(bnoVal);
-                    // spreadReCommentList(bnoVal);
                 }
             })
         } else {
@@ -37,14 +28,10 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
                 cWriter: commDeUserId,
                 cContent:cContent
             }
-            // console.log(cmtData);
             postComment(cmtData).then(result=>{
-                // console.log(result);
                 if(result=="1") {
-                    // console.log("소셜 유저 댓글 등록 성공");
                     document.getElementById('cmtContent').value='';
                     spreadCommentList(bnoVal);
-                    // spreadReCommentList(bnoVal);
                 }
             })
         }
@@ -82,16 +69,13 @@ async function getCommentList(bno,page){
 
 function spreadCommentList(bno,page=1) {
     getCommentList(bno,page).then(result=>{
-        // console.log(result);
         const ul=document.querySelector(".commDeOneComment");
         const rc = document.querySelector('.commDe-ReComment');
         if(result.cmtList.length>0) {
-            // console.log(result.cmtList);
             if(page==1) {
                 ul.innerHTML='';
             }
             for(let obj of result.cmtList){
-                // console.log(obj.cvo.cno);
 
                 let li = `<div class="commDeCommentArea" data-cno="${obj.cvo.cno}" value="${obj.cvo.cno}" id="commDeCommentAreaId">`;
                 li+=`<div class="commImg"><img src="/image/profile2.png"></div>`;
@@ -125,17 +109,14 @@ function spreadCommentList(bno,page=1) {
 
 document.addEventListener('click',(e)=>{
     if(e.target.id==='recommendBtn'){
-        // console.log("답댓버튼클릭");
         const cContent = e.target.closest('.commDeCommentArea');
         const cno = cContent.getAttribute('value');
-        // console.log(cno);
         let plusData = `<div class="reCommentArea" id="recomment">`
         plusData+=`<textarea type=text placeholder="댓글을 입력해주세요" id="recommContent"></textarea>`;
         plusData+=`<button type="button" id="recommBtn">등록</button>`;
         plusData+=`</div>`
         cContent.innerHTML+=plusData;
         document.getElementById('recommBtn').addEventListener('click',()=>{
-            // console.log("답댓글 등록버튼 클릭")
             if(document.getElementById('recommContent').value==null || document.getElementById('recommContent').value==''){
                 alert("댓글을 입력해주세요.")
                 document.getElementById('recommContent').focus();
@@ -149,7 +130,6 @@ document.addEventListener('click',(e)=>{
                     }
                     postReCommentToServer(reCmtData).then(result=>{
                         if(result==='1'){
-                            // console.log("대댓 등록완료");
                             spreadCommentList(bnoVal)
                         }
                     })
@@ -162,7 +142,6 @@ document.addEventListener('click',(e)=>{
                     }
                     postReCommentToServer(reCmtData).then(result=>{
                         if(result==='1'){
-                            // console.log("대댓 등록완료");
                             spreadCommentList(bnoVal)
                         }
                     })
@@ -228,21 +207,15 @@ async function removeComment(cnoVal){
 
 document.addEventListener('click',(e)=>{
     if(e.target.classList.contains('commComModBtn')){
-        // console.log("수정버튼 누름")
 
         const cContent = e.target.closest('.commDeCommentArea');
-        // console.log(cContent);
         const cvArea = cContent.querySelector('.commDe-Content');
         let cv = cContent.querySelector('.commDe-Content').innerHTML;
-        // console.log(cv);
         cvArea.innerHTML='';
 
-        // let cno = document.querySelector('.commDeCommentArea').getAttribute('value');
         let cno = cContent.getAttribute('value');
-        // console.log(cno);
 
         let modComment = `<textarea type="text" id="cmtModContent" data-cno="${cno}">${cv}</textarea>`;
-        // console.log(modComment)
 
         cContent.querySelector('.cmtBtn').innerHTML='';
         document.querySelector('.cmtBtn').innerHTML+=modComment;
@@ -254,7 +227,6 @@ document.addEventListener('click',(e)=>{
             cno:cContent.getAttribute('value'),
             cContent: document.getElementById('cmtModContent').value
         };
-        // console.log(cmtModData);
 
         getModComment(cmtModData).then(result=>{
             if(result==='1'){
@@ -271,13 +243,11 @@ document.addEventListener('click',(e)=>{
         let cnoVal = e.target.dataset.cno;
         if(delCom===true) {
             removeComment(cnoVal).then(result => {
-                // console.log(result)
                 if (result === '1') {
-                    // console.log("댓글삭제성공");
                     alert('댓글을 삭제하였습니다.')
                     spreadCommentList(bnoVal);
                 } else {
-                    // console.log("댓글삭제실패")
+                    console.log("댓글삭제실패")
                 }
             })
         }

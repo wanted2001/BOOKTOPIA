@@ -1,5 +1,4 @@
 document.getElementById('btn').addEventListener('click',()=>{
-    console.log('상담 start')
     document.querySelector('.chatBotText').style.display = 'block';
 
     let AnsText = document.querySelector('.AnserText');
@@ -9,12 +8,9 @@ document.getElementById('btn').addEventListener('click',()=>{
         '아래에서 궁금하신 내용을 선택해주세요!';
 
     document.addEventListener('click',(e)=> {
-        console.log(e.target.className);
         if (e.target.classList.contains('txtF')) {
             let btn = e.target.id;
-            console.log(btn);
             btn = btn.substring(7);
-            console.log(btn);
             chatBot(btn).then(result =>{
                 if(result == "1"){
                     switch (btn){
@@ -61,11 +57,9 @@ async function chatBot(data){
             },
             body : data
         };
-        console.log(data);
-        console.log(config);
+
         const resp = await fetch(url, config);
         const result = await resp.json();
-        console.log(result);
         return result;
     }catch (error){
         console.log(error);

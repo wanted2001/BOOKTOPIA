@@ -1,8 +1,6 @@
 var payId = document.getElementById("realId");
 var idVal = payId.innerText;
-console.log(idVal);
 callPayInfo(idVal).then(result => {
-    console.log(result);
     const ul = document.getElementById("payInforesult");
     ul.innerHTML = ""; // ul 내용 초기화
 
@@ -32,8 +30,6 @@ callPayInfo(idVal).then(result => {
          </div>`;
         // ul에 리스트 아이템 추가
         ul.appendChild(li);
-        // let deli = document.getElementById('payInfoDelivery');
-        // console.log(deli.value);
     });
     }
 });
@@ -41,10 +37,8 @@ callPayInfo(idVal).then(result => {
 // 구매확정 버튼 클릭 시...
 function deliSuccess() {
     let merchantUid = (document.querySelector('.payInfomerchantUid').value);
-    console.log(merchantUid);
 
     deliSuccessToServer(merchantUid).then(result =>{
-        console.log(result);
         if(result == 1){
             alert("구매확정되었습니다.")
         }
@@ -53,7 +47,6 @@ function deliSuccess() {
 
 // 구매확정 DB update 구문
 async function deliSuccessToServer(merchantUid){
-    console.log(merchantUid)
     try {
         const url = "/mypage/deliSuccess";
         const config = {

@@ -9,14 +9,12 @@ console.log("arr in js");
         var submitAddrButton = document.getElementById("submitAddrButton");
 
         callinfo(changeAddrid.innerText).then(result => {
-            console.log(result);
             phone.value = result.phone;
             addrone.value = result.address.substring(0, result.address.indexOf("/"));
             addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
         });
 
         phone.addEventListener("keyup", () => {
-            console.log(phone.value);
             submitAddrButton.disabled = !strongphone(phone.value);
 
         });
@@ -45,7 +43,6 @@ console.log("arr in js");
             };
 
             modifyaddr(moddata).then(result => {
-                console.log(result);
                 if (result == 1) {
                     alert("수정이 완료되었습니다.");
                     logout();
@@ -65,7 +62,6 @@ console.log("arr in js");
                 if (response.ok) {
                     window.location.href = '/login'; // 로그아웃 후 로그인 페이지로 리디렉션
                 } else {
-                    console.error('Failed to log out.');
                     alert('로그아웃에 실패했습니다.');
                 }
             } catch (error) {

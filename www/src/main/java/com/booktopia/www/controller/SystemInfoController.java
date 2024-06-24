@@ -1,7 +1,6 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.repository.SystemInfoMapper;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ public class SystemInfoController {
     @GetMapping("/getScore")
     public String getScore (Model m){
         int isOk = systemInfoMapper.getScore();
-        log.info("score isOk >>>> {}", isOk);
         m.addAttribute("score", isOk);
         return "/community/communityMain";
     }

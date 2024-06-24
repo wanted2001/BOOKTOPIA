@@ -30,7 +30,6 @@
 .payTitle {
     width: 930px;
     text-align: center;
-    /* line-height: 267px; */
     font-size: 2em;
     margin: 45px auto 75px;
 
@@ -102,7 +101,6 @@ input#addrInput {
 
 .payGetAddrBtn {
     width: 153px;
-    /* height: 30px; */
     padding: 6px;
     font-family: SCDream4;
     border-radius: 10px;
@@ -148,16 +146,13 @@ input#addrInput {
     line-height: 23px;
 }
 .kakaopaydiv {
-    /* width: 100px; */
     display: inline-block;
-    /* margin-top: 21px; */
     padding-top: 5px;
     margin-left: -138px;
 }
 .kakaoPayText.payMText {
     width: 171px;
     margin: -26px 0 0 135px;
-    /*font-weight: bold;*/
 }
 img{
     width: 45px;
