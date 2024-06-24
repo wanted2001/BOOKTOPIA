@@ -10,13 +10,19 @@
     font-style: normal;
     font-weight: normal;
 }
-
+@font-face {
+    font-family: jalnan;
+    src: url(../font/Jalnan2.otf) format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
 @font-face {
     font-family: SCDream6;
     src: url(../font/S-Core_Dream_OTF/SCDream6.otf) format("opentype");
     font-style: normal;
     font-weight: normal;
 }
+
 .wrap{
     flex-wrap: wrap;
     font-family: SCDream4;
@@ -27,7 +33,9 @@
     /* line-height: 267px; */
     font-size: 2em;
     margin: 45px auto 75px;
+
 }
+
 
 .payTitle p{
     font-family: "SCDream6", SCDream6;
@@ -183,4 +191,8 @@ hr{
     border-color: gainsboro;
     appearance: none;
     background: url("/image/arrow3.png") no-repeat 891px  /2%;
+}
+.payStar {
+    margin-left: 2px;
+    color: #db0000;
 }
