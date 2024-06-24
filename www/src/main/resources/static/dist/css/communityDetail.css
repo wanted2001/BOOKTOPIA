@@ -76,15 +76,13 @@
     color: #4c4c4c;
 }
 .commNoDeContent{
-    /*background-color: lightseagreen;*/
-    width: 850px;
-    /*height: 800px;*/
+    width: 820px;
     margin: 0 auto;
     padding: 90px 0;
     position: relative;
+    letter-spacing: 0.3px;
 }
 .commDeImgArea{
-    /*background-color: goldenrod;*/
     width: 1000px;
     margin: 0 auto;
 }
@@ -327,5 +325,5 @@ img.stickerS5 {
     width: 151px;
 }
 .commNoDeContent p{
-    line-height: 25px;
+    line-height: 28px;
 }

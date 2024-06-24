@@ -71,7 +71,7 @@
     background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 122.5px;
-    right: 475px;
+    right: 364px;
 }
 .commListAll{
     margin: 30px 0 0 1130px;
@@ -87,7 +87,7 @@
     line-height: 50px;
     /* border: 1px solid crimson; */
     border-radius: 10px;
-    background-color: #c2e3f7;
+    background-color: #c3e8ff59;
 }
 .NoticeBlock{
     font-family: SCDream6;
@@ -114,7 +114,7 @@
     border-radius: 18px;
 }
 .commCateChoice:hover{
-    background-color: #c2e3f794;
+    background-color: #c2e3f76b;
     border: none;
 }
 .commCateChoice span{

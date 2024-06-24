@@ -9,6 +9,7 @@
 <th:block th:replace="~{layout2 :: setFragment(~{this::content})}">
     <th:block th:fragment="content">
         <th:block th:with="auth=${#authentication.getPrincipal().userVO}"}>
+            <input type="hidden" class="socialID" th:value="${auth.getUserType()}">
         <div class="wrap">
             <div class="sticker">
                 <img th:src="@{/image/sticker_bc.png}" class="stickerBC">

@@ -20,6 +20,7 @@ callPayInfo(idVal).then(result => {
          <div class="circle"></div>
          <div class="payInfoBooktopia">booktopia</div>
              <div class="payInfoLeft">
+                 <input type="hidden" class="payInfomerchantUid" value="${item.merchantUid}">
                  <div id="payInfoTitle">${item.itemName.substring(4,13)}</div>
                  <div id="payInfoapprovedAt">${item.approvedAt.substring(0,16)}</div>
                  <div id="payInfoAmount">결제금액 : ${item.totalAmount}</div>
@@ -39,10 +40,10 @@ callPayInfo(idVal).then(result => {
 
 // 구매확정 버튼 클릭 시...
 function deliSuccess() {
-    let merchantUid = (document.querySelector('.payInfomerchantUid').innerText).substring(7);
+    let merchantUid = (document.querySelector('.payInfomerchantUid').value);
     console.log(merchantUid);
 
-    deliToServer(merchantUid).then(result =>{
+    deliSuccessToServer(merchantUid).then(result =>{
         console.log(result);
         if(result == 1){
             alert("구매확정되었습니다.")
@@ -51,7 +52,7 @@ function deliSuccess() {
 }
 
 // 구매확정 DB update 구문
-async function deliToServer(merchantUid){
+async function deliSuccessToServer(merchantUid){
     console.log(merchantUid)
     try {
         const url = "/mypage/deliSuccess";

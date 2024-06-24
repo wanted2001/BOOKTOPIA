@@ -62,20 +62,20 @@
 
 /* Button styling */
 .QnaBtn {
-    background-color: #338760;
+    background-color: #4c8d6ff7;
     color: white;
     border: none;
-    padding: 12px 24px; /* Increased padding for better clickability */
+    padding: 12px 24px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin-top: 15px; /* Increased margin for better spacing */
+    margin-top: 15px;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 6px;
     float: right;
 }
 
 .QnaBtn:hover {
-    background-color: #45a049;
+    background-color: #2e6c4ff7;
 }
