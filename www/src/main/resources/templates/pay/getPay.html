@@ -33,15 +33,15 @@
                         <div class="payUserDiv">배송 정보</div>
                         <div class="payUserInner">
                             <div class="payUserInner1">
-                                <div class="payUserName">이름 </div>
+                                <div class="payUserName">이름<span class="payStar">*</span> </div>
                                 <input type="text" th:value="${auth.getName()}" id="ordName" name="ordName">
                             </div>
                             <div class="payUserInner2">
-                                <p>전화번호</p>
+                                <p>전화번호<span class="payStar">*</span></p>
                                 <input type="text" id="ordPhone" name="ordPhone" placeholder="'-' 제외하고 입력해주세요.">
                             </div>
                             <div class="payUserInner3">
-                                <p>주소</p>
+                                <p>주소<span class="payStar">*</span> </p>
                                 <input type="text" name="ordAddr" class="addrInput" id="addrInput" placeholder="주소를 입력해주세요.">
                                 <button type="button" class="payGetAddrBtn" id="payGetAddrBtn">주소 검색</button>
                                 <input type="text" name="ordAddrDetail" id="addrDetailInput" placeholder="상세 주소를 입력해주세요.">
