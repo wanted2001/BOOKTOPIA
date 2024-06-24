@@ -1,9 +1,7 @@
 package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
-import com.booktopia.www.domain.DTO.OrderInfoDTO;
 import com.booktopia.www.repository.CouponUseMapper;
-import com.booktopia.www.service.CouponService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,8 +20,6 @@ public class CouponController {
     @ResponseBody
     public List<CouponInfoDTO> couponInfo(@PathVariable("couNo") int couNo, @PathVariable("id")String id) {
         List<CouponInfoDTO> cidto = couponUseMapper.getCoupon(id,couNo);
-//        float saleAmount = cusv.getSaleAmount(couNo);
-        log.info("couponUseMapper >>>>>{}", cidto);
         return cidto;
     }
 }

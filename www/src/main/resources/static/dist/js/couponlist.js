@@ -1,12 +1,9 @@
-console.log("coupon in js");
-
 // 사용자 ID를 가져와 변수에 저장
 var couId = document.getElementById("realId");
 var idVal = couId.innerText;
 
 // 쿠폰 정보를 가져와 처리하는 함수 호출
 callCouponInfo(idVal).then(result => {
-    console.log(result);
 
     // 결과를 표시할 ul 요소를 가져옴
     const ul = document.getElementById("couponresult");

@@ -1,11 +1,4 @@
 
-
-console.log(ordName);
-console.log(ordId);
-console.log(ordEmail);
-console.log(ordMemo);
-console.log(payName)
-console.log(amount)
 let i=1;
 let uid = '';
 let merchant_uid = 'payment_'+new Date().getTime()+i;
@@ -18,9 +11,7 @@ var addrtwo = document.getElementById("addrDetailInput");
 var phonecall = document.getElementById("ordPhone");
 
 
-console.log(payId);
 callinfo(payId.innerText).then(result => {
-    console.log(result);
     phonecall.value = result.phone;
     addrone.value = result.address.substring(0, result.address.indexOf("/"));
     addrtwo.value = result.address.substring(result.address.indexOf("/") + 1);
@@ -78,10 +69,6 @@ function request_pay(pg){
     let ordaddrdetail = document.getElementById('addrDetailInput').value;
     let ordPhone = document.getElementById('ordPhone').value;
     const coupon = $('select#coupon').val();
-    console.log(coupon)
-    console.log("테스트으으으으으"+ ordaddr);
-    console.log("디테이이이일 테스트으으으으으"+  ordaddrdetail);
-    console.log(ordName);
 
 
     if(ordPhone==null||ordPhone===''){
@@ -98,7 +85,7 @@ function request_pay(pg){
         if(coupon!=='choiceCoupon'){
             amount = discountAmount(amount);
         }
-        console.log(coupon)
+
         const IMP = window.IMP;
         IMP.init("imp42245168")
         IMP.request_pay(
@@ -118,11 +105,8 @@ function request_pay(pg){
                 // callback
                 // res.imp_uid 값으로 결제 단건조회 API 호출해서 결제 결과 판단
                 if(rsp.success){
-                    console.log('결제성공 boot!');
-                    console.log(rsp);
                     let registerData;
                     if(coupon==='신규가입 구독권 10% 할인') {
-                        console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -138,7 +122,6 @@ function request_pay(pg){
                             pg_tid:rsp.pg_tid,
                         };
                     } else if(coupon==='신규회원 1개월 구독권 99% 할인'){
-                        console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -154,7 +137,6 @@ function request_pay(pg){
                             pg_tid:rsp.pg_tid,
                         };
                     } else if(coupon==='6월 내 구독권 결제 시, 10% 할인'){
-                        console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -170,7 +152,6 @@ function request_pay(pg){
                             pg_tid:rsp.pg_tid,
                         };
                     } else if(coupon==='북토피아 창립기념 쿠폰 30% 할인'){
-                        console.log("신규가입 쿠폰 결제 생성")
                         registerData ={
                             id:ordId,
                             impUid: rsp.imp_uid,
@@ -201,9 +182,8 @@ function request_pay(pg){
                             pg_tid:rsp.pg_tid,
                         };
                     }
-                    console.log(registerData);
+
                     postRegisterSuccess(registerData).then(result=>{
-                        console.log("result >> "+ result)
                         if(result === '1'){
                             let data ={
                                 id:ordId,
@@ -216,20 +196,13 @@ function request_pay(pg){
                                 name :item_name,
                                 paidAmount : amount,
                             };
-                            console.log(data);
-                            console.log("주문정보 저장")
                             getToken();
-                            console.log(registerData.totalAmount);
-                            console.log(data.paidAmount);
                             // 결제금액 검증
                             if (registerData.totalAmount == data.paidAmount){
-                                console.log("결제 검증 및 결제 완료! >>>> ")
                                 postStorePaySuccess(data).then(result=>{
-                                    console.log(result);
                                     window.location.href = "/pay/done/"+result.merchantUid;
                                 });
                             } else {
-                                console.log("결제 실패!!!!!!!! ")
                                 alert("결제 실패")
                             }
                         } else {
@@ -256,9 +229,7 @@ async function postRegisterSuccess(registerData){
         };
         const resp = await fetch(url, config);
         const result = await resp.text();
-        console.log("result >>> "+ result);
         return result;
-        console.log("registerData >>> " + registerData);
     } catch (error){
         console.log(error);
     }
@@ -276,7 +247,6 @@ async function postStorePaySuccess(data){
         const resp = await fetch(url, config);
         const result = await resp.json();
         return result;
-        console.log("결제 완료 정보 >>> ");
     }catch (error){
         console.log("error" + error);
     }
@@ -297,11 +267,9 @@ let salePercent=0;
 let couNo=0;
 function discountAmount(amount){
     const coupon = $('select#coupon').val();
-    console.log(coupon)
 
     if(coupon==='신규가입 구독권 10% 할인'){
         amount=amount-(amount*0.1);
-        console.log(amount);
         couNo=2;
         return amount;
     } else if(coupon==='1년 이상 누적 구독시, 구독권 50% 할인 쿠폰'){
@@ -324,25 +292,20 @@ function discountAmount(amount){
 
 document.getElementById('coupon').addEventListener('change',()=>{
     const couponName = $('select#coupon').val();
-    console.log(couponName);
     const payAmount = document.querySelector('.priceDiv').value;
     const discountDiv = document.querySelector('.discountAmount');
     const amountDiv = document.querySelector('.amountDiv');
     if(couponName==='신규가입 구독권 10% 할인'){
-        console.log("웰컴쿠폰 선택함");
         couNo=2;
         discountCoupon(couNo,ordId).then(result=>{
-            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
-                    console.log(amount)
                     discountDiv.innerHTML='';
                     discountDiv.innerHTML+=payAmount*0.1+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
                 } else{
                     alert("이미 사용한 쿠폰입니다.");
-                    console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);
                     discountDiv.innerHTML = '';
                     discountDiv.innerHTML = '0원';
@@ -352,20 +315,16 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='신규회원 1개월 구독권 99% 할인'){
-        console.log('99프로 쿠폰 선택함')
         couNo=3;
         discountCoupon(couNo,ordId).then(result=>{
-            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
-                    console.log(amount)
                     discountDiv.innerHTML='';
                     discountDiv.innerHTML+=payAmount*0.99+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.99)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
-                    console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);
                     discountDiv.innerHTML = '';
                     discountDiv.innerHTML = '0원';
@@ -375,20 +334,16 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='6월 내 구독권 결제 시, 10% 할인'){
-        console.log('6월 쿠폰 선택함.');
         couNo=4;
         discountCoupon(couNo,ordId).then(result=>{
-            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
-                    console.log(amount)
                     discountDiv.innerHTML='';
                     discountDiv.innerHTML+=payAmount*0.1+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.1)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
-                    console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);
                     discountDiv.innerHTML = '';
                     discountDiv.innerHTML = '0원';
@@ -398,20 +353,16 @@ document.getElementById('coupon').addEventListener('change',()=>{
             })
         })
     } else if(couponName==='북토피아 창립기념 쿠폰 30% 할인'){
-        console.log('창립기념 쿠폰 선택함');
         couNo=5;
         discountCoupon(couNo,ordId).then(result=>{
-            console.log(result);
             result.forEach(item=>{
                 if(item.couUse==='N'){
-                    console.log(amount)
                     discountDiv.innerHTML='';
                     discountDiv.innerHTML+=payAmount*0.3+"원";
                     amountDiv.innerHTML='';
                     amountDiv.innerHTML+=payAmount-(payAmount*0.3)+"원";
                 } else {
                     alert("이미 사용한 쿠폰입니다.");
-                    console.log("이미 사용한 쿠폰");
                     $('#coupon').val('choiceCoupon').prop('selected', true);
                     discountDiv.innerHTML = '';
                     discountDiv.innerHTML = '0원';

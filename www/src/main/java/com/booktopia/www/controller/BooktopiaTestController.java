@@ -3,7 +3,6 @@ package com.booktopia.www.controller;
 import com.booktopia.www.domain.BookVO;
 import com.booktopia.www.domain.BooktopiaVO;
 import com.booktopia.www.service.BookTopiaService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Random;
 
@@ -32,17 +30,11 @@ public class BooktopiaTestController {
     @GetMapping("/resultTest/{user}")
     @ResponseBody
     public List<BookVO> showResult(@PathVariable("user") String user, Model m){
-        log.info("user>>>>>>>>> {}", user);
-
         List<BookVO> list = bookTopiaService.findType(user);
-        log.info("list >>>> {}", list);
-
-
         return list;
     }
     @PostMapping("/bookList")
     public String btnResult(@RequestParam("btnResult") String btnResult, Model m, BooktopiaVO booktopiaVO) {
-        log.info(">> btnResult >> {}", btnResult);
 
         int randomNumber1;
         do {
@@ -58,7 +50,6 @@ public class BooktopiaTestController {
         List<BookVO> popblist = bookTopiaService.getList(String.valueOf(randomNumber1));
         List<BookVO> newblist = bookTopiaService.getList(String.valueOf(randomNumber2));
 
-        log.info(">>> booktopiaVO >> {}", booktopiaVO);
         bookTopiaService.insert(booktopiaVO);
         m.addAttribute("blist", blist);
         m.addAttribute("popblist", popblist);
@@ -75,8 +66,6 @@ public class BooktopiaTestController {
     @GetMapping("/detail")
     public void bookDetail(@RequestParam("book") int book, Model m, BookVO bookVO) {
         List<BookVO> blist = bookTopiaService.getBookList(book);
-        log.info(">>> blist >> {}", blist);
-        log.info("book detail>>>>>>>>>{}", book);
         m.addAttribute("blist", blist);
     }
 

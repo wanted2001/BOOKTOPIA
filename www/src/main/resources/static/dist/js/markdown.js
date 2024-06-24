@@ -1,5 +1,3 @@
-// console.log("List js in");
-
 document.addEventListener("DOMContentLoaded", function() {
     const converter = new showdown.Converter();
 

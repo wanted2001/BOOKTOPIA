@@ -142,8 +142,6 @@ display: flex;
     font-size: 20px;
 }
 
-    /* 오른쪽 바뀌는 부분 작업중 */
-
 .myPageRight{
     display: flex;
     width: 600px;
@@ -212,13 +210,6 @@ display: flex;
     font-size: 13px;
     padding-left: 20px;
 }
-.payInfoRight{
-    /*display: inline-block;*/
-    /*height: 100px;*/
-    /*width: 125px;*/
-    /*margin-top: 5px;*/
-    /*padding-left: 50px;*/
-}
 
 #payInfoTitle {
     margin-bottom: 10px;
@@ -226,7 +217,6 @@ display: flex;
     font-weight: 700;
     color: #4c8d6f;
     padding: 15px 0 0 11px;
-    /* padding-left: 33px; */
 }
 #payInfoapprovedAt{
     font-size: 12px;
@@ -282,7 +272,6 @@ display: flex;
 
 .myPageRightWrapForm::-webkit-scrollbar {
     width: 5px;
-    /* background-color: aliceblue; */
 }
 .myPageRightWrapForm::-webkit-scrollbar-thumb {
     border-radius: 18px;
@@ -414,22 +403,17 @@ li{
 
 .couponInName{
     width: 281px;
-    /* height: 50px; */
-    /* line-height: 40px; */
     font-size: 12px;
     padding-left: 16px;
     text-align: center;
     padding-top: 14px;
     margin-left: -15px;
-    /* margin-top: 5px; */
     font-weight: bold;
 }
 .couponInfoRight{
     height: 100%;
     width: 82px;
     position: absolute;
-    /* margin-top: 5px; */
-    /* padding-left: 20px; */
     float: right;
     top: 0;
     right: 0;
@@ -441,12 +425,10 @@ li{
     font-weight: 700;
     color: #077aa8;
     text-align: center;
-    /* padding-left: 9px; */
     padding-top: 14px;
 }
 
 #couponInfoGarrent{
-    /* width: 226px; */
     font-size: 12px;
     margin-top: 21px;
     text-align: center;
@@ -454,10 +436,7 @@ li{
 
 #couponInfoAt{
     font-size: 15px;
-    /* width: 130px; */
     height: 30px;
-    /* text-align: right; */
-    /* padding-right: 16px; */
     text-align: center;
     font-weight: bold;
     padding-top: 63px;

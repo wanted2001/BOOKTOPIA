@@ -1,18 +1,13 @@
 package com.booktopia.www.controller;
 
-import com.booktopia.www.domain.AdCouponVO;
 import com.booktopia.www.domain.DTO.CouponInfoDTO;
 import com.booktopia.www.domain.DTO.MailDTO;
 import com.booktopia.www.domain.DTO.OrderInfoDTO;
-import com.booktopia.www.domain.DeliveryVO;
-import com.booktopia.www.domain.QnaVO;
 import com.booktopia.www.domain.UserVO;
 import com.booktopia.www.repository.AdCouponMapper;
 import com.booktopia.www.repository.DeliMapeer;
 import com.booktopia.www.service.SendEmailService;
 import com.booktopia.www.service.UserService;
-import jdk.swing.interop.LightweightContentWrapper;
-import kotlin.collections.IntIterator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,9 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import retrofit2.http.Path;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -58,7 +51,6 @@ public class UserController {
     @PostMapping("/join")
     public String joinInsert(UserVO uvo, Model m){
         uvo.setPwd(passwordEncoder.encode(uvo.getPwd()));
-        log.info("uvo >> {}",uvo);
         int isOk = usv.joinInsert(uvo);
         m.addAttribute("msg", "가입이 완료되었습니다. 로그인해주세요.");
         return "/user/login";
@@ -69,7 +61,6 @@ public class UserController {
 
     @PostMapping(value = "/check",consumes="text/plain",produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> idCheck(@RequestBody String id){
-        log.info("id> {}" ,id);
         int isOk = usv.checkId(id);
         return isOk == 0? new ResponseEntity<String>("0", HttpStatus.OK) :
                 new ResponseEntity<String>("1", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -80,7 +71,6 @@ public class UserController {
     @GetMapping("/isSocialUser/{id}")
     public String isSocialUser(@PathVariable("id")String id){
         String type = usv.isSocialUser(id);
-        log.info("type >> {}",type);
         return type;
     }
 
@@ -89,7 +79,6 @@ public class UserController {
 
     @PostMapping("/modify")
     public String modifyUser(UserVO uvo, RedirectAttributes re) {
-        log.info("pwd >> {}",uvo.getPwd());
         if (uvo.getPwd() == null || uvo.getPwd().length() <= 0) {
             usv.modifyMyinfo(uvo);
         } else {
@@ -108,7 +97,6 @@ public class UserController {
     @ResponseBody
     @GetMapping("/findId/{userName}")
     public ResponseEntity<String> findId(@PathVariable("userName") String userName) {
-        log.info("아이디 찾는 유저의 이름 >>>>> {}", userName);
         return  ResponseEntity.ok(usv.findId(userName));
 
     }
@@ -118,9 +106,7 @@ public class UserController {
 
     @RequestMapping(value="/findPw", method=RequestMethod.POST)
     public String findPw(UserVO uvo,Model m) throws Exception{
-        log.info("user pw >>"+uvo.getId());
         if(usv.findPwCheck(uvo)==0) {
-            log.info("memberPWCheck");
             m.addAttribute("msg", "아이디를 확인해주세요.");
 
             return "/user/findPw";
@@ -134,7 +120,6 @@ public class UserController {
 
     @GetMapping("/deleteMyPageUser/{id}")
     public ResponseEntity<String> deleteMyPageUser(@PathVariable("id")String id){
-        log.info("id >> {}",id);
        int isOk =  usv.deleteMyPageUser(id);
        return isOk == 0? new ResponseEntity<String>("0", HttpStatus.OK) :
                new ResponseEntity<String>("1", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -144,20 +129,12 @@ public class UserController {
     @ResponseBody
     @GetMapping("/myPagePayInfo/{id}")
     public List<OrderInfoDTO> myPagePayInfo(@PathVariable("id") String id) {
-        log.info("id >> {}", id);
         List<OrderInfoDTO> plist = usv.getPlist(id);
-        log.info("plist >> {}", plist);
 
-//        for(int i=0;i<plist.size();i++){
-//            String merchantUid = plist.get(i).getMerchantUid();
-//            String deliStatus = deliMapeer.getStatus(merchantUid);
-//            plist.get(i).setDeliStatus(deliStatus);
-//        }
         for(OrderInfoDTO p : plist) {
             String deliStatus = deliMapeer.getStatus(p.getMerchantUid());
             p.setDeliStatus(deliStatus);
         }
-        log.info("plist >> {}", plist);
         return plist;
     }
 
@@ -172,7 +149,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/moddata")
     public int modifyaddr(@RequestBody UserVO uvo){
-        log.info("uvo >> {}",uvo);
         int isOk = usv.modifyaddrandphone(uvo);
         return isOk;
     }
@@ -180,9 +156,7 @@ public class UserController {
     @ResponseBody
     @GetMapping("/myPageCouponInfo/{id}")
     public List<CouponInfoDTO> usingCou (@PathVariable("id")String id){
-        log.info("id >> {}",id);
         List<CouponInfoDTO> coulist = usv.getcouList(id);
-        log.info("coulist >> {}",coulist);
         return  coulist;
     }
 
@@ -190,7 +164,6 @@ public class UserController {
     @GetMapping("/callinfo/{id}")
     public UserVO callinfo(@PathVariable("id")String id){
         UserVO uvo = usv.getcallinfo(id);
-        log.info("uvo >>> {}",uvo);
         return uvo;
     }
 }

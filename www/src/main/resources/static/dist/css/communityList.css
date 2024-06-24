@@ -28,14 +28,7 @@
     font-style: normal;
     font-weight: normal;
 }
-/*
-메인컬러
-네이비 #005c87
-핑크 #ffb1b0
-노랑 #fff44f
-*/
 .wrap{
-    /*background-color: rgba(255, 209, 209, 0.13);*/
     font-family: SCDream3;
 }
 .commSearchArea{
@@ -143,24 +136,19 @@
 }
 /*게시글 한개 사이즈*/
 .commListArea, .commNon{
-    /*background-color: lightcoral;*/
     width: 1000px;
     height: 200px;
     margin: 0 auto 0;
     border-top: 1px solid #b1b1b1;
     padding-top: 25px;
-    /*padding: 25px 0 0 0 ;*/
 }
 .commListArea:nth-child(1),.commNon{
-    /*background-color: pink;*/
     margin-top: 41px;
 }
 .commListArea:nth-of-type(10){
-    /*background-color: pink;*/
     border-bottom: 1px solid #b1b1b1;
 }
 .commListContent:nth-child(1){
-    /*background-color: pink;*/
     padding: 0 30px;
 }
 .commNon{
@@ -172,7 +160,6 @@
     line-height: 200px;
 }
 .commTitle,.commWriter{
-    /*background-color: lightgoldenrodyellow;*/
     width: 700px;
     height: 20px;
     line-height: 20px;
@@ -180,16 +167,13 @@
 .commTitle span, .commTitle a{
     font-family: SCDream5;
     font-size: 18px;
-    /*padding-left: 15px;*/
 }
 .commWriter{
     margin-top: 10px;
     font-size: 12px;
     color: #474747;
-    /*padding-left: 15px;*/
 }
 .commContent{
-    /*background-color: darkgray;*/
     width: 700px;
     height: 95px;
     line-height: 95px;
@@ -209,7 +193,6 @@
     box-shadow: 4px 3px 13px -5px #dcdcdc42;
 }
 .commCntInfo{
-    /*background-color: mintcream;*/
     width: 230px;
     height: 40px;
     display: flex;
@@ -253,10 +236,8 @@
     border: 1px solid #cdcdcd;
     padding: 10px;
     border-radius: 30px;
-    /*box-shadow: -3px 0 8px rgba(0,0,0,0.15)*/
 }
 .commPage{
-    /*background-color: darkseagreen;*/
     width: 400px;
     height: 45px;
     margin: 50px auto 20px;
@@ -280,7 +261,6 @@ img.stickerBC {
     top: 173px;
     position: absolute;
     left: -100px;
-    /* opacity: 0.3; */
     width: 340px;
 }
 img.stickerBook {
@@ -297,7 +277,6 @@ img.stickerCat {
 }
 img.stickerD {
     position: absolute;
-    /* bottom: 0px; */
     top: 1709px;
     transform: rotate(9deg);
     width: 180px;

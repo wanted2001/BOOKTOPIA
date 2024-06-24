@@ -3,7 +3,6 @@ package com.booktopia.www.controller;
 
 import com.booktopia.www.domain.QnaVO;
 import com.booktopia.www.service.QnaService;
-import com.booktopia.www.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -27,9 +26,7 @@ public class QnaController {
 
     @PostMapping("/addQna")
     public String addqna(@ModelAttribute QnaVO qnaVO,Model m){
-        log.info("qnaVO >> {}",qnaVO);
         int isOk = qsv.insertqna(qnaVO);
-        log.info("isOk >>{}",isOk);
         m.addAttribute("addqnamsg",isOk);
         return "/user/myPage";
     }
@@ -37,9 +34,7 @@ public class QnaController {
     @GetMapping("/oneInquirylist/{id}")
     @ResponseBody
     public List<QnaVO> getqnaList(@PathVariable("id")String id){
-        log.info("id >> {}",id);
         List<QnaVO> qnaVOList = qsv.getqnalist(id);
-        log.info("qnaVOList >> {}",qnaVOList);
         return qnaVOList;
     }
 }

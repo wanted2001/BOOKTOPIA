@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 유저 타입 확인 후 페이지 호출
     isSocialUser(idVal).then(result => {
-        console.log(result);
         if (result !== "일반") {
             pageCall(isSocial, moveContainerUserDelete);
             comDelete.style.display = "none";
@@ -90,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#myPageCoupon, #myPageModify, #myPageAddress, #myPagePayment, #myPageQna').forEach(button => {
         button.addEventListener('click', (e) => {
             const myPageMoveBtn = e.target.id;
-            console.log(myPageMoveBtn);
             moveContainer.innerHTML = "";
 
             switch (myPageMoveBtn) {
@@ -114,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("comUserDelete").addEventListener("click", () => {
         const isRealDelete = button_event();
-        console.log(isRealDelete);
         if (isRealDelete) {
             deleteComUser(idVal).then(result => {
                 if (result == 1) {
@@ -139,12 +136,10 @@ function logout() {
         if (response.ok) {
             window.location.href = '/login'; // 로그아웃 후 로그인 페이지로 리디렉션
         } else {
-            console.error('Failed to log out.');
             alert('로그아웃에 실패했습니다.');
         }
     })
     .catch(error => {
-        console.error('Logout error:', error);
         alert('로그아웃 중 오류가 발생했습니다.');
     });
 }

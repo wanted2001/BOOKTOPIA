@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("result js in");
     let user = document.getElementById('commuUser');
 
 
     getIdToServer(user.value).then(result => {
-        console.log('전달 완료');
-        console.log(result);
-
-
         const main = document.getElementById("testResult");
         main.innerHTML = ""; // ul 내용 초기화
 
