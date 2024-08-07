@@ -9,8 +9,6 @@
         values (#{impUid}, #{id}, #{merchantUid}, #{ordEmail}, #{ordName}, #{ordPhone}, #{ordAddr})
     </insert>
 
-<!--    <insert id="insert">-->
-<!--    </insert>-->
     <select id="getSuccessPayInfo" resultType="com.booktopia.www.domain.DTO.OrderInfoDTO">
         select * from order_info where merchant_uid=#{merchantUid}
     </select>
