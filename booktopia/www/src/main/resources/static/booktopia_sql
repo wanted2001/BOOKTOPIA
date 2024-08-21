@@ -1,0 +1,167 @@
+-- 2024.05.23 DB 설정
+
+-- 사용자 DB
+CREATE TABLE user (
+id varchar(200) NOT NULL,
+pwd VARCHAR(200),
+name VARCHAR(200) NOT NULL,
+user_del VARCHAR(1) NOT NULL DEFAULT 'N',
+sub_no INT DEFAULT 0,
+user_reg DATETIME DEFAULT now(),
+user_up DATETIME DEFAULT now(),
+user_type VARCHAR(200) not null,
+PRIMARY KEY(id));
+
+-- 취향검사용 DB
+CREATE TABLE booktopia (
+id VARCHAR(200) not null,
+birth VARCHAR(200),
+gender INT default 1,
+FOREIGN KEY(id) REFERENCES user(id));
+
+-- 주소지 DB
+CREATE TABLE address (
+addr VARCHAR(500) not null,
+id VARCHAR(200) not null,
+FOREIGN key(id) REFERENCES user(id));
+
+-- 권한 DB
+CREATE TABLE auth (
+id VARCHAR(200) not null,
+role VARCHAR(200) not null default 'ROLE_USER',
+FOREIGN key(id) REFERENCES user(id));
+
+-- 발급가능쿠폰 DB
+CREATE TABLE coupon_use (
+id VARCHAR(200) NOT NULL,
+cou_no INT NOT NULL,
+cou_use VARCHAR(20) NOT NULL DEFAULT 'N',
+FOREIGN key(id) REFERENCES user(id));
+
+-- 책 list DB
+CREATE TABLE book(
+book_code INT NOT NULL,
+book_title VARCHAR(200) NOT NULL,
+book_writer VARCHAR(200) NOT NULL,
+book_cate VARCHAR(200) NOT NULL,
+book_story VARCHAR(300) NOT NULL,
+PRIMARY KEY(book_code));
+
+-- 이용중인 구독권
+CREATE TABLE subscribe(
+sub_no BIGINT NOT NULL,
+id VARCHAR(200) NOT NULL,
+sub_status INT,  -- 해지/구독중 /만료
+sub_start DATETIME DEFAULT NOW(),
+sub_end DATETIME,
+PRIMARY KEY(sub_no));
+
+-- 결제정보 DB
+CREATE TABLE pay(
+tid VARCHAR(200) NOT NULL,
+id VARCHAR(200) NOT NULL,
+cid VARCHAR(200) NOT NULL,
+amount VARCHAR(200) NOT NULL,
+aprroved_at DATETIME NOT NULL,
+PRIMARY KEY(tid));
+
+-- 구독정보 DB
+CREATE TABLE subscribe_info(
+ship_no INT NOT NULL,
+sub_in_month INT NOT NULL,
+sun_in_price INT NOT NULL,
+PRIMARY KEY(ship_no));
+
+-- subscribe DB 외래키 연결
+ALTER TABLE subscribe ADD CONSTRAINT fk_sub_id FOREIGN KEY(id) REFERENCES user(id);
+
+-- 결제정보 DB 외래키 연결
+ALTER TABLE pay ADD CONSTRAINT fk_pay_id FOREIGN KEY(id) REFERENCES user(id);
+
+-- 쿠폰 DB
+create table ad_coupon(
+cou_no int not null auto_increment,
+ad_cou_name varchar(200) not null,
+ad_cou_period datetime not null,
+ad_cou_date datetime default now(),
+ad_cou_sale int not null,
+primary key(cou_no));
+
+-- 챗본 DB
+create table chatbot(
+chat_no int not null,
+chat_anw text not null,
+primary key(chat_no));
+
+-- 발송 DB (외래키 연결 필요)
+create table delivery(
+pay_no varchar(200) not null,
+book_code int not null,
+id varchar(200) not null,
+deli_date datetime not null,
+deli_status int not null default 0,
+primary key(pay_no));
+
+-- 파일 DB
+create table file(
+uuid varchar(256) not null,
+save_dir varchar(256) not null,
+file_name varchar(256) not null,
+file_size bigint not null,
+file_type int not null default 0,
+book_code int,
+primary key(uuid));
+
+-- 좋아요 DB (외래키 연결 필요)
+create table heart(
+hno bigint not null auto_increment,
+id varchar(200) not null,
+bno bigint not null,
+heart_yn tinyint not null default 1,
+primary key(hno));
+
+-- 커뮤니티 게시판 DB
+CREATE TABLE board(
+bno bigint auto_increment,
+id varchar(200) not null,
+b_title varchar(200) not null,
+b_writer varchar(200) not null,
+b_content text not null,
+b_reg_date datetime not null default now(),
+b_up_date datetime,
+b_read_cnt int default 0,
+b_cmt_cnt int default 0,
+b_heart_cnt int default 0,
+b_is_del varchar(1) not null default 'N',
+b_cate varchar(200) not null,
+primary key(bno),
+foreign key (id) references user(id));
+
+-- 찬반토론 DB
+CREATE TABLE vote (
+vote_bno varchar(255) not null,
+id varchar(200) not null,
+vote_result int not null default 0,
+primary key(vote_bno),
+foreign key (id) references user(id));
+
+-- 댓글 DB
+CREATE TABLE comment (
+cno bigint auto_increment,
+bno bigint not null,
+c_writer varchar(200) not null,
+c_content text,
+c_reg_date datetime default now(),
+c_type varchar(1) not null default 'C',
+primary key(cno),
+foreign key (bno) references board(bno));
+
+-- 대댓글 DB
+CREATE TABLE recomment (
+rc_cno int not null auto_increment,
+cno bigint not null,
+rc_writer varchar(200) not null,
+rc_content text,
+rc_reg_date datetime default now(),
+primary key(rc_cno),
+foreign key(cno) references comment(cno));
