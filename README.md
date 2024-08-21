@@ -1,5 +1,5 @@
 # 프로젝트 이름 : BOOKTOPIA
-<img alt="logo" src="https://github.com/user-attachments/assets/6c1bff62-147d-4039-940e-9ee44cb0241c"></br>
+<img alt="logo" src="booktopia/www/src/main/resources/static/image/logo.png"></br>
 <a href="#-개발목적"><h3>▶ 개발목적</h3></a>
 <ul>
   <li>사용자의 도서 취향과 스타일을 분석</li>
